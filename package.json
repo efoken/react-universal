@@ -1,0 +1,47 @@
+{
+  "name": "universal-ui",
+  "private": true,
+  "workspaces": [
+    "app",
+    "docs",
+    "packages/*",
+    "tools/*"
+  ],
+  "dependencies": {
+    "@babel/core": "^7.24.1",
+    "@babel/preset-env": "^7.24.1",
+    "@react-native/normalize-colors": "^0.74.75",
+    "@testing-library/react-native": "^12.4.4",
+    "@types/jest": "^29.5.12",
+    "@types/react": "^18.2.67",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
+    "babel-jest": "^29.7.0",
+    "babel-preset-expo": "~10.0.1",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-unicorn": "^51.0.1",
+    "jest": "^29.7.0",
+    "prettier": "^3.2.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.73.6",
+    "react-native-unistyles": "^2.5.0",
+    "react-native-web": "^0.19.10",
+    "react-test-renderer": "18.2.0",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.4.2"
+  },
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "packageManager": "yarn@4.1.0"
+}

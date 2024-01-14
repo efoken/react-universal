@@ -1,0 +1,30 @@
+{
+  "name": "@universal-ui/styles",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "@github/memoize": "^1.1.4",
+    "@universal-ui/utils": "workspace:*"
+  },
+  "devDependencies": {
+    "@react-native/normalize-colors": "^0.74.75",
+    "@types/react": "^18.2.67",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.73.6",
+    "react-native-unistyles": "^2.5.0",
+    "react-native-web": "^0.19.10"
+  },
+  "peerDependencies": {
+    "@types/react": "^18.2.0",
+    "react": "^18.2.0",
+    "react-native": ">=0.72.6",
+    "react-native-unistyles": "^2.5.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
+  }
+}

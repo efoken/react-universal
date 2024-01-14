@@ -1,0 +1,24 @@
+{
+  "name": "@universal-ui/components",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "@universal-ui/styles": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.67",
+    "react": "18.2.0",
+    "react-native": "0.73.6"
+  },
+  "peerDependencies": {
+    "@types/react": "^18.2.0",
+    "react": "^18.2.0",
+    "react-native": ">=0.72.6"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
+  }
+}

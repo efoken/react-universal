@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "lib": ["ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "Node10",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2022"
+  }
+}
