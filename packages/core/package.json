@@ -8,7 +8,6 @@
     "@emotion/react": "^11.11.4",
     "@emotion/serialize": "^1.1.4",
     "@emotion/utils": "^1.2.1",
-    "@github/memoize": "^1.1.4",
     "@tamagui/constants": "^1.98.3",
     "@universal-ui/utils": "workspace:*"
   },
@@ -29,6 +28,9 @@
   },
   "peerDependenciesMeta": {
     "@types/react": {
+      "optional": true
+    },
+    "react-native-unistyles": {
       "optional": true
     }
   }

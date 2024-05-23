@@ -1,9 +1,9 @@
-import memoize from '@github/memoize';
 import {
   get,
   isNumber,
   isObject,
   isString,
+  memoize,
   mergeDeep,
 } from '@universal-ui/utils';
 import type { ViewStyle as RNViewStyle } from 'react-native';

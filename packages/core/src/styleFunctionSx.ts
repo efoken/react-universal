@@ -7,12 +7,11 @@ import {
   mergeDeep,
   runIfFunction,
 } from '@universal-ui/utils';
-import type { UnistylesValues } from 'react-native-unistyles';
 import { handleBreakpoints } from './breakpoints';
 import type { SxConfig, SxProps } from './sxConfig/defaultSxConfig';
 import { defaultSxConfig } from './sxConfig/defaultSxConfig';
 import type { Theme } from './theme/defaultTheme';
-import type { AnyProps } from './types';
+import type { AnyProps, StyleValues } from './types';
 
 function objectsHaveSameKeys(...objs: Record<string, any>[]) {
   const keys = new Set(
@@ -103,7 +102,7 @@ function getThemeValue(
 export interface StyleFunctionSx {
   (
     props: AnyProps & { sx?: SxProps; theme: Theme },
-  ): UnistylesValues | undefined | (UnistylesValues | undefined)[];
+  ): StyleValues | undefined | (StyleValues | undefined)[];
   filterProps?: string[];
 }
 
@@ -133,7 +132,7 @@ export function createStyleFunctionSx(): StyleFunctionSx {
         return undefined;
       }
 
-      let css: UnistylesValues = {};
+      let css: StyleValues = {};
 
       const mergeCss = (item: any) => mergeDeep(css, item, { clone: false });
 

@@ -10,6 +10,7 @@ const TextRoot = styled(RNText, {
   fontFamily: theme.fonts.body.family,
   fontStyle: 'normal',
   fontWeight: 'normal',
+  position: 'static',
 }));
 
 export const Text = forwardRef<RNText, TextProps>(

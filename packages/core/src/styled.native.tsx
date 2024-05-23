@@ -2,8 +2,8 @@ import { isFunction, isString } from '@universal-ui/utils';
 import { forwardRef } from 'react';
 import type { StyleProp } from 'react-native';
 import { useStyles } from 'react-native-unistyles';
-import { StyleSheet } from './StyleSheet';
 import { createElement } from './createElement';
+import { createStyleSheet } from './createStyleSheet';
 import { css } from './css';
 import { styleFunctionSx } from './styleFunctionSx';
 import type { CreateStyledComponent, StyledOptions } from './styled.types';
@@ -66,7 +66,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
       const Component = shouldUseAs ? props.as ?? component : component;
 
       const { styles: _styles } = useStyles(
-        StyleSheet.create((theme, runtime) => ({
+        createStyleSheet((theme, runtime) => ({
           style: css.call(
             { ...props, runtime, theme },
             styles,

@@ -2,5 +2,8 @@
   "name": "@universal-ui/utils",
   "version": "1.0.0",
   "main": "src/index.ts",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@github/memoize": "^1.1.4"
+  }
 }

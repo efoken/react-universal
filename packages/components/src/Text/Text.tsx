@@ -16,22 +16,21 @@ import type { GestureResponderEvent, NativeMethods } from 'react-native';
 import type { TextOwnerState, TextProps } from './Text.types';
 import { TextAncestorContext } from './TextAncestorContext';
 
-const forwardPropsList = {
-  ...forwardedProps.defaultProps,
-  ...forwardedProps.accessibilityProps,
-  ...forwardedProps.clickProps,
-  ...forwardedProps.focusProps,
-  ...forwardedProps.keyboardProps,
-  ...forwardedProps.mouseProps,
-  ...forwardedProps.touchProps,
-  ...forwardedProps.styleProps,
-  href: true,
-  lang: true,
-  pointerEvents: true,
-};
-
-const pickProps = <T extends AnyProps>(props: T) =>
-  pick(props, forwardPropsList);
+function pickProps<T extends AnyProps>(props: T) {
+  return pick(props, {
+    ...forwardedProps.defaultProps,
+    ...forwardedProps.accessibilityProps,
+    ...forwardedProps.clickProps,
+    ...forwardedProps.focusProps,
+    ...forwardedProps.keyboardProps,
+    ...forwardedProps.mouseProps,
+    ...forwardedProps.touchProps,
+    ...forwardedProps.styleProps,
+    href: true,
+    lang: true,
+    pointerEvents: true,
+  });
+}
 
 const TextRoot = styled('div', {
   label: 'Text',
@@ -43,15 +42,12 @@ const TextRoot = styled('div', {
     borderWidth: 0,
     boxSizing: 'border-box',
     color: '#000',
-    // display: 'inline' as any,
-    // fontFamily: theme.fonts.body.family,
-    // fontSize: 14,
+    fontFamily: theme.fonts.body.family,
     fontStyle: 'normal',
     fontWeight: 'normal',
     listStyleType: 'none',
     margin: 0,
     padding: 0,
-    position: 'relative',
     textAlign: 'start' as any,
     textDecorationLine: 'none',
     whiteSpace: 'pre-wrap',
@@ -64,6 +60,9 @@ const TextRoot = styled('div', {
       fontWeight: 'inherit' as any,
       textAlign: 'inherit' as any,
       whiteSpace: 'inherit',
+    }),
+    ...(ownerState.pressable && {
+      cursor: 'pointer',
     }),
   }),
   ({ ownerState }) =>
@@ -84,15 +83,6 @@ const TextRoot = styled('div', {
         WebkitLineClamp: ownerState.numberOfLines,
       }),
     },
-  ({ ownerState }) => ({
-    ...(ownerState.role === 'paragraph' &&
-      {
-        // display: 'block' as any,
-      }),
-    ...(ownerState.pressable && {
-      cursor: 'pointer',
-    }),
-  }),
 );
 
 export const Text = forwardRef<any, TextProps>(

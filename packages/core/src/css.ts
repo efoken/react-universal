@@ -1,8 +1,7 @@
 import { isFunction, isObject } from '@universal-ui/utils';
-import type { UnistylesValues } from 'react-native-unistyles';
-import type { StyleInterpolation } from './types';
+import type { StyleInterpolation, StyleValues } from './types';
 
-let styles: UnistylesValues[];
+let styles: StyleValues[];
 
 function handleInterpolation(
   this: any,
@@ -31,7 +30,7 @@ function handleInterpolation(
     return;
   }
   if (isObject(interpolation)) {
-    styles.push(interpolation as UnistylesValues);
+    styles.push(interpolation as StyleValues);
   }
   if (Array.isArray(interpolation)) {
     for (const [i, style] of interpolation.entries()) {
@@ -45,5 +44,5 @@ export function css(this: any, ...args: StyleInterpolation<any>[]) {
   for (const [i, arg] of args.entries()) {
     handleInterpolation.call(this, arg, i);
   }
-  return Object.assign({}, ...styles) as UnistylesValues;
+  return Object.assign({}, ...styles) as StyleValues;
 }

@@ -1,21 +1,53 @@
-import type { UnistylesValues } from 'react-native-unistyles';
+import type {
+  ImageStyle as RNImageStyle,
+  TextStyle as RNTextStyle,
+  ViewStyle as RNViewStyle,
+} from 'react-native';
+import type { Breakpoints } from './breakpoints';
 import type { Theme } from './theme/defaultTheme';
 
 export type AnyProps<T = any> = Record<string, T>;
 
-export type StyleObject = Record<string, UnistylesValues>;
+type BreakpointValue<T> = {
+  [K in keyof T]?: T[K] | { [B in keyof Breakpoints]?: T[K] };
+};
+
+// These props are treated differently to nest breakpoints and Media Queries
+interface RNNestedStyle {
+  shadowOffset?: BreakpointValue<{ height: number; width: number }>;
+  textShadowOffset?: BreakpointValue<{ height: number; width: number }>;
+}
+
+type RNStyle = Omit<
+  RNImageStyle & RNTextStyle & RNViewStyle,
+  keyof RNNestedStyle | 'position' | 'transform'
+> &
+  RNNestedStyle & {
+    position: RNViewStyle['position'] | 'fixed';
+    transform?: string;
+  };
+
+type RNStyleKeys = Exclude<keyof RNStyle, keyof RNNestedStyle>;
+
+export type StyleValues = {
+  [K in RNStyleKeys]?: RNStyle[K] | { [B in keyof Breakpoints]?: RNStyle[K] };
+} & {
+  [K in keyof RNNestedStyle]?: RNNestedStyle[K];
+};
+
+export type StyleObject = Record<string, StyleValues>;
 
 export type StyleInterpolation<P extends AnyProps> =
   | null
   | undefined
   | boolean
-  | UnistylesValues
+  | StyleValues
   | StyleInterpolation<P>[]
   | ((props: P) => StyleInterpolation<P>);
 
 export type StyleFunction<P extends AnyProps> = (
   props: P,
-) => UnistylesValues | undefined | (UnistylesValues | undefined)[];
+) => StyleValues | undefined | (StyleValues | undefined)[];
 
 export type SimpleStyleFunction<K extends string> = StyleFunction<
   { theme: Theme } & Partial<Record<K, any>>

@@ -4494,7 +4494,6 @@ __metadata:
     "@emotion/react": "npm:^11.11.4"
     "@emotion/serialize": "npm:^1.1.4"
     "@emotion/utils": "npm:^1.2.1"
-    "@github/memoize": "npm:^1.1.4"
     "@react-native/normalize-colors": "npm:^0.74.83"
     "@tamagui/constants": "npm:^1.98.3"
     "@types/react": "npm:~18.2.79"
@@ -4511,6 +4510,8 @@ __metadata:
     react-native-unistyles: ^2.7.2
   peerDependenciesMeta:
     "@types/react":
+      optional: true
+    react-native-unistyles:
       optional: true
   languageName: unknown
   linkType: soft
@@ -4537,6 +4538,8 @@ __metadata:
 "@universal-ui/utils@workspace:*, @universal-ui/utils@workspace:packages/utils":
   version: 0.0.0-use.local
   resolution: "@universal-ui/utils@workspace:packages/utils"
+  dependencies:
+    "@github/memoize": "npm:^1.1.4"
   languageName: unknown
   linkType: soft
 

@@ -10,7 +10,6 @@ import type {
 } from '@universal-ui/core';
 import { handleBreakpoints, styled, useOwnerState } from '@universal-ui/core';
 import { Children, cloneElement, forwardRef } from 'react';
-import type { View as RNView } from 'react-native';
 import { View } from '../View';
 
 export interface StackOwnProps {
@@ -39,7 +38,7 @@ export interface StackOwnProps {
   sx?: SxProps;
 }
 
-export type StackProps<C extends React.ElementType = typeof RNView> =
+export type StackProps<C extends React.ElementType = typeof View> =
   OverridableProps<StackOwnProps, C> & {
     as?: React.ElementType;
   };

@@ -9,24 +9,28 @@ import {
   registerStyles,
 } from '@emotion/utils';
 import { isServer } from '@tamagui/constants';
-import { isFunction, isString } from '@universal-ui/utils';
+import { isFunction, isObject, isString } from '@universal-ui/utils';
 import { useMemo } from 'react';
 import type { StyleProp } from 'react-native';
 import { getLocaleDirection, useLocale } from './LocaleContext';
 import { StyleRuntime } from './StyleRuntime';
-import { StyleSheet } from './StyleSheet';
 import { useTheme } from './ThemeProvider';
 import { createElement } from './createElement';
+import { createStyleSheet } from './createStyleSheet';
 import { css } from './css';
 import { useInsertionEffectAlwaysWithSyncFallback } from './hooks/useInsertionEffectAlwaysWithSyncFallback';
 import { styleFunctionSx } from './styleFunctionSx';
 import type { CreateStyledComponent, StyledOptions } from './styled.types';
-import type { AnyProps, StyleInterpolation } from './types';
+import type { AnyProps, StyleInterpolation, StyleValues } from './types';
 
 export function defaultShouldForwardProp(prop: string) {
   return (
     prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as'
   );
+}
+
+export function flattenStyle<T extends StyleValues>(style: StyleProp<T>): T[] {
+  return [style].flat(10).filter(Boolean) as T[];
 }
 
 const Insertion: React.FC<{
@@ -115,8 +119,8 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
       const classInterpolations: string[] = [];
       let className = useMemo(
         () =>
-          StyleSheet.flatten(style)
-            .filter((a) => a.$$css === true)
+          flattenStyle(style)
+            .filter((a) => isObject(a) && '$$css' in a && a.$$css === true)
             .flatMap((a) => Object.values(a).filter((b) => isString(b)))
             .join(' '),
         [style],
@@ -132,7 +136,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
 
       const serialized = serializeStyles(
         [
-          StyleSheet.create((currentTheme, runtime) => ({
+          createStyleSheet((currentTheme, runtime) => ({
             styles: css.call(
               { ...props, runtime, theme: currentTheme },
               styles,
