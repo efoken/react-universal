@@ -1,3 +1,4 @@
+import { createTheme } from '@universal-ui/core';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -18,7 +19,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <StylesProvider>{children}</StylesProvider>
+        <StylesProvider
+          theme={createTheme({
+            fonts: {
+              body: {
+                family: inter.style.fontFamily,
+              } as any,
+            },
+          })}
+        >
+          {children}
+        </StylesProvider>
       </body>
     </html>
   );

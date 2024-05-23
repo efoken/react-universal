@@ -4,12 +4,13 @@
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@universal-ui/styles": "workspace:*"
+    "@tamagui/react-native-use-responder-events": "^1.98.3",
+    "@universal-ui/core": "workspace:*"
   },
   "devDependencies": {
-    "@types/react": "^18.2.67",
+    "@types/react": "~18.2.79",
     "react": "18.2.0",
-    "react-native": "0.73.6"
+    "react-native": "0.74.1"
   },
   "peerDependencies": {
     "@types/react": "^18.2.0",

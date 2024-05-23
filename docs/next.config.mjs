@@ -6,15 +6,8 @@ const nextConfig = {
       ...config.resolve,
       alias: {
         ...config.resolve.alias,
-        'react-native': 'react-native-web',
+        // 'react-native': 'react-native-web', not needed anymore
       },
-      extensions: [
-        '.web.js',
-        '.web.jsx',
-        '.web.ts',
-        '.web.tsx',
-        ...config.resolve.extensions,
-      ],
     },
   }),
 };

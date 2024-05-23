@@ -1,23 +1,14 @@
 'use client';
 
-import { ThemeProvider } from '@universal-ui/styles';
-import { useServerInsertedHTML } from 'next/navigation';
-import { StyleSheet } from 'react-native';
+import type { Theme } from '@universal-ui/core';
+import { ThemeProvider } from '@universal-ui/core';
 
 export function StylesProvider({
   children,
+  theme,
 }: Readonly<{
   children: React.ReactNode;
+  theme?: Theme;
 }>) {
-  useServerInsertedHTML(() => {
-    const sheet = StyleSheet.getSheet();
-    return (
-      <style
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: sheet.textContent }}
-        id={sheet.id}
-      />
-    );
-  });
-  return <ThemeProvider>{children}</ThemeProvider>;
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 }

@@ -1,8 +1,8 @@
-import { Container } from '@universal-ui/components';
-import { ThemeProvider, styled } from '@universal-ui/styles';
+import { Container, Text } from '@universal-ui/components';
+import { ThemeProvider, styled } from '@universal-ui/core';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import { StatusBar } from 'expo-status-bar';
-import { Platform, ScrollView, Text, View } from 'react-native';
+import { Platform, View as RNView, ScrollView } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 if (Platform.OS !== 'web') {
@@ -17,8 +17,11 @@ const Grid = styled(Container)({
   paddingTop: 56,
 });
 
-const Button = styled(View)(({ theme }) => ({
-  backgroundColor: theme.colors.black,
+const Button = styled(RNView)(({ theme }) => ({
+  backgroundColor: {
+    xs: theme.colors.black,
+    md: theme.colors.green,
+  },
   borderRadius: 8,
   paddingHorizontal: theme.space[4],
   paddingVertical: theme.space[2],
@@ -30,7 +33,7 @@ const ButtonLabel = styled(Text)(({ theme }) => ({
   textAlign: 'center',
 }));
 
-const Card = styled(View)({
+const Card = styled(RNView)({
   backgroundColor: '#fff',
   borderRadius: 16,
   flexGrow: 1,
