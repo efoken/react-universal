@@ -4,6 +4,23 @@ import type { LayoutChangeEvent, NativeMethods } from 'react-native';
 import { View as RNView } from 'react-native';
 import type { ViewProps } from './View.types';
 
+function normalizeLayoutEvent(event: LayoutChangeEvent) {
+  return {
+    nativeEvent: {
+      layout: {
+        height: event.nativeEvent.layout.height,
+        left: event.nativeEvent.layout.x,
+        top: event.nativeEvent.layout.y,
+        width: event.nativeEvent.layout.width,
+        x: event.nativeEvent.layout.x,
+        y: event.nativeEvent.layout.y,
+      },
+      target: event.target,
+    },
+    timeStamp: event.timeStamp,
+  };
+}
+
 const ViewRoot = styled(RNView, {
   label: 'ViewRoot',
 })({
@@ -13,17 +30,7 @@ const ViewRoot = styled(RNView, {
 export const View = forwardRef<RNView, ViewProps>(
   ({ onLayout, role, ...props }, ref) => {
     const handleLayout = (event: LayoutChangeEvent) => {
-      onLayout?.({
-        nativeEvent: {
-          layout: {
-            ...event.nativeEvent.layout,
-            left: event.nativeEvent.layout.x,
-            top: event.nativeEvent.layout.y,
-          },
-          target: event.target,
-        },
-        timeStamp: event.timeStamp,
-      });
+      onLayout?.(normalizeLayoutEvent(event));
     };
 
     return (

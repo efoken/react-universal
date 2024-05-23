@@ -63,6 +63,7 @@ export interface OverridableComponent<
   C extends React.ElementType,
 > {
   <T extends React.ElementType>(
+    // FIXME:
     props: { as: T } & OverridableProps<P, T>,
   ): React.ReactNode;
   (props: OverridableProps<P, C>): React.ReactNode;

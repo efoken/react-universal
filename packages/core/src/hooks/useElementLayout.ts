@@ -6,12 +6,12 @@ const layoutHandlers = new WeakMap<Element, (e: LayoutEvent) => void>();
 const resizeListeners = new Set<() => void>();
 
 export interface LayoutValue {
-  x: number;
-  y: number;
-  width: number;
   height: number;
   left: number;
   top: number;
+  width: number;
+  x: number;
+  y: number;
 }
 
 export interface LayoutEvent {
