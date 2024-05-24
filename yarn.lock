@@ -3971,9 +3971,9 @@ __metadata:
   linkType: hard
 
 "@tamagui/constants@npm:^1.98.4":
-  version: 1.98.4
-  resolution: "@tamagui/constants@npm:1.98.4"
-  checksum: 10c0/9290f6b9e95ab570dea4ca88b17704fa490e2c0355da761eaa26390ff45e4fbfb6b6c52ea4d9e54f315b80f471b4d788225cb3c1dc27ccb1042e5fe3b85390a8
+  version: 1.99.1
+  resolution: "@tamagui/constants@npm:1.99.1"
+  checksum: 10c0/728a0e66e91b6702870a39cc9bdc2740a752e6a1b3c7b62576fd1a6480295de48e29168050a99830dde38a1f1dfd53f32744997944ea30ca76e8b90b018caf2f
   languageName: node
   linkType: hard
 
