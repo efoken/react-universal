@@ -3978,9 +3978,9 @@ __metadata:
   linkType: hard
 
 "@tamagui/react-native-use-responder-events@npm:^1.98.4":
-  version: 1.98.4
-  resolution: "@tamagui/react-native-use-responder-events@npm:1.98.4"
-  checksum: 10c0/b626c944bb29d2f1ab68e977824b6d8b2cdd1a1ea7e970a1f012806dfd15eb58e6f3fcd53a6dca53fe38cdec696ce8ee1b745031de8525441e752787bf0a7b45
+  version: 1.99.1
+  resolution: "@tamagui/react-native-use-responder-events@npm:1.99.1"
+  checksum: 10c0/dccdb6bb7fe01dca4b81c817378b6d223dd984809172309e705c51d3cf7d2183e7a961c09db4557e3931a4f9922c5a9f2514a28d7a468a7a2d17fd7694d3ca30
   languageName: node
   linkType: hard
 
