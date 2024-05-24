@@ -1,4 +1,4 @@
-import type { UnistylesRuntime } from 'react-native-unistyles';
+import type { StyleRuntime } from './StyleRuntime';
 import type { Theme } from './theme/defaultTheme';
 import type {
   AnyProps,
@@ -7,9 +7,10 @@ import type {
 } from './types';
 
 export interface StyledOptions {
-  label?: string;
+  name?: Capitalize<string>;
   shouldForwardProp?: (prop: string) => boolean;
   skipSx?: boolean;
+  slot?: Capitalize<string>;
 }
 
 export type StyledComponent<
@@ -22,6 +23,6 @@ export type CreateStyledComponent<
   P extends AnyProps,
 > = <AdditionalProps extends AnyProps = NonNullable<unknown>>(
   ...styles: StyleInterpolation<
-    P & AdditionalProps & { runtime: typeof UnistylesRuntime; theme: Theme }
+    P & AdditionalProps & { runtime: typeof StyleRuntime; theme: Theme }
   >[]
 ) => StyledComponent<P & AdditionalProps, T>;

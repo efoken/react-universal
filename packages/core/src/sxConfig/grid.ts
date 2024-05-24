@@ -1,8 +1,7 @@
-import type { ViewStyle as RNViewStyle } from 'react-native';
 import type { BreakpointValue } from '../breakpoints';
 import { handleBreakpoints } from '../breakpoints';
 import type { Theme, ThemeValue } from '../theme/defaultTheme';
-import type { SimpleStyleFunction } from '../types';
+import type { RNStyle, SimpleStyleFunction } from '../types';
 import type { SpacingValue } from './spacing';
 import { createUnaryUnit, getValue } from './spacing';
 
@@ -14,9 +13,9 @@ type GridProp<
 >;
 
 export interface GridProps {
-  gap?: GridProp<RNViewStyle['gap'], 'space'>;
-  rowGap?: GridProp<RNViewStyle['rowGap'], 'space'>;
-  columnGap?: GridProp<RNViewStyle['columnGap'], 'space'>;
+  gap?: GridProp<RNStyle['gap'], 'space'>;
+  rowGap?: GridProp<RNStyle['rowGap'], 'space'>;
+  columnGap?: GridProp<RNStyle['columnGap'], 'space'>;
   /** @platform web */
   gridColumn?: GridProp<React.CSSProperties['gridColumn']>;
   /** @platform web */

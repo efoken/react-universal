@@ -1,8 +1,8 @@
 'use client';
 
 import { createContext, useContext } from 'react';
-import type { ThemeProviderProps } from './ThemeProvider.types';
-import { defaultTheme, type Theme } from './theme/defaultTheme';
+import { defaultTheme, type Theme } from '../theme/defaultTheme';
+import type { ThemeProviderProps } from './ThemeContext.types';
 
 const ThemeContext = createContext<Theme>(undefined as any);
 

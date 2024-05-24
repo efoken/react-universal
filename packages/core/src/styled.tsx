@@ -12,9 +12,9 @@ import { isServer } from '@tamagui/constants';
 import { isFunction, isObject, isString } from '@universal-ui/utils';
 import { useMemo } from 'react';
 import type { StyleProp } from 'react-native';
-import { getLocaleDirection, useLocale } from './LocaleContext';
 import { StyleRuntime } from './StyleRuntime';
-import { useTheme } from './ThemeProvider';
+import { getLocaleDirection, useLocale } from './contexts/LocaleContext';
+import { useTheme } from './contexts/ThemeContext';
 import { createElement } from './createElement';
 import { createStyleSheet } from './createStyleSheet';
 import { css } from './css';
@@ -30,7 +30,8 @@ export function defaultShouldForwardProp(prop: string) {
 }
 
 export function flattenStyle<T extends StyleValues>(style: StyleProp<T>): T[] {
-  return [style].flat(10).filter(Boolean) as T[];
+  // eslint-disable-next-line unicorn/no-magic-array-flat-depth
+  return [style].flat(20).filter(Boolean) as T[];
 }
 
 const Insertion: React.FC<{
@@ -93,9 +94,10 @@ export function styled<T extends keyof React.JSX.IntrinsicElements>(
 export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
   component: T,
   {
-    label,
+    name,
     shouldForwardProp = defaultShouldForwardProp,
     skipSx = false,
+    slot,
   }: StyledOptions = {},
 ) {
   const shouldUseAs = !shouldForwardProp('as');
@@ -104,7 +106,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
     const Styled = withEmotionCache<
       React.ComponentProps<T> & {
         as?: React.ElementType;
-        dir?: string;
+        dir?: 'ltr' | 'rtl';
         lang?: Intl.UnicodeBCP47LocaleIdentifier;
         style?: StyleProp<Record<string, any>>;
       },
@@ -142,7 +144,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
               styles,
               !skipSx && styleFunctionSx({ ...props, theme: currentTheme }),
             ),
-          }))(theme, StyleRuntime as any).styles,
+          }))(theme, StyleRuntime).styles,
           classInterpolations,
         ],
         cache.registered,
@@ -187,12 +189,13 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
     });
 
     Styled.displayName =
-      label ??
-      `Styled(${
-        isString(component)
-          ? component
-          : component.displayName ?? component.name ?? 'Component'
-      })`;
+      name == null
+        ? `Styled(${
+            isString(component)
+              ? component
+              : component.displayName ?? component.name ?? 'Component'
+          })`
+        : `${name}${slot ?? ''}`;
 
     return Styled;
   };

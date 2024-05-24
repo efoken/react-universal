@@ -1,19 +1,31 @@
-import type { UnistylesThemes } from 'react-native-unistyles';
+import type { Theme } from './theme';
 import { defaultTheme } from './theme';
 
-export const StyleRuntime = {
-  setTheme: (name: keyof UnistylesThemes) => {},
-  updateTheme: (
-    name: keyof UnistylesThemes,
-    updater: (
-      theme: UnistylesThemes[keyof UnistylesThemes],
-    ) => UnistylesThemes[keyof UnistylesThemes],
-  ) => {},
-  breakpoints: defaultTheme.breakpoints,
-  insets: {
-    bottom: 0,
-    left: 0,
-    right: 0,
-    top: 0,
-  },
-};
+export class StyleRuntime {
+  static #theme: Theme = defaultTheme;
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  static setTheme(name: 'default') {}
+
+  static updateTheme(name: 'default', updater: (theme: Theme) => Theme) {
+    this.#theme = updater(this.#theme);
+  }
+
+  static get breakpoints() {
+    return this.#theme.breakpoints;
+  }
+
+  static get insets(): {
+    bottom: string | number;
+    left: string | number;
+    right: string | number;
+    top: string | number;
+  } {
+    return {
+      bottom: 'env(safe-area-inset-bottom)',
+      left: 'env(safe-area-inset-left)',
+      right: 'env(safe-area-inset-right)',
+      top: 'env(safe-area-inset-top)',
+    };
+  }
+}

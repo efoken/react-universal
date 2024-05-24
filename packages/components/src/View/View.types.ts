@@ -1,6 +1,12 @@
 import type { ResponderConfig } from '@tamagui/react-native-use-responder-events/types/ResponderSystem';
 import type { LayoutEvent, SxProps } from '@universal-ui/core';
-import type { Role as RNRole, ViewProps as RNViewProps } from 'react-native';
+import type {
+  NativeMethods,
+  Role as RNRole,
+  ViewProps as RNViewProps,
+} from 'react-native';
+
+export interface ViewMethods extends NativeMethods {}
 
 export interface ViewProps
   extends Omit<

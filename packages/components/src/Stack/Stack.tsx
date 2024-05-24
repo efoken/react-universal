@@ -69,25 +69,22 @@ function joinChildren(children: React.ReactNode, divider: React.ReactElement) {
 //   return direction.startsWith('row') ? 'rowGap' : 'columnGap';
 // }
 
-const StackRoot = styled(View)<{ ownerState: StackOwnerState }>(
-  ({ ownerState, theme }) => ({
-    ...handleBreakpoints(
-      { theme },
-      ownerState.direction,
-      (propValue: 'row' | 'row-reverse' | 'column' | 'column-reverse') => ({
-        flexDirection: propValue,
-      }),
-    ),
-    ...handleBreakpoints(
-      { theme },
-      ownerState.spacing,
-      (propValue: number) => ({
-        // @ts-expect-error: It's fine as we check if `propValue` exists in space.
-        gap: theme.space[propValue] ?? propValue,
-      }),
-    ),
-  }),
-);
+const StackRoot = styled(View, {
+  name: 'Stack',
+  slot: 'Root',
+})<{ ownerState: StackOwnerState }>(({ ownerState, theme }) => ({
+  ...handleBreakpoints(
+    { theme },
+    ownerState.direction,
+    (propValue: 'row' | 'row-reverse' | 'column' | 'column-reverse') => ({
+      flexDirection: propValue,
+    }),
+  ),
+  ...handleBreakpoints({ theme }, ownerState.spacing, (propValue: number) => ({
+    // @ts-expect-error: It's fine as we check if `propValue` exists in space.
+    gap: theme.space[propValue] ?? propValue,
+  })),
+}));
 
 export const Stack = forwardRef<any, StackProps>(
   ({ children, direction = 'column', divider, spacing = 0, ...props }, ref) => {

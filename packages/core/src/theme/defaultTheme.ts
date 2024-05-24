@@ -25,24 +25,24 @@ export const defaultTheme = {
   },
   space: {
     0: 0,
-    px: 1,
-    0.5: 2,
-    1: 4,
-    2: 8,
-    3: 12,
-    4: 16,
-    5: 20,
-    6: 24,
-    7: 32,
-    8: 40,
-    9: 48,
-    10: 56,
-    11: 64,
-    12: 80,
-    13: 96,
-    14: 112,
-    15: 128,
-    16: 144,
+    px: '1px',
+    /** 2px */ 0.5: '0.125rem',
+    /** 4px */ 1: '0.25rem',
+    /** 8px */ 2: '0.5rem',
+    /** 12px */ 3: '0.75rem',
+    /** 16px */ 4: '1rem',
+    /** 20px */ 5: '1.25rem',
+    /** 24px */ 6: '1.5rem',
+    /** 32px */ 7: '2rem',
+    /** 40px */ 8: '2.5rem',
+    /** 48px */ 9: '3rem',
+    /** 56px */ 10: '3.5rem',
+    /** 64px */ 11: '4rem',
+    /** 80px */ 12: '5rem',
+    /** 96px */ 13: '6rem',
+    /** 112px */ 14: '7rem',
+    /** 128px */ 15: '8rem',
+    /** 144px */ 16: '9rem',
   },
   radii: [0, 4, 8, 16],
   zIndices: {},
@@ -60,8 +60,7 @@ export type ThemeValue<T extends Record<string, any>> = {
 
 declare module 'react-native-unistyles' {
   export interface UnistylesThemes {
-    light: Theme;
-    dark: Theme;
+    default: Theme;
   }
   export interface UnistylesBreakpoints extends Breakpoints {}
 }

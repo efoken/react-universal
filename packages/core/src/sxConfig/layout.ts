@@ -1,9 +1,8 @@
 import { isNumber } from '@universal-ui/utils';
-import type { ViewStyle as RNViewStyle } from 'react-native';
 import type { BreakpointValue } from '../breakpoints';
 import { handleBreakpoints } from '../breakpoints';
 import type { Theme, ThemeValue } from '../theme/defaultTheme';
-import type { SimpleStyleFunction } from '../types';
+import type { RNStyle, SimpleStyleFunction } from '../types';
 
 type LayoutProp<
   T,
@@ -11,23 +10,23 @@ type LayoutProp<
 > = BreakpointValue<K extends string ? T | ThemeValue<Theme[K]> : T>;
 
 export interface LayoutProps {
-  w?: LayoutProp<RNViewStyle['width']>;
-  maxW?: LayoutProp<RNViewStyle['maxWidth']>;
-  minW?: LayoutProp<RNViewStyle['minWidth']>;
-  width?: LayoutProp<RNViewStyle['width']>;
-  maxWidth?: LayoutProp<RNViewStyle['maxWidth'], 'breakpoints'>;
-  minWidth?: LayoutProp<RNViewStyle['minWidth']>;
-  h?: LayoutProp<RNViewStyle['height']>;
-  maxH?: LayoutProp<RNViewStyle['maxHeight']>;
-  minH?: LayoutProp<RNViewStyle['minHeight']>;
-  height?: LayoutProp<RNViewStyle['height']>;
-  maxHeight?: LayoutProp<RNViewStyle['maxHeight']>;
-  minHeight?: LayoutProp<RNViewStyle['minHeight']>;
+  w?: LayoutProp<RNStyle['width']>;
+  maxW?: LayoutProp<RNStyle['maxWidth']>;
+  minW?: LayoutProp<RNStyle['minWidth']>;
+  width?: LayoutProp<RNStyle['width']>;
+  maxWidth?: LayoutProp<RNStyle['maxWidth'], 'breakpoints'>;
+  minWidth?: LayoutProp<RNStyle['minWidth']>;
+  h?: LayoutProp<RNStyle['height']>;
+  maxH?: LayoutProp<RNStyle['maxHeight']>;
+  minH?: LayoutProp<RNStyle['minHeight']>;
+  height?: LayoutProp<RNStyle['height']>;
+  maxHeight?: LayoutProp<RNStyle['maxHeight']>;
+  minHeight?: LayoutProp<RNStyle['minHeight']>;
   /** @platform web */
   boxSizing?: LayoutProp<React.CSSProperties['boxSizing']>;
-  display?: LayoutProp<RNViewStyle['display']>;
-  aspectRatio?: LayoutProp<RNViewStyle['aspectRatio']>;
-  overflow?: LayoutProp<RNViewStyle['overflow']>;
+  display?: LayoutProp<RNStyle['display']>;
+  aspectRatio?: LayoutProp<RNStyle['aspectRatio']>;
+  overflow?: LayoutProp<RNStyle['overflow']>;
   /** @platform web */
   overflowX?: LayoutProp<React.CSSProperties['overflowX']>;
   /** @platform web */

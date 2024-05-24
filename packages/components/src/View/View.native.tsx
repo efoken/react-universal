@@ -1,10 +1,10 @@
 import { styled } from '@universal-ui/core';
 import { forwardRef } from 'react';
-import type { LayoutChangeEvent, NativeMethods } from 'react-native';
+import type { LayoutChangeEvent as RNLayoutChangeEvent } from 'react-native';
 import { View as RNView } from 'react-native';
-import type { ViewProps } from './View.types';
+import type { ViewMethods, ViewProps } from './View.types';
 
-function normalizeLayoutEvent(event: LayoutChangeEvent) {
+function normalizeLayoutEvent(event: RNLayoutChangeEvent) {
   return {
     nativeEvent: {
       layout: {
@@ -22,14 +22,15 @@ function normalizeLayoutEvent(event: LayoutChangeEvent) {
 }
 
 const ViewRoot = styled(RNView, {
-  label: 'ViewRoot',
+  name: 'View',
+  slot: 'Root',
 })({
   position: 'static',
 });
 
-export const View = forwardRef<RNView, ViewProps>(
+export const View = forwardRef<any, ViewProps>(
   ({ onLayout, role, ...props }, ref) => {
-    const handleLayout = (event: LayoutChangeEvent) => {
+    const handleLayout = (event: RNLayoutChangeEvent) => {
       onLayout?.(normalizeLayoutEvent(event));
     };
 
@@ -42,9 +43,9 @@ export const View = forwardRef<RNView, ViewProps>(
       />
     );
   },
-) as unknown as React.ComponentType<
-  ViewProps & React.RefAttributes<NativeMethods>
+) as unknown as React.FunctionComponent<
+  ViewProps & React.RefAttributes<ViewMethods>
 > &
-  NativeMethods;
+  ViewMethods;
 
 View.displayName = 'View';

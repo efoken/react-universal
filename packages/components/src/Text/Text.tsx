@@ -33,7 +33,8 @@ function pickProps<T extends AnyProps>(props: T) {
 }
 
 const TextRoot = styled('div', {
-  label: 'Text',
+  name: 'Text',
+  slot: 'Root',
 })<{ ownerState: TextOwnerState }>(
   ({ ownerState, theme }) => ({
     backgroundColor: 'transparent',
@@ -178,7 +179,7 @@ export const Text = forwardRef<any, TextProps>(
       </TextAncestorContext.Provider>
     );
   },
-) as unknown as React.ComponentType<
+) as unknown as React.FunctionComponent<
   TextProps & React.RefAttributes<NativeMethods>
 > &
   NativeMethods;

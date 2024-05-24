@@ -1,2 +1,2 @@
 export { View } from './View';
-export type { ViewProps } from './View.types';
+export type { ViewMethods, ViewProps } from './View.types';

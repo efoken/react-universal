@@ -1,5 +1,5 @@
 import { useIsomorphicLayoutEffect } from '@tamagui/constants';
-import { getBoundingClientRect } from '@universal-ui/utils';
+import { getBoundingClientRect, isFunction } from '@universal-ui/utils';
 import type { MeasureOnSuccessCallback } from 'react-native';
 
 const layoutHandlers = new WeakMap<Element, (e: LayoutEvent) => void>();
@@ -99,7 +99,7 @@ if (typeof window !== 'undefined' && 'ResizeObserver' in window) {
   resizeObserver = new ResizeObserver((entries) => {
     for (const { target } of entries) {
       const onLayout = layoutHandlers.get(target);
-      if (typeof onLayout !== 'function') {
+      if (!isFunction(onLayout)) {
         return;
       }
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -110,7 +110,7 @@ if (typeof window !== 'undefined' && 'ResizeObserver' in window) {
   });
 
   // window resize
-  if (typeof window.addEventListener === 'function') {
+  if (isFunction(window.addEventListener)) {
     let timer: ReturnType<typeof setTimeout>;
     window.addEventListener('resize', () => {
       clearTimeout(timer);

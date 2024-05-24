@@ -1,30 +1,32 @@
-import { Container, Text } from '@universal-ui/components';
-import { ThemeProvider, styled } from '@universal-ui/core';
+import { Container, Text, View } from '@universal-ui/components';
+import { ThemeProvider, isWeb, styled } from '@universal-ui/core';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import { StatusBar } from 'expo-status-bar';
-import { Platform, View as RNView, ScrollView } from 'react-native';
+import { ScrollView } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-if (Platform.OS !== 'web') {
+if (!isWeb) {
   ScreenOrientation.unlockAsync().catch(console.log);
 }
 
-const Grid = styled(Container)({
+const Grid = styled(Container)(({ theme }) => ({
   flexDirection: 'row',
   flexWrap: 'wrap',
-  gap: 16,
-  paddingBottom: 32,
-  paddingTop: 56,
-});
+  gap: theme.space[4],
+  paddingBottom: theme.space[7],
+  paddingTop: theme.space[10],
+}));
 
-const Button = styled(RNView)(({ theme }) => ({
+const Button = styled(View)(({ theme }) => ({
   backgroundColor: {
     xs: theme.colors.black,
     md: theme.colors.green,
   },
-  borderRadius: 8,
-  paddingHorizontal: theme.space[4],
-  paddingVertical: theme.space[2],
+  borderRadius: theme.radii[2],
+  paddingBottom: theme.space[2],
+  paddingLeft: theme.space[4],
+  paddingRight: theme.space[4],
+  paddingTop: theme.space[2],
   width: '100%',
 }));
 
@@ -33,11 +35,11 @@ const ButtonLabel = styled(Text)(({ theme }) => ({
   textAlign: 'center',
 }));
 
-const Card = styled(RNView)({
+const Card = styled(View)(({ theme }) => ({
   backgroundColor: '#fff',
-  borderRadius: 16,
+  borderRadius: theme.radii[3],
   flexGrow: 1,
-  padding: 20,
+  padding: theme.space[5],
   shadowColor: '#000',
   shadowOffset: {
     height: 0,
@@ -46,7 +48,7 @@ const Card = styled(RNView)({
   shadowOpacity: 0.08,
   shadowRadius: 16,
   width: '40%',
-});
+}));
 
 export default function App() {
   return (

@@ -1,10 +1,13 @@
 import { styled } from '@universal-ui/core';
 import { forwardRef } from 'react';
-import type { LayoutChangeEvent, NativeMethods } from 'react-native';
+import type {
+  NativeMethods,
+  LayoutChangeEvent as RNLayoutChangeEvent,
+} from 'react-native';
 import { Text as RNText } from 'react-native';
 import type { TextProps } from './Text.types';
 
-function normalizeLayoutEvent(event: LayoutChangeEvent) {
+function normalizeLayoutEvent(event: RNLayoutChangeEvent) {
   return {
     nativeEvent: {
       layout: {
@@ -22,7 +25,8 @@ function normalizeLayoutEvent(event: LayoutChangeEvent) {
 }
 
 const TextRoot = styled(RNText, {
-  label: 'Text',
+  name: 'Text',
+  slot: 'Root',
 })(({ theme }) => ({
   fontFamily: theme.fonts.body.family,
   fontStyle: 'normal',
@@ -30,9 +34,9 @@ const TextRoot = styled(RNText, {
   position: 'static',
 }));
 
-export const Text = forwardRef<RNText, TextProps>(
+export const Text = forwardRef<any, TextProps>(
   ({ 'aria-hidden': ariaHidden, onLayout, role, ...props }, ref) => {
-    const handleLayout = (event: LayoutChangeEvent) => {
+    const handleLayout = (event: RNLayoutChangeEvent) => {
       onLayout?.(normalizeLayoutEvent(event));
     };
 
@@ -50,7 +54,7 @@ export const Text = forwardRef<RNText, TextProps>(
       />
     );
   },
-) as unknown as React.ComponentType<
+) as unknown as React.FunctionComponent<
   TextProps & React.RefAttributes<NativeMethods>
 > &
   NativeMethods;

@@ -1,6 +1,6 @@
-import type { ViewStyle as RNViewStyle } from 'react-native';
 import type { BreakpointValue } from '../breakpoints';
 import type { Theme, ThemeValue } from '../theme/defaultTheme';
+import type { RNStyle } from '../types';
 
 type FlexboxProp<
   T,
@@ -8,21 +8,21 @@ type FlexboxProp<
 > = BreakpointValue<K extends string ? T | ThemeValue<Theme[K]> : T>;
 
 export interface FlexboxProps {
-  flexBasis?: FlexboxProp<RNViewStyle['flexBasis']>;
-  flexDir?: FlexboxProp<RNViewStyle['flexDirection']>;
-  flexDirection?: FlexboxProp<RNViewStyle['flexDirection']>;
-  flexWrap?: FlexboxProp<RNViewStyle['flexWrap']>;
+  flexBasis?: FlexboxProp<RNStyle['flexBasis']>;
+  flexDir?: FlexboxProp<RNStyle['flexDirection']>;
+  flexDirection?: FlexboxProp<RNStyle['flexDirection']>;
+  flexWrap?: FlexboxProp<RNStyle['flexWrap']>;
   /** @platform web */
   justifyItems?: FlexboxProp<React.CSSProperties['justifyItems']>;
-  justifyContent?: FlexboxProp<RNViewStyle['justifyContent']>;
-  alignItems?: FlexboxProp<RNViewStyle['alignItems']>;
-  alignContent?: FlexboxProp<RNViewStyle['alignContent']>;
+  justifyContent?: FlexboxProp<RNStyle['justifyContent']>;
+  alignItems?: FlexboxProp<RNStyle['alignItems']>;
+  alignContent?: FlexboxProp<RNStyle['alignContent']>;
   /** @platform web */
   order?: FlexboxProp<React.CSSProperties['order']>;
-  flex?: FlexboxProp<RNViewStyle['flex']>;
-  flexGrow?: FlexboxProp<RNViewStyle['flexGrow']>;
-  flexShrink?: FlexboxProp<RNViewStyle['flexShrink']>;
-  alignSelf?: FlexboxProp<RNViewStyle['alignSelf']>;
+  flex?: FlexboxProp<RNStyle['flex']>;
+  flexGrow?: FlexboxProp<RNStyle['flexGrow']>;
+  flexShrink?: FlexboxProp<RNStyle['flexShrink']>;
+  alignSelf?: FlexboxProp<RNStyle['alignSelf']>;
   /** @platform web */
   justifySelf?: FlexboxProp<React.CSSProperties['justifySelf']>;
 }

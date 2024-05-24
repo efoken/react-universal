@@ -1,6 +1,6 @@
 import { isFunction, isString } from '@universal-ui/utils';
 import { forwardRef } from 'react';
-import type { StyleProp } from 'react-native';
+import { StyleSheet as RNStyleSheet, type StyleProp } from 'react-native';
 import { useStyles } from 'react-native-unistyles';
 import { createElement } from './createElement';
 import { createStyleSheet } from './createStyleSheet';
@@ -8,12 +8,16 @@ import { css } from './css';
 import { styleFunctionSx } from './styleFunctionSx';
 import type { CreateStyledComponent, StyledOptions } from './styled.types';
 import type { Theme } from './theme/defaultTheme';
-import type { AnyProps, StyleInterpolation } from './types';
+import type { AnyProps, StyleInterpolation, StyleValues } from './types';
 
 export function defaultShouldForwardProp(prop: string) {
   return (
     prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as'
   );
+}
+
+export function flattenStyle<T extends StyleValues>(style: StyleProp<T>): T[] {
+  return [RNStyleSheet.flatten([style])] as T[];
 }
 
 export function styled<T extends React.ComponentClass<React.ComponentProps<T>>>(
@@ -46,9 +50,10 @@ export function styled<T extends keyof React.JSX.IntrinsicElements>(
 export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
   component: T,
   {
-    label,
+    name,
     shouldForwardProp = defaultShouldForwardProp,
     skipSx = false,
+    slot,
   }: StyledOptions = {},
 ) {
   const shouldUseAs = !shouldForwardProp('as');
@@ -66,6 +71,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
       const Component = shouldUseAs ? props.as ?? component : component;
 
       const { styles: _styles } = useStyles(
+        // @ts-expect-error: We define our own `runtime` type
         createStyleSheet((theme, runtime) => ({
           style: css.call(
             { ...props, runtime, theme },
@@ -73,8 +79,6 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
             !skipSx && styleFunctionSx({ ...props, theme }),
           ),
         })),
-        // @ts-expect-error: Just use props as variants
-        props,
       );
 
       const newProps: AnyProps = {};
@@ -97,12 +101,13 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
     });
 
     Styled.displayName =
-      label ??
-      `Styled(${
-        isString(component)
-          ? component
-          : component.displayName ?? component.name ?? 'Component'
-      })`;
+      name == null
+        ? `Styled(${
+            isString(component)
+              ? component
+              : component.displayName ?? component.name ?? 'Component'
+          })`
+        : `${name}${slot ?? ''}`;
 
     return Styled;
   };

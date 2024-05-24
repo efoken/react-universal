@@ -22,5 +22,5 @@ export type BoxProps<C extends React.ElementType = typeof View> =
   };
 
 export const Box = styled(View, {
-  label: 'Box',
+  name: 'Box',
 })() as OverridableComponent<BoxOwnProps, typeof View>;

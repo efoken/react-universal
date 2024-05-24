@@ -7,13 +7,13 @@ export default function Home() {
     <Box
       as="main"
       sx={{
-        top: 0,
+        alignItems: 'center',
         display: 'flex',
         flexDir: 'column',
         justifyContent: 'space-between',
-        alignItems: 'center',
-        p: '6rem' as any,
-        minH: '100vh' as any,
+        minH: '100vh',
+        p: '6rem',
+        top: 0,
       }}
     >
       <Container
@@ -24,7 +24,7 @@ export default function Home() {
           fontFamily: 'var(--font-mono)',
           fontSize: { xs: '0.8rem' as any, md: '0.85rem' as any },
           justifyContent: 'inherit' as any,
-          maxW: { xl: 'var(--max-width)' as any },
+          maxW: { xl: 'var(--max-width)' },
           zIndex: 2,
         }}
       >
@@ -49,18 +49,18 @@ export default function Home() {
             borderRadius: { xs: 0, md: 'var(--border-radius)' as any },
             borderRightWidth: { md: 1 },
             borderTopWidth: { md: 1 },
-            bottom: { xs: 'auto', md: 'unset' as any },
+            bottom: { xs: 'auto', md: 'unset' },
             display: { xs: 'flex', md: 'block' as any },
             justifyContent: 'center',
-            left: { xs: 0, md: 'unset' as any },
+            left: { xs: 0, md: 'unset' },
             m: 0,
-            pb: { xs: '1.4rem' as any, md: '1rem' as any },
+            pb: { xs: '1.4rem', md: '1rem' },
             position: { xs: 'fixed', md: 'relative' },
-            pt: { xs: '2rem' as any, md: '1rem' as any },
-            px: '1rem' as any,
-            right: { xs: 0, md: 'unset' as any },
-            top: { xs: 0, md: 'unset' as any },
-            w: { xs: '100%', md: 'unset' as any },
+            pt: { xs: '2rem', md: '1rem' },
+            px: '1rem',
+            right: { xs: 0, md: 'unset' },
+            top: { xs: 0, md: 'unset' },
+            w: { xs: '100%', md: 'unset' },
           }}
         >
           Get started by editing&nbsp;
@@ -78,17 +78,17 @@ export default function Home() {
               xs: 'linear-gradient(to bottom, transparent 0%, rgb(var(--background-end-rgb)) 40%)',
               md: 'none',
             },
-            bottom: { xs: 0, md: 'unset' as any },
+            bottom: { xs: 0, md: 'unset' },
             flexDir: 'row',
-            h: { xs: 200, md: 'unset' as any },
+            h: { xs: 200, md: 'unset' },
             justifyContent: { xs: 'center', md: 'unset' as any },
-            left: { xs: 0, md: 'unset' as any },
-            p: { xs: '2rem' as any, md: 0 },
+            left: { xs: 0, md: 'unset' },
+            p: { xs: '2rem', md: 0 },
             pointerEvents: { xs: 'none', md: 'unset' },
             position: { xs: 'fixed', md: 'relative' },
-            right: { xs: 0, md: 'unset' as any },
-            top: { xs: 'auto', md: 'unset' as any },
-            w: { xs: '100%', md: 'unset' as any },
+            right: { xs: 0, md: 'unset' },
+            top: { xs: 'auto', md: 'unset' },
+            w: { xs: '100%', md: 'unset' },
             zIndex: { xs: 1, md: 0 },
           }}
         >
@@ -101,9 +101,9 @@ export default function Home() {
             sx={{
               alignItems: 'center',
               display: 'flex',
-              gap: '0.5rem' as any,
+              gap: '0.5rem',
               justifyContent: 'center',
-              p: { xs: '1rem' as any, md: 0 },
+              p: { xs: '1rem', md: 0 },
             }}
           >
             By{' '}
@@ -140,8 +140,8 @@ export default function Home() {
             md: 'repeat(2, 50%)',
             xl: 'repeat(4, minmax(25%, auto))',
           },
-          maxW: { xs: 320, xl: 'var(--max-width)' as any },
-          mb: { xs: 120, md: 'unset' as any },
+          maxW: { xs: 320, xl: 'var(--max-width)' },
+          mb: { xs: 120, md: 'unset' },
           textAlign: { xs: 'center', md: 'unset' as any },
         }}
       >
@@ -160,8 +160,8 @@ export default function Home() {
             borderRadius: 'var(--border-radius)' as any,
             borderStyle: 'solid',
             borderWidth: 1,
-            px: { xs: '2.5rem' as any, md: '1.2rem' as any },
-            py: '1rem' as any,
+            px: { xs: '2.5rem', md: '1.2rem' },
+            py: '1rem',
           }}
         >
           <Text
@@ -170,7 +170,7 @@ export default function Home() {
               fontSize: '1.5rem' as any,
               fontWeight: '600',
               lineHeight: '1.23' as any,
-              mb: { xs: '0.5rem' as any, md: '0.7rem' as any },
+              mb: { xs: '0.5rem', md: '0.7rem' },
             }}
           >
             Docs{' '}
@@ -184,7 +184,7 @@ export default function Home() {
               opacity: 0.6,
               fontSize: '0.9rem' as any,
               lineHeight: '1.5' as any,
-              maxWidth: '30ch' as any,
+              maxWidth: '30ch',
               textWrap: 'balance',
             }}
           >
@@ -207,8 +207,8 @@ export default function Home() {
             borderRadius: 'var(--border-radius)' as any,
             borderStyle: 'solid',
             borderWidth: 1,
-            px: { xs: '2.5rem' as any, md: '1.2rem' as any },
-            py: '1rem' as any,
+            px: { xs: '2.5rem', md: '1.2rem' },
+            py: '1rem',
           }}
         >
           <Text
@@ -217,7 +217,7 @@ export default function Home() {
               fontSize: '1.5rem' as any,
               fontWeight: '600',
               lineHeight: '1.23' as any,
-              mb: { xs: '0.5rem' as any, md: '0.7rem' as any },
+              mb: { xs: '0.5rem', md: '0.7rem' },
             }}
           >
             Learn{' '}
@@ -231,7 +231,7 @@ export default function Home() {
               opacity: 0.6,
               fontSize: '0.9rem' as any,
               lineHeight: '1.5' as any,
-              maxWidth: '30ch' as any,
+              maxWidth: '30ch',
               textWrap: 'balance',
             }}
           >
@@ -254,8 +254,8 @@ export default function Home() {
             borderRadius: 'var(--border-radius)' as any,
             borderStyle: 'solid',
             borderWidth: 1,
-            px: { xs: '2.5rem' as any, md: '1.2rem' as any },
-            py: '1rem' as any,
+            px: { xs: '2.5rem', md: '1.2rem' },
+            py: '1rem',
           }}
         >
           <Text
@@ -264,7 +264,7 @@ export default function Home() {
               fontSize: '1.5rem' as any,
               fontWeight: '600',
               lineHeight: '1.23' as any,
-              mb: { xs: '0.5rem' as any, md: '0.7rem' as any },
+              mb: { xs: '0.5rem', md: '0.7rem' },
             }}
           >
             Templates{' '}
@@ -278,7 +278,7 @@ export default function Home() {
               opacity: 0.6,
               fontSize: '0.9rem' as any,
               lineHeight: '1.5' as any,
-              maxWidth: '30ch' as any,
+              maxWidth: '30ch',
               textWrap: 'balance',
             }}
           >
@@ -301,8 +301,8 @@ export default function Home() {
             borderRadius: 'var(--border-radius)' as any,
             borderStyle: 'solid',
             borderWidth: 1,
-            px: { xs: '2.5rem' as any, md: '1.2rem' as any },
-            py: '1rem' as any,
+            px: { xs: '2.5rem', md: '1.2rem' },
+            py: '1rem',
           }}
         >
           <Text
@@ -311,7 +311,7 @@ export default function Home() {
               fontSize: '1.5rem' as any,
               fontWeight: '600',
               lineHeight: '1.23' as any,
-              mb: { xs: '0.5rem' as any, md: '0.7rem' as any },
+              mb: { xs: '0.5rem', md: '0.7rem' },
             }}
           >
             Deploy{' '}
@@ -325,7 +325,7 @@ export default function Home() {
               opacity: 0.6,
               fontSize: '0.9rem' as any,
               lineHeight: '1.5' as any,
-              maxWidth: '30ch' as any,
+              maxWidth: '30ch',
               textWrap: 'balance',
             }}
           >

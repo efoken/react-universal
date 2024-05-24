@@ -3970,21 +3970,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/constants@npm:^1.98.3":
-  version: 1.98.3
-  resolution: "@tamagui/constants@npm:1.98.3"
-  checksum: 10c0/f89a041c5029b6674b633d72c3af9b00b46a043698067c33bce67d2b328c056059f47dc9372185504febd4ea1b06a10ea596cfa60b77dce983c33cc260abd41d
+"@tamagui/constants@npm:^1.98.4":
+  version: 1.98.4
+  resolution: "@tamagui/constants@npm:1.98.4"
+  checksum: 10c0/9290f6b9e95ab570dea4ca88b17704fa490e2c0355da761eaa26390ff45e4fbfb6b6c52ea4d9e54f315b80f471b4d788225cb3c1dc27ccb1042e5fe3b85390a8
   languageName: node
   linkType: hard
 
-"@tamagui/react-native-use-responder-events@npm:^1.98.3":
-  version: 1.98.3
-  resolution: "@tamagui/react-native-use-responder-events@npm:1.98.3"
-  checksum: 10c0/00dd2c5e84919b230d25caef8ff130034cc1d62b27930e78c014d9086ee6a725f7e21e3756663ad223cac7aef7c16e12fcd7048a8e8104d6b64dfcc89e05af14
+"@tamagui/react-native-use-responder-events@npm:^1.98.4":
+  version: 1.98.4
+  resolution: "@tamagui/react-native-use-responder-events@npm:1.98.4"
+  checksum: 10c0/b626c944bb29d2f1ab68e977824b6d8b2cdd1a1ea7e970a1f012806dfd15eb58e6f3fcd53a6dca53fe38cdec696ce8ee1b745031de8525441e752787bf0a7b45
   languageName: node
   linkType: hard
 
-"@testing-library/react-native@npm:^12.5.0":
+"@testing-library/react-native@npm:^12.5.1":
   version: 12.5.1
   resolution: "@testing-library/react-native@npm:12.5.1"
   dependencies:
@@ -4471,7 +4471,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@universal-ui/components@workspace:packages/components"
   dependencies:
-    "@tamagui/react-native-use-responder-events": "npm:^1.98.3"
+    "@tamagui/react-native-use-responder-events": "npm:^1.98.4"
     "@types/react": "npm:~18.2.79"
     "@universal-ui/core": "workspace:*"
     react: "npm:18.2.0"
@@ -4495,7 +4495,7 @@ __metadata:
     "@emotion/serialize": "npm:^1.1.4"
     "@emotion/utils": "npm:^1.2.1"
     "@react-native/normalize-colors": "npm:^0.74.83"
-    "@tamagui/constants": "npm:^1.98.3"
+    "@tamagui/constants": "npm:^1.98.4"
     "@types/react": "npm:~18.2.79"
     "@universal-ui/utils": "workspace:*"
     react: "npm:18.2.0"
@@ -14137,7 +14137,7 @@ __metadata:
     "@babel/core": "npm:^7.24.5"
     "@babel/preset-env": "npm:^7.24.5"
     "@react-native/normalize-colors": "npm:^0.74.83"
-    "@testing-library/react-native": "npm:^12.5.0"
+    "@testing-library/react-native": "npm:^12.5.1"
     "@types/jest": "npm:^29.5.12"
     "@types/react": "npm:~18.2.79"
     "@typescript-eslint/eslint-plugin": "npm:^7.10.0"

@@ -34,11 +34,10 @@ export type LinkProps<C extends React.ElementType = typeof Text> =
     as?: React.ElementType;
   };
 
-const LinkRoot = styled(Text)(({ theme }) => ({
-  fontFamily: theme.fonts.body.family,
-  fontStyle: 'normal',
-  fontWeight: 'normal',
-}));
+const LinkRoot = styled(Text, {
+  name: 'Link',
+  slot: 'Root',
+})();
 
 export const Link = forwardRef<typeof Text, LinkProps>((props, ref) => (
   <LinkRoot ref={ref} role="link" {...props} />

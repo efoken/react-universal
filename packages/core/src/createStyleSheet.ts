@@ -1,14 +1,14 @@
 import { isFunction, isObject, mergeDeep } from '@universal-ui/utils';
-import type { UnistylesRuntime } from 'react-native-unistyles';
 import createReactDOMStyle from 'react-native-web/dist/exports/StyleSheet/compiler/createReactDOMStyle';
-import preprocess from 'react-native-web/dist/exports/StyleSheet/preprocess';
+import type { StyleRuntime } from './StyleRuntime';
+import { preprocess } from './preprocess';
 import type { Theme } from './theme';
-import type { StyleObject } from './types';
+import type { StyleSheet } from './types';
 
 function getBreakpointsStyles<T extends Record<string, any>>(
   prop: string,
   style: T,
-  runtime: typeof UnistylesRuntime,
+  runtime: typeof StyleRuntime,
 ) {
   return Object.entries(style).reduce<Record<string, any>>(
     (acc, [key, value]) => {
@@ -28,7 +28,7 @@ function getBreakpointsStyles<T extends Record<string, any>>(
 
 export function parseStyle<T extends Record<string, any>>(
   style: T,
-  runtime: typeof UnistylesRuntime,
+  runtime: typeof StyleRuntime,
 ) {
   const nextStyle = Object.entries(style ?? {}).reduce<Record<string, any>>(
     (acc, [key, value]) => {
@@ -52,10 +52,11 @@ export function parseStyle<T extends Record<string, any>>(
   return createReactDOMStyle(preprocess(nextStyle));
 }
 
-export function createStyleSheet<T extends StyleObject>(
-  stylesheet: T | ((theme: Theme, runtime: typeof UnistylesRuntime) => T),
+export function createStyleSheet<T extends StyleSheet>(
+  stylesheet: T | ((theme: Theme, runtime: typeof StyleRuntime) => T),
 ) {
-  return (theme: Theme, runtime: typeof UnistylesRuntime) => {
+  return (theme: Theme, runtime: typeof StyleRuntime) => {
+    // FIXME: Use `runIfFunction`
     const _stylesheet = isFunction(stylesheet)
       ? stylesheet(theme, runtime)
       : stylesheet;

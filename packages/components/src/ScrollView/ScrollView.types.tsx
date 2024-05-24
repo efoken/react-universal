@@ -1,5 +1,6 @@
 import type { SxProps } from '@universal-ui/core';
 import type { ScrollViewProps as RNScrollViewProps } from 'react-native';
+import type { ViewProps } from '../View';
 
 export interface ScrollEvent {
   nativeEvent: {
@@ -19,7 +20,11 @@ export interface ScrollEvent {
   timeStamp: number;
 }
 
-export interface ScrollViewProps extends Omit<RNScrollViewProps, 'onScroll'> {
+export interface ScrollViewMethods {}
+
+export interface ScrollViewProps
+  extends Omit<RNScrollViewProps, keyof ViewProps | 'onScroll'>,
+    ViewProps {
   onScroll?: (event: ScrollEvent) => void;
   onWheel?: (event: React.WheelEvent) => void;
   /**

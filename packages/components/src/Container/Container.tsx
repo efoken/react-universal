@@ -6,9 +6,8 @@ import type {
   OverridableProps,
   SxProps,
 } from '@universal-ui/core';
-import { styled, useOwnerState } from '@universal-ui/core';
+import { clamp, max, min, styled, useOwnerState } from '@universal-ui/core';
 import { forwardRef } from 'react';
-import type { View as RNView } from 'react-native';
 import { View } from '../View';
 
 const MIN_WIDTH = 320;
@@ -45,10 +44,11 @@ type ContainerOwnerState = Required<Pick<ContainerProps, 'fixed' | 'maxWidth'>>;
 
 const ContainerRoot = styled(View)<{ ownerState: ContainerOwnerState }>(
   ({ runtime, theme }) => {
-    const paddingInline =
-      Math.max(runtime.insets.left, runtime.insets.right) > 0
-        ? Math.max(runtime.insets.left, runtime.insets.right)
-        : { xs: theme.space[4], sm: theme.space[6], md: theme.space[7] };
+    const paddingInline = {
+      xs: max(theme.space[4], runtime.insets.left, runtime.insets.right) as any,
+      sm: max(theme.space[6], runtime.insets.left, runtime.insets.right) as any,
+      md: max(theme.space[7], runtime.insets.left, runtime.insets.right) as any,
+    };
     return {
       marginLeft: 'auto',
       marginRight: 'auto',
@@ -63,8 +63,8 @@ const ContainerRoot = styled(View)<{ ownerState: ContainerOwnerState }>(
     }
     const maxWidth =
       ownerState.maxWidth === 'xs'
-        ? Math.max(theme.breakpoints.xs, MIN_WIDTH)
-        : Math.min(theme.breakpoints[ownerState.maxWidth], MAX_WIDTH);
+        ? max(theme.breakpoints.xs, MIN_WIDTH)
+        : min(theme.breakpoints[ownerState.maxWidth], MAX_WIDTH);
     return {
       maxWidth: { [ownerState.maxWidth]: maxWidth },
     };
@@ -73,7 +73,7 @@ const ContainerRoot = styled(View)<{ ownerState: ContainerOwnerState }>(
     ownerState.fixed && {
       maxWidth: Object.entries(theme.breakpoints).reduce<Record<string, any>>(
         (acc, [breakpoint, maxWidth]) => {
-          acc[breakpoint] = Math.min(Math.max(maxWidth, MIN_WIDTH), MAX_WIDTH);
+          acc[breakpoint] = clamp(MIN_WIDTH, maxWidth, MAX_WIDTH);
           return acc;
         },
         {},
@@ -82,7 +82,7 @@ const ContainerRoot = styled(View)<{ ownerState: ContainerOwnerState }>(
     },
 );
 
-export const Container = forwardRef<RNView, ContainerProps>(
+export const Container = forwardRef<any, ContainerProps>(
   ({ fixed = false, maxWidth = 'lg', ...props }, ref) => {
     const ownerState = useOwnerState({
       fixed,

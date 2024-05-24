@@ -6,11 +6,10 @@ import {
   memoize,
   mergeDeep,
 } from '@universal-ui/utils';
-import type { ViewStyle as RNViewStyle } from 'react-native';
 import type { BreakpointValue } from '../breakpoints';
 import { handleBreakpoints } from '../breakpoints';
 import type { Theme, ThemeValue } from '../theme/defaultTheme';
-import type { AnyProps, SimpleStyleFunction } from '../types';
+import type { AnyProps, RNStyle, SimpleStyleFunction } from '../types';
 
 const PROPERTIES: Record<string, string> = {
   m: 'margin',
@@ -209,24 +208,24 @@ function style(props: AnyProps & { theme: Theme }, keys: string[]) {
 type SpacingProp<T> = BreakpointValue<T | ThemeValue<Theme['space']>>;
 
 export interface MarginProps {
-  m?: SpacingProp<RNViewStyle['margin']>;
-  mt?: SpacingProp<RNViewStyle['marginTop']>;
-  mr?: SpacingProp<RNViewStyle['marginRight']>;
-  mb?: SpacingProp<RNViewStyle['marginBottom']>;
-  ml?: SpacingProp<RNViewStyle['marginLeft']>;
-  ms?: SpacingProp<RNViewStyle['marginStart']>;
-  me?: SpacingProp<RNViewStyle['marginEnd']>;
-  mx?: SpacingProp<RNViewStyle['margin']>;
-  my?: SpacingProp<RNViewStyle['margin']>;
-  margin?: SpacingProp<RNViewStyle['margin']>;
-  marginTop?: SpacingProp<RNViewStyle['marginTop']>;
-  marginRight?: SpacingProp<RNViewStyle['marginRight']>;
-  marginBottom?: SpacingProp<RNViewStyle['marginBottom']>;
-  marginLeft?: SpacingProp<RNViewStyle['marginLeft']>;
-  marginStart?: SpacingProp<RNViewStyle['marginStart']>;
-  marginEnd?: SpacingProp<RNViewStyle['marginEnd']>;
-  marginX?: SpacingProp<RNViewStyle['margin']>;
-  marginY?: SpacingProp<RNViewStyle['margin']>;
+  m?: SpacingProp<RNStyle['margin']>;
+  mt?: SpacingProp<RNStyle['marginTop']>;
+  mr?: SpacingProp<RNStyle['marginRight']>;
+  mb?: SpacingProp<RNStyle['marginBottom']>;
+  ml?: SpacingProp<RNStyle['marginLeft']>;
+  // ms?: SpacingProp<RNStyle['marginStart']>;
+  // me?: SpacingProp<RNStyle['marginEnd']>;
+  mx?: SpacingProp<RNStyle['margin']>;
+  my?: SpacingProp<RNStyle['margin']>;
+  margin?: SpacingProp<RNStyle['margin']>;
+  marginTop?: SpacingProp<RNStyle['marginTop']>;
+  marginRight?: SpacingProp<RNStyle['marginRight']>;
+  marginBottom?: SpacingProp<RNStyle['marginBottom']>;
+  marginLeft?: SpacingProp<RNStyle['marginLeft']>;
+  // marginStart?: SpacingProp<RNStyle['marginStart']>;
+  // marginEnd?: SpacingProp<RNStyle['marginEnd']>;
+  marginX?: SpacingProp<RNStyle['margin']>;
+  marginY?: SpacingProp<RNStyle['margin']>;
 }
 
 export const marginKeys: (keyof MarginProps)[] = [
@@ -235,8 +234,8 @@ export const marginKeys: (keyof MarginProps)[] = [
   'mr',
   'mb',
   'ml',
-  'ms',
-  'me',
+  // 'ms',
+  // 'me',
   'mx',
   'my',
   'margin',
@@ -244,8 +243,8 @@ export const marginKeys: (keyof MarginProps)[] = [
   'marginRight',
   'marginBottom',
   'marginLeft',
-  'marginStart',
-  'marginEnd',
+  // 'marginStart',
+  // 'marginEnd',
   'marginX',
   'marginY',
 ];
@@ -256,24 +255,24 @@ export const margin: SimpleStyleFunction<keyof MarginProps> = (props) =>
 margin.filterProps = marginKeys;
 
 export interface PaddingProps {
-  p?: SpacingProp<RNViewStyle['padding']>;
-  pt?: SpacingProp<RNViewStyle['paddingTop']>;
-  pr?: SpacingProp<RNViewStyle['paddingRight']>;
-  pb?: SpacingProp<RNViewStyle['paddingBottom']>;
-  pl?: SpacingProp<RNViewStyle['paddingLeft']>;
-  ps?: SpacingProp<RNViewStyle['paddingStart']>;
-  pe?: SpacingProp<RNViewStyle['paddingEnd']>;
-  px?: SpacingProp<RNViewStyle['padding']>;
-  py?: SpacingProp<RNViewStyle['padding']>;
-  padding?: SpacingProp<RNViewStyle['padding']>;
-  paddingTop?: SpacingProp<RNViewStyle['paddingTop']>;
-  paddingRight?: SpacingProp<RNViewStyle['paddingRight']>;
-  paddingBottom?: SpacingProp<RNViewStyle['paddingBottom']>;
-  paddingLeft?: SpacingProp<RNViewStyle['paddingLeft']>;
-  paddingStart?: SpacingProp<RNViewStyle['paddingStart']>;
-  paddingEnd?: SpacingProp<RNViewStyle['paddingEnd']>;
-  paddingX?: SpacingProp<RNViewStyle['padding']>;
-  paddingY?: SpacingProp<RNViewStyle['padding']>;
+  p?: SpacingProp<RNStyle['padding']>;
+  pt?: SpacingProp<RNStyle['paddingTop']>;
+  pr?: SpacingProp<RNStyle['paddingRight']>;
+  pb?: SpacingProp<RNStyle['paddingBottom']>;
+  pl?: SpacingProp<RNStyle['paddingLeft']>;
+  // ps?: SpacingProp<RNStyle['paddingStart']>;
+  // pe?: SpacingProp<RNStyle['paddingEnd']>;
+  px?: SpacingProp<RNStyle['padding']>;
+  py?: SpacingProp<RNStyle['padding']>;
+  padding?: SpacingProp<RNStyle['padding']>;
+  paddingTop?: SpacingProp<RNStyle['paddingTop']>;
+  paddingRight?: SpacingProp<RNStyle['paddingRight']>;
+  paddingBottom?: SpacingProp<RNStyle['paddingBottom']>;
+  paddingLeft?: SpacingProp<RNStyle['paddingLeft']>;
+  // paddingStart?: SpacingProp<RNStyle['paddingStart']>;
+  // paddingEnd?: SpacingProp<RNStyle['paddingEnd']>;
+  paddingX?: SpacingProp<RNStyle['padding']>;
+  paddingY?: SpacingProp<RNStyle['padding']>;
 }
 
 export const paddingKeys: (keyof PaddingProps)[] = [
@@ -282,8 +281,8 @@ export const paddingKeys: (keyof PaddingProps)[] = [
   'pr',
   'pb',
   'pl',
-  'ps',
-  'pe',
+  // 'ps',
+  // 'pe',
   'px',
   'py',
   'padding',
@@ -291,8 +290,8 @@ export const paddingKeys: (keyof PaddingProps)[] = [
   'paddingRight',
   'paddingBottom',
   'paddingLeft',
-  'paddingStart',
-  'paddingEnd',
+  // 'paddingStart',
+  // 'paddingEnd',
   'paddingX',
   'paddingY',
 ];

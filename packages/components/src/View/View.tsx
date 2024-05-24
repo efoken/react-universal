@@ -3,7 +3,6 @@
 import { useResponderEvents } from '@tamagui/react-native-use-responder-events';
 import type { AnyProps } from '@universal-ui/core';
 import {
-  forwardRef,
   forwardedProps,
   getLocaleDirection,
   styled,
@@ -13,10 +12,9 @@ import {
   usePlatformMethods,
 } from '@universal-ui/core';
 import { isString, pick } from '@universal-ui/utils';
-import { Children, useContext, useRef } from 'react';
-import type { NativeMethods } from 'react-native';
+import { Children, forwardRef, useContext, useRef } from 'react';
 import { TextAncestorContext } from '../Text/TextAncestorContext';
-import type { ViewOwnerState, ViewProps } from './View.types';
+import type { ViewMethods, ViewOwnerState, ViewProps } from './View.types';
 
 function pickProps<T extends AnyProps>(props: T) {
   return pick(props, {
@@ -37,7 +35,8 @@ function pickProps<T extends AnyProps>(props: T) {
 }
 
 const ViewRoot = styled('div', {
-  label: 'ViewRoot',
+  name: 'View',
+  slot: 'Root',
 })<{ ownerState: ViewOwnerState }>(({ ownerState }) => ({
   alignItems: 'stretch',
   backgroundColor: 'transparent',
@@ -161,9 +160,9 @@ export const View = forwardRef<any, ViewProps>(
       />
     );
   },
-) as unknown as React.ComponentType<
-  ViewProps & React.RefAttributes<NativeMethods>
+) as unknown as React.FunctionComponent<
+  ViewProps & React.RefAttributes<ViewMethods>
 > &
-  NativeMethods;
+  ViewMethods;
 
 View.displayName = 'View';

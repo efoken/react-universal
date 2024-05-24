@@ -1,13 +1,15 @@
 'use client';
 
-import type { OverridableComponent } from '@universal-ui/core';
 import { styled, useForkRef, useOwnerState } from '@universal-ui/core';
 import { forwardRef, useRef } from 'react';
-import type { ScrollView as RNScrollView } from 'react-native';
 import { View } from '../View';
-import type { ScrollViewOwnerState, ScrollViewProps } from './ScrollView.types';
+import type {
+  ScrollViewMethods,
+  ScrollViewOwnerState,
+  ScrollViewProps,
+} from './ScrollView.types';
 
-function normalizeScrollEvent(event: React.UIEvent<any>) {
+function normalizeScrollEvent(event: React.UIEvent<HTMLElement>) {
   return {
     nativeEvent: {
       contentOffset: {
@@ -32,10 +34,11 @@ function shouldEmitScrollEvent(lastTick: number, eventThrottle: number) {
 }
 
 const ScrollViewRoot = styled(View, {
-  label: 'ScrollViewRoot',
+  name: 'ScrollView',
+  slot: 'Root',
 })<{
-  onScroll?: React.UIEventHandler;
-  onWheel?: React.WheelEventHandler;
+  onScroll?: React.UIEventHandler<HTMLElement>;
+  onWheel?: React.WheelEventHandler<HTMLElement>;
   ownerState: ScrollViewOwnerState;
 }>(
   ({ ownerState }) =>
@@ -71,22 +74,22 @@ export const ScrollView = forwardRef<any, ScrollViewProps>(
 
     const hostRef = useRef<any>(null);
 
-    const handleScrollTick = (event: React.UIEvent) => {
+    const handleScrollTick = (event: React.UIEvent<HTMLElement>) => {
       scrollState.current.scrollLastTick = Date.now();
       onScroll?.(normalizeScrollEvent(event));
     };
 
-    const handleScrollStart = (event: React.UIEvent) => {
+    const handleScrollStart = (event: React.UIEvent<HTMLElement>) => {
       scrollState.current.scrolling = true;
       handleScrollTick(event);
     };
 
-    const handleScrollEnd = (event: React.UIEvent) => {
+    const handleScrollEnd = (event: React.UIEvent<HTMLElement>) => {
       scrollState.current.scrolling = false;
       onScroll?.(normalizeScrollEvent(event));
     };
 
-    const handleScroll = (event: React.UIEvent) => {
+    const handleScroll = (event: React.UIEvent<HTMLElement>) => {
       event.stopPropagation();
       if (event.target === hostRef.current) {
         event.persist();
@@ -133,6 +136,9 @@ export const ScrollView = forwardRef<any, ScrollViewProps>(
       />
     );
   },
-) as OverridableComponent<ScrollViewProps, typeof RNScrollView>;
+) as unknown as React.FunctionComponent<
+  ScrollViewProps & React.RefAttributes<ScrollViewMethods>
+> &
+  ScrollViewMethods;
 
 ScrollView.displayName = 'ScrollView';
