@@ -1,4 +1,4 @@
-import { isFunction, isObject } from '@universal-ui/utils';
+import { isArray, isFunction, isObject } from '@universal-ui/utils';
 import type { StyleInterpolation, StyleValues } from './types';
 
 let styles: StyleValues[];
@@ -32,7 +32,7 @@ function handleInterpolation(
   if (isObject(interpolation)) {
     styles.push(interpolation as StyleValues);
   }
-  if (Array.isArray(interpolation)) {
+  if (isArray(interpolation)) {
     for (const [i, style] of interpolation.entries()) {
       handleInterpolation.call(this, style, i);
     }

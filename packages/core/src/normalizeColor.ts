@@ -1,13 +1,16 @@
 import normalizeCssColor from '@react-native/normalize-colors';
 import { isString } from '@universal-ui/utils';
 
+type VarColor = `var(${string})` | `rgba(var(${string}),${string})`;
+
 function isWebColor(
   color: string,
-): color is 'currentcolor' | 'inherit' | `var(${string})` {
+): color is 'currentcolor' | 'inherit' | VarColor {
   return (
     color.toLowerCase() === 'currentcolor' ||
     color === 'inherit' ||
-    color.startsWith('var(')
+    color.startsWith('var(') ||
+    color.startsWith('rgba(var(')
   );
 }
 

@@ -86,7 +86,7 @@ export const View = forwardRef<any, ViewProps>(
       for (const item of Children.toArray(props.children)) {
         if (isString(item)) {
           console.error(
-            `Unexpected text node: ${item}. A text node cannot be a child of a <View>.`,
+            `universal-ui: Unexpected text node: ${item}. A text node cannot be a child of a <View>.`,
           );
         }
       }

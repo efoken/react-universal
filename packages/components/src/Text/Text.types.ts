@@ -1,5 +1,16 @@
-import type { LayoutEvent, SxProps } from '@universal-ui/core';
-import type { Role as RNRole, TextProps as RNTextProps } from 'react-native';
+import type {
+  LayoutEvent,
+  RNStyle,
+  StyleProp,
+  SxProps,
+} from '@universal-ui/core';
+import type {
+  ImageStyle as RNImageStyle,
+  Role as RNRole,
+  TextProps as RNTextProps,
+} from 'react-native';
+
+export type TextStyle = Omit<RNStyle, keyof RNImageStyle>;
 
 export interface TextProps
   extends Omit<
@@ -17,6 +28,7 @@ export interface TextProps
     | 'onLayout'
     | 'role'
     | 'selectable'
+    | 'style'
   > {
   as?: React.ElementType;
   dir?: 'ltr' | 'rtl' | 'auto';
@@ -33,6 +45,7 @@ export interface TextProps
    */
   onLayout?: (event: LayoutEvent) => void;
   role?: 'listbox' | 'paragraph' | RNRole;
+  style?: StyleProp<TextStyle>;
   /**
    * The system prop that allows defining system overrides as well as additional
    * CSS styles.

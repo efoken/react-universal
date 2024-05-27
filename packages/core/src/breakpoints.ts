@@ -1,4 +1,4 @@
-import { isObject, mergeDeep } from '@universal-ui/utils';
+import { isArray, isObject, mergeDeep } from '@universal-ui/utils';
 import type { Theme } from './theme/defaultTheme.js';
 
 export const defaultBreakpoints = {
@@ -28,7 +28,7 @@ export function handleBreakpoints<
 ): ReturnType<T> {
   const breakpointKeys = Object.keys(props.theme.breakpoints);
 
-  if (Array.isArray(propValue)) {
+  if (isArray(propValue)) {
     return propValue.reduce<Record<string, any>>(
       (acc, _item, index) =>
         mergeDeep(

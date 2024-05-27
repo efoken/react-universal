@@ -3,10 +3,10 @@ import type { Theme } from '../theme/defaultTheme';
 import type { SimpleStyleFunction } from '../types';
 import type { BorderProps } from './borders';
 import type { FlexboxProps } from './flexbox';
+import { columnGap, gap, rowGap } from './flexbox';
 import type { GridProps } from './grid';
-import { columnGap, gap, rowGap } from './grid';
 import type { LayoutProps } from './layout';
-import { maxW, maxWidth, sizingTransform } from './layout';
+import { maxInlineSize, maxW, maxWidth, sizingTransform } from './layout';
 import type { PositionProps } from './positions';
 import type { MarginProps, PaddingProps } from './spacing';
 import { margin, padding } from './spacing';
@@ -20,9 +20,11 @@ interface OtherProps extends CSSCustomProps {
   backgroundColor?: BreakpointValue<string>;
   backgroundImage?: BreakpointValue<string>;
   bgColor?: BreakpointValue<string>;
+  boxShadow?: BreakpointValue<string>;
   color?: BreakpointValue<string>;
   opacity?: BreakpointValue<number>;
   pointerEvents?: BreakpointValue<any>;
+  typography?: BreakpointValue<string>;
 }
 
 export type SxStyleObject = BorderProps &
@@ -47,45 +49,28 @@ export interface SxConfigRecord {
   transform?: (propValue: string | number) => string | number;
 }
 
-export type SxConfig = Record<string, SxConfigRecord>;
+export type SxConfig = Record<keyof SxStyleObject, SxConfigRecord>;
 
 export const defaultSxConfig: SxConfig = {
   // Borders
-  borderWidth: {},
-  borderTopWidth: {},
-  borderRightWidth: {},
+  borderBottomColor: { themeKey: 'colors' },
   borderBottomWidth: {},
-  borderLeftWidth: {},
-  borderStartWidth: {},
+  borderColor: { themeKey: 'colors' },
+  borderEndColor: { themeKey: 'colors' },
   borderEndWidth: {},
-  borderColor: {
-    themeKey: 'colors',
-  },
-  borderTopColor: {
-    themeKey: 'colors',
-  },
-  borderRightColor: {
-    themeKey: 'colors',
-  },
-  borderBottomColor: {
-    themeKey: 'colors',
-  },
-  borderLeftColor: {
-    themeKey: 'colors',
-  },
-  borderStartColor: {
-    themeKey: 'colors',
-  },
-  borderEndColor: {
-    themeKey: 'colors',
-  },
+  borderLeftColor: { themeKey: 'colors' },
+  borderLeftWidth: {},
+  borderRadius: { themeKey: 'radii' },
+  borderRightColor: { themeKey: 'colors' },
+  borderRightWidth: {},
+  borderStartColor: { themeKey: 'colors' },
+  borderStartWidth: {},
+  borderTopColor: { themeKey: 'colors' },
+  borderTopWidth: {},
+  borderWidth: {},
+  outlineColor: { themeKey: 'colors' },
+  outlineOffset: {},
   outlineWidth: {},
-  outlineColor: {
-    themeKey: 'colors',
-  },
-  borderRadius: {
-    themeKey: 'radii',
-  },
 
   // Colors
   color: {
@@ -100,143 +85,75 @@ export const defaultSxConfig: SxConfig = {
   },
 
   // Spacing
-  p: {
-    style: padding,
-  },
-  pt: {
-    style: padding,
-  },
-  pr: {
-    style: padding,
-  },
-  pb: {
-    style: padding,
-  },
-  pl: {
-    style: padding,
-  },
-  ps: {
-    style: padding,
-  },
-  pe: {
-    style: padding,
-  },
-  px: {
-    style: padding,
-  },
-  py: {
-    style: padding,
-  },
-  padding: {
-    style: padding,
-  },
-  paddingTop: {
-    style: padding,
-  },
-  paddingRight: {
-    style: padding,
-  },
-  paddingBottom: {
-    style: padding,
-  },
-  paddingLeft: {
-    style: padding,
-  },
-  paddingStart: {
-    style: padding,
-  },
-  paddingEnd: {
-    style: padding,
-  },
-  paddingX: {
-    style: padding,
-  },
-  paddingY: {
-    style: padding,
-  },
-  m: {
-    style: margin,
-  },
-  mt: {
-    style: margin,
-  },
-  mr: {
-    style: margin,
-  },
-  mb: {
-    style: margin,
-  },
-  ml: {
-    style: margin,
-  },
-  ms: {
-    style: margin,
-  },
-  me: {
-    style: margin,
-  },
-  mx: {
-    style: margin,
-  },
-  my: {
-    style: margin,
-  },
-  margin: {
-    style: margin,
-  },
-  marginTop: {
-    style: margin,
-  },
-  marginRight: {
-    style: margin,
-  },
-  marginBottom: {
-    style: margin,
-  },
-  marginLeft: {
-    style: margin,
-  },
-  marginStart: {
-    style: margin,
-  },
-  marginEnd: {
-    style: margin,
-  },
-  marginX: {
-    style: margin,
-  },
-  marginY: {
-    style: margin,
-  },
+  m: { style: margin },
+  margin: { style: margin },
+  marginBlock: { style: padding },
+  marginBlockEnd: { style: padding },
+  marginBlockStart: { style: padding },
+  marginBottom: { style: margin },
+  marginEnd: { style: margin },
+  marginInline: { style: padding },
+  marginInlineEnd: { style: padding },
+  marginInlineStart: { style: padding },
+  marginLeft: { style: margin },
+  marginRight: { style: margin },
+  marginStart: { style: margin },
+  marginTop: { style: margin },
+  marginX: { style: margin },
+  marginY: { style: margin },
+  mb: { style: margin },
+  me: { style: margin },
+  ml: { style: margin },
+  mr: { style: margin },
+  ms: { style: margin },
+  mt: { style: margin },
+  mx: { style: margin },
+  my: { style: margin },
+  p: { style: padding },
+  padding: { style: padding },
+  paddingBlock: { style: padding },
+  paddingBlockEnd: { style: padding },
+  paddingBlockStart: { style: padding },
+  paddingBottom: { style: padding },
+  paddingEnd: { style: padding },
+  paddingInline: { style: padding },
+  paddingInlineEnd: { style: padding },
+  paddingInlineStart: { style: padding },
+  paddingLeft: { style: padding },
+  paddingRight: { style: padding },
+  paddingStart: { style: padding },
+  paddingTop: { style: padding },
+  paddingX: { style: padding },
+  paddingY: { style: padding },
+  pb: { style: padding },
+  pe: { style: padding },
+  pl: { style: padding },
+  pr: { style: padding },
+  ps: { style: padding },
+  pt: { style: padding },
+  px: { style: padding },
+  py: { style: padding },
 
   // Flexbox
-  flexBasis: {},
-  flexDir: {
-    cssProperty: 'flexDirection',
-  },
-  flexDirection: {},
-  flexWrap: {},
-  justifyItems: {},
-  justifyContent: {},
-  alignItems: {},
   alignContent: {},
-  order: {},
+  alignItems: {},
+  alignSelf: {},
+  columnGap: { style: columnGap },
   flex: {},
+  flexBasis: {},
+  flexDir: { cssProperty: 'flexDirection' },
+  flexDirection: {},
   flexGrow: {},
   flexShrink: {},
-  alignSelf: {},
+  flexWrap: {},
+  gap: { style: gap },
+  justifyContent: {},
+  justifyItems: {},
   justifySelf: {},
+  order: {},
+  rowGap: { style: rowGap },
 
   // Grid
-  gap: {
-    style: gap,
-  },
-  rowGap: {
-    style: rowGap,
-  },
-  columnGap: {
-    style: columnGap,
-  },
   gridColumn: {},
   gridRow: {},
   gridAutoFlow: {},
@@ -248,73 +165,57 @@ export const defaultSxConfig: SxConfig = {
   gridArea: {},
 
   // Positions
-  position: {},
-  zIndex: {
-    themeKey: 'zIndices',
-  },
-  top: {},
-  right: {},
   bottom: {},
+  inset: {},
+  insetBlock: {},
+  insetBlockEnd: {},
+  insetBlockStart: {},
+  insetEnd: {},
+  insetInline: {},
+  insetInlineEnd: {},
+  insetInlineStart: {},
+  insetStart: {},
   left: {},
-  start: {},
-  end: {},
+  position: {},
+  right: {},
+  top: {},
+  zIndex: { themeKey: 'zIndices' },
 
   // Shadows
-  boxShadow: {
-    themeKey: 'shadows',
-  },
+  boxShadow: { themeKey: 'shadows' },
 
   // Layout
-  w: {
-    cssProperty: 'width',
-    transform: sizingTransform,
-  },
-  maxW: {
-    style: maxW,
-  },
-  minW: {
-    cssProperty: 'minWidth',
-    transform: sizingTransform,
-  },
-  width: {
-    transform: sizingTransform,
-  },
-  maxWidth: {
-    style: maxWidth,
-  },
-  minWidth: {
-    transform: sizingTransform,
-  },
-  h: {
-    cssProperty: 'height',
-    transform: sizingTransform,
-  },
-  maxH: {
-    cssProperty: 'maxHeight',
-    transform: sizingTransform,
-  },
-  minH: {
-    cssProperty: 'minHeight',
-    transform: sizingTransform,
-  },
-  height: {
-    transform: sizingTransform,
-  },
-  maxHeight: {
-    transform: sizingTransform,
-  },
-  minHeight: {
-    transform: sizingTransform,
-  },
+  aspectRatio: {},
+  blockSize: { transform: sizingTransform },
   boxSizing: {},
   display: {},
-  aspectRatio: {},
+  h: { cssProperty: 'height', transform: sizingTransform },
+  height: { transform: sizingTransform },
+  inlineSize: { transform: sizingTransform },
+  maxBlockSize: { transform: sizingTransform },
+  maxH: { cssProperty: 'maxHeight', transform: sizingTransform },
+  maxHeight: { transform: sizingTransform },
+  maxInlineSize: { style: maxInlineSize },
+  maxW: { style: maxW },
+  maxWidth: { style: maxWidth },
+  minBlockSize: { transform: sizingTransform },
+  minH: { cssProperty: 'minHeight', transform: sizingTransform },
+  minHeight: { transform: sizingTransform },
+  minInlineSize: { transform: sizingTransform },
+  minW: { cssProperty: 'minWidth', transform: sizingTransform },
+  minWidth: { transform: sizingTransform },
   overflow: {},
   overflowX: {},
   overflowY: {},
   overscroll: {},
   overscrollBehavior: {},
+  overscrollBehaviorX: {},
+  overscrollBehaviorY: {},
+  overscrollX: {},
+  overscrollY: {},
   visibility: {},
+  w: { cssProperty: 'width', transform: sizingTransform },
+  width: { transform: sizingTransform },
 
   // Typography
   fontFamily: {

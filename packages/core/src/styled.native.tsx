@@ -1,6 +1,6 @@
 import { isFunction, isString } from '@universal-ui/utils';
 import { forwardRef } from 'react';
-import { StyleSheet as RNStyleSheet, type StyleProp } from 'react-native';
+import { StyleSheet as RNStyleSheet } from 'react-native';
 import { useStyles } from 'react-native-unistyles';
 import { createElement } from './createElement';
 import { createStyleSheet } from './createStyleSheet';
@@ -8,7 +8,12 @@ import { css } from './css';
 import { styleFunctionSx } from './styleFunctionSx';
 import type { CreateStyledComponent, StyledOptions } from './styled.types';
 import type { Theme } from './theme/defaultTheme';
-import type { AnyProps, StyleInterpolation, StyleValues } from './types';
+import type {
+  AnyProps,
+  StyleInterpolation,
+  StyleProp,
+  StyleValues,
+} from './types';
 
 export function defaultShouldForwardProp(prop: string) {
   return (

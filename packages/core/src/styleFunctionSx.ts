@@ -1,6 +1,7 @@
 import {
   capitalize,
   get,
+  isArray,
   isFunction,
   isObject,
   isString,
@@ -30,11 +31,13 @@ function getStyleValue(
 
   if (isFunction(themeMapping)) {
     value = themeMapping(propValueFinal);
-  } else if (Array.isArray(themeMapping)) {
+  } else if (isArray(themeMapping)) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     value = themeMapping[propValueFinal] || userValue;
+  } else if (isObject(themeMapping)) {
+    value = get(themeMapping, propValueFinal, userValue);
   } else {
-    value = get(themeMapping as Record<string, any>, propValueFinal, userValue);
+    value = userValue;
   }
 
   if (transform) {
@@ -46,7 +49,7 @@ function getStyleValue(
 }
 
 function getThemeValue(
-  propName: string,
+  propName: keyof SxConfig,
   propValue: string | number | Record<string, any>,
   theme: Theme,
   config: SxConfig,
@@ -169,9 +172,9 @@ export function createStyleFunctionSx(): StyleFunctionSx {
       return css;
     };
 
-    return Array.isArray(sx)
+    return isArray(sx)
       ? // eslint-disable-next-line unicorn/no-array-callback-reference
-        sx.map(traverse)
+        (sx as readonly any[]).map(traverse)
       : traverse(sx as Exclude<SxProps, readonly any[]>);
   };
 }

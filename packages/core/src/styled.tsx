@@ -11,7 +11,6 @@ import {
 import { isServer } from '@tamagui/constants';
 import { isFunction, isObject, isString } from '@universal-ui/utils';
 import { useMemo } from 'react';
-import type { StyleProp } from 'react-native';
 import { StyleRuntime } from './StyleRuntime';
 import { getLocaleDirection, useLocale } from './contexts/LocaleContext';
 import { useTheme } from './contexts/ThemeContext';
@@ -21,7 +20,12 @@ import { css } from './css';
 import { useInsertionEffectAlwaysWithSyncFallback } from './hooks/useInsertionEffectAlwaysWithSyncFallback';
 import { styleFunctionSx } from './styleFunctionSx';
 import type { CreateStyledComponent, StyledOptions } from './styled.types';
-import type { AnyProps, StyleInterpolation, StyleValues } from './types';
+import type {
+  AnyProps,
+  StyleInterpolation,
+  StyleProp,
+  StyleValues,
+} from './types';
 
 export function defaultShouldForwardProp(prop: string) {
   return (

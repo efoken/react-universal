@@ -43,20 +43,15 @@ export type ContainerProps<C extends React.ElementType = typeof View> =
 type ContainerOwnerState = Required<Pick<ContainerProps, 'fixed' | 'maxWidth'>>;
 
 const ContainerRoot = styled(View)<{ ownerState: ContainerOwnerState }>(
-  ({ runtime, theme }) => {
-    const paddingInline = {
+  ({ runtime, theme }) => ({
+    marginInline: 'auto',
+    paddingInline: {
       xs: max(theme.space[4], runtime.insets.left, runtime.insets.right) as any,
       sm: max(theme.space[6], runtime.insets.left, runtime.insets.right) as any,
       md: max(theme.space[7], runtime.insets.left, runtime.insets.right) as any,
-    };
-    return {
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      paddingLeft: paddingInline,
-      paddingRight: paddingInline,
-      width: '100%',
-    };
-  },
+    },
+    width: '100%',
+  }),
   ({ ownerState, theme }) => {
     if (!ownerState.maxWidth) {
       return {};

@@ -1,6 +1,6 @@
-import type { TextStyle as RNTextStyle } from 'react-native';
 import type { BreakpointValue } from '../breakpoints';
 import type { Theme, ThemeValue } from '../theme/defaultTheme';
+import type { RNStyle } from '../types';
 
 type TypographyProp<
   T,
@@ -8,14 +8,14 @@ type TypographyProp<
 > = BreakpointValue<K extends string ? T | ThemeValue<Theme[K]> : T>;
 
 export interface TypographyProps {
-  fontFamily?: TypographyProp<RNTextStyle['fontFamily']>;
-  fontSize?: TypographyProp<RNTextStyle['fontSize']>;
-  fontStyle?: TypographyProp<RNTextStyle['fontStyle']>;
-  fontWeight?: TypographyProp<RNTextStyle['fontWeight']>;
-  letterSpacing?: TypographyProp<RNTextStyle['letterSpacing']>;
-  textTransform?: TypographyProp<RNTextStyle['textTransform']>;
-  lineHeight?: TypographyProp<RNTextStyle['lineHeight']>;
-  textAlign?: TypographyProp<RNTextStyle['textAlign']>;
+  fontFamily?: TypographyProp<RNStyle['fontFamily']>;
+  fontSize?: TypographyProp<RNStyle['fontSize']>;
+  fontStyle?: TypographyProp<RNStyle['fontStyle']>;
+  fontWeight?: TypographyProp<RNStyle['fontWeight']>;
+  letterSpacing?: TypographyProp<RNStyle['letterSpacing']>;
+  textTransform?: TypographyProp<RNStyle['textTransform']>;
+  lineHeight?: TypographyProp<RNStyle['lineHeight']>;
+  textAlign?: TypographyProp<RNStyle['textAlign']>;
   /** @platform web */
   textWrap?: TypographyProp<React.CSSProperties['textWrap']>;
 }

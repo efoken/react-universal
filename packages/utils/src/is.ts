@@ -8,8 +8,12 @@ export function isFunction<
   return typeof value === 'function';
 }
 
+export function isArray<T>(value: any): value is T[] {
+  return Array.isArray(value);
+}
+
 export function isObject(value: any): value is Record<string, any> {
-  return value != null && typeof value === 'object' && !Array.isArray(value);
+  return value != null && typeof value === 'object' && !isArray(value);
 }
 
 export function isString(value: any): value is string {

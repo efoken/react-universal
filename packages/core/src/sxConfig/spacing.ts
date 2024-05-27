@@ -1,5 +1,6 @@
 import {
   get,
+  isArray,
   isNumber,
   isObject,
   isString,
@@ -48,7 +49,7 @@ const getCssProperties = memoize((prop: string) => {
   const property = PROPERTIES[prop[0]];
   const direction = DIRECTIONS[prop[1]] ?? '';
 
-  return Array.isArray(direction)
+  return isArray(direction)
     ? direction.map((d) => property + d)
     : [property + direction];
 });
@@ -84,7 +85,7 @@ export function createUnaryUnit<T extends number | any[] | Record<string, any>>(
     };
   }
 
-  if (Array.isArray(themeSpace)) {
+  if (isArray(themeSpace)) {
     // @ts-expect-error: Return type is explicitly specified above.
     return <K extends number>(abs: K | string) => {
       if (isString(abs)) {
@@ -209,44 +210,56 @@ type SpacingProp<T> = BreakpointValue<T | ThemeValue<Theme['space']>>;
 
 export interface MarginProps {
   m?: SpacingProp<RNStyle['margin']>;
-  mt?: SpacingProp<RNStyle['marginTop']>;
-  mr?: SpacingProp<RNStyle['marginRight']>;
-  mb?: SpacingProp<RNStyle['marginBottom']>;
-  ml?: SpacingProp<RNStyle['marginLeft']>;
-  // ms?: SpacingProp<RNStyle['marginStart']>;
-  // me?: SpacingProp<RNStyle['marginEnd']>;
-  mx?: SpacingProp<RNStyle['margin']>;
-  my?: SpacingProp<RNStyle['margin']>;
   margin?: SpacingProp<RNStyle['margin']>;
-  marginTop?: SpacingProp<RNStyle['marginTop']>;
-  marginRight?: SpacingProp<RNStyle['marginRight']>;
+  marginBlock?: SpacingProp<RNStyle['marginBlock']>;
+  marginBlockEnd?: SpacingProp<RNStyle['marginBlockEnd']>;
+  marginBlockStart?: SpacingProp<RNStyle['marginBlockStart']>;
   marginBottom?: SpacingProp<RNStyle['marginBottom']>;
+  marginEnd?: SpacingProp<RNStyle['marginInlineEnd']>;
+  marginInline?: SpacingProp<RNStyle['marginInline']>;
+  marginInlineEnd?: SpacingProp<RNStyle['marginInlineEnd']>;
+  marginInlineStart?: SpacingProp<RNStyle['marginInlineStart']>;
   marginLeft?: SpacingProp<RNStyle['marginLeft']>;
-  // marginStart?: SpacingProp<RNStyle['marginStart']>;
-  // marginEnd?: SpacingProp<RNStyle['marginEnd']>;
-  marginX?: SpacingProp<RNStyle['margin']>;
-  marginY?: SpacingProp<RNStyle['margin']>;
+  marginRight?: SpacingProp<RNStyle['marginRight']>;
+  marginStart?: SpacingProp<RNStyle['marginInlineStart']>;
+  marginTop?: SpacingProp<RNStyle['marginTop']>;
+  marginX?: SpacingProp<RNStyle['marginInline']>;
+  marginY?: SpacingProp<RNStyle['marginBlock']>;
+  mb?: SpacingProp<RNStyle['marginBottom']>;
+  me?: SpacingProp<RNStyle['marginInlineEnd']>;
+  ml?: SpacingProp<RNStyle['marginLeft']>;
+  mr?: SpacingProp<RNStyle['marginRight']>;
+  ms?: SpacingProp<RNStyle['marginInlineStart']>;
+  mt?: SpacingProp<RNStyle['marginTop']>;
+  mx?: SpacingProp<RNStyle['marginInline']>;
+  my?: SpacingProp<RNStyle['marginBlock']>;
 }
 
 export const marginKeys: (keyof MarginProps)[] = [
   'm',
-  'mt',
-  'mr',
-  'mb',
-  'ml',
-  // 'ms',
-  // 'me',
-  'mx',
-  'my',
   'margin',
-  'marginTop',
-  'marginRight',
+  'marginBlock',
+  'marginBlockEnd',
+  'marginBlockStart',
   'marginBottom',
+  'marginEnd',
+  'marginInline',
+  'marginInlineEnd',
+  'marginInlineStart',
   'marginLeft',
-  // 'marginStart',
-  // 'marginEnd',
+  'marginRight',
+  'marginStart',
+  'marginTop',
   'marginX',
   'marginY',
+  'mb',
+  'me',
+  'ml',
+  'mr',
+  'ms',
+  'mt',
+  'mx',
+  'my',
 ];
 
 export const margin: SimpleStyleFunction<keyof MarginProps> = (props) =>
@@ -256,44 +269,56 @@ margin.filterProps = marginKeys;
 
 export interface PaddingProps {
   p?: SpacingProp<RNStyle['padding']>;
-  pt?: SpacingProp<RNStyle['paddingTop']>;
-  pr?: SpacingProp<RNStyle['paddingRight']>;
-  pb?: SpacingProp<RNStyle['paddingBottom']>;
-  pl?: SpacingProp<RNStyle['paddingLeft']>;
-  // ps?: SpacingProp<RNStyle['paddingStart']>;
-  // pe?: SpacingProp<RNStyle['paddingEnd']>;
-  px?: SpacingProp<RNStyle['padding']>;
-  py?: SpacingProp<RNStyle['padding']>;
   padding?: SpacingProp<RNStyle['padding']>;
-  paddingTop?: SpacingProp<RNStyle['paddingTop']>;
-  paddingRight?: SpacingProp<RNStyle['paddingRight']>;
+  paddingBlock?: SpacingProp<RNStyle['paddingBlock']>;
+  paddingBlockEnd?: SpacingProp<RNStyle['paddingBlockEnd']>;
+  paddingBlockStart?: SpacingProp<RNStyle['paddingBlockStart']>;
   paddingBottom?: SpacingProp<RNStyle['paddingBottom']>;
+  paddingEnd?: SpacingProp<RNStyle['paddingInlineEnd']>;
+  paddingInline?: SpacingProp<RNStyle['paddingInline']>;
+  paddingInlineEnd?: SpacingProp<RNStyle['paddingInlineEnd']>;
+  paddingInlineStart?: SpacingProp<RNStyle['paddingInlineStart']>;
   paddingLeft?: SpacingProp<RNStyle['paddingLeft']>;
-  // paddingStart?: SpacingProp<RNStyle['paddingStart']>;
-  // paddingEnd?: SpacingProp<RNStyle['paddingEnd']>;
-  paddingX?: SpacingProp<RNStyle['padding']>;
-  paddingY?: SpacingProp<RNStyle['padding']>;
+  paddingRight?: SpacingProp<RNStyle['paddingRight']>;
+  paddingStart?: SpacingProp<RNStyle['paddingInlineStart']>;
+  paddingTop?: SpacingProp<RNStyle['paddingTop']>;
+  paddingX?: SpacingProp<RNStyle['paddingInline']>;
+  paddingY?: SpacingProp<RNStyle['paddingBlock']>;
+  pb?: SpacingProp<RNStyle['paddingBottom']>;
+  pe?: SpacingProp<RNStyle['paddingInlineEnd']>;
+  pl?: SpacingProp<RNStyle['paddingLeft']>;
+  pr?: SpacingProp<RNStyle['paddingRight']>;
+  ps?: SpacingProp<RNStyle['paddingInlineStart']>;
+  pt?: SpacingProp<RNStyle['paddingTop']>;
+  px?: SpacingProp<RNStyle['paddingInline']>;
+  py?: SpacingProp<RNStyle['paddingBlock']>;
 }
 
 export const paddingKeys: (keyof PaddingProps)[] = [
   'p',
-  'pt',
-  'pr',
-  'pb',
-  'pl',
-  // 'ps',
-  // 'pe',
-  'px',
-  'py',
   'padding',
-  'paddingTop',
-  'paddingRight',
+  'paddingBlock',
+  'paddingBlockEnd',
+  'paddingBlockStart',
   'paddingBottom',
+  'paddingEnd',
+  'paddingInline',
+  'paddingInlineEnd',
+  'paddingInlineStart',
   'paddingLeft',
-  // 'paddingStart',
-  // 'paddingEnd',
+  'paddingRight',
+  'paddingStart',
+  'paddingTop',
   'paddingX',
   'paddingY',
+  'pb',
+  'pe',
+  'pl',
+  'pr',
+  'ps',
+  'pt',
+  'px',
+  'py',
 ];
 
 export const padding: SimpleStyleFunction<keyof PaddingProps> = (props) =>

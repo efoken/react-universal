@@ -9,34 +9,51 @@ type LayoutProp<
   K extends keyof Theme | undefined = undefined,
 > = BreakpointValue<K extends string ? T | ThemeValue<Theme[K]> : T>;
 
-export interface LayoutProps {
-  w?: LayoutProp<RNStyle['width']>;
-  maxW?: LayoutProp<RNStyle['maxWidth']>;
-  minW?: LayoutProp<RNStyle['minWidth']>;
-  width?: LayoutProp<RNStyle['width']>;
-  maxWidth?: LayoutProp<RNStyle['maxWidth'], 'breakpoints'>;
-  minWidth?: LayoutProp<RNStyle['minWidth']>;
-  h?: LayoutProp<RNStyle['height']>;
-  maxH?: LayoutProp<RNStyle['maxHeight']>;
-  minH?: LayoutProp<RNStyle['minHeight']>;
-  height?: LayoutProp<RNStyle['height']>;
-  maxHeight?: LayoutProp<RNStyle['maxHeight']>;
-  minHeight?: LayoutProp<RNStyle['minHeight']>;
+export interface LayoutPropsWeb {
   /** @platform web */
-  boxSizing?: LayoutProp<React.CSSProperties['boxSizing']>;
-  display?: LayoutProp<RNStyle['display']>;
+  boxSizing?: LayoutProp<RNStyle['boxSizing']>;
+  /** @platform web */
+  overflowX?: LayoutProp<RNStyle['overflowX']>;
+  /** @platform web */
+  overflowY?: LayoutProp<RNStyle['overflowY']>;
+  /** @platform web */
+  overscroll?: LayoutProp<RNStyle['overscrollBehavior']>;
+  /** @platform web */
+  overscrollBehavior?: LayoutProp<RNStyle['overscrollBehavior']>;
+  /** @platform web */
+  overscrollBehaviorX?: LayoutProp<RNStyle['overscrollBehaviorX']>;
+  /** @platform web */
+  overscrollBehaviorY?: LayoutProp<RNStyle['overscrollBehaviorY']>;
+  /** @platform web */
+  overscrollX?: LayoutProp<RNStyle['overscrollBehaviorX']>;
+  /** @platform web */
+  overscrollY?: LayoutProp<RNStyle['overscrollBehaviorY']>;
+  /** @platform web */
+  visibility?: LayoutProp<RNStyle['visibility']>;
+}
+
+export interface LayoutProps extends LayoutPropsWeb {
   aspectRatio?: LayoutProp<RNStyle['aspectRatio']>;
+  blockSize?: LayoutProp<RNStyle['blockSize']>;
+  display?: LayoutProp<RNStyle['display']>;
+  h?: LayoutProp<RNStyle['height']>;
+  height?: LayoutProp<RNStyle['height']>;
+  inlineSize?: LayoutProp<RNStyle['inlineSize']>;
+  maxBlockSize?: LayoutProp<RNStyle['maxBlockSize']>;
+  maxH?: LayoutProp<RNStyle['maxHeight']>;
+  maxHeight?: LayoutProp<RNStyle['maxHeight']>;
+  maxInlineSize?: LayoutProp<RNStyle['maxInlineSize']>;
+  maxW?: LayoutProp<RNStyle['maxWidth'], 'breakpoints'>;
+  maxWidth?: LayoutProp<RNStyle['maxWidth'], 'breakpoints'>;
+  minBlockSize?: LayoutProp<RNStyle['minBlockSize']>;
+  minH?: LayoutProp<RNStyle['minHeight']>;
+  minHeight?: LayoutProp<RNStyle['minHeight']>;
+  minInlineSize?: LayoutProp<RNStyle['minInlineSize']>;
+  minW?: LayoutProp<RNStyle['minWidth']>;
+  minWidth?: LayoutProp<RNStyle['minWidth']>;
   overflow?: LayoutProp<RNStyle['overflow']>;
-  /** @platform web */
-  overflowX?: LayoutProp<React.CSSProperties['overflowX']>;
-  /** @platform web */
-  overflowY?: LayoutProp<React.CSSProperties['overflowY']>;
-  /** @platform web */
-  overscroll?: LayoutProp<React.CSSProperties['overscrollBehavior']>;
-  /** @platform web */
-  overscrollBehavior?: LayoutProp<React.CSSProperties['overscrollBehavior']>;
-  /** @platform web */
-  visibility?: LayoutProp<React.CSSProperties['visibility']>;
+  w?: LayoutProp<RNStyle['width']>;
+  width?: LayoutProp<RNStyle['width']>;
 }
 
 export function sizingTransform(value: string | number) {
@@ -44,6 +61,20 @@ export function sizingTransform(value: string | number) {
     ? `${value * 100}%`
     : value;
 }
+
+export const maxInlineSize: SimpleStyleFunction<'maxInlineSize'> = (props) => {
+  if (props.maxInlineSize != null) {
+    const styleFromPropValue = (propValue: string | number) => ({
+      maxInlineSize:
+        // @ts-expect-error: It's fine as we check if `propValue` exists in breakpoints.
+        props.theme.breakpoints[propValue] ?? sizingTransform(propValue),
+    });
+    return handleBreakpoints(props, props.maxInlineSize, styleFromPropValue);
+  }
+  return undefined;
+};
+
+maxInlineSize.filterProps = ['maxInlineSize'];
 
 export const maxW: SimpleStyleFunction<'maxW'> = (props) => {
   if (props.maxW != null) {
@@ -71,4 +102,4 @@ export const maxWidth: SimpleStyleFunction<'maxWidth'> = (props) => {
   return undefined;
 };
 
-maxWidth.filterProps = ['maxW'];
+maxWidth.filterProps = ['maxWidth'];

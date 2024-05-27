@@ -8,10 +8,19 @@ type PositionProp<
 > = BreakpointValue<K extends string ? T | ThemeValue<Theme[K]> : T>;
 
 export interface PositionProps {
-  position?: PositionProp<RNStyle['position']>;
-  zIndex?: PositionProp<RNStyle['zIndex'], 'zIndices'>;
-  top?: PositionProp<RNStyle['top']>;
-  right?: PositionProp<RNStyle['top']>;
   bottom?: PositionProp<RNStyle['top']>;
+  inset?: PositionProp<RNStyle['inset']>;
+  insetBlock?: PositionProp<RNStyle['insetBlock']>;
+  insetBlockEnd?: PositionProp<RNStyle['insetBlockEnd']>;
+  insetBlockStart?: PositionProp<RNStyle['insetBlockStart']>;
+  insetEnd?: PositionProp<RNStyle['insetInlineEnd']>;
+  insetInline?: PositionProp<RNStyle['insetInline']>;
+  insetInlineEnd?: PositionProp<RNStyle['insetInlineEnd']>;
+  insetInlineStart?: PositionProp<RNStyle['insetInlineStart']>;
+  insetStart?: PositionProp<RNStyle['insetInlineStart']>;
   left?: PositionProp<RNStyle['top']>;
+  position?: PositionProp<RNStyle['position']>;
+  right?: PositionProp<RNStyle['top']>;
+  top?: PositionProp<RNStyle['top']>;
+  zIndex?: PositionProp<RNStyle['zIndex'], 'zIndices'>;
 }

@@ -1,9 +1,5 @@
 import type { BreakpointValue } from '../breakpoints';
-import { handleBreakpoints } from '../breakpoints';
 import type { Theme, ThemeValue } from '../theme/defaultTheme';
-import type { RNStyle, SimpleStyleFunction } from '../types';
-import type { SpacingValue } from './spacing';
-import { createUnaryUnit, getValue } from './spacing';
 
 type GridProp<
   T,
@@ -13,9 +9,6 @@ type GridProp<
 >;
 
 export interface GridProps {
-  gap?: GridProp<RNStyle['gap'], 'space'>;
-  rowGap?: GridProp<RNStyle['rowGap'], 'space'>;
-  columnGap?: GridProp<RNStyle['columnGap'], 'space'>;
   /** @platform web */
   gridColumn?: GridProp<React.CSSProperties['gridColumn']>;
   /** @platform web */
@@ -35,42 +28,3 @@ export interface GridProps {
   /** @platform web */
   gridArea?: GridProp<React.CSSProperties['gridArea']>;
 }
-
-export const gap: SimpleStyleFunction<'gap'> = (props) => {
-  if (props.gap != null) {
-    const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'gap');
-    const styleFromPropValue = (propValue: SpacingValue) => ({
-      gap: getValue(transformer, propValue),
-    });
-    return handleBreakpoints(props, props.gap, styleFromPropValue);
-  }
-  return undefined;
-};
-
-gap.filterProps = ['gap'];
-
-export const columnGap: SimpleStyleFunction<'columnGap'> = (props) => {
-  if (props.columnGap != null) {
-    const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'columnGap');
-    const styleFromPropValue = (propValue: SpacingValue) => ({
-      columnGap: getValue(transformer, propValue),
-    });
-    return handleBreakpoints(props, props.columnGap, styleFromPropValue);
-  }
-  return undefined;
-};
-
-columnGap.filterProps = ['columnGap'];
-
-export const rowGap: SimpleStyleFunction<'rowGap'> = (props) => {
-  if (props.rowGap != null) {
-    const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'rowGap');
-    const styleFromPropValue = (propValue: SpacingValue) => ({
-      rowGap: getValue(transformer, propValue),
-    });
-    return handleBreakpoints(props, props.rowGap, styleFromPropValue);
-  }
-  return undefined;
-};
-
-rowGap.filterProps = ['rowGap'];

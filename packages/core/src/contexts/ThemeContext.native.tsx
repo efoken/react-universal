@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { UnistylesRegistry, useStyles } from 'react-native-unistyles';
 import { StyleRuntime } from '../StyleRuntime';
-import { fontWeightPlugin, remPlugin } from '../stylePlugins';
+import { boxShadowPlugin, fontPlugin, remPlugin } from '../stylePlugins';
 import { defaultTheme } from '../theme/defaultTheme';
 import type { ThemeProviderProps } from './ThemeContext.types';
 
@@ -16,7 +16,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     .addConfig({
       experimentalCSSMediaQueries: false,
       initialTheme: 'default',
-      plugins: [remPlugin(theme), fontWeightPlugin(theme)],
+      plugins: [remPlugin(theme), boxShadowPlugin(theme), fontPlugin(theme)],
     });
 
   useEffect(() => {

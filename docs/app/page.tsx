@@ -12,7 +12,8 @@ export default function Home() {
         flexDir: 'column',
         justifyContent: 'space-between',
         minH: '100vh',
-        p: '6rem',
+        px: { xs: '6rem', md: '4rem' },
+        py: '6rem',
         top: 0,
       }}
     >
@@ -22,7 +23,7 @@ export default function Home() {
           alignItems: 'inherit' as any,
           display: 'inherit' as any,
           fontFamily: 'var(--font-mono)',
-          fontSize: { xs: '0.8rem' as any, md: '0.85rem' as any },
+          fontSize: { xs: '0.8rem', md: '0.85rem' },
           justifyContent: 'inherit' as any,
           maxW: { xl: 'var(--max-width)' },
           zIndex: 2,
@@ -31,7 +32,6 @@ export default function Home() {
         <Text
           role="paragraph"
           sx={{
-            '--bg-color': 'rgba(var(--callout-rgb), 0.5)',
             alignItems: 'center',
             backdropFilter: { xs: 'blur(24px)', md: 'unset' },
             backgroundClip: { xs: 'padding-box', md: 'unset' },
@@ -39,23 +39,24 @@ export default function Home() {
               xs: 'linear-gradient(to bottom, rgba(var(--background-start-rgb), 1), rgba(var(--callout-rgb), 0.5))',
               md: 'unset',
             },
-            bgColor: 'var(--bg-color)',
+            bgColor: { xs: 'transparent', md: 'rgba(var(--callout-rgb), 0.5)' },
             borderBottomWidth: 1,
             borderColor: {
-              xs: 'var(--undefined, rgba(var(--callout-border-rgb), 0.25))',
-              md: 'var(--undefined, rgba(var(--callout-border-rgb), 0.3))',
+              xs: 'rgba(var(--callout-border-rgb), 0.25)',
+              md: 'rgba(var(--callout-border-rgb), 0.3)',
             },
-            borderLeftWidth: { md: 1 },
+            borderLeftWidth: { xs: 0, md: 1 },
             borderRadius: { xs: 0, md: 'var(--border-radius)' as any },
-            borderRightWidth: { md: 1 },
-            borderTopWidth: { md: 1 },
+            borderRightWidth: { xs: 0, md: 1 },
+            borderTopWidth: { xs: 0, md: 1 },
             bottom: { xs: 'auto', md: 'unset' },
             display: { xs: 'flex', md: 'block' as any },
+            fontFamily: 'inherit',
             justifyContent: 'center',
             left: { xs: 0, md: 'unset' },
             m: 0,
             pb: { xs: '1.4rem', md: '1rem' },
-            position: { xs: 'fixed', md: 'relative' },
+            position: { xs: 'fixed', md: 'unset' as any },
             pt: { xs: '2rem', md: '1rem' },
             px: '1rem',
             right: { xs: 0, md: 'unset' },
@@ -73,23 +74,24 @@ export default function Home() {
         </Text>
         <Box
           sx={{
-            alignItems: { xs: 'flex-end', md: 'stretch' },
+            alignItems: { xs: 'flex-end', md: 'unset' as any },
             backgroundImage: {
               xs: 'linear-gradient(to bottom, transparent 0%, rgb(var(--background-end-rgb)) 40%)',
-              md: 'none',
+              md: 'unset',
             },
             bottom: { xs: 0, md: 'unset' },
-            flexDir: 'row',
+            display: { xs: 'flex', md: 'unset' as any },
+            flexDir: { xs: 'row', md: 'unset' as any },
             h: { xs: 200, md: 'unset' },
             justifyContent: { xs: 'center', md: 'unset' as any },
             left: { xs: 0, md: 'unset' },
             p: { xs: '2rem', md: 0 },
-            pointerEvents: { xs: 'none', md: 'unset' },
-            position: { xs: 'fixed', md: 'relative' },
+            pointerEvents: { xs: 'none', md: 'unset' as any },
+            position: { xs: 'fixed', md: 'unset' as any },
             right: { xs: 0, md: 'unset' },
             top: { xs: 'auto', md: 'unset' },
             w: { xs: '100%', md: 'unset' },
-            zIndex: { xs: 1, md: 0 },
+            zIndex: { xs: 1, md: 'unset' as any },
           }}
         >
           <Link
@@ -140,9 +142,11 @@ export default function Home() {
             md: 'repeat(2, 50%)',
             xl: 'repeat(4, minmax(25%, auto))',
           },
-          maxW: { xs: 320, xl: 'var(--max-width)' },
+          maxW: { xs: 368, md: '100%' },
           mb: { xs: 120, md: 'unset' },
+          mx: 'unset',
           textAlign: { xs: 'center', md: 'unset' as any },
+          w: 'var(--max-width)',
         }}
       >
         <Link
@@ -153,10 +157,8 @@ export default function Home() {
           }}
           style={{ c: styles.card, $$css: true } as any}
           sx={{
-            '--bg-color': 'rgba(var(--card-rgb), 0)',
-            '--border-color': 'rgba(var(--card-border-rgb), 0)',
-            bgColor: 'var(--bg-color)',
-            borderColor: 'var(--border-color)',
+            bgColor: 'rgba(var(--card-rgb), 0)',
+            borderColor: 'rgba(var(--card-border-rgb), 0)',
             borderRadius: 'var(--border-radius)' as any,
             borderStyle: 'solid',
             borderWidth: 1,
@@ -167,7 +169,7 @@ export default function Home() {
           <Text
             as="h2"
             sx={{
-              fontSize: '1.5rem' as any,
+              fontSize: '1.5rem',
               fontWeight: '600',
               lineHeight: '1.23' as any,
               mb: { xs: '0.5rem', md: '0.7rem' },
@@ -182,7 +184,7 @@ export default function Home() {
             as="p"
             sx={{
               opacity: 0.6,
-              fontSize: '0.9rem' as any,
+              fontSize: '0.9rem',
               lineHeight: '1.5' as any,
               maxWidth: '30ch',
               textWrap: 'balance',
@@ -200,10 +202,8 @@ export default function Home() {
           }}
           style={{ c: styles.card, $$css: true } as any}
           sx={{
-            '--bg-color': 'rgba(var(--card-rgb), 0)',
-            '--border-color': 'rgba(var(--card-border-rgb), 0)',
-            bgColor: 'var(--bg-color)',
-            borderColor: 'var(--border-color)',
+            bgColor: 'rgba(var(--card-rgb), 0)',
+            borderColor: 'rgba(var(--card-border-rgb), 0)',
             borderRadius: 'var(--border-radius)' as any,
             borderStyle: 'solid',
             borderWidth: 1,
@@ -214,7 +214,7 @@ export default function Home() {
           <Text
             as="h2"
             sx={{
-              fontSize: '1.5rem' as any,
+              fontSize: '1.5rem',
               fontWeight: '600',
               lineHeight: '1.23' as any,
               mb: { xs: '0.5rem', md: '0.7rem' },
@@ -229,7 +229,7 @@ export default function Home() {
             as="p"
             sx={{
               opacity: 0.6,
-              fontSize: '0.9rem' as any,
+              fontSize: '0.9rem',
               lineHeight: '1.5' as any,
               maxWidth: '30ch',
               textWrap: 'balance',
@@ -247,10 +247,8 @@ export default function Home() {
           }}
           style={{ c: styles.card, $$css: true } as any}
           sx={{
-            '--bg-color': 'rgba(var(--card-rgb), 0)',
-            '--border-color': 'rgba(var(--card-border-rgb), 0)',
-            bgColor: 'var(--bg-color)',
-            borderColor: 'var(--border-color)',
+            bgColor: 'rgba(var(--card-rgb), 0)',
+            borderColor: 'rgba(var(--card-border-rgb), 0)',
             borderRadius: 'var(--border-radius)' as any,
             borderStyle: 'solid',
             borderWidth: 1,
@@ -261,7 +259,7 @@ export default function Home() {
           <Text
             as="h2"
             sx={{
-              fontSize: '1.5rem' as any,
+              fontSize: '1.5rem',
               fontWeight: '600',
               lineHeight: '1.23' as any,
               mb: { xs: '0.5rem', md: '0.7rem' },
@@ -276,7 +274,7 @@ export default function Home() {
             as="p"
             sx={{
               opacity: 0.6,
-              fontSize: '0.9rem' as any,
+              fontSize: '0.9rem',
               lineHeight: '1.5' as any,
               maxWidth: '30ch',
               textWrap: 'balance',
@@ -294,10 +292,8 @@ export default function Home() {
           }}
           style={{ c: styles.card, $$css: true } as any}
           sx={{
-            '--bg-color': 'rgba(var(--card-rgb), 0)',
-            '--border-color': 'rgba(var(--card-border-rgb), 0)',
-            bgColor: 'var(--bg-color)',
-            borderColor: 'var(--border-color)',
+            bgColor: 'rgba(var(--card-rgb), 0)',
+            borderColor: 'rgba(var(--card-border-rgb), 0)',
             borderRadius: 'var(--border-radius)' as any,
             borderStyle: 'solid',
             borderWidth: 1,
@@ -308,7 +304,7 @@ export default function Home() {
           <Text
             as="h2"
             sx={{
-              fontSize: '1.5rem' as any,
+              fontSize: '1.5rem',
               fontWeight: '600',
               lineHeight: '1.23' as any,
               mb: { xs: '0.5rem', md: '0.7rem' },
@@ -323,7 +319,7 @@ export default function Home() {
             as="p"
             sx={{
               opacity: 0.6,
-              fontSize: '0.9rem' as any,
+              fontSize: '0.9rem',
               lineHeight: '1.5' as any,
               maxWidth: '30ch',
               textWrap: 'balance',

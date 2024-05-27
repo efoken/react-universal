@@ -1,6 +1,6 @@
 import { isFunction, isObject, mergeDeep } from '@universal-ui/utils';
-import createReactDOMStyle from 'react-native-web/dist/exports/StyleSheet/compiler/createReactDOMStyle';
 import type { StyleRuntime } from './StyleRuntime';
+import { createReactDOMStyle } from './createReactDOMStyle';
 import { preprocess } from './preprocess';
 import type { Theme } from './theme';
 import type { StyleSheet } from './types';

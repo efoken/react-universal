@@ -5,9 +5,9 @@ export class StyleRuntime {
   static #theme: Theme = defaultTheme;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static setTheme(name: 'default') {}
+  static setTheme(_name: 'default') {}
 
-  static updateTheme(name: 'default', updater: (theme: Theme) => Theme) {
+  static updateTheme(_name: 'default', updater: (theme: Theme) => Theme) {
     this.#theme = updater(this.#theme);
   }
 
