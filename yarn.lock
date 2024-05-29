@@ -4118,7 +4118,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/react-native-use-responder-events@npm:^1.98.4":
+"@tamagui/react-native-use-responder-events@npm:^1.99.1":
   version: 1.99.1
   resolution: "@tamagui/react-native-use-responder-events@npm:1.99.1"
   checksum: 10c0/dccdb6bb7fe01dca4b81c817378b6d223dd984809172309e705c51d3cf7d2183e7a961c09db4557e3931a4f9922c5a9f2514a28d7a468a7a2d17fd7694d3ca30
@@ -4612,7 +4612,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@universal-ui/components@workspace:packages/components"
   dependencies:
-    "@tamagui/react-native-use-responder-events": "npm:^1.98.4"
+    "@tamagui/react-native-use-responder-events": "npm:^1.99.1"
     "@types/react": "npm:~18.2.79"
     "@universal-ui/core": "workspace:*"
     react: "npm:18.2.0"
