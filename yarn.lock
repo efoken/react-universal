@@ -77,7 +77,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3, @babel/core@npm:^7.13.16, @babel/core@npm:^7.20.0, @babel/core@npm:^7.24.5":
+"@babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3, @babel/core@npm:^7.13.16, @babel/core@npm:^7.20.0, @babel/core@npm:^7.24.6":
   version: 7.24.6
   resolution: "@babel/core@npm:7.24.6"
   dependencies:
@@ -4589,7 +4589,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@universal-ui/app@workspace:app"
   dependencies:
-    "@babel/core": "npm:^7.24.5"
+    "@babel/core": "npm:^7.24.6"
     "@babel/preset-env": "npm:^7.24.6"
     "@expo/metro-runtime": "npm:~3.2.1"
     "@react-native/normalize-colors": "npm:^0.74.83"
@@ -14275,7 +14275,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "universal-ui@workspace:."
   dependencies:
-    "@babel/core": "npm:^7.24.5"
+    "@babel/core": "npm:^7.24.6"
     "@babel/preset-env": "npm:^7.24.6"
     "@react-native/normalize-colors": "npm:^0.74.83"
     "@testing-library/react-native": "npm:^12.5.1"
