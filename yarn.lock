@@ -4111,7 +4111,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/constants@npm:^1.98.4":
+"@tamagui/constants@npm:^1.99.1":
   version: 1.99.1
   resolution: "@tamagui/constants@npm:1.99.1"
   checksum: 10c0/728a0e66e91b6702870a39cc9bdc2740a752e6a1b3c7b62576fd1a6480295de48e29168050a99830dde38a1f1dfd53f32744997944ea30ca76e8b90b018caf2f
@@ -4636,7 +4636,7 @@ __metadata:
     "@emotion/serialize": "npm:^1.1.4"
     "@emotion/utils": "npm:^1.2.1"
     "@react-native/normalize-colors": "npm:^0.74.83"
-    "@tamagui/constants": "npm:^1.98.4"
+    "@tamagui/constants": "npm:^1.99.1"
     "@types/react": "npm:~18.2.79"
     "@universal-ui/utils": "workspace:*"
     react: "npm:18.2.0"
