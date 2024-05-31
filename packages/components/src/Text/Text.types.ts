@@ -5,31 +5,26 @@ import type {
   SxProps,
 } from '@universal-ui/core';
 import type {
-  ImageStyle as RNImageStyle,
-  Role as RNRole,
+  NativeMethods,
+  AccessibilityProps as RNAccessibilityProps,
   TextProps as RNTextProps,
 } from 'react-native';
+import type { AccessibilityProps } from '../types';
 
-export type TextStyle = Omit<RNStyle, keyof RNImageStyle>;
+export interface TextMethods extends NativeMethods {}
+
+export type TextStyle = Omit<RNStyle, 'objectFit'>;
 
 export interface TextProps
   extends Omit<
-    RNTextProps,
-    | 'accessibilityActions'
-    | 'accessibilityElementsHidden'
-    | 'accessibilityLabel'
-    | 'accessibilityLabelledBy'
-    | 'accessibilityLiveRegion'
-    | 'accessibilityRole'
-    | 'accessibilityState'
-    | 'accessibilityValue'
-    | 'accessibilityViewIsModal'
-    | 'importantForAccessibility'
-    | 'onLayout'
-    | 'role'
-    | 'selectable'
-    | 'style'
-  > {
+      RNTextProps,
+      | keyof RNAccessibilityProps
+      | 'nativeID'
+      | 'onLayout'
+      | 'selectable'
+      | 'style'
+    >,
+    AccessibilityProps {
   as?: React.ElementType;
   dir?: 'ltr' | 'rtl' | 'auto';
   href?: string;
@@ -44,7 +39,6 @@ export interface TextProps
    * Callback invoked on mount and layout changes.
    */
   onLayout?: (event: LayoutEvent) => void;
-  role?: 'listbox' | 'paragraph' | RNRole;
   style?: StyleProp<TextStyle>;
   /**
    * The system prop that allows defining system overrides as well as additional

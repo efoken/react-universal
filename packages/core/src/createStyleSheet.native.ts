@@ -18,16 +18,11 @@ export function createStyleSheet<T extends StyleSheet>(
 ) {
   return (theme: Theme, runtime: typeof StyleRuntime) => {
     // FIXME: Use `runIfFunction`
-    const _stylesheet = isFunction(stylesheet)
-      ? stylesheet(theme, runtime)
-      : stylesheet;
+    const _stylesheet = isFunction(stylesheet) ? stylesheet(theme, runtime) : stylesheet;
 
     return createUnistylesStyleSheet(
       Object.fromEntries(
-        Object.entries(_stylesheet).map(([name, style]) => [
-          name,
-          parseStyle(style, runtime),
-        ]),
+        Object.entries(_stylesheet).map(([name, style]) => [name, parseStyle(style, runtime)]),
       ),
     );
   };

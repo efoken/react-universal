@@ -1,6 +1,11 @@
-import type { SxProps } from '@universal-ui/core';
-import type { ScrollViewProps as RNScrollViewProps } from 'react-native';
-import type { ViewProps } from '../View';
+import type { StyleProp, SxProps } from '@universal-ui/core';
+import type {
+  KeyboardEvent as RNKeyboardEvent,
+  RefreshControlProps as RNRefreshControlProps,
+  ScrollViewProps as RNScrollViewProps,
+  ViewProps as RNViewProps,
+} from 'react-native';
+import type { ViewProps, ViewStyle } from '../View';
 
 export interface ScrollEvent {
   nativeEvent: {
@@ -20,13 +25,59 @@ export interface ScrollEvent {
   timeStamp: number;
 }
 
-export interface ScrollViewMethods {}
+export interface ScrollViewMethods {
+  flashScrollIndicators(): void;
+  getInnerViewNode(): any;
+  getScrollableNode(): any;
+  getScrollResponder(): any;
+  scrollTo(options?: { animated?: boolean; x?: number; y?: number }): void;
+  scrollToEnd(options?: { animated?: boolean }): void;
+}
 
 export interface ScrollViewProps
-  extends Omit<RNScrollViewProps, keyof ViewProps | 'onScroll'>,
+  extends Omit<
+      RNScrollViewProps,
+      | keyof RNViewProps
+      | 'contentContainerStyle'
+      | 'keyboardShouldPersistTaps'
+      | 'onScroll'
+      | 'refreshControl'
+    >,
     ViewProps {
+  /**
+   * These styles will be applied to the ScrollView content container which
+   * wraps all of the child views.
+   */
+  contentContainerStyle?: StyleProp<ViewStyle>;
+  /**
+   * Determines when the keyboard should stay visible after a tap.
+   * - `never` (the default), tapping outside of the focused text input when the
+   *    keyboard is up dismisses the keyboard. When this happens, children won't
+   *    receive the tap.
+   * - `always`, the keyboard will not dismiss automatically, and the ScrollView
+   *    will not catch taps, but children of the ScrollView can catch taps.
+   * - `handled`, the keyboard will not dismiss automatically when the tap was
+   *    handled by a children, (or captured by an ancestor).
+   * @default 'never'
+   */
+  keyboardShouldPersistTaps?: 'always' | 'never' | 'handled';
+  onKeyboardDidHide?: (event: RNKeyboardEvent) => void;
+  onKeyboardDidShow?: (event: RNKeyboardEvent) => void;
+  onKeyboardWillHide?: (event: RNKeyboardEvent) => void;
+  onKeyboardWillShow?: (event: RNKeyboardEvent) => void;
+  /**
+   * Callback fired at most once per frame during scrolling.
+   * @param event
+   */
   onScroll?: (event: ScrollEvent) => void;
-  onWheel?: (event: React.WheelEvent) => void;
+  onWheel?: (event: React.WheelEvent<any>) => void;
+  /**
+   * A RefreshControl component, used to provide pull-to-refresh functionality
+   * for the ScrollView.
+   */
+  refreshControl?: React.ReactElement<
+    Omit<RNRefreshControlProps, keyof ViewProps> & ViewProps
+  >;
   /**
    * The system prop that allows defining system overrides as well as additional
    * CSS styles.
@@ -35,9 +86,5 @@ export interface ScrollViewProps
 }
 
 export type ScrollViewOwnerState = Required<
-  Pick<ScrollViewProps, 'scrollEnabled'>
-> &
-  Pick<
-    ScrollViewProps,
-    'showsHorizontalScrollIndicator' | 'showsVerticalScrollIndicator'
-  >;
+  Pick<ScrollViewProps, 'centerContent' | 'horizontal' | 'pagingEnabled'>
+>;

@@ -35,7 +35,7 @@ const TextRoot = styled(RNText, {
 }));
 
 export const Text = forwardRef<any, TextProps>(
-  ({ 'aria-hidden': ariaHidden, onLayout, role, ...props }, ref) => {
+  ({ 'aria-hidden': ariaHidden, onLayout, role, style, ...props }, ref) => {
     const handleLayout = (event: RNLayoutChangeEvent) => {
       onLayout?.(normalizeLayoutEvent(event));
     };
@@ -49,6 +49,7 @@ export const Text = forwardRef<any, TextProps>(
           ariaHidden ? 'no-hide-descendants' : undefined
         }
         role={role === 'listbox' || role === 'paragraph' ? undefined : role}
+        style={style as any}
         onLayout={handleLayout}
         {...props}
       />

@@ -25,4 +25,4 @@ export type CreateStyledComponent<
   ...styles: StyleInterpolation<
     P & AdditionalProps & { runtime: typeof StyleRuntime; theme: Theme }
   >[]
-) => StyledComponent<P & AdditionalProps, T>;
+) => React.FunctionComponent<P & AdditionalProps & React.ComponentProps<T>>;

@@ -2,7 +2,6 @@
 
 import type {
   BreakpointValue,
-  OverridableComponent,
   OverridableProps,
   SxProps,
   Theme,
@@ -99,6 +98,6 @@ export const Stack = forwardRef<any, StackProps>(
       </StackRoot>
     );
   },
-) as OverridableComponent<StackOwnProps, typeof View>;
+);
 
 Stack.displayName = 'Stack';

@@ -12,8 +12,8 @@ import {
 } from '@universal-ui/core';
 import { isString, pick } from '@universal-ui/utils';
 import { forwardRef, useCallback, useContext, useRef } from 'react';
-import type { GestureResponderEvent, NativeMethods } from 'react-native';
-import type { TextOwnerState, TextProps } from './Text.types';
+import type { GestureResponderEvent } from 'react-native';
+import type { TextMethods, TextOwnerState, TextProps } from './Text.types';
 import { TextAncestorContext } from './TextAncestorContext';
 
 function pickProps<T extends AnyProps>(props: T) {
@@ -180,8 +180,8 @@ export const Text = forwardRef<any, TextProps>(
     );
   },
 ) as unknown as React.FunctionComponent<
-  TextProps & React.RefAttributes<NativeMethods>
+  TextProps & React.RefAttributes<TextMethods>
 > &
-  NativeMethods;
+  TextMethods;
 
 Text.displayName = 'Text';

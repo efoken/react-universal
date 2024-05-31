@@ -1,15 +1,12 @@
 'use client';
 
-import type {
-  OverridableComponent,
-  OverridableProps,
-  SxProps,
-} from '@universal-ui/core';
+import type { SxProps } from '@universal-ui/core';
 import { styled } from '@universal-ui/core';
 import { forwardRef } from 'react';
+import type { TextMethods, TextProps } from '../Text';
 import { Text } from '../Text';
 
-export interface LinkOwnProps {
+export interface LinkProps extends TextProps {
   /**
    * The URL to link to when the link is clicked.
    */
@@ -29,18 +26,16 @@ export interface LinkOwnProps {
   sx?: SxProps;
 }
 
-export type LinkProps<C extends React.ElementType = typeof Text> =
-  OverridableProps<LinkOwnProps, C> & {
-    as?: React.ElementType;
-  };
-
 const LinkRoot = styled(Text, {
   name: 'Link',
   slot: 'Root',
 })();
 
-export const Link = forwardRef<typeof Text, LinkProps>((props, ref) => (
+export const Link = forwardRef<TextMethods, LinkProps>((props, ref) => (
   <LinkRoot ref={ref} role="link" {...props} />
-)) as OverridableComponent<LinkOwnProps, typeof Text>;
+)) as unknown as React.FunctionComponent<
+  LinkProps & React.RefAttributes<TextMethods>
+> &
+  TextMethods;
 
 Link.displayName = 'Link';

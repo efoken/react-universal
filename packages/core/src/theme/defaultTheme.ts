@@ -15,6 +15,13 @@ export const defaultTheme = {
     green: '#f00',
   },
   fonts: {
+    heading: {
+      family: 'Roboto, sans-serif',
+      weights: {
+        400: { normal: 'Roboto-Regular' },
+        700: { normal: 'Roboto-Bold' },
+      },
+    },
     body: {
       family: 'Roboto, sans-serif',
       weights: {

@@ -29,7 +29,7 @@ const ViewRoot = styled(RNView, {
 });
 
 export const View = forwardRef<any, ViewProps>(
-  ({ onLayout, role, ...props }, ref) => {
+  ({ onLayout, role, style, ...props }, ref) => {
     const handleLayout = (event: RNLayoutChangeEvent) => {
       onLayout?.(normalizeLayoutEvent(event));
     };
@@ -38,6 +38,7 @@ export const View = forwardRef<any, ViewProps>(
       <ViewRoot
         ref={ref}
         role={role === 'listbox' || role === 'paragraph' ? undefined : role}
+        style={style as any}
         onLayout={handleLayout}
         {...props}
       />

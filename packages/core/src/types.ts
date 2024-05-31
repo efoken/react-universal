@@ -7,6 +7,8 @@ import type {
 import type { Breakpoint } from './breakpoints';
 import type { Theme } from './theme/defaultTheme';
 
+export type { DistributiveOmit } from '@emotion/react';
+
 export type AnyProps<T = any> = Record<string, T>;
 
 export type ColorMode = 'light' | 'dark';
@@ -25,6 +27,26 @@ export interface RNStyleWeb {
   /** @platform web */
   overscrollBehaviorY?: React.CSSProperties['overscrollBehaviorY'];
   /** @platform web */
+  scrollbarColor?: React.CSSProperties['scrollbarColor'];
+  /** @platform web */
+  scrollbarGutter?: React.CSSProperties['scrollbarGutter'];
+  /** @platform web */
+  scrollbarWidth?: React.CSSProperties['scrollbarWidth'];
+  /** @platform web */
+  scrollSnapAlign?: React.CSSProperties['scrollSnapAlign'];
+  /** @platform web */
+  scrollSnapMarginBottom?: React.CSSProperties['scrollSnapMarginBottom'];
+  /** @platform web */
+  scrollSnapMarginLeft?: React.CSSProperties['scrollSnapMarginLeft'];
+  /** @platform web */
+  scrollSnapMarginRight?: React.CSSProperties['scrollSnapMarginRight'];
+  /** @platform web */
+  scrollSnapMarginTop?: React.CSSProperties['scrollSnapMarginTop'];
+  /** @platform web */
+  scrollSnapStop?: React.CSSProperties['scrollSnapStop'];
+  /** @platform web */
+  scrollSnapType?: React.CSSProperties['scrollSnapType'];
+  /** @platform web */
   visibility?: React.CSSProperties['visibility'];
 }
 
@@ -32,6 +54,14 @@ export interface RNStyle
   extends Omit<
       RNImageStyle & RNTextStyle & RNViewStyle,
       | keyof RNTransformsStyle
+      | 'borderBottomWidth'
+      | 'borderEndColor'
+      | 'borderEndWidth'
+      | 'borderLeftWidth'
+      | 'borderRightWidth'
+      | 'borderStartColor'
+      | 'borderStartWidth'
+      | 'borderTopWidth'
       | 'bottom'
       | 'columnGap'
       | 'end'
@@ -83,10 +113,30 @@ export interface RNStyle
     >,
     RNStyleWeb {
   blockSize?: NonNullable<RNViewStyle['height']> | (string & {});
-  borderBottomStyle?: NonNullable<RNViewStyle['borderStyle']> | (string & {});
-  borderLeftStyle?: NonNullable<RNViewStyle['borderStyle']> | (string & {});
-  borderRightStyle?: NonNullable<RNViewStyle['borderStyle']> | (string & {});
-  borderTopStyle?: NonNullable<RNViewStyle['borderStyle']> | (string & {});
+  borderBlockColor?: NonNullable<RNViewStyle['borderColor']>;
+  borderBlockEndStyle?: NonNullable<RNViewStyle['borderStyle']>;
+  borderBlockEndWidth?: number | string;
+  borderBlockStartStyle?: NonNullable<RNViewStyle['borderStyle']>;
+  borderBlockStartWidth?: number | string;
+  borderBlockStyle?: NonNullable<RNViewStyle['borderStyle']>;
+  borderBlockWidth?: number | string;
+  borderBottomStyle?: NonNullable<RNViewStyle['borderStyle']>;
+  borderBottomWidth?: number | string;
+  borderInlineColor?: NonNullable<RNViewStyle['borderColor']>;
+  borderInlineEndColor?: NonNullable<RNViewStyle['borderEndColor']>;
+  borderInlineEndStyle?: NonNullable<RNViewStyle['borderStyle']>;
+  borderInlineEndWidth?: number | string;
+  borderInlineStartColor?: NonNullable<RNViewStyle['borderStartColor']>;
+  borderInlineStartStyle?: NonNullable<RNViewStyle['borderStyle']>;
+  borderInlineStartWidth?: number | string;
+  borderInlineStyle?: NonNullable<RNViewStyle['borderStyle']>;
+  borderInlineWidth?: number | string;
+  borderLeftStyle?: NonNullable<RNViewStyle['borderStyle']>;
+  borderLeftWidth?: number | string;
+  borderRightStyle?: NonNullable<RNViewStyle['borderStyle']>;
+  borderRightWidth?: number | string;
+  borderTopStyle?: NonNullable<RNViewStyle['borderStyle']>;
+  borderTopWidth?: number | string;
   bottom?: NonNullable<RNViewStyle['bottom']> | (string & {});
   boxShadow?: string;
   columnGap?: number | string;
@@ -186,8 +236,7 @@ export interface OverridableComponent<
   C extends React.ElementType,
 > {
   <T extends React.ElementType>(
-    // FIXME:
-    props: { as?: T } & OverridableProps<P, T>,
+    props: { as: T } & OverridableProps<P, T>,
   ): React.ReactNode;
   (props: OverridableProps<P, C>): React.ReactNode;
   displayName?: string;

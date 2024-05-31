@@ -7,40 +7,49 @@ import type {
 } from '@universal-ui/core';
 import type {
   NativeMethods,
-  Role as RNRole,
-  TextStyle as RNTextStyle,
+  AccessibilityProps as RNAccessibilityProps,
   ViewProps as RNViewProps,
 } from 'react-native';
+import type { AccessibilityProps } from '../types';
 
 export interface ViewMethods extends NativeMethods {}
 
-export type ViewStyle = Omit<RNStyle, keyof RNTextStyle>;
+export type ViewStyle = Omit<
+  RNStyle,
+  | 'color'
+  | 'fontFamily'
+  | 'fontSize'
+  | 'fontStyle'
+  | 'fontWeight'
+  | 'letterSpacing'
+  | 'lineHeight'
+  | 'textAlign'
+  | 'textDecorationColor'
+  | 'textDecorationLine'
+  | 'textDecorationStyle'
+  | 'textTransform'
+  | 'userSelect'
+>;
 
 export interface ViewProps
   extends Omit<
       RNViewProps,
-      | 'accessibilityActions'
-      | 'accessibilityElementsHidden'
-      | 'accessibilityLabel'
-      | 'accessibilityLabelledBy'
-      | 'accessibilityLiveRegion'
-      | 'accessibilityRole'
-      | 'accessibilityState'
-      | 'accessibilityValue'
-      | 'accessibilityViewIsModal'
+      | keyof RNAccessibilityProps
       | 'focusable'
-      | 'importantForAccessibility'
+      | 'nativeID'
       | 'onLayout'
       | 'pointerEvents'
-      | 'role'
       | 'style'
     >,
-    Pick<
-      ResponderConfig,
-      | 'onScrollShouldSetResponder'
-      | 'onScrollShouldSetResponderCapture'
-      | 'onSelectionChangeShouldSetResponder'
-      | 'onSelectionChangeShouldSetResponderCapture'
+    AccessibilityProps,
+    Partial<
+      Pick<
+        ResponderConfig,
+        | 'onScrollShouldSetResponder'
+        | 'onScrollShouldSetResponderCapture'
+        | 'onSelectionChangeShouldSetResponder'
+        | 'onSelectionChangeShouldSetResponderCapture'
+      >
     > {
   as?: React.ElementType;
   dir?: 'ltr' | 'rtl' | 'auto';
@@ -55,7 +64,6 @@ export interface ViewProps
    * Callback invoked on mount and layout changes.
    */
   onLayout?: (event: LayoutEvent) => void;
-  role?: 'listbox' | 'paragraph' | RNRole;
   style?: StyleProp<ViewStyle>;
   /**
    * The system prop that allows defining system overrides as well as additional

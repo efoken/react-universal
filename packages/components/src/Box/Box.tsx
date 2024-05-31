@@ -1,14 +1,11 @@
 'use client';
 
-import type {
-  OverridableComponent,
-  OverridableProps,
-  SxProps,
-} from '@universal-ui/core';
+import type { SxProps } from '@universal-ui/core';
 import { styled } from '@universal-ui/core';
+import type { ViewMethods, ViewProps } from '../View';
 import { View } from '../View';
 
-export interface BoxOwnProps {
+export interface BoxProps extends ViewProps {
   /**
    * The system prop that allows defining system overrides as well as additional
    * CSS styles.
@@ -16,11 +13,9 @@ export interface BoxOwnProps {
   sx?: SxProps;
 }
 
-export type BoxProps<C extends React.ElementType = typeof View> =
-  OverridableProps<BoxOwnProps, C> & {
-    as?: React.ElementType;
-  };
-
 export const Box = styled(View, {
   name: 'Box',
-})() as OverridableComponent<BoxOwnProps, typeof View>;
+})() as unknown as React.FunctionComponent<
+  BoxProps & React.RefAttributes<ViewMethods>
+> &
+  ViewMethods;

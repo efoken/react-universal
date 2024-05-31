@@ -37,9 +37,7 @@ export const boxShadowPlugin: StylePlugin = () => ({
     if ('boxShadow' in acc && isString(acc.boxShadow)) {
       const parsedShadow = parseBoxShadow(acc.boxShadow);
       if (parsedShadow.length > 1) {
-        console.warn(
-          'universal-ui: Unsupported multiple values for style property "boxShadow".',
-        );
+        console.warn('universal-ui: Unsupported multiple values for style property "boxShadow".');
       }
       const { offsetX, offsetY, blurRadius, color } = parsedShadow[0];
       acc.shadowColor = color;
@@ -197,17 +195,96 @@ export const polyfillPlugin: StylePlugin = () => ({
             flatStyle.minWidth = flatStyle.minWidth ?? styleValue;
             break;
           }
+          // Borders
+          case 'borderBlockColor': {
+            flatStyle.borderBottomColor = flatStyle.borderBottomColor ?? styleValue;
+            flatStyle.borderTopColor = flatStyle.borderTopColor ?? styleValue;
+            break;
+          }
+          case 'borderBlockStyle': {
+            flatStyle.borderBottomStyle = flatStyle.borderBottomStyle ?? styleValue;
+            flatStyle.borderTopStyle = flatStyle.borderTopStyle ?? styleValue;
+            break;
+          }
+          case 'borderBlockEndColor': {
+            flatStyle.borderBottomColor = prevStyle.borderBottomColor ?? styleValue;
+            break;
+          }
+          case 'borderBlockEndStyle': {
+            flatStyle.borderBottomStyle = prevStyle.borderBottomStyle ?? styleValue;
+            break;
+          }
+          case 'borderBlockEndWidth': {
+            flatStyle.borderBottomWidth = prevStyle.borderBottomWidth ?? styleValue;
+            break;
+          }
+          case 'borderBlockStartColor': {
+            flatStyle.borderTopColor = prevStyle.borderTopColor ?? styleValue;
+            break;
+          }
+          case 'borderBlockStartStyle': {
+            flatStyle.borderTopStyle = prevStyle.borderTopStyle ?? styleValue;
+            break;
+          }
+          case 'borderBlockStartWidth': {
+            flatStyle.borderTopWidth = prevStyle.borderTopWidth ?? styleValue;
+            break;
+          }
+          case 'borderBlockWidth': {
+            flatStyle.borderBottomWidth = flatStyle.borderBottomWidth ?? styleValue;
+            flatStyle.borderTopWidth = flatStyle.borderTopWidth ?? styleValue;
+            break;
+          }
+          case 'borderInlineColor': {
+            flatStyle.borderEndColor = styleValue;
+            flatStyle.borderStartColor = styleValue;
+            break;
+          }
+          case 'borderInlineStyle': {
+            flatStyle.borderEndStyle = styleValue;
+            flatStyle.borderStartStyle = styleValue;
+            break;
+          }
+          case 'borderInlineEndColor': {
+            flatStyle.borderEndColor = styleValue;
+            break;
+          }
+          case 'borderInlineEndStyle': {
+            flatStyle.borderEndStyle = styleValue;
+            break;
+          }
+          case 'borderInlineEndWidth': {
+            flatStyle.borderEndWidth = styleValue;
+            break;
+          }
+          case 'borderInlineStartColor': {
+            flatStyle.borderStartColor = styleValue;
+            break;
+          }
+          case 'borderInlineStartStyle': {
+            flatStyle.borderStartStyle = styleValue;
+            break;
+          }
+          case 'borderInlineStartWidth': {
+            flatStyle.borderStartWidth = styleValue;
+            break;
+          }
+          case 'borderInlineWidth': {
+            flatStyle.borderEndWidth = styleValue;
+            flatStyle.borderStartWidth = styleValue;
+            break;
+          }
           // Positions
           case 'inset': {
-            flatStyle.top = flatStyle.top ?? styleValue;
-            flatStyle.start = flatStyle.start ?? styleValue;
-            flatStyle.end = flatStyle.end ?? styleValue;
             flatStyle.bottom = flatStyle.bottom ?? styleValue;
+            flatStyle.end = flatStyle.end ?? styleValue;
+            flatStyle.start = flatStyle.start ?? styleValue;
+            flatStyle.top = flatStyle.top ?? styleValue;
             break;
           }
           case 'insetBlock': {
-            flatStyle.top = flatStyle.top ?? styleValue;
             flatStyle.bottom = flatStyle.bottom ?? styleValue;
+            flatStyle.top = flatStyle.top ?? styleValue;
             break;
           }
           case 'insetBlockEnd': {
@@ -291,6 +368,6 @@ export const polyfillPlugin: StylePlugin = () => ({
         continue;
       }
     }
-    return acc;
+    return flatStyle;
   },
 });

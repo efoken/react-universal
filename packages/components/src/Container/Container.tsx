@@ -1,20 +1,15 @@
 'use client';
 
-import type {
-  Breakpoint,
-  OverridableComponent,
-  OverridableProps,
-  SxProps,
-} from '@universal-ui/core';
+import type { Breakpoint, SxProps } from '@universal-ui/core';
 import { clamp, max, min, styled, useOwnerState } from '@universal-ui/core';
 import { forwardRef } from 'react';
+import type { ViewMethods, ViewProps } from '../View';
 import { View } from '../View';
 
 const MIN_WIDTH = 320;
 const MAX_WIDTH = 1276;
 
-export interface ContainerOwnProps {
-  children?: React.ReactNode;
+export interface ContainerProps extends ViewProps {
   /**
    * Set the max-width to match the min-width of the current breakpoint. This is
    * useful if you'd prefer to design for a fixed set of sizes instead of trying
@@ -34,11 +29,6 @@ export interface ContainerOwnProps {
    */
   sx?: SxProps;
 }
-
-export type ContainerProps<C extends React.ElementType = typeof View> =
-  OverridableProps<ContainerOwnProps, C> & {
-    as?: React.ElementType;
-  };
 
 type ContainerOwnerState = Required<Pick<ContainerProps, 'fixed' | 'maxWidth'>>;
 
@@ -77,7 +67,7 @@ const ContainerRoot = styled(View)<{ ownerState: ContainerOwnerState }>(
     },
 );
 
-export const Container = forwardRef<any, ContainerProps>(
+export const Container = forwardRef<ViewMethods, ContainerProps>(
   ({ fixed = false, maxWidth = 'lg', ...props }, ref) => {
     const ownerState = useOwnerState({
       fixed,
@@ -86,6 +76,9 @@ export const Container = forwardRef<any, ContainerProps>(
 
     return <ContainerRoot ref={ref} ownerState={ownerState} {...props} />;
   },
-) as OverridableComponent<ContainerOwnProps, typeof View>;
+) as unknown as React.FunctionComponent<
+  ContainerProps & React.RefAttributes<ViewMethods>
+> &
+  ViewMethods;
 
 Container.displayName = 'Container';
