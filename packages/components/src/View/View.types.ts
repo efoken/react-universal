@@ -1,10 +1,5 @@
 import type { ResponderConfig } from '@tamagui/react-native-use-responder-events/types/ResponderSystem';
-import type {
-  LayoutEvent,
-  RNStyle,
-  StyleProp,
-  SxProps,
-} from '@universal-ui/core';
+import type { LayoutEvent, RNStyle, StyleProp, SxProps } from '@universal-ui/core';
 import type {
   NativeMethods,
   AccessibilityProps as RNAccessibilityProps,
@@ -34,12 +29,7 @@ export type ViewStyle = Omit<
 export interface ViewProps
   extends Omit<
       RNViewProps,
-      | keyof RNAccessibilityProps
-      | 'focusable'
-      | 'nativeID'
-      | 'onLayout'
-      | 'pointerEvents'
-      | 'style'
+      keyof RNAccessibilityProps | 'focusable' | 'nativeID' | 'onLayout' | 'pointerEvents' | 'style'
     >,
     AccessibilityProps,
     Partial<

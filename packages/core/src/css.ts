@@ -3,11 +3,7 @@ import type { StyleInterpolation, StyleValues } from './types';
 
 let styles: StyleValues[];
 
-function handleInterpolation(
-  this: any,
-  interpolation: StyleInterpolation<any>,
-  index: number,
-) {
+function handleInterpolation(this: any, interpolation: StyleInterpolation<any>, index: number) {
   if (isFunction(interpolation)) {
     if (this == null) {
       if (process.env.NODE_ENV !== 'production') {

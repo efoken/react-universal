@@ -3,11 +3,7 @@
 import { withEmotionCache } from '@emotion/react';
 import { serializeStyles } from '@emotion/serialize';
 import type { EmotionCache, SerializedStyles } from '@emotion/utils';
-import {
-  getRegisteredStyles,
-  insertStyles,
-  registerStyles,
-} from '@emotion/utils';
+import { getRegisteredStyles, insertStyles, registerStyles } from '@emotion/utils';
 import { isServer } from '@tamagui/constants';
 import { isFunction, isObject, isString } from '@universal-ui/utils';
 import { useMemo } from 'react';
@@ -20,17 +16,10 @@ import { css } from './css';
 import { useInsertionEffectAlwaysWithSyncFallback } from './hooks/useInsertionEffectAlwaysWithSyncFallback';
 import { styleFunctionSx } from './styleFunctionSx';
 import type { CreateStyledComponent, StyledOptions } from './styled.types';
-import type {
-  AnyProps,
-  StyleInterpolation,
-  StyleProp,
-  StyleValues,
-} from './types';
+import type { AnyProps, StyleInterpolation, StyleProp, StyleValues } from './types';
 
 export function defaultShouldForwardProp(prop: string) {
-  return (
-    prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as'
-  );
+  return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
 
 export function flattenStyle<T extends StyleValues>(style: StyleProp<T>): T[] {
@@ -82,27 +71,16 @@ export function styled<T extends React.ComponentClass<React.ComponentProps<T>>>(
 export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
   component: T,
   options?: StyledOptions,
-): CreateStyledComponent<
-  T,
-  React.ComponentProps<T> & { as?: React.ElementType }
->;
+): CreateStyledComponent<T, React.ComponentProps<T> & { as?: React.ElementType }>;
 
 export function styled<T extends keyof React.JSX.IntrinsicElements>(
   component: T,
   options?: StyledOptions,
-): CreateStyledComponent<
-  T,
-  React.JSX.IntrinsicElements[T] & { as?: React.ElementType }
->;
+): CreateStyledComponent<T, React.JSX.IntrinsicElements[T] & { as?: React.ElementType }>;
 
 export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
   component: T,
-  {
-    name,
-    shouldForwardProp = defaultShouldForwardProp,
-    skipSx = false,
-    slot,
-  }: StyledOptions = {},
+  { name, shouldForwardProp = defaultShouldForwardProp, skipSx = false, slot }: StyledOptions = {},
 ) {
   const shouldUseAs = !shouldForwardProp('as');
 
@@ -133,11 +111,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
       );
 
       if (className.length > 0) {
-        className = getRegisteredStyles(
-          cache.registered,
-          classInterpolations,
-          className,
-        );
+        className = getRegisteredStyles(cache.registered, classInterpolations, className);
       }
 
       const serialized = serializeStyles(
@@ -159,8 +133,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
         className: `${cache.key}-${serialized.name}`,
       };
 
-      const langDirection =
-        props.lang == null ? undefined : getLocaleDirection(props.lang);
+      const langDirection = props.lang == null ? undefined : getLocaleDirection(props.lang);
       const componentDirection = props.dir ?? langDirection;
       const writingDirection = componentDirection ?? contextDirection;
 
@@ -176,17 +149,11 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
       }
 
       newProps.ref = ref;
-      newProps.style = isFunction(style)
-        ? (state: any) => [_style, style(state)]
-        : [_style, style];
+      newProps.style = isFunction(style) ? (state: any) => [_style, style(state)] : [_style, style];
 
       return (
         <>
-          <Insertion
-            cache={cache}
-            serialized={serialized}
-            stringTag={isString(Component)}
-          />
+          <Insertion cache={cache} serialized={serialized} stringTag={isString(Component)} />
           {createElement(Component, newProps, { writingDirection })}
         </>
       );
@@ -195,9 +162,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
     Styled.displayName =
       name == null
         ? `Styled(${
-            isString(component)
-              ? component
-              : component.displayName ?? component.name ?? 'Component'
+            isString(component) ? component : component.displayName ?? component.name ?? 'Component'
           })`
         : `${name}${slot ?? ''}`;
 

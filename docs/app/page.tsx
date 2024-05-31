@@ -65,10 +65,7 @@ export default function Home() {
           }}
         >
           Get started by editing&nbsp;
-          <Text
-            as="code"
-            sx={{ fontFamily: 'var(--font-mono)', fontWeight: '700' }}
-          >
+          <Text as="code" sx={{ fontFamily: 'var(--font-mono)', fontWeight: '700' }}>
             app/page.tsx
           </Text>
         </Text>

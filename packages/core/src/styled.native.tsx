@@ -8,17 +8,10 @@ import { css } from './css';
 import { styleFunctionSx } from './styleFunctionSx';
 import type { CreateStyledComponent, StyledOptions } from './styled.types';
 import type { Theme } from './theme/defaultTheme';
-import type {
-  AnyProps,
-  StyleInterpolation,
-  StyleProp,
-  StyleValues,
-} from './types';
+import type { AnyProps, StyleInterpolation, StyleProp, StyleValues } from './types';
 
 export function defaultShouldForwardProp(prop: string) {
-  return (
-    prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as'
-  );
+  return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
 
 export function flattenStyle<T extends StyleValues>(style: StyleProp<T>): T[] {
@@ -39,33 +32,20 @@ export function styled<T extends React.ComponentClass<React.ComponentProps<T>>>(
 export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
   component: T,
   options?: StyledOptions,
-): CreateStyledComponent<
-  T,
-  React.ComponentProps<T> & { as?: React.ElementType }
->;
+): CreateStyledComponent<T, React.ComponentProps<T> & { as?: React.ElementType }>;
 
 export function styled<T extends keyof React.JSX.IntrinsicElements>(
   component: T,
   options?: StyledOptions,
-): CreateStyledComponent<
-  T,
-  React.JSX.IntrinsicElements[T] & { as?: React.ElementType }
->;
+): CreateStyledComponent<T, React.JSX.IntrinsicElements[T] & { as?: React.ElementType }>;
 
 export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
   component: T,
-  {
-    name,
-    shouldForwardProp = defaultShouldForwardProp,
-    skipSx = false,
-    slot,
-  }: StyledOptions = {},
+  { name, shouldForwardProp = defaultShouldForwardProp, skipSx = false, slot }: StyledOptions = {},
 ) {
   const shouldUseAs = !shouldForwardProp('as');
 
-  return (
-    styles: StyleInterpolation<React.ComponentProps<T> & { theme: Theme }>,
-  ) => {
+  return (styles: StyleInterpolation<React.ComponentProps<T> & { theme: Theme }>) => {
     const Styled = forwardRef<
       T,
       React.ComponentProps<T> & {
@@ -108,9 +88,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
     Styled.displayName =
       name == null
         ? `Styled(${
-            isString(component)
-              ? component
-              : component.displayName ?? component.name ?? 'Component'
+            isString(component) ? component : component.displayName ?? component.name ?? 'Component'
           })`
         : `${name}${slot ?? ''}`;
 

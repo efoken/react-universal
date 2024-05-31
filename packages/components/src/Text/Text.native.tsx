@@ -1,9 +1,6 @@
 import { styled } from '@universal-ui/core';
 import { forwardRef } from 'react';
-import type {
-  NativeMethods,
-  LayoutChangeEvent as RNLayoutChangeEvent,
-} from 'react-native';
+import type { NativeMethods, LayoutChangeEvent as RNLayoutChangeEvent } from 'react-native';
 import { Text as RNText } from 'react-native';
 import type { TextProps } from './Text.types';
 
@@ -45,9 +42,7 @@ export const Text = forwardRef<any, TextProps>(
         ref={ref}
         accessibilityElementsHidden={ariaHidden}
         aria-hidden={ariaHidden}
-        importantForAccessibility={
-          ariaHidden ? 'no-hide-descendants' : undefined
-        }
+        importantForAccessibility={ariaHidden ? 'no-hide-descendants' : undefined}
         role={role === 'listbox' || role === 'paragraph' ? undefined : role}
         style={style as any}
         onLayout={handleLayout}
@@ -55,9 +50,7 @@ export const Text = forwardRef<any, TextProps>(
       />
     );
   },
-) as unknown as React.FunctionComponent<
-  TextProps & React.RefAttributes<NativeMethods>
-> &
+) as unknown as React.FunctionComponent<TextProps & React.RefAttributes<NativeMethods>> &
   NativeMethods;
 
 Text.displayName = 'Text';

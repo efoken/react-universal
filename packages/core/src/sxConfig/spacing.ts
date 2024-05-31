@@ -49,9 +49,7 @@ const getCssProperties = memoize((prop: string) => {
   const property = PROPERTIES[prop[0]];
   const direction = DIRECTIONS[prop[1]] ?? '';
 
-  return isArray(direction)
-    ? direction.map((d) => property + d)
-    : [property + direction];
+  return isArray(direction) ? direction.map((d) => property + d) : [property + direction];
 });
 
 export type SpacingValue = string | number;
@@ -129,16 +127,13 @@ export function createUnaryUnit<T extends number | any[] | Record<string, any>>(
   return () => undefined;
 }
 
-export function createUnarySpacing<
-  T extends number | any[] | Record<string, any>,
->(theme: { space: T }) {
+export function createUnarySpacing<T extends number | any[] | Record<string, any>>(theme: {
+  space: T;
+}) {
   return createUnaryUnit(theme, 'space', 8, 'space');
 }
 
-export function getValue<T extends SpacingValue>(
-  transformer: (abs: any) => any,
-  propValue: T,
-) {
+export function getValue<T extends SpacingValue>(transformer: (abs: any) => any, propValue: T) {
   if (isString(propValue) || propValue == null) {
     return propValue;
   }
@@ -262,8 +257,7 @@ export const marginKeys: (keyof MarginProps)[] = [
   'my',
 ];
 
-export const margin: SimpleStyleFunction<keyof MarginProps> = (props) =>
-  style(props, marginKeys);
+export const margin: SimpleStyleFunction<keyof MarginProps> = (props) => style(props, marginKeys);
 
 margin.filterProps = marginKeys;
 

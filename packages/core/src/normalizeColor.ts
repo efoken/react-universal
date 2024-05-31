@@ -3,9 +3,7 @@ import { isString } from '@universal-ui/utils';
 
 type VarColor = `var(${string})` | `rgba(var(${string}),${string})`;
 
-function isWebColor(
-  color: string,
-): color is 'currentcolor' | 'inherit' | VarColor {
+function isWebColor(color: string): color is 'currentcolor' | 'inherit' | VarColor {
   return (
     color.toLowerCase() === 'currentcolor' ||
     color === 'inherit' ||

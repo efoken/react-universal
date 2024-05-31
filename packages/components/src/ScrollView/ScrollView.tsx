@@ -3,13 +3,7 @@
 import type { LayoutEvent } from '@universal-ui/core';
 import { styled, useForkRef } from '@universal-ui/core';
 import { isArray } from '@universal-ui/utils';
-import {
-  Children,
-  cloneElement,
-  forwardRef,
-  useImperativeHandle,
-  useRef,
-} from 'react';
+import { Children, cloneElement, forwardRef, useImperativeHandle, useRef } from 'react';
 import type { GestureResponderEvent } from 'react-native';
 import { TextInputState } from '../TextInput/TextInputState';
 import type { ViewMethods, ViewStyle } from '../View';
@@ -135,13 +129,10 @@ export const ScrollView = forwardRef<ScrollViewMethods, ScrollViewProps>(
 
     // eslint-disable-next-line unicorn/consistent-function-scoping
     const handleResponderReject = () => {
-      console.warn(
-        "universal-ui: ScrollView doesn't take rejection well - scrolls anyway",
-      );
+      console.warn("universal-ui: ScrollView doesn't take rejection well - scrolls anyway");
     };
 
-    const handleResponderTerminationRequest = () =>
-      !observedScrollSinceBecomingResponder.current;
+    const handleResponderTerminationRequest = () => !observedScrollSinceBecomingResponder.current;
 
     const handleTouchEnd = (event: GestureResponderEvent) => {
       touching.current = event.nativeEvent.touches.length > 0;
@@ -222,11 +213,7 @@ export const ScrollView = forwardRef<ScrollViewMethods, ScrollViewProps>(
     };
 
     const handleScroll = (event: ScrollEvent) => {
-      if (
-        process.env.NODE_ENV !== 'production' &&
-        onScroll != null &&
-        scrollEventThrottle === 0
-      ) {
+      if (process.env.NODE_ENV !== 'production' && onScroll != null && scrollEventThrottle === 0) {
         console.log(
           'universal-ui: You specified `onScroll` on a `<ScrollView>` but ' +
             'not `scrollEventThrottle`. You will only receive one event. ' +
@@ -295,18 +282,12 @@ export const ScrollView = forwardRef<ScrollViewMethods, ScrollViewProps>(
     );
 
     if (refreshControl) {
-      return cloneElement(
-        refreshControl,
-        { style: scrollViewRefreshControlStyle },
-        scrollView,
-      );
+      return cloneElement(refreshControl, { style: scrollViewRefreshControlStyle }, scrollView);
     }
 
     return scrollView;
   },
-) as unknown as React.FunctionComponent<
-  ScrollViewProps & React.RefAttributes<ScrollViewMethods>
-> &
+) as unknown as React.FunctionComponent<ScrollViewProps & React.RefAttributes<ScrollViewMethods>> &
   ScrollViewMethods;
 
 ScrollView.displayName = 'ScrollView';

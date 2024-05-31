@@ -28,9 +28,7 @@ function getRelativeDimensions(a: DOMRectReadOnly, b: DOMRectReadOnly) {
   return { x, y, width: a.width, height: a.height, left: a.left, top: a.top };
 }
 
-function getBoundingClientRectAsync(
-  element: HTMLElement,
-): Promise<DOMRectReadOnly | undefined> {
+function getBoundingClientRectAsync(element: HTMLElement): Promise<DOMRectReadOnly | undefined> {
   return new Promise((resolve) => {
     const timer = setTimeout(() => {
       resolve(getBoundingClientRect(element));
@@ -61,24 +59,21 @@ export function measureLayout(
     const now = Date.now();
     cache.set(node, now);
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    Promise.all([
-      getBoundingClientRectAsync(node),
-      getBoundingClientRectAsync(relativeNode),
-    ]).then(([nodeDim, relativeNodeDim]) => {
-      if (relativeNodeDim && nodeDim && cache.get(node) === now) {
-        const { x, y, width, height, left, top } = getRelativeDimensions(
-          nodeDim,
-          relativeNodeDim,
-        );
-        callback(x, y, width, height, left, top);
-      }
-    });
+    Promise.all([getBoundingClientRectAsync(node), getBoundingClientRectAsync(relativeNode)]).then(
+      ([nodeDim, relativeNodeDim]) => {
+        if (relativeNodeDim && nodeDim && cache.get(node) === now) {
+          const { x, y, width, height, left, top } = getRelativeDimensions(
+            nodeDim,
+            relativeNodeDim,
+          );
+          callback(x, y, width, height, left, top);
+        }
+      },
+    );
   }
 }
 
-export async function measureElement(
-  target: HTMLElement,
-): Promise<LayoutEvent> {
+export async function measureElement(target: HTMLElement): Promise<LayoutEvent> {
   return new Promise((res) => {
     measureLayout(target, null, (x, y, width, height, left, top) => {
       res({

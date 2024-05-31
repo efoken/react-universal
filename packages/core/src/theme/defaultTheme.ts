@@ -59,10 +59,7 @@ export const defaultTheme = {
 export type Theme = typeof defaultTheme;
 
 export type ThemeValue<T extends Record<string, any>> = {
-  [K in keyof T]-?: Join<
-    K,
-    T[K] extends Record<string, any> ? ThemeValue<T[K]> : ''
-  >;
+  [K in keyof T]-?: Join<K, T[K] extends Record<string, any> ? ThemeValue<T[K]> : ''>;
 }[keyof T];
 
 declare module 'react-native-unistyles' {

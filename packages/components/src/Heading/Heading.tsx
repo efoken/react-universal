@@ -24,9 +24,7 @@ const HeadingRoot = styled(Text, {
 
 export const Heading = forwardRef<TextMethods, HeadingProps>((props, ref) => (
   <HeadingRoot ref={ref} aria-level={2} role="heading" {...props} />
-)) as unknown as React.FunctionComponent<
-  HeadingProps & React.RefAttributes<TextMethods>
-> &
+)) as unknown as React.FunctionComponent<HeadingProps & React.RefAttributes<TextMethods>> &
   TextMethods;
 
 Heading.displayName = 'Heading';

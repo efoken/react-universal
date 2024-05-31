@@ -1,9 +1,4 @@
-import type {
-  LayoutEvent,
-  RNStyle,
-  StyleProp,
-  SxProps,
-} from '@universal-ui/core';
+import type { LayoutEvent, RNStyle, StyleProp, SxProps } from '@universal-ui/core';
 import type {
   NativeMethods,
   AccessibilityProps as RNAccessibilityProps,
@@ -18,11 +13,7 @@ export type TextStyle = Omit<RNStyle, 'objectFit'>;
 export interface TextProps
   extends Omit<
       RNTextProps,
-      | keyof RNAccessibilityProps
-      | 'nativeID'
-      | 'onLayout'
-      | 'selectable'
-      | 'style'
+      keyof RNAccessibilityProps | 'nativeID' | 'onLayout' | 'selectable' | 'style'
     >,
     AccessibilityProps {
   as?: React.ElementType;

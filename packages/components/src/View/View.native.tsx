@@ -28,25 +28,21 @@ const ViewRoot = styled(RNView, {
   position: 'static',
 });
 
-export const View = forwardRef<any, ViewProps>(
-  ({ onLayout, role, style, ...props }, ref) => {
-    const handleLayout = (event: RNLayoutChangeEvent) => {
-      onLayout?.(normalizeLayoutEvent(event));
-    };
+export const View = forwardRef<any, ViewProps>(({ onLayout, role, style, ...props }, ref) => {
+  const handleLayout = (event: RNLayoutChangeEvent) => {
+    onLayout?.(normalizeLayoutEvent(event));
+  };
 
-    return (
-      <ViewRoot
-        ref={ref}
-        role={role === 'listbox' || role === 'paragraph' ? undefined : role}
-        style={style as any}
-        onLayout={handleLayout}
-        {...props}
-      />
-    );
-  },
-) as unknown as React.FunctionComponent<
-  ViewProps & React.RefAttributes<ViewMethods>
-> &
+  return (
+    <ViewRoot
+      ref={ref}
+      role={role === 'listbox' || role === 'paragraph' ? undefined : role}
+      style={style as any}
+      onLayout={handleLayout}
+      {...props}
+    />
+  );
+}) as unknown as React.FunctionComponent<ViewProps & React.RefAttributes<ViewMethods>> &
   ViewMethods;
 
 View.displayName = 'View';

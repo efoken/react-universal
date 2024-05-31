@@ -4,10 +4,9 @@ import type { RNStyle, SimpleStyleFunction } from '../types';
 import type { SpacingValue } from './spacing';
 import { createUnaryUnit, getValue } from './spacing';
 
-type FlexboxProp<
-  T,
-  K extends keyof Theme | undefined = undefined,
-> = BreakpointValue<K extends string ? T | ThemeValue<Theme[K]> : T>;
+type FlexboxProp<T, K extends keyof Theme | undefined = undefined> = BreakpointValue<
+  K extends string ? T | ThemeValue<Theme[K]> : T
+>;
 
 export interface FlexboxPropsWeb {
   /** @platform web */

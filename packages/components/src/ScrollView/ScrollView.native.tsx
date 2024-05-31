@@ -45,9 +45,7 @@ export const ScrollView = forwardRef<any, ScrollViewProps>(
       />
     );
   },
-) as unknown as React.FunctionComponent<
-  ScrollViewProps & React.RefAttributes<ScrollViewMethods>
-> &
+) as unknown as React.FunctionComponent<ScrollViewProps & React.RefAttributes<ScrollViewMethods>> &
   ScrollViewMethods;
 
 ScrollView.displayName = 'ScrollView';

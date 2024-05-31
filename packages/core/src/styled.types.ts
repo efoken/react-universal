@@ -1,10 +1,6 @@
 import type { StyleRuntime } from './StyleRuntime';
 import type { Theme } from './theme/defaultTheme';
-import type {
-  AnyProps,
-  OverridableComponent,
-  StyleInterpolation,
-} from './types';
+import type { AnyProps, OverridableComponent, StyleInterpolation } from './types';
 
 export interface StyledOptions {
   name?: Capitalize<string>;
@@ -13,15 +9,14 @@ export interface StyledOptions {
   slot?: Capitalize<string>;
 }
 
-export type StyledComponent<
-  P extends AnyProps,
-  T extends React.ElementType,
-> = OverridableComponent<Omit<P, keyof React.ComponentProps<T>>, T>;
+export type StyledComponent<P extends AnyProps, T extends React.ElementType> = OverridableComponent<
+  Omit<P, keyof React.ComponentProps<T>>,
+  T
+>;
 
-export type CreateStyledComponent<
-  T extends React.ElementType,
-  P extends AnyProps,
-> = <AdditionalProps extends AnyProps = NonNullable<unknown>>(
+export type CreateStyledComponent<T extends React.ElementType, P extends AnyProps> = <
+  AdditionalProps extends AnyProps = NonNullable<unknown>,
+>(
   ...styles: StyleInterpolation<
     P & AdditionalProps & { runtime: typeof StyleRuntime; theme: Theme }
   >[]

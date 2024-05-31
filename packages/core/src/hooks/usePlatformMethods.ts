@@ -12,8 +12,7 @@ export function usePlatformMethods(hostRef: React.RefObject<HTMLElement>) {
     const node = hostRef.current as (HTMLElement & NativeMethods) | null;
     if (node != null) {
       // eslint-disable-next-line @typescript-eslint/unbound-method
-      node.measure ||= (callback: MeasureOnSuccessCallback) =>
-        measureLayout(node, null, callback);
+      node.measure ||= (callback: MeasureOnSuccessCallback) => measureLayout(node, null, callback);
       // eslint-disable-next-line @typescript-eslint/unbound-method
       node.measureLayout ||= (relativeToNode: any, success: any) =>
         measureLayout(node, relativeToNode, success);

@@ -14,14 +14,9 @@ export type Breakpoints = typeof defaultBreakpoints;
 
 export type Breakpoint = keyof Breakpoints;
 
-export type BreakpointValue<T> =
-  | T
-  | (T | undefined)[]
-  | Partial<Record<Breakpoint, T | undefined>>;
+export type BreakpointValue<T> = T | (T | undefined)[] | Partial<Record<Breakpoint, T | undefined>>;
 
-export function handleBreakpoints<
-  T extends (value: any) => Record<string, any>,
->(
+export function handleBreakpoints<T extends (value: any) => Record<string, any>>(
   props: { theme: Theme },
   propValue: unknown,
   styleFromPropValue: T,
@@ -34,9 +29,10 @@ export function handleBreakpoints<
         mergeDeep(
           acc,
           Object.fromEntries(
-            Object.entries(styleFromPropValue(propValue[index])).map(
-              ([key, value]) => [key, { [breakpointKeys[index]]: value }],
-            ),
+            Object.entries(styleFromPropValue(propValue[index])).map(([key, value]) => [
+              key,
+              { [breakpointKeys[index]]: value },
+            ]),
           ),
           { clone: false },
         ),
@@ -50,9 +46,10 @@ export function handleBreakpoints<
         mergeDeep(
           acc,
           Object.fromEntries(
-            Object.entries(styleFromPropValue(propValue[breakpoint])).map(
-              ([key, value]) => [key, { [breakpoint]: value }],
-            ),
+            Object.entries(styleFromPropValue(propValue[breakpoint])).map(([key, value]) => [
+              key,
+              { [breakpoint]: value },
+            ]),
           ),
           { clone: false },
         ),

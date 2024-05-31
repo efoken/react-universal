@@ -5,10 +5,7 @@ import { boxShadowPlugin, fontPlugin, remPlugin } from '../stylePlugins';
 import { defaultTheme } from '../theme/defaultTheme';
 import type { ThemeProviderProps } from './ThemeContext.types';
 
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({
-  children,
-  theme = defaultTheme,
-}) => {
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children, theme = defaultTheme }) => {
   UnistylesRegistry.addThemes({
     default: theme,
   })

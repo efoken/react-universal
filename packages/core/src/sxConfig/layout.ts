@@ -4,10 +4,9 @@ import { handleBreakpoints } from '../breakpoints';
 import type { Theme, ThemeValue } from '../theme/defaultTheme';
 import type { RNStyle, SimpleStyleFunction } from '../types';
 
-type LayoutProp<
-  T,
-  K extends keyof Theme | undefined = undefined,
-> = BreakpointValue<K extends string ? T | ThemeValue<Theme[K]> : T>;
+type LayoutProp<T, K extends keyof Theme | undefined = undefined> = BreakpointValue<
+  K extends string ? T | ThemeValue<Theme[K]> : T
+>;
 
 export interface LayoutPropsWeb {
   /** @platform web */
@@ -57,9 +56,7 @@ export interface LayoutProps extends LayoutPropsWeb {
 }
 
 export function sizingTransform(value: string | number) {
-  return isNumber(value) && value <= 1 && value !== 0
-    ? `${value * 100}%`
-    : value;
+  return isNumber(value) && value <= 1 && value !== 0 ? `${value * 100}%` : value;
 }
 
 export const maxInlineSize: SimpleStyleFunction<'maxInlineSize'> = (props) => {

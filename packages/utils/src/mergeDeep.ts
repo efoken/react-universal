@@ -20,9 +20,7 @@ export function mergeDeep<T extends Record<string, any>>(
       if (isObject(source[key]) && key in target && isObject(target[key])) {
         output[key] = mergeDeep(target[key], source[key], { clone });
       } else if (clone) {
-        output[key] = isObject(source[key])
-          ? cloneDeep(source[key])
-          : source[key];
+        output[key] = isObject(source[key]) ? cloneDeep(source[key]) : source[key];
       } else {
         output[key] = source[key];
       }

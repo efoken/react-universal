@@ -2,11 +2,7 @@ import { isFunction } from '@universal-ui/utils';
 import { useMemo } from 'react';
 
 export function setRef<T>(
-  ref:
-    | React.MutableRefObject<T | null>
-    | ((instance: T | null) => void)
-    | null
-    | undefined,
+  ref: React.MutableRefObject<T | null> | ((instance: T | null) => void) | null | undefined,
   value: T | null,
 ): void {
   if (isFunction(ref)) {
@@ -17,9 +13,7 @@ export function setRef<T>(
   }
 }
 
-export function useForkRef<T>(
-  ...refs: (React.Ref<T> | undefined)[]
-): React.RefCallback<T> | null {
+export function useForkRef<T>(...refs: (React.Ref<T> | undefined)[]): React.RefCallback<T> | null {
   /**
    * This will create a new function if the refs passed to this hook change and
    * are all defined. This means React will call the old forkRef with `null` and

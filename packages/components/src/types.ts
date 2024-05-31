@@ -1,7 +1,4 @@
-import type {
-  AccessibilityProps as RNAccessibilityProps,
-  Role as RNRole,
-} from 'react-native';
+import type { AccessibilityProps as RNAccessibilityProps, Role as RNRole } from 'react-native';
 
 export interface AccessibilityProps
   extends Omit<

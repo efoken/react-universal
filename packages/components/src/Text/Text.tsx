@@ -87,18 +87,7 @@ const TextRoot = styled('div', {
 );
 
 export const Text = forwardRef<any, TextProps>(
-  (
-    {
-      as: asProp,
-      hrefAttrs,
-      numberOfLines,
-      onClick,
-      onLayout,
-      onPress,
-      ...props
-    },
-    ref,
-  ) => {
+  ({ as: asProp, hrefAttrs, numberOfLines, onClick, onLayout, onPress, ...props }, ref) => {
     const hasTextAncestor = useContext(TextAncestorContext);
     const hostRef = useRef<HTMLElement>(null);
 
@@ -118,8 +107,7 @@ export const Text = forwardRef<any, TextProps>(
 
     let component: 'a' | 'div' | 'span' = hasTextAncestor ? 'span' : 'div';
 
-    const langDirection =
-      props.lang == null ? undefined : getLocaleDirection(props.lang);
+    const langDirection = props.lang == null ? undefined : getLocaleDirection(props.lang);
     const componentDirection = props.dir ?? langDirection;
 
     const supportedProps: AnyProps = pickProps(props);
@@ -144,9 +132,7 @@ export const Text = forwardRef<any, TextProps>(
           supportedProps.rel = rel;
         }
         if (isString(target)) {
-          supportedProps.target = target.startsWith('_')
-            ? target
-            : `_${target}`;
+          supportedProps.target = target.startsWith('_') ? target : `_${target}`;
         }
       }
     }
@@ -164,24 +150,15 @@ export const Text = forwardRef<any, TextProps>(
     });
 
     const element = (
-      <TextRoot
-        as={asProp ?? component}
-        ownerState={ownerState}
-        {...supportedProps}
-      />
+      <TextRoot as={asProp ?? component} ownerState={ownerState} {...supportedProps} />
     );
 
     return hasTextAncestor ? (
       element
     ) : (
-      <TextAncestorContext.Provider value>
-        {element}
-      </TextAncestorContext.Provider>
+      <TextAncestorContext.Provider value>{element}</TextAncestorContext.Provider>
     );
   },
-) as unknown as React.FunctionComponent<
-  TextProps & React.RefAttributes<TextMethods>
-> &
-  TextMethods;
+) as unknown as React.FunctionComponent<TextProps & React.RefAttributes<TextMethods>> & TextMethods;
 
 Text.displayName = 'Text';

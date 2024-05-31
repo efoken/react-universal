@@ -49,11 +49,7 @@ export interface LocaleProviderProps {
   locale?: Intl.UnicodeBCP47LocaleIdentifier;
 }
 
-export const LocaleProvider: React.FC<LocaleProviderProps> = ({
-  children,
-  direction,
-  locale,
-}) => {
+export const LocaleProvider: React.FC<LocaleProviderProps> = ({ children, direction, locale }) => {
   const needsContext = direction != null || locale != null;
 
   const context = useMemo(

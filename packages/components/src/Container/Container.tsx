@@ -76,9 +76,7 @@ export const Container = forwardRef<ViewMethods, ContainerProps>(
 
     return <ContainerRoot ref={ref} ownerState={ownerState} {...props} />;
   },
-) as unknown as React.FunctionComponent<
-  ContainerProps & React.RefAttributes<ViewMethods>
-> &
+) as unknown as React.FunctionComponent<ContainerProps & React.RefAttributes<ViewMethods>> &
   ViewMethods;
 
 Container.displayName = 'Container';

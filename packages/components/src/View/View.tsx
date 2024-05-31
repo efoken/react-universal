@@ -117,8 +117,7 @@ export const View = forwardRef<any, ViewProps>(
 
     let component: 'a' | 'div' = 'div';
 
-    const langDirection =
-      props.lang == null ? null : getLocaleDirection(props.lang);
+    const langDirection = props.lang == null ? null : getLocaleDirection(props.lang);
     const componentDirection = props.dir ?? langDirection;
 
     const supportedProps: AnyProps = pickProps(props);
@@ -135,9 +134,7 @@ export const View = forwardRef<any, ViewProps>(
           supportedProps.rel = rel;
         }
         if (isString(target)) {
-          supportedProps.target = target.startsWith('_')
-            ? target
-            : `_${target}`;
+          supportedProps.target = target.startsWith('_') ? target : `_${target}`;
         }
       }
     }
@@ -152,17 +149,8 @@ export const View = forwardRef<any, ViewProps>(
       role: props.role,
     });
 
-    return (
-      <ViewRoot
-        as={asProp ?? component}
-        ownerState={ownerState}
-        {...supportedProps}
-      />
-    );
+    return <ViewRoot as={asProp ?? component} ownerState={ownerState} {...supportedProps} />;
   },
-) as unknown as React.FunctionComponent<
-  ViewProps & React.RefAttributes<ViewMethods>
-> &
-  ViewMethods;
+) as unknown as React.FunctionComponent<ViewProps & React.RefAttributes<ViewMethods>> & ViewMethods;
 
 View.displayName = 'View';

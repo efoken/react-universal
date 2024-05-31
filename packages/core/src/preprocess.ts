@@ -30,9 +30,7 @@ const ignoredProps: Record<string, boolean> = {
   includeFontPadding: true,
 };
 
-export function preprocess<T extends Record<string, any>>(
-  style: T = emptyStyle as T,
-): T {
+export function preprocess<T extends Record<string, any>>(style: T = emptyStyle as T): T {
   const nextStyle: React.CSSProperties = {};
 
   // Convert text shadow styles

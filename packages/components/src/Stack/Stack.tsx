@@ -1,26 +1,18 @@
 'use client';
 
-import type {
-  BreakpointValue,
-  OverridableProps,
-  SxProps,
-  Theme,
-  ThemeValue,
-} from '@universal-ui/core';
+import type { BreakpointValue, RNStyle, SxProps, Theme, ThemeValue } from '@universal-ui/core';
 import { handleBreakpoints, styled, useOwnerState } from '@universal-ui/core';
 import { Children, cloneElement, forwardRef } from 'react';
+import type { ViewMethods, ViewProps } from '../View';
 import { View } from '../View';
 
-export interface StackOwnProps {
-  children?: React.ReactNode;
+export interface StackProps extends ViewProps {
   /**
    * Defines the `flex-direction` style property. It is applied for all screen
    * sizes by default.
    * @default 'column'
    */
-  direction?: BreakpointValue<
-    'row' | 'row-reverse' | 'column' | 'column-reverse'
-  >;
+  direction?: BreakpointValue<RNStyle['flexDirection']>;
   /**
    * Add an element between each child.
    */
@@ -36,11 +28,6 @@ export interface StackOwnProps {
    */
   sx?: SxProps;
 }
-
-export type StackProps<C extends React.ElementType = typeof View> =
-  OverridableProps<StackOwnProps, C> & {
-    as?: React.ElementType;
-  };
 
 type StackOwnerState = Required<Pick<StackProps, 'direction' | 'spacing'>>;
 
@@ -85,7 +72,7 @@ const StackRoot = styled(View, {
   })),
 }));
 
-export const Stack = forwardRef<any, StackProps>(
+export const Stack = forwardRef<ViewMethods, StackProps>(
   ({ children, direction = 'column', divider, spacing = 0, ...props }, ref) => {
     const ownerState = useOwnerState({
       direction,
@@ -98,6 +85,7 @@ export const Stack = forwardRef<any, StackProps>(
       </StackRoot>
     );
   },
-);
+) as unknown as React.FunctionComponent<StackProps & React.RefAttributes<ViewMethods>> &
+  ViewMethods;
 
 Stack.displayName = 'Stack';

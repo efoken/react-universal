@@ -15,9 +15,7 @@ import type { Theme } from './theme/defaultTheme';
 import type { AnyProps, StyleValues } from './types';
 
 function objectsHaveSameKeys(...objs: Record<string, any>[]) {
-  const keys = new Set(
-    objs.reduce<string[]>((acc, obj) => [...acc, ...Object.keys(obj)], []),
-  );
+  const keys = new Set(objs.reduce<string[]>((acc, obj) => [...acc, ...Object.keys(obj)], []));
   return objs.every((obj) => keys.size === Object.keys(obj).length);
 }
 
@@ -139,9 +137,7 @@ export function createStyleFunctionSx(): StyleFunctionSx {
 
       const mergeCss = (item: any) => mergeDeep(css, item, { clone: false });
 
-      for (const propName of Object.keys(
-        sxObject,
-      ) as (keyof typeof sxObject)[]) {
+      for (const propName of Object.keys(sxObject) as (keyof typeof sxObject)[]) {
         const value = runIfFunction(sxObject[propName], theme);
 
         if (value != null) {
@@ -149,13 +145,9 @@ export function createStyleFunctionSx(): StyleFunctionSx {
             if (config[propName]) {
               css = mergeCss(getThemeValue(propName, value, theme, config));
             } else {
-              const breakpointsValues = handleBreakpoints(
-                { theme },
-                value,
-                (x) => ({
-                  [propName]: x,
-                }),
-              );
+              const breakpointsValues = handleBreakpoints({ theme }, value, (x) => ({
+                [propName]: x,
+              }));
               if (objectsHaveSameKeys(breakpointsValues, value)) {
                 // @ts-expect-error: In this case `propName` is a breakpoint.
                 css[propName] = styleFunctionSx({ sx: value, theme });

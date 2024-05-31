@@ -75,9 +75,7 @@ export interface ScrollViewProps
    * A RefreshControl component, used to provide pull-to-refresh functionality
    * for the ScrollView.
    */
-  refreshControl?: React.ReactElement<
-    Omit<RNRefreshControlProps, keyof ViewProps> & ViewProps
-  >;
+  refreshControl?: React.ReactElement<Omit<RNRefreshControlProps, keyof ViewProps> & ViewProps>;
   /**
    * The system prop that allows defining system overrides as well as additional
    * CSS styles.

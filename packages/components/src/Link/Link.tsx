@@ -33,9 +33,7 @@ const LinkRoot = styled(Text, {
 
 export const Link = forwardRef<TextMethods, LinkProps>((props, ref) => (
   <LinkRoot ref={ref} role="link" {...props} />
-)) as unknown as React.FunctionComponent<
-  LinkProps & React.RefAttributes<TextMethods>
-> &
+)) as unknown as React.FunctionComponent<LinkProps & React.RefAttributes<TextMethods>> &
   TextMethods;
 
 Link.displayName = 'Link';

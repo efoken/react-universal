@@ -21,9 +21,7 @@ export interface ScrollViewBaseProps
 type ScrollViewBaseOwnerState = Required<
   Pick<
     ScrollViewBaseProps,
-    | 'scrollEnabled'
-    | 'showsHorizontalScrollIndicator'
-    | 'showsVerticalScrollIndicator'
+    'scrollEnabled' | 'showsHorizontalScrollIndicator' | 'showsVerticalScrollIndicator'
   >
 >;
 
@@ -66,8 +64,7 @@ const ScrollViewRoot = styled(View, {
       touchAction: 'none',
     },
   ({ ownerState }) =>
-    (!ownerState.showsHorizontalScrollIndicator ||
-      !ownerState.showsVerticalScrollIndicator) && {
+    (!ownerState.showsHorizontalScrollIndicator || !ownerState.showsVerticalScrollIndicator) && {
       scrollbarWidth: 'none',
     },
 );
@@ -120,12 +117,7 @@ export const ScrollViewBase = forwardRef<any, ScrollViewBaseProps>(
         }, 100);
         if (scrollState.current.scrolling) {
           // Scroll last tick may have changed, check if we need to notify
-          if (
-            shouldEmitScrollEvent(
-              scrollState.current.scrollLastTick,
-              scrollEventThrottle,
-            )
-          ) {
+          if (shouldEmitScrollEvent(scrollState.current.scrollLastTick, scrollEventThrottle)) {
             handleScrollTick(event);
           }
         } else {
@@ -154,9 +146,7 @@ export const ScrollViewBase = forwardRef<any, ScrollViewBaseProps>(
       />
     );
   },
-) as unknown as React.FunctionComponent<
-  ScrollViewBaseProps & React.RefAttributes<ViewMethods>
-> &
+) as unknown as React.FunctionComponent<ScrollViewBaseProps & React.RefAttributes<ViewMethods>> &
   ViewMethods;
 
 ScrollViewBase.displayName = 'ScrollViewBase';

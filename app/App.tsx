@@ -55,9 +55,7 @@ export default function App() {
         <ScrollView>
           <Grid>
             <Button>
-              <ButtonLabel>
-                Open up App.js to start working on your app!
-              </ButtonLabel>
+              <ButtonLabel>Open up App.js to start working on your app!</ButtonLabel>
             </Button>
             {Array.from({ length: 40 }, (_, i) => i).map((i) => (
               <Card key={i}>

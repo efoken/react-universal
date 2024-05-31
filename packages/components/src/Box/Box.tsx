@@ -15,7 +15,5 @@ export interface BoxProps extends ViewProps {
 
 export const Box = styled(View, {
   name: 'Box',
-})() as unknown as React.FunctionComponent<
-  BoxProps & React.RefAttributes<ViewMethods>
-> &
+})() as unknown as React.FunctionComponent<BoxProps & React.RefAttributes<ViewMethods>> &
   ViewMethods;
