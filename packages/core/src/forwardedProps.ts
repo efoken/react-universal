@@ -10,23 +10,29 @@ const defaultProps = {
   testID: true,
 } as const;
 
-const accessibilityProps = {
+const accessibilityProps: Record<keyof React.AriaAttributes | 'role', true> = {
   'aria-activedescendant': true,
   'aria-atomic': true,
   'aria-autocomplete': true,
+  'aria-braillelabel': true,
+  'aria-brailleroledescription': true,
   'aria-busy': true,
   'aria-checked': true,
   'aria-colcount': true,
   'aria-colindex': true,
+  'aria-colindextext': true,
   'aria-colspan': true,
   'aria-controls': true,
   'aria-current': true,
   'aria-describedby': true,
+  'aria-description': true,
   'aria-details': true,
   'aria-disabled': true,
+  'aria-dropeffect': true,
   'aria-errormessage': true,
   'aria-expanded': true,
   'aria-flowto': true,
+  'aria-grabbed': true,
   'aria-haspopup': true,
   'aria-hidden': true,
   'aria-invalid': true,
@@ -44,10 +50,12 @@ const accessibilityProps = {
   'aria-posinset': true,
   'aria-pressed': true,
   'aria-readonly': true,
+  'aria-relevant': true,
   'aria-required': true,
   'aria-roledescription': true,
   'aria-rowcount': true,
   'aria-rowindex': true,
+  'aria-rowindextext': true,
   'aria-rowspan': true,
   'aria-selected': true,
   'aria-setsize': true,
@@ -57,7 +65,7 @@ const accessibilityProps = {
   'aria-valuenow': true,
   'aria-valuetext': true,
   role: true,
-} as const;
+};
 
 const clickProps = {
   onAuxClick: true,
