@@ -4015,10 +4015,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native/normalize-colors@npm:0.74.83, @react-native/normalize-colors@npm:^0.74.1, @react-native/normalize-colors@npm:^0.74.83, @react-native/normalize-colors@npm:~0.74.83":
+"@react-native/normalize-colors@npm:0.74.83, @react-native/normalize-colors@npm:^0.74.1, @react-native/normalize-colors@npm:~0.74.83":
   version: 0.74.83
   resolution: "@react-native/normalize-colors@npm:0.74.83"
   checksum: 10c0/e1821e395c289c8aea3748044d3d0e39f792123e58281b8ae2d805ed4ac5517071d5b6325da1ceb9f45444c5cdad2b3ac2a6cd302d4f4a247aed68e10dcfedee
+  languageName: node
+  linkType: hard
+
+"@react-native/normalize-colors@npm:^0.74.84":
+  version: 0.74.84
+  resolution: "@react-native/normalize-colors@npm:0.74.84"
+  checksum: 10c0/9046b848db5ba0001cb4817faebba18366c5fc7c86a72836685867868e0019d40477d0dd6a7cdddf305a2156b5bda0b569116d2446d873e6e0d79c3c85a6517e
   languageName: node
   linkType: hard
 
@@ -4616,7 +4623,7 @@ __metadata:
     "@babel/core": "npm:^7.24.6"
     "@babel/preset-env": "npm:^7.24.6"
     "@expo/metro-runtime": "npm:~3.2.1"
-    "@react-native/normalize-colors": "npm:^0.74.83"
+    "@react-native/normalize-colors": "npm:^0.74.84"
     "@universal-ui/components": "workspace:*"
     "@universal-ui/core": "workspace:*"
     expo: "npm:~51.0.9"
@@ -4659,7 +4666,7 @@ __metadata:
     "@emotion/react": "npm:^11.11.4"
     "@emotion/serialize": "npm:^1.1.4"
     "@emotion/utils": "npm:^1.2.1"
-    "@react-native/normalize-colors": "npm:^0.74.83"
+    "@react-native/normalize-colors": "npm:^0.74.84"
     "@tamagui/constants": "npm:^1.99.1"
     "@types/react": "npm:~18.2.79"
     "@universal-ui/utils": "workspace:*"
@@ -14484,7 +14491,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:^7.24.6"
     "@babel/preset-env": "npm:^7.24.6"
-    "@react-native/normalize-colors": "npm:^0.74.83"
+    "@react-native/normalize-colors": "npm:^0.74.84"
     "@testing-library/react-native": "npm:^12.5.1"
     "@types/jest": "npm:^29.5.12"
     "@types/react": "npm:~18.2.79"
