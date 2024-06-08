@@ -12,5 +12,6 @@
       "matchPackageNames": ["@tamagui/constants", "@tamagui/react-native-use-responder-events"]
     }
   ],
-  "rangeStrategy": "bump"
+  "rangeStrategy": "bump",
+  "postUpdateOptions": ["yarnDedupeHighest"]
 }
