@@ -8,8 +8,8 @@
     "tools/*"
   ],
   "dependencies": {
-    "@babel/core": "^7.24.6",
-    "@babel/preset-env": "^7.24.6",
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
     "@react-native/normalize-colors": "^0.74.84",
     "@testing-library/react-native": "^12.5.1",
     "@types/jest": "^29.5.12",
