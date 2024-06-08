@@ -1,5 +1,16 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
   "dependencyDashboard": false,
+  "packageRules": [
+    {
+      "matchDepTypes": ["peerDependencies"],
+      "rangeStrategy": "widen"
+    },
+    {
+      "groupName": "tamagui monorepo",
+      "matchPackageNames": ["@tamagui/constants", "@tamagui/react-native-use-responder-events"]
+    }
+  ],
   "rangeStrategy": "bump"
 }

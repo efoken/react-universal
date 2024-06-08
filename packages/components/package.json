@@ -21,5 +21,8 @@
     "@types/react": {
       "optional": true
     }
+  },
+  "scripts": {
+    "build": "pkgroll"
   }
 }
