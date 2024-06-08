@@ -1,5 +1,7 @@
 import type { AccessibilityProps as RNAccessibilityProps, Role as RNRole } from 'react-native';
 
+export type AccessibilityRole = 'label' | 'listbox' | 'paragraph' | 'textbox' | RNRole;
+
 export interface AccessibilityProps
   extends Omit<
       RNAccessibilityProps,
@@ -16,5 +18,10 @@ export interface AccessibilityProps
       | 'role'
     >,
     Omit<React.AriaAttributes, keyof RNAccessibilityProps> {
-  role?: 'label' | 'listbox' | 'paragraph' | RNRole;
+  'aria-atomic'?: boolean;
+  'aria-multiline'?: boolean;
+  'aria-multiselectable'?: boolean;
+  'aria-readonly'?: boolean;
+  'aria-required'?: boolean;
+  role?: AccessibilityRole;
 }

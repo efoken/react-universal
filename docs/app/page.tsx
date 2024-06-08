@@ -1,11 +1,11 @@
-import { Box, Container, Link, Text } from '@universal-ui/components';
+import { Box, Container, Heading, Link, Text } from '@universal-ui/components';
 import Image from 'next/image';
 import styles from './page.module.css';
 
 export default function Home() {
   return (
     <Box
-      as="main"
+      role="main"
       sx={{
         alignItems: 'center',
         display: 'flex',
@@ -14,7 +14,6 @@ export default function Home() {
         minH: '100vh',
         px: { xs: '6rem', md: '4rem' },
         py: '6rem',
-        top: 0,
       }}
     >
       <Container
@@ -22,6 +21,7 @@ export default function Home() {
         sx={{
           alignItems: 'inherit' as any,
           display: 'inherit' as any,
+          flexDir: 'row',
           fontFamily: 'var(--font-mono)',
           fontSize: { xs: '0.8rem', md: '0.85rem' },
           justifyContent: 'inherit' as any,
@@ -118,19 +118,57 @@ export default function Home() {
         </Box>
       </Container>
 
-      <div className={styles.center}>
+      <Box
+        sx={{
+          alignItems: 'center',
+          display: 'flex',
+          justifyContent: 'center',
+          pb: { xs: '6rem', md: '4rem' },
+          position: 'relative',
+          pt: { xs: '8rem', md: '4rem' },
+        }}
+      >
+        <Box
+          sx={
+            {
+              backgroundImage: 'var(--secondary-glow)',
+              borderRadius: '50%',
+              filter: 'blur(45px)',
+              height: { xs: 300, md: 360 },
+              left: '50%',
+              marginLeft: -400,
+              position: 'absolute',
+              transform: { xs: 'none', md: 'translateZ(0)' },
+              width: 480,
+            } as any
+          }
+        />
         <Image
+          priority
           className={styles.logo}
           src="/next.svg"
           alt="Next.js Logo"
           width={180}
           height={37}
-          priority
         />
-      </div>
+        <Box
+          sx={
+            {
+              backgroundImage: 'var(--primary-glow)',
+              filter: 'blur(45px)',
+              height: 180,
+              left: '50%',
+              position: 'absolute',
+              transform: 'translateZ(0)',
+              width: 240,
+              zIndex: -1,
+            } as any
+          }
+        />
+      </Box>
 
       <Container
-        as="div"
+        // as="div"
         maxWidth="xl"
         sx={{
           display: 'grid' as any,
@@ -163,8 +201,7 @@ export default function Home() {
             py: '1rem',
           }}
         >
-          <Text
-            as="h2"
+          <Heading
             sx={{
               fontSize: '1.5rem',
               fontWeight: '600',
@@ -176,9 +213,9 @@ export default function Home() {
             <Text as="span" sx={{ display: 'inline-block' as any }}>
               -&gt;
             </Text>
-          </Text>
+          </Heading>
           <Text
-            as="p"
+            role="paragraph"
             sx={{
               opacity: 0.6,
               fontSize: '0.9rem',
@@ -208,8 +245,7 @@ export default function Home() {
             py: '1rem',
           }}
         >
-          <Text
-            as="h2"
+          <Heading
             sx={{
               fontSize: '1.5rem',
               fontWeight: '600',
@@ -221,9 +257,9 @@ export default function Home() {
             <Text as="span" sx={{ display: 'inline-block' as any }}>
               -&gt;
             </Text>
-          </Text>
+          </Heading>
           <Text
-            as="p"
+            role="paragraph"
             sx={{
               opacity: 0.6,
               fontSize: '0.9rem',
@@ -253,8 +289,7 @@ export default function Home() {
             py: '1rem',
           }}
         >
-          <Text
-            as="h2"
+          <Heading
             sx={{
               fontSize: '1.5rem',
               fontWeight: '600',
@@ -266,9 +301,9 @@ export default function Home() {
             <Text as="span" sx={{ display: 'inline-block' as any }}>
               -&gt;
             </Text>
-          </Text>
+          </Heading>
           <Text
-            as="p"
+            role="paragraph"
             sx={{
               opacity: 0.6,
               fontSize: '0.9rem',
@@ -298,8 +333,7 @@ export default function Home() {
             py: '1rem',
           }}
         >
-          <Text
-            as="h2"
+          <Heading
             sx={{
               fontSize: '1.5rem',
               fontWeight: '600',
@@ -311,9 +345,9 @@ export default function Home() {
             <Text as="span" sx={{ display: 'inline-block' as any }}>
               -&gt;
             </Text>
-          </Text>
+          </Heading>
           <Text
-            as="p"
+            role="paragraph"
             sx={{
               opacity: 0.6,
               fontSize: '0.9rem',

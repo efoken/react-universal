@@ -43,17 +43,12 @@ const ViewRoot = styled('div', {
   borderColor: '#000',
   borderStyle: 'solid',
   borderWidth: 0,
-  boxSizing: 'border-box',
   display: ownerState.hasTextAncestor ? ('inline-flex' as any) : 'flex',
   flexBasis: 'auto',
   flexDirection: 'column',
   flexShrink: 0,
-  listStyleType: 'none',
-  margin: 0,
   minHeight: 0,
   minWidth: 0,
-  padding: 0,
-  textDecorationLine: 'none',
 }));
 
 export const View = forwardRef<any, ViewProps>(

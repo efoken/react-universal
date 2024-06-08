@@ -1,8 +1,6 @@
 import { isString } from '@universal-ui/utils';
 import { normalizeColor } from './normalizeColor';
 
-const emptyObject = {};
-
 // https://css-tricks.com/snippets/css/system-font-stack/
 const FONT_SYSTEM = 'system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif';
 
@@ -40,8 +38,12 @@ const shortFormProps: Record<string, string[]> = {
 
 const colorProps: Record<string, boolean> = {
   backgroundColor: true,
+  borderBlockColor: true,
   borderBottomColor: true,
   borderColor: true,
+  borderInlineColor: true,
+  borderInlineEndColor: true,
+  borderInlineStartColor: true,
   borderLeftColor: true,
   borderRightColor: true,
   borderTopColor: true,
@@ -62,7 +64,7 @@ export function createReactDOMStyle(
   inline?: boolean,
 ): Record<string, any> {
   if (!style) {
-    return emptyObject;
+    return {};
   }
 
   const nextStyle: React.CSSProperties = {};

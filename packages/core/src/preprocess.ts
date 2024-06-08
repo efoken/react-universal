@@ -1,28 +1,10 @@
 import { isArray, isNumber } from '@universal-ui/utils';
 
-const emptyStyle = {};
-
 const standardProps: Record<string, string> = {
   borderBottomEndRadius: 'borderEndEndRadius',
   borderBottomStartRadius: 'borderEndStartRadius',
-  borderEndColor: 'borderInlineEndColor',
-  borderEndStyle: 'borderInlineEndStyle',
-  borderEndWidth: 'borderInlineEndWidth',
-  borderStartColor: 'borderInlineStartColor',
-  borderStartStyle: 'borderInlineStartStyle',
-  borderStartWidth: 'borderInlineStartWidth',
   borderTopEndRadius: 'borderStartEndRadius',
   borderTopStartRadius: 'borderStartStartRadius',
-  // end: 'insetInlineEnd',
-  // marginEnd: 'marginInlineEnd',
-  // marginHorizontal: 'marginInline',
-  // marginStart: 'marginInlineStart',
-  // marginVertical: 'marginBlock',
-  // paddingEnd: 'paddingInlineEnd',
-  // paddingHorizontal: 'paddingInline',
-  // paddingStart: 'paddingInlineStart',
-  // paddingVertical: 'paddingBlock',
-  // start: 'insetInlineStart',
 };
 
 const ignoredProps: Record<string, boolean> = {
@@ -30,7 +12,7 @@ const ignoredProps: Record<string, boolean> = {
   includeFontPadding: true,
 };
 
-export function preprocess<T extends Record<string, any>>(style: T = emptyStyle as T): T {
+export function preprocess<T extends Record<string, any>>(style: T = {} as T): T {
   const nextStyle: React.CSSProperties = {};
 
   // Convert text shadow styles

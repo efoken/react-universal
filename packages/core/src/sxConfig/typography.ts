@@ -6,15 +6,19 @@ type TypographyProp<T, K extends keyof Theme | undefined = undefined> = Breakpoi
   K extends string ? T | ThemeValue<Theme[K]> : T
 >;
 
-export interface TypographyProps {
+export interface TypographyPropsWeb {
+  /** @platform web */
+  textWrap?: TypographyProp<RNStyle['textWrap']>;
+}
+
+export interface TypographyProps extends TypographyPropsWeb {
+  color?: TypographyProp<RNStyle['color'], 'colors'>;
   fontFamily?: TypographyProp<RNStyle['fontFamily']>;
   fontSize?: TypographyProp<RNStyle['fontSize']>;
   fontStyle?: TypographyProp<RNStyle['fontStyle']>;
   fontWeight?: TypographyProp<RNStyle['fontWeight']>;
   letterSpacing?: TypographyProp<RNStyle['letterSpacing']>;
-  textTransform?: TypographyProp<RNStyle['textTransform']>;
   lineHeight?: TypographyProp<RNStyle['lineHeight']>;
   textAlign?: TypographyProp<RNStyle['textAlign']>;
-  /** @platform web */
-  textWrap?: TypographyProp<React.CSSProperties['textWrap']>;
+  textTransform?: TypographyProp<RNStyle['textTransform']>;
 }

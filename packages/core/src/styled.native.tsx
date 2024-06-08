@@ -1,21 +1,16 @@
 import { isFunction, isString } from '@universal-ui/utils';
 import { forwardRef } from 'react';
-import { StyleSheet as RNStyleSheet } from 'react-native';
 import { useStyles } from 'react-native-unistyles';
+import { StyleSheet } from './StyleSheet';
 import { createElement } from './createElement';
-import { createStyleSheet } from './createStyleSheet';
 import { css } from './css';
 import { styleFunctionSx } from './styleFunctionSx';
 import type { CreateStyledComponent, StyledOptions } from './styled.types';
 import type { Theme } from './theme/defaultTheme';
-import type { AnyProps, StyleInterpolation, StyleProp, StyleValues } from './types';
+import type { AnyProps, StyleInterpolation, StyleProp } from './types';
 
 export function defaultShouldForwardProp(prop: string) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
-}
-
-export function flattenStyle<T extends StyleValues>(style: StyleProp<T>): T[] {
-  return [RNStyleSheet.flatten([style])] as T[];
 }
 
 export function styled<T extends React.ComponentClass<React.ComponentProps<T>>>(
@@ -57,7 +52,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
 
       const { styles: _styles } = useStyles(
         // @ts-expect-error: We define our own `runtime` type
-        createStyleSheet((theme, runtime) => ({
+        StyleSheet.create((theme, runtime) => ({
           style: css.call(
             { ...props, runtime, theme },
             styles,

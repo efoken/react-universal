@@ -43,7 +43,11 @@ export const Text = forwardRef<any, TextProps>(
         accessibilityElementsHidden={ariaHidden}
         aria-hidden={ariaHidden}
         importantForAccessibility={ariaHidden ? 'no-hide-descendants' : undefined}
-        role={role === 'listbox' || role === 'paragraph' ? undefined : role}
+        role={
+          role === 'label' || role === 'listbox' || role === 'paragraph' || role === 'textbox'
+            ? undefined
+            : role
+        }
         style={style as any}
         onLayout={handleLayout}
         {...props}

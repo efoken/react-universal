@@ -26,17 +26,17 @@ const rtlScripts = new Set([
 const cache = new Map<Intl.UnicodeBCP47LocaleIdentifier, boolean>();
 
 function isLocaleRTL(locale: Intl.UnicodeBCP47LocaleIdentifier) {
-  let isRtl = cache.get(locale);
+  let rtl = cache.get(locale);
 
-  if (isRtl != null) {
-    return isRtl;
+  if (rtl != null) {
+    return rtl;
   }
 
   const { script } = new Intl.Locale(locale).maximize();
-  isRtl = rtlScripts.has(script!);
+  rtl = rtlScripts.has(script!);
 
-  cache.set(locale, isRtl);
-  return isRtl;
+  cache.set(locale, rtl);
+  return rtl;
 }
 
 export function getLocaleDirection(locale: Intl.UnicodeBCP47LocaleIdentifier) {

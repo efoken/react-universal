@@ -36,7 +36,11 @@ export const View = forwardRef<any, ViewProps>(({ onLayout, role, style, ...prop
   return (
     <ViewRoot
       ref={ref}
-      role={role === 'listbox' || role === 'paragraph' ? undefined : role}
+      role={
+        role === 'label' || role === 'listbox' || role === 'paragraph' || role === 'textbox'
+          ? undefined
+          : role
+      }
       style={style as any}
       onLayout={handleLayout}
       {...props}

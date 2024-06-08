@@ -5,26 +5,20 @@ import { serializeStyles } from '@emotion/serialize';
 import type { EmotionCache, SerializedStyles } from '@emotion/utils';
 import { getRegisteredStyles, insertStyles, registerStyles } from '@emotion/utils';
 import { isServer } from '@tamagui/constants';
-import { isFunction, isObject, isString } from '@universal-ui/utils';
+import { isFunction, isString } from '@universal-ui/utils';
 import { useMemo } from 'react';
 import { StyleRuntime } from './StyleRuntime';
-import { getLocaleDirection, useLocale } from './contexts/LocaleContext';
+import { StyleSheet } from './StyleSheet';
 import { useTheme } from './contexts/ThemeContext';
 import { createElement } from './createElement';
-import { createStyleSheet } from './createStyleSheet';
 import { css } from './css';
 import { useInsertionEffectAlwaysWithSyncFallback } from './hooks/useInsertionEffectAlwaysWithSyncFallback';
 import { styleFunctionSx } from './styleFunctionSx';
 import type { CreateStyledComponent, StyledOptions } from './styled.types';
-import type { AnyProps, StyleInterpolation, StyleProp, StyleValues } from './types';
+import type { AnyProps, StyleInterpolation, StyleProp } from './types';
 
 export function defaultShouldForwardProp(prop: string) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
-}
-
-export function flattenStyle<T extends StyleValues>(style: StyleProp<T>): T[] {
-  // eslint-disable-next-line unicorn/no-magic-array-flat-depth
-  return [style].flat(20).filter(Boolean) as T[];
 }
 
 const Insertion: React.FC<{
@@ -96,27 +90,17 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
     >(({ style, ...props }, cache, ref) => {
       const Component = shouldUseAs ? props.as ?? component : component;
 
-      const { direction: contextDirection } = useLocale();
-
       const theme = useTheme();
 
       const classInterpolations: string[] = [];
-      let className = useMemo(
-        () =>
-          flattenStyle(style)
-            .filter((a) => isObject(a) && '$$css' in a && a.$$css === true)
-            .flatMap((a) => Object.values(a).filter((b) => isString(b)))
-            .join(' '),
-        [style],
-      );
-
-      if (className.length > 0) {
+      let { className } = useMemo(() => StyleSheet.props(style), [style]);
+      if (className != null) {
         className = getRegisteredStyles(cache.registered, classInterpolations, className);
       }
 
       const serialized = serializeStyles(
         [
-          createStyleSheet((currentTheme, runtime) => ({
+          StyleSheet.create((currentTheme, runtime) => ({
             styles: css.call(
               { ...props, runtime, theme: currentTheme },
               styles,
@@ -132,10 +116,6 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
         $$css: true,
         className: `${cache.key}-${serialized.name}`,
       };
-
-      const langDirection = props.lang == null ? undefined : getLocaleDirection(props.lang);
-      const componentDirection = props.dir ?? langDirection;
-      const writingDirection = componentDirection ?? contextDirection;
 
       const newProps: AnyProps = {};
 
@@ -154,7 +134,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
       return (
         <>
           <Insertion cache={cache} serialized={serialized} stringTag={isString(Component)} />
-          {createElement(Component, newProps, { writingDirection })}
+          {createElement(Component, newProps)}
         </>
       );
     });

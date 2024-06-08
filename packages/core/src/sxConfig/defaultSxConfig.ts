@@ -1,6 +1,7 @@
 import type { BreakpointValue } from '../breakpoints';
 import type { Theme } from '../theme/defaultTheme';
 import type { SimpleStyleFunction } from '../types';
+import type { BackgroundProps } from './background';
 import type { BorderProps } from './borders';
 import type { FlexboxProps } from './flexbox';
 import { columnGap, gap, rowGap } from './flexbox';
@@ -16,18 +17,14 @@ type CSSCustomProps = Record<`--${string}`, string>;
 
 interface OtherProps extends CSSCustomProps {
   backdropFilter?: BreakpointValue<string>;
-  backgroundClip?: BreakpointValue<string>;
-  backgroundColor?: BreakpointValue<string>;
-  backgroundImage?: BreakpointValue<string>;
-  bgColor?: BreakpointValue<string>;
   boxShadow?: BreakpointValue<string>;
-  color?: BreakpointValue<string>;
   opacity?: BreakpointValue<number>;
   pointerEvents?: BreakpointValue<any>;
   typography?: BreakpointValue<string>;
 }
 
-export type SxStyleObject = BorderProps &
+export type SxStyleObject = BackgroundProps &
+  BorderProps &
   MarginProps &
   PaddingProps &
   FlexboxProps &
@@ -52,37 +49,54 @@ export interface SxConfigRecord {
 export type SxConfig = Record<keyof SxStyleObject, SxConfigRecord>;
 
 export const defaultSxConfig: SxConfig = {
+  // Background
+  backgroundClip: {},
+  backgroundColor: { themeKey: 'colors' },
+  backgroundImage: {},
+  bgClip: { cssProperty: 'backgroundClip' },
+  bgColor: { cssProperty: 'backgroundColor', themeKey: 'colors' },
+  bgImage: { cssProperty: 'backgroundImage' },
+
   // Borders
+  borderBlockColor: { themeKey: 'colors' },
+  borderBlockEndColor: { themeKey: 'colors' },
+  borderBlockEndStyle: {},
+  borderBlockEndWidth: {},
+  borderBlockStartColor: { themeKey: 'colors' },
+  borderBlockStartStyle: {},
+  borderBlockStartWidth: {},
+  borderBlockStyle: {},
+  borderBlockWidth: {},
   borderBottomColor: { themeKey: 'colors' },
   borderBottomWidth: {},
   borderColor: { themeKey: 'colors' },
-  borderEndColor: { themeKey: 'colors' },
-  borderEndWidth: {},
+  borderEndColor: { cssProperty: 'borderInlineEndColor', themeKey: 'colors' },
+  borderEndStyle: { cssProperty: 'borderInlineEndStyle' },
+  borderEndWidth: { cssProperty: 'borderInlineEndWidth' },
+  borderInlineColor: { themeKey: 'colors' },
+  borderInlineEndColor: { themeKey: 'colors' },
+  borderInlineEndStyle: {},
+  borderInlineEndWidth: {},
+  borderInlineStartColor: { themeKey: 'colors' },
+  borderInlineStartStyle: {},
+  borderInlineStartWidth: {},
+  borderInlineStyle: {},
+  borderInlineWidth: {},
   borderLeftColor: { themeKey: 'colors' },
   borderLeftWidth: {},
   borderRadius: { themeKey: 'radii' },
   borderRightColor: { themeKey: 'colors' },
   borderRightWidth: {},
-  borderStartColor: { themeKey: 'colors' },
-  borderStartWidth: {},
+  borderStartColor: { cssProperty: 'borderInlineStartColor', themeKey: 'colors' },
+  borderStartStyle: { cssProperty: 'borderInlineStartStyle' },
+  borderStartWidth: { cssProperty: 'borderInlineStartWidth' },
+  borderStyle: {},
   borderTopColor: { themeKey: 'colors' },
   borderTopWidth: {},
   borderWidth: {},
   outlineColor: { themeKey: 'colors' },
   outlineOffset: {},
   outlineWidth: {},
-
-  // Colors
-  color: {
-    themeKey: 'colors',
-  },
-  bgColor: {
-    themeKey: 'colors',
-    cssProperty: 'backgroundColor',
-  },
-  backgroundColor: {
-    themeKey: 'colors',
-  },
 
   // Spacing
   m: { style: margin },
@@ -184,6 +198,11 @@ export const defaultSxConfig: SxConfig = {
   // Shadows
   boxShadow: { themeKey: 'shadows' },
 
+  // Others
+  backdropFilter: {},
+  opacity: {},
+  pointerEvents: {},
+
   // Layout
   aspectRatio: {},
   blockSize: { transform: sizingTransform },
@@ -218,22 +237,15 @@ export const defaultSxConfig: SxConfig = {
   width: { transform: sizingTransform },
 
   // Typography
-  fontFamily: {
-    // themeKey: 'typography',
-  },
-  fontSize: {
-    // themeKey: 'typography',
-  },
-  fontStyle: {
-    // themeKey: 'typography',
-  },
-  fontWeight: {
-    // themeKey: 'typography',
-  },
+  color: { themeKey: 'colors' },
+  fontFamily: {},
+  fontSize: {},
+  fontStyle: {},
+  fontWeight: {},
   letterSpacing: {},
-  textTransform: {},
   lineHeight: {},
   textAlign: {},
+  textTransform: {},
   textWrap: {},
   typography: {
     cssProperty: false,

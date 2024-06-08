@@ -1,7 +1,7 @@
 'use client';
 
 import type { LayoutEvent } from '@universal-ui/core';
-import { styled, useForkRef } from '@universal-ui/core';
+import { styled, useForkRef, useOwnerState } from '@universal-ui/core';
 import { isArray } from '@universal-ui/utils';
 import { Children, cloneElement, forwardRef, useImperativeHandle, useRef } from 'react';
 import type { GestureResponderEvent } from 'react-native';
@@ -250,10 +250,16 @@ export const ScrollView = forwardRef<ScrollViewMethods, ScrollViewProps>(
           })
         : children;
 
+    const ownerState = useOwnerState({
+      centerContent,
+      horizontal,
+      pagingEnabled,
+    });
+
     const scrollView = (
       <ScrollViewRoot
         ref={handleRef}
-        ownerState={{ centerContent, horizontal, pagingEnabled }}
+        ownerState={ownerState}
         scrollEventThrottle={scrollEventThrottle}
         style={style}
         onResponderGrant={handleResponderGrant}
@@ -272,7 +278,7 @@ export const ScrollView = forwardRef<ScrollViewMethods, ScrollViewProps>(
         <ScrollViewContentContainer
           ref={innerViewRef}
           collapsable={false}
-          ownerState={{ centerContent, horizontal, pagingEnabled }}
+          ownerState={ownerState}
           style={contentContainerStyle}
           onLayout={handleContentContainerLayout}
         >

@@ -16,18 +16,38 @@ export interface BorderPropsWeb {
 }
 
 export interface BorderProps extends BorderPropsWeb {
+  borderBlockColor?: BorderProp<RNStyle['borderBlockColor'], 'colors'>;
+  borderBlockEndColor?: BorderProp<RNStyle['borderBlockEndColor'], 'colors'>;
+  borderBlockEndStyle?: BorderProp<RNStyle['borderBlockEndStyle']>;
+  borderBlockEndWidth?: BorderProp<RNStyle['borderBlockEndWidth'], 'colors'>;
+  borderBlockStartColor?: BorderProp<RNStyle['borderBlockStartColor'], 'colors'>;
+  borderBlockStartStyle?: BorderProp<RNStyle['borderBlockStartStyle']>;
+  borderBlockStartWidth?: BorderProp<RNStyle['borderBlockStartWidth']>;
+  borderBlockStyle?: BorderProp<RNStyle['borderBlockStyle'], 'colors'>;
+  borderBlockWidth?: BorderProp<RNStyle['borderBlockWidth']>;
   borderBottomColor?: BorderProp<RNStyle['borderBottomColor'], 'colors'>;
   borderBottomWidth?: BorderProp<RNStyle['borderBottomWidth']>;
   borderColor?: BorderProp<RNStyle['borderColor'], 'colors'>;
-  borderEndColor?: BorderProp<RNStyle['borderEndColor'], 'colors'>;
-  borderEndWidth?: BorderProp<RNStyle['borderEndWidth']>;
+  borderEndColor?: BorderProp<RNStyle['borderInlineEndColor'], 'colors'>;
+  borderEndStyle?: BorderProp<RNStyle['borderInlineEndStyle']>;
+  borderEndWidth?: BorderProp<RNStyle['borderInlineEndWidth']>;
+  borderInlineColor?: BorderProp<RNStyle['borderInlineColor'], 'colors'>;
+  borderInlineEndColor?: BorderProp<RNStyle['borderInlineEndColor'], 'colors'>;
+  borderInlineEndStyle?: BorderProp<RNStyle['borderInlineEndStyle']>;
+  borderInlineEndWidth?: BorderProp<RNStyle['borderInlineEndWidth']>;
+  borderInlineStartColor?: BorderProp<RNStyle['borderInlineStartColor'], 'colors'>;
+  borderInlineStartStyle?: BorderProp<RNStyle['borderInlineStartStyle']>;
+  borderInlineStartWidth?: BorderProp<RNStyle['borderInlineStartWidth']>;
+  borderInlineStyle?: BorderProp<RNStyle['borderInlineStyle']>;
+  borderInlineWidth?: BorderProp<RNStyle['borderInlineWidth']>;
   borderLeftColor?: BorderProp<RNStyle['borderLeftColor'], 'colors'>;
   borderLeftWidth?: BorderProp<RNStyle['borderLeftWidth']>;
   borderRadius?: BorderProp<RNStyle['borderRadius'], 'radii'>;
   borderRightColor?: BorderProp<RNStyle['borderRightColor'], 'colors'>;
   borderRightWidth?: BorderProp<RNStyle['borderRightWidth']>;
-  borderStartColor?: BorderProp<RNStyle['borderStartColor'], 'colors'>;
-  borderStartWidth?: BorderProp<RNStyle['borderStartWidth']>;
+  borderStartColor?: BorderProp<RNStyle['borderInlineStartColor'], 'colors'>;
+  borderStartStyle?: BorderProp<RNStyle['borderInlineStartStyle']>;
+  borderStartWidth?: BorderProp<RNStyle['borderInlineStartWidth']>;
   borderStyle?: BorderProp<RNStyle['borderStyle']>;
   borderTopColor?: BorderProp<RNStyle['borderTopColor'], 'colors'>;
   borderTopWidth?: BorderProp<RNStyle['borderTopWidth']>;

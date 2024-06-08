@@ -1,5 +1,6 @@
 export * from './Box';
 export * from './Container';
+export * from './Heading';
 export * from './Link';
 export * from './ScrollView';
 export * from './Stack';

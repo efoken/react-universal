@@ -25,6 +25,9 @@ export default function RootLayout({
               body: {
                 family: inter.style.fontFamily,
               } as any,
+              heading: {
+                family: inter.style.fontFamily,
+              } as any,
             },
           })}
         >

@@ -31,7 +31,7 @@ const ScrollViewRoot = styled(RNScrollView, {
 });
 
 export const ScrollView = forwardRef<any, ScrollViewProps>(
-  ({ onLayout, onWheel, role, ...props }, ref) => {
+  ({ contentContainerStyle, onLayout, onWheel, refreshControl, role, style, ...props }, ref) => {
     const handleLayout = (event: RNLayoutChangeEvent) => {
       onLayout?.(normalizeLayoutEvent(event));
     };
@@ -39,7 +39,10 @@ export const ScrollView = forwardRef<any, ScrollViewProps>(
     return (
       <ScrollViewRoot
         ref={ref}
-        role={role === 'listbox' || role === 'paragraph' ? undefined : role}
+        contentContainerStyle={contentContainerStyle as any}
+        refreshControl={refreshControl as any}
+        role={role === 'label' || role === 'listbox' || role === 'paragraph' ? undefined : role}
+        style={style as any}
         onLayout={handleLayout}
         {...props}
       />

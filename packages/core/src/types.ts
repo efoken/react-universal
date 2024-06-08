@@ -15,6 +15,10 @@ export type ColorMode = 'light' | 'dark';
 
 export interface RNStyleWeb {
   /** @platform web */
+  backgroundClip?: React.CSSProperties['backgroundClip'];
+  /** @platform web */
+  backgroundImage?: React.CSSProperties['backgroundImage'];
+  /** @platform web */
   boxSizing?: React.CSSProperties['boxSizing'];
   /** @platform web */
   overflowX?: React.CSSProperties['overflowX'];
@@ -46,6 +50,10 @@ export interface RNStyleWeb {
   scrollSnapStop?: React.CSSProperties['scrollSnapStop'];
   /** @platform web */
   scrollSnapType?: React.CSSProperties['scrollSnapType'];
+  /** @platform web */
+  textOverflow?: React.CSSProperties['textOverflow'];
+  /** @platform web */
+  textWrap?: React.CSSProperties['textWrap'];
   /** @platform web */
   visibility?: React.CSSProperties['visibility'];
 }
@@ -199,7 +207,7 @@ export type StyleValues = {
   [K in RNStyleKeys]?: RNStyle[K] | { [B in Breakpoint]?: RNStyle[K] };
 };
 
-export type StyleSheet = Record<string, StyleValues>;
+// export type StyleSheet = Record<string, StyleValues>;
 
 type RecursiveArray<T> = (T | T[] | RecursiveArray<T>)[];
 
