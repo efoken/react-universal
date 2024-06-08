@@ -173,7 +173,15 @@ function createDOMProps(
   return domProps;
 }
 
-export function createElement<P extends Record<string, any>>(type: React.ElementType<P>, props: P) {
+export function createElement<T extends keyof JSX.IntrinsicElements>(
+  type: React.ElementType<any, T>,
+  props?: Record<string, any>,
+): any;
+
+export function createElement<P extends Record<string, any>>(
+  type: React.ElementType<P>,
+  props = {} as P,
+) {
   // Use equivalent platform elements where possible.
   const Component = isString(type) ? propsToAccessibilityComponent(props) ?? type : type;
   const domProps = createDOMProps(Component, props);

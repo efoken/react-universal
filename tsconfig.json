@@ -11,5 +11,12 @@
     "strict": true,
     "target": "ES2022"
   },
-  "include": ["@types", "app", "docs", "packages"]
+  "include": [
+    "./@types/*",
+    "./app/**/*",
+    "./docs/**/*",
+    "./packages/**/*",
+    "./vitest.config.ts",
+    "./vitest.setup.ts"
+  ]
 }
