@@ -12,7 +12,7 @@
     "@babel/preset-env": "^7.24.7",
     "@react-native/normalize-colors": "^0.74.84",
     "@testing-library/dom": "^10.1.0",
-    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
     "@testing-library/react-native": "^12.5.1",
     "@types/react": "~18.2.79",
