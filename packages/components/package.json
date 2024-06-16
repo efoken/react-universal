@@ -4,7 +4,7 @@
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@tamagui/react-native-use-responder-events": "^1.100.3",
+    "@tamagui/react-native-use-responder-events": "^1.100.5",
     "@universal-ui/core": "workspace:*"
   },
   "devDependencies": {
