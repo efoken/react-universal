@@ -3535,17 +3535,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/constants@npm:^1.100.3":
-  version: 1.100.3
-  resolution: "@tamagui/constants@npm:1.100.3"
-  checksum: 10c0/30409477a2e73d4f9ff23babec034f9cdc8c8e5a91a21a9fddd975e10dced75c94c27516dbd84b90c924203b1d41e1b346263ca6a1bb628976516e1d1b0006c3
+"@tamagui/constants@npm:^1.100.5":
+  version: 1.100.5
+  resolution: "@tamagui/constants@npm:1.100.5"
+  checksum: 10c0/5822439d5c1bac62fad5f2f98b6020ac8c9fd5b2ab65e37175fd7ac8f7493290fe0f047676ad382806253aebc828e6afe46dc954dcd3160a54a9cf0af309c10d
   languageName: node
   linkType: hard
 
-"@tamagui/react-native-use-responder-events@npm:^1.100.3":
-  version: 1.100.3
-  resolution: "@tamagui/react-native-use-responder-events@npm:1.100.3"
-  checksum: 10c0/7476df7facdaeb71a50d81ed136ec6fb468ef89294c1dc6c87e12ce6949f911eda91dbcd861bb9c552043de145302db12cdb876f35b4861270f14bfd735f14b3
+"@tamagui/react-native-use-responder-events@npm:^1.100.5":
+  version: 1.100.5
+  resolution: "@tamagui/react-native-use-responder-events@npm:1.100.5"
+  checksum: 10c0/27202a4db21fcf974b2bb5f489ab9ba59f1f7acf63954e179634970637f6c9aec8ad0635e4a5b5d4c4484f14654ab1ea7267c3b5af678a4c7f7f2feb2107ef75
   languageName: node
   linkType: hard
 
@@ -4032,7 +4032,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@universal-ui/components@workspace:packages/components"
   dependencies:
-    "@tamagui/react-native-use-responder-events": "npm:^1.100.3"
+    "@tamagui/react-native-use-responder-events": "npm:^1.100.5"
     "@types/react": "npm:~18.2.79"
     "@universal-ui/core": "workspace:*"
     react: "npm:18.2.0"
@@ -4056,7 +4056,7 @@ __metadata:
     "@emotion/serialize": "npm:^1.1.4"
     "@emotion/utils": "npm:^1.2.1"
     "@react-native/normalize-colors": "npm:^0.74.84"
-    "@tamagui/constants": "npm:^1.100.3"
+    "@tamagui/constants": "npm:^1.100.5"
     "@types/react": "npm:~18.2.79"
     "@universal-ui/utils": "workspace:*"
     react: "npm:18.2.0"
