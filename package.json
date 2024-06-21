@@ -45,5 +45,5 @@
     "format": "prettier --write .",
     "build": "yarn workspaces foreach -Apt run build"
   },
-  "packageManager": "yarn@4.3.0"
+  "packageManager": "yarn@4.3.1"
 }
