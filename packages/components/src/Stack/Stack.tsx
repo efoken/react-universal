@@ -29,6 +29,8 @@ export interface StackProps extends ViewProps {
   sx?: SxProps;
 }
 
+export type StackType = React.FC<StackProps & React.RefAttributes<ViewMethods>> & ViewMethods;
+
 type StackOwnerState = Required<Pick<StackProps, 'direction' | 'spacing'>>;
 
 /**
@@ -85,7 +87,6 @@ export const Stack = forwardRef<ViewMethods, StackProps>(
       </StackRoot>
     );
   },
-) as unknown as React.FunctionComponent<StackProps & React.RefAttributes<ViewMethods>> &
-  ViewMethods;
+) as unknown as StackType;
 
 Stack.displayName = 'Stack';

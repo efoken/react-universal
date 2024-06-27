@@ -32,6 +32,13 @@ export class TextInputState {
   static #currentlyFocusedNode: HTMLElement | null;
 
   /**
+   * Sets the internal state.
+   */
+  static setCurrentlyFocusedNode(currentlyFocusedNode: HTMLElement | null) {
+    this.#currentlyFocusedNode = currentlyFocusedNode;
+  }
+
+  /**
    * Returns the ID of the currently focused text field, if one exists. If no
    * text field is focused it returns null.
    */
@@ -58,7 +65,7 @@ export class TextInputState {
 
   /**
    * Unfocuses the specified text field. Noop if it wasn't focused.
-   * @param {Object} textFieldNode ID of the text field to focus
+   * @param {Object} textFieldNode ID of the text field to unfocus
    */
   static blurTextInput(textFieldNode: HTMLElement | null) {
     if (textFieldNode != null) {

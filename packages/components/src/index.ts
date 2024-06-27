@@ -5,4 +5,5 @@ export * from './Link';
 export * from './ScrollView';
 export * from './Stack';
 export * from './Text';
+export * from './TextInput';
 export * from './View';

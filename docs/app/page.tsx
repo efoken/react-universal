@@ -1,4 +1,4 @@
-import { Box, Container, Heading, Link, Text } from '@universal-ui/components';
+import { Box, Container, Heading, Link, Text, TextInput } from '@universal-ui/components';
 import Image from 'next/image';
 import styles from './page.module.css';
 
@@ -65,7 +65,7 @@ export default function Home() {
           }}
         >
           Get started by editing&nbsp;
-          <Text as="code" sx={{ fontFamily: 'var(--font-mono)', fontWeight: '700' }}>
+          <Text role="code" sx={{ fontFamily: 'var(--font-mono)', fontWeight: '700' }}>
             app/page.tsx
           </Text>
         </Text>
@@ -167,8 +167,9 @@ export default function Home() {
         />
       </Box>
 
+      <TextInput sx={{ bgColor: '#fff', borderWidth: 1, p: 3, borderRadius: 2 }} />
+
       <Container
-        // as="div"
         maxWidth="xl"
         sx={{
           display: 'grid' as any,
@@ -209,10 +210,7 @@ export default function Home() {
               mb: { xs: '0.5rem', md: '0.7rem' },
             }}
           >
-            Docs{' '}
-            <Text as="span" sx={{ display: 'inline-block' as any }}>
-              -&gt;
-            </Text>
+            Docs <Text sx={{ display: 'inline-block' as any }}>-&gt;</Text>
           </Heading>
           <Text
             role="paragraph"
@@ -253,10 +251,7 @@ export default function Home() {
               mb: { xs: '0.5rem', md: '0.7rem' },
             }}
           >
-            Learn{' '}
-            <Text as="span" sx={{ display: 'inline-block' as any }}>
-              -&gt;
-            </Text>
+            Learn <Text sx={{ display: 'inline-block' as any }}>-&gt;</Text>
           </Heading>
           <Text
             role="paragraph"
@@ -297,10 +292,7 @@ export default function Home() {
               mb: { xs: '0.5rem', md: '0.7rem' },
             }}
           >
-            Templates{' '}
-            <Text as="span" sx={{ display: 'inline-block' as any }}>
-              -&gt;
-            </Text>
+            Templates <Text sx={{ display: 'inline-block' as any }}>-&gt;</Text>
           </Heading>
           <Text
             role="paragraph"
@@ -341,10 +333,7 @@ export default function Home() {
               mb: { xs: '0.5rem', md: '0.7rem' },
             }}
           >
-            Deploy{' '}
-            <Text as="span" sx={{ display: 'inline-block' as any }}>
-              -&gt;
-            </Text>
+            Deploy <Text sx={{ display: 'inline-block' as any }}>-&gt;</Text>
           </Heading>
           <Text
             role="paragraph"

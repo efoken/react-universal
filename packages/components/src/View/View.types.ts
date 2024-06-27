@@ -1,13 +1,18 @@
 import type { ResponderConfig } from '@tamagui/react-native-use-responder-events/types/ResponderSystem';
-import type { LayoutEvent, RNStyle, StyleProp, SxProps } from '@universal-ui/core';
+import type {
+  AccessibilityProps,
+  LayoutEvent,
+  RNStyle,
+  StyleProp,
+  SxProps,
+} from '@universal-ui/core';
 import type {
   NativeMethods,
   AccessibilityProps as RNAccessibilityProps,
   ViewProps as RNViewProps,
 } from 'react-native';
-import type { AccessibilityProps } from '../types';
 
-export interface ViewMethods extends NativeMethods {}
+export interface ViewMethods extends Omit<NativeMethods, 'refs' | 'setNativeProps'> {}
 
 export type ViewStyle = Omit<
   RNStyle,
@@ -61,6 +66,8 @@ export interface ViewProps
    */
   sx?: SxProps;
 }
+
+export type ViewType = React.FC<ViewProps & React.RefAttributes<ViewMethods>> & ViewMethods;
 
 export type ViewOwnerState = Pick<ViewProps, 'role'> & {
   hasTextAncestor: boolean;

@@ -6,6 +6,7 @@ import {
   isString,
   memoize,
   mergeDeep,
+  noop,
 } from '@universal-ui/utils';
 import type { BreakpointValue } from '../breakpoints';
 import { handleBreakpoints } from '../breakpoints';
@@ -124,7 +125,7 @@ export function createUnaryUnit<T extends number | any[] | Record<string, any>>(
   }
 
   // @ts-expect-error: Return type is explicitly specified above.
-  return () => undefined;
+  return noop;
 }
 
 export function createUnarySpacing<T extends number | any[] | Record<string, any>>(theme: {
@@ -179,7 +180,7 @@ function resolveCssProperty(
   // Using a hash computation over an array iteration could be faster, but with
   // only 28 items, it's doesn't worth the bundle size.
   if (!keys.includes(prop)) {
-    return undefined;
+    return;
   }
 
   const cssProperties = getCssProperties(prop);

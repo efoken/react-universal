@@ -14,12 +14,12 @@ function isWebColor(color: string): color is 'currentcolor' | 'inherit' | VarCol
 
 function processColor(color?: string | number) {
   if (color == null) {
-    return undefined;
+    return;
   }
   // Convert number and hex
   const colorInt = normalizeCssColor(color);
   if (colorInt == null) {
-    return undefined;
+    return;
   }
   // eslint-disable-next-line no-bitwise
   return ((colorInt << 24) | (colorInt >>> 8)) >>> 0;
@@ -27,7 +27,7 @@ function processColor(color?: string | number) {
 
 export function normalizeColor(color?: number | string, opacity = 1) {
   if (color == null) {
-    return undefined;
+    return;
   }
   if (isString(color) && isWebColor(color)) {
     return color;

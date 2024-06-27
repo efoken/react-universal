@@ -42,7 +42,6 @@ export const gap: SimpleStyleFunction<'gap'> = (props) => {
     });
     return handleBreakpoints(props, props.gap, styleFromPropValue);
   }
-  return undefined;
 };
 
 gap.filterProps = ['gap'];
@@ -55,7 +54,6 @@ export const columnGap: SimpleStyleFunction<'columnGap'> = (props) => {
     });
     return handleBreakpoints(props, props.columnGap, styleFromPropValue);
   }
-  return undefined;
 };
 
 columnGap.filterProps = ['columnGap'];
@@ -68,7 +66,6 @@ export const rowGap: SimpleStyleFunction<'rowGap'> = (props) => {
     });
     return handleBreakpoints(props, props.rowGap, styleFromPropValue);
   }
-  return undefined;
 };
 
 rowGap.filterProps = ['rowGap'];

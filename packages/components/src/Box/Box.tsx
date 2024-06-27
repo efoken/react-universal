@@ -13,7 +13,8 @@ export interface BoxProps extends ViewProps {
   sx?: SxProps;
 }
 
+export type BoxType = React.FC<BoxProps & React.RefAttributes<ViewMethods>> & ViewMethods;
+
 export const Box = styled(View, {
   name: 'Box',
-})() as unknown as React.FunctionComponent<BoxProps & React.RefAttributes<ViewMethods>> &
-  ViewMethods;
+})() as unknown as BoxType;

@@ -26,6 +26,8 @@ export interface LinkProps extends TextProps {
   sx?: SxProps;
 }
 
+export type LinkType = React.FC<LinkProps & React.RefAttributes<TextMethods>> & TextMethods;
+
 const LinkRoot = styled(Text, {
   name: 'Link',
   slot: 'Root',
@@ -33,7 +35,6 @@ const LinkRoot = styled(Text, {
 
 export const Link = forwardRef<TextMethods, LinkProps>((props, ref) => (
   <LinkRoot ref={ref} role="link" {...props} />
-)) as unknown as React.FunctionComponent<LinkProps & React.RefAttributes<TextMethods>> &
-  TextMethods;
+)) as unknown as LinkType;
 
 Link.displayName = 'Link';

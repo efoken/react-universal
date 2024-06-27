@@ -68,7 +68,6 @@ export const maxInlineSize: SimpleStyleFunction<'maxInlineSize'> = (props) => {
     });
     return handleBreakpoints(props, props.maxInlineSize, styleFromPropValue);
   }
-  return undefined;
 };
 
 maxInlineSize.filterProps = ['maxInlineSize'];
@@ -82,7 +81,6 @@ export const maxW: SimpleStyleFunction<'maxW'> = (props) => {
     });
     return handleBreakpoints(props, props.maxW, styleFromPropValue);
   }
-  return undefined;
 };
 
 maxW.filterProps = ['maxW'];
@@ -96,7 +94,6 @@ export const maxWidth: SimpleStyleFunction<'maxWidth'> = (props) => {
     });
     return handleBreakpoints(props, props.maxWidth, styleFromPropValue);
   }
-  return undefined;
 };
 
 maxWidth.filterProps = ['maxWidth'];

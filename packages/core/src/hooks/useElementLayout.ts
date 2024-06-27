@@ -136,14 +136,14 @@ export function useElementLayout(
 
   useIsomorphicLayoutEffect(() => {
     if (!resizeObserver) {
-      return () => {};
+      return;
     }
     const node = ref.current;
     if (!node) {
-      return () => {};
+      return;
     }
     if (!layoutHandlers.has(node)) {
-      return () => {};
+      return;
     }
     const handleResize = () => {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises

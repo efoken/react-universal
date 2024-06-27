@@ -30,6 +30,9 @@ export interface ContainerProps extends ViewProps {
   sx?: SxProps;
 }
 
+export type ContainerType = React.FC<ContainerProps & React.RefAttributes<ViewMethods>> &
+  ViewMethods;
+
 type ContainerOwnerState = Required<Pick<ContainerProps, 'fixed' | 'maxWidth'>>;
 
 const ContainerRoot = styled(View)<{ ownerState: ContainerOwnerState }>(
@@ -76,7 +79,6 @@ export const Container = forwardRef<ViewMethods, ContainerProps>(
 
     return <ContainerRoot ref={ref} ownerState={ownerState} {...props} />;
   },
-) as unknown as React.FunctionComponent<ContainerProps & React.RefAttributes<ViewMethods>> &
-  ViewMethods;
+) as unknown as ContainerType;
 
 Container.displayName = 'Container';

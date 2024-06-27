@@ -66,7 +66,7 @@ function getThemeValue(
   const { cssProperty = propName, themeKey, transform, style } = options;
 
   if (propValue == null) {
-    return undefined;
+    return;
   }
 
   const themeMapping = get(theme, themeKey, {});
@@ -110,7 +110,7 @@ export interface StyleFunctionSx {
 export function createStyleFunctionSx(): StyleFunctionSx {
   return function styleFunctionSx({ sx, theme }) {
     if (!sx) {
-      return undefined;
+      return;
     }
 
     const config: SxConfig = theme.sxConfig ?? defaultSxConfig;
@@ -127,10 +127,10 @@ export function createStyleFunctionSx(): StyleFunctionSx {
       } else if (isObject(sxInput)) {
         sxObject = sxInput;
       } else {
-        return undefined;
+        return;
       }
       if (!sxObject) {
-        return undefined;
+        return;
       }
 
       let css: StyleValues = {};

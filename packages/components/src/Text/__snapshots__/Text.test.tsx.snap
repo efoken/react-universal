@@ -1,0 +1,202 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Text > default 1`] = `
+<div
+  class="css-1bfnf7v"
+  dir="auto"
+/>
+`;
+
+exports[`Text > nested 1`] = `
+<div
+  class="css-1bfnf7v"
+  dir="auto"
+>
+  <span
+    class="css-hz22dw"
+    data-testid="child"
+  />
+</div>
+`;
+
+exports[`Text > prop "aria-label" > value is set 1`] = `
+<div
+  aria-label="accessibility label"
+  class="css-1bfnf7v"
+  dir="auto"
+/>
+`;
+
+exports[`Text > prop "aria-labelledby" > value is set 1`] = `
+<div
+  aria-labelledby="123"
+  class="css-1bfnf7v"
+  dir="auto"
+/>
+`;
+
+exports[`Text > prop "aria-live" > value is set 1`] = `
+<div
+  aria-live="polite"
+  class="css-1bfnf7v"
+  dir="auto"
+/>
+`;
+
+exports[`Text > prop "dir" > value is "ltr" 1`] = `
+<div
+  class="css-1bfnf7v"
+  dir="ltr"
+/>
+`;
+
+exports[`Text > prop "dir" > value is "rtl" 1`] = `
+<div
+  class="css-1bfnf7v"
+  dir="rtl"
+/>
+`;
+
+exports[`Text > prop "href" > href with role 1`] = `
+<a
+  class="css-1bfnf7v"
+  dir="auto"
+  href="https://example.com"
+  role="presentation"
+/>
+`;
+
+exports[`Text > prop "href" > value is set 1`] = `
+<a
+  class="css-1bfnf7v"
+  dir="auto"
+  href="https://example.com"
+/>
+`;
+
+exports[`Text > prop "hrefAttrs" > null values are excluded 1`] = `
+<a
+  class="css-1bfnf7v"
+  dir="auto"
+  href="https://example.com"
+/>
+`;
+
+exports[`Text > prop "hrefAttrs" > requires "href" 1`] = `
+<div
+  class="css-1bfnf7v"
+  dir="auto"
+/>
+`;
+
+exports[`Text > prop "hrefAttrs" > target variant is set 1`] = `
+<a
+  class="css-1bfnf7v"
+  dir="auto"
+  href="https://example.com"
+  target="_blank"
+/>
+`;
+
+exports[`Text > prop "hrefAttrs" > value is set 1`] = `
+<a
+  class="css-1bfnf7v"
+  dir="auto"
+  download="filename.jpg"
+  href="https://example.com"
+  rel="nofollow"
+  target="_blank"
+/>
+`;
+
+exports[`Text > prop "id" > value is set 1`] = `
+<div
+  class="css-1bfnf7v"
+  dir="auto"
+  id="ID"
+/>
+`;
+
+exports[`Text > prop "lang" > ar 1`] = `
+<div
+  class="css-1bfnf7v"
+  dir="rtl"
+  lang="ar"
+/>
+`;
+
+exports[`Text > prop "lang" > fr 1`] = `
+<div
+  class="css-1bfnf7v"
+  dir="ltr"
+  lang="fr"
+/>
+`;
+
+exports[`Text > prop "lang" > undefined 1`] = `
+<div
+  class="css-1bfnf7v"
+  dir="auto"
+/>
+`;
+
+exports[`Text > prop "lang" > with dir 1`] = `
+<div
+  class="css-1bfnf7v"
+  dir="ltr"
+  lang="ar"
+/>
+`;
+
+exports[`Text > prop "numberOfLines" > value is set 1`] = `
+<div
+  class="css-xr0ybv"
+  dir="auto"
+/>
+`;
+
+exports[`Text > prop "numberOfLines" > value is set to one 1`] = `
+<div
+  class="css-1of54t"
+  dir="auto"
+/>
+`;
+
+exports[`Text > prop "role" > value alters HTML element 1`] = `
+<article
+  class="css-1bfnf7v"
+  dir="auto"
+/>
+`;
+
+exports[`Text > prop "role" > value is "button" 1`] = `
+<button
+  class="css-1bfnf7v"
+  dir="auto"
+  type="button"
+/>
+`;
+
+exports[`Text > prop "role" > value is set 1`] = `
+<div
+  class="css-1bfnf7v"
+  dir="auto"
+  role="presentation"
+/>
+`;
+
+exports[`Text > prop "style" > value is set 1`] = `
+<div
+  class="css-1bfnf7v"
+  dir="auto"
+  style="border-width: 5px;"
+/>
+`;
+
+exports[`Text > prop "testID" > value is set 1`] = `
+<div
+  class="css-1bfnf7v"
+  data-testid="123"
+  dir="auto"
+/>
+`;

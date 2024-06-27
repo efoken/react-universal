@@ -1,5 +1,6 @@
 'use client';
 
+import { useComposedRefs } from '@tamagui/compose-refs';
 import { useResponderEvents } from '@tamagui/react-native-use-responder-events';
 import type { AnyProps } from '@universal-ui/core';
 import {
@@ -7,14 +8,13 @@ import {
   getLocaleDirection,
   styled,
   useElementLayout,
-  useForkRef,
   useOwnerState,
   usePlatformMethods,
 } from '@universal-ui/core';
 import { isString, pick } from '@universal-ui/utils';
 import { Children, forwardRef, useContext, useRef } from 'react';
 import { TextAncestorContext } from '../Text/TextAncestorContext';
-import type { ViewMethods, ViewOwnerState, ViewProps } from './View.types';
+import type { ViewMethods, ViewOwnerState, ViewProps, ViewType } from './View.types';
 
 function pickProps<T extends AnyProps>(props: T) {
   return pick(props, {
@@ -51,7 +51,7 @@ const ViewRoot = styled('div', {
   minWidth: 0,
 }));
 
-export const View = forwardRef<any, ViewProps>(
+export const View = forwardRef<HTMLElement & ViewMethods, ViewProps>(
   (
     {
       as: asProp,
@@ -135,7 +135,7 @@ export const View = forwardRef<any, ViewProps>(
     }
 
     const platformMethodsRef = usePlatformMethods(hostRef);
-    const handleRef = useForkRef(hostRef, platformMethodsRef, ref);
+    const handleRef = useComposedRefs<HTMLElement>(hostRef, platformMethodsRef, ref);
 
     supportedProps.ref = handleRef;
 
@@ -146,6 +146,6 @@ export const View = forwardRef<any, ViewProps>(
 
     return <ViewRoot as={asProp ?? component} ownerState={ownerState} {...supportedProps} />;
   },
-) as unknown as React.FunctionComponent<ViewProps & React.RefAttributes<ViewMethods>> & ViewMethods;
+) as unknown as ViewType;
 
 View.displayName = 'View';

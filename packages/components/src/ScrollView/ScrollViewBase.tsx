@@ -1,6 +1,7 @@
 'use client';
 
-import { styled, useForkRef, useOwnerState } from '@universal-ui/core';
+import { useComposedRefs } from '@tamagui/compose-refs';
+import { styled, useOwnerState } from '@universal-ui/core';
 import { forwardRef, useRef } from 'react';
 import type { ViewMethods, ViewProps } from '../View';
 import { View } from '../View';
@@ -127,7 +128,7 @@ export const ScrollViewBase = forwardRef<any, ScrollViewBaseProps>(
       }
     };
 
-    const handleRef = useForkRef(hostRef, ref);
+    const handleRef = useComposedRefs(hostRef, ref);
 
     const ownerState = useOwnerState({
       scrollEnabled,
@@ -146,7 +147,6 @@ export const ScrollViewBase = forwardRef<any, ScrollViewBaseProps>(
       />
     );
   },
-) as unknown as React.FunctionComponent<ScrollViewBaseProps & React.RefAttributes<ViewMethods>> &
-  ViewMethods;
+) as unknown as React.FC<ScrollViewBaseProps & React.RefAttributes<ViewMethods>> & ViewMethods;
 
 ScrollViewBase.displayName = 'ScrollViewBase';

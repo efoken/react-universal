@@ -1,12 +1,17 @@
-import type { LayoutEvent, RNStyle, StyleProp, SxProps } from '@universal-ui/core';
+import type {
+  AccessibilityProps,
+  LayoutEvent,
+  RNStyle,
+  StyleProp,
+  SxProps,
+} from '@universal-ui/core';
 import type {
   NativeMethods,
   AccessibilityProps as RNAccessibilityProps,
   TextProps as RNTextProps,
 } from 'react-native';
-import type { AccessibilityProps } from '../types';
 
-export interface TextMethods extends NativeMethods {}
+export interface TextMethods extends Omit<NativeMethods, 'refs' | 'setNativeProps'> {}
 
 export type TextStyle = Omit<RNStyle, 'objectFit'>;
 
@@ -37,6 +42,8 @@ export interface TextProps
    */
   sx?: SxProps;
 }
+
+export type TextType = React.FC<TextProps & React.RefAttributes<TextMethods>> & TextMethods;
 
 export type TextOwnerState = Pick<TextProps, 'numberOfLines' | 'role'> & {
   hasTextAncestor: boolean;

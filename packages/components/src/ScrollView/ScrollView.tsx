@@ -1,8 +1,9 @@
 'use client';
 
+import { useComposedRefs } from '@tamagui/compose-refs';
 import type { LayoutEvent } from '@universal-ui/core';
-import { styled, useForkRef, useOwnerState } from '@universal-ui/core';
-import { isArray } from '@universal-ui/utils';
+import { styled, useOwnerState } from '@universal-ui/core';
+import { isArray, noop } from '@universal-ui/utils';
 import { Children, cloneElement, forwardRef, useImperativeHandle, useRef } from 'react';
 import type { GestureResponderEvent } from 'react-native';
 import { TextInputState } from '../TextInput/TextInputState';
@@ -13,6 +14,7 @@ import type {
   ScrollViewMethods,
   ScrollViewOwnerState,
   ScrollViewProps,
+  ScrollViewType,
 } from './ScrollView.types';
 import { ScrollViewBase } from './ScrollViewBase';
 
@@ -79,7 +81,7 @@ const ScrollViewChild = styled(View, {
   scrollSnapAlign: 'start',
 });
 
-export const ScrollView = forwardRef<ScrollViewMethods, ScrollViewProps>(
+export const ScrollView = forwardRef<HTMLElement & ScrollViewMethods, ScrollViewProps>(
   (
     {
       centerContent = false,
@@ -196,14 +198,14 @@ export const ScrollView = forwardRef<ScrollViewMethods, ScrollViewProps>(
       }
     };
 
-    const getScrollResponder = (): ScrollViewMethods => ({
-      flashScrollIndicators: () => {},
+    const getScrollResponder = ((): ScrollViewMethods => ({
+      flashScrollIndicators: noop,
       getInnerViewNode,
       getScrollableNode,
       getScrollResponder,
       scrollTo,
       scrollToEnd,
-    });
+    })) as () => HTMLElement & ScrollViewMethods;
 
     useImperativeHandle(ref, getScrollResponder);
 
@@ -231,7 +233,7 @@ export const ScrollView = forwardRef<ScrollViewMethods, ScrollViewProps>(
       onScroll?.(event);
     };
 
-    const handleRef = useForkRef<any>(scrollNodeRef, ref);
+    const handleRef = useComposedRefs<any>(scrollNodeRef, ref);
 
     const hasStickyHeaderIndices = !horizontal && isArray(stickyHeaderIndices);
 
@@ -293,7 +295,6 @@ export const ScrollView = forwardRef<ScrollViewMethods, ScrollViewProps>(
 
     return scrollView;
   },
-) as unknown as React.FunctionComponent<ScrollViewProps & React.RefAttributes<ScrollViewMethods>> &
-  ScrollViewMethods;
+) as unknown as ScrollViewType;
 
 ScrollView.displayName = 'ScrollView';

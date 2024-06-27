@@ -13,7 +13,6 @@ export function get<T extends Record<string, any>>(
       if (acc && acc[item] != null) {
         return acc[item];
       }
-      return undefined;
     }, obj) ?? fallback
   );
 }

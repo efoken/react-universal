@@ -6,5 +6,7 @@ export * from './getBoundingClientRect';
 export * from './getRect';
 export * from './is';
 export * from './mergeDeep';
+export * from './noop';
+export * from './normalizeEvent';
 export * from './pick';
 export * from './runIfFunction';

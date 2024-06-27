@@ -1,25 +1,7 @@
-import { styled } from '@universal-ui/core';
+import { normalizeLayoutEvent, normalizeRole, styled } from '@universal-ui/core';
 import { forwardRef } from 'react';
-import type { LayoutChangeEvent as RNLayoutChangeEvent } from 'react-native';
 import { View as RNView } from 'react-native';
-import type { ViewMethods, ViewProps } from './View.types';
-
-function normalizeLayoutEvent(event: RNLayoutChangeEvent) {
-  return {
-    nativeEvent: {
-      layout: {
-        height: event.nativeEvent.layout.height,
-        left: event.nativeEvent.layout.x,
-        top: event.nativeEvent.layout.y,
-        width: event.nativeEvent.layout.width,
-        x: event.nativeEvent.layout.x,
-        y: event.nativeEvent.layout.y,
-      },
-      target: event.target,
-    },
-    timeStamp: event.timeStamp,
-  };
-}
+import type { ViewProps, ViewType } from './View.types';
 
 const ViewRoot = styled(RNView, {
   name: 'View',
@@ -28,25 +10,14 @@ const ViewRoot = styled(RNView, {
   position: 'static',
 });
 
-export const View = forwardRef<any, ViewProps>(({ onLayout, role, style, ...props }, ref) => {
-  const handleLayout = (event: RNLayoutChangeEvent) => {
-    onLayout?.(normalizeLayoutEvent(event));
-  };
-
-  return (
-    <ViewRoot
-      ref={ref}
-      role={
-        role === 'label' || role === 'listbox' || role === 'paragraph' || role === 'textbox'
-          ? undefined
-          : role
-      }
-      style={style as any}
-      onLayout={handleLayout}
-      {...props}
-    />
-  );
-}) as unknown as React.FunctionComponent<ViewProps & React.RefAttributes<ViewMethods>> &
-  ViewMethods;
+export const View = forwardRef<any, ViewProps>(({ onLayout, role, style, ...props }, ref) => (
+  <ViewRoot
+    ref={ref}
+    role={normalizeRole(role)}
+    style={style as any}
+    onLayout={normalizeLayoutEvent(onLayout)}
+    {...props}
+  />
+)) as unknown as ViewType;
 
 View.displayName = 'View';

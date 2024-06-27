@@ -15,6 +15,8 @@ export class StyleRuntime {
     return this.#theme.breakpoints;
   }
 
+  static fontScale = 1;
+
   static get insets(): {
     bottom: string | number;
     left: string | number;

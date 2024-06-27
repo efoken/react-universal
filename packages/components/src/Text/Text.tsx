@@ -1,19 +1,19 @@
 'use client';
 
+import { useComposedRefs } from '@tamagui/compose-refs';
 import type { AnyProps } from '@universal-ui/core';
 import {
   forwardedProps,
   getLocaleDirection,
   styled,
   useElementLayout,
-  useForkRef,
   useOwnerState,
   usePlatformMethods,
 } from '@universal-ui/core';
 import { isString, pick } from '@universal-ui/utils';
 import { forwardRef, useCallback, useContext, useRef } from 'react';
 import type { GestureResponderEvent } from 'react-native';
-import type { TextMethods, TextOwnerState, TextProps } from './Text.types';
+import type { TextMethods, TextOwnerState, TextProps, TextType } from './Text.types';
 import { TextAncestorContext } from './TextAncestorContext';
 
 function pickProps<T extends AnyProps>(props: T) {
@@ -74,7 +74,7 @@ const TextRoot = styled('div', {
     },
 );
 
-export const Text = forwardRef<any, TextProps>(
+export const Text = forwardRef<HTMLElement & TextMethods, TextProps>(
   ({ as: asProp, hrefAttrs, numberOfLines, onClick, onLayout, onPress, ...props }, ref) => {
     const hasTextAncestor = useContext(TextAncestorContext);
     const hostRef = useRef<HTMLElement>(null);
@@ -126,7 +126,7 @@ export const Text = forwardRef<any, TextProps>(
     }
 
     const platformMethodsRef = usePlatformMethods(hostRef);
-    const handleRef = useForkRef(hostRef, platformMethodsRef, ref);
+    const handleRef = useComposedRefs<HTMLElement>(hostRef, platformMethodsRef, ref);
 
     supportedProps.ref = handleRef;
 
@@ -147,6 +147,6 @@ export const Text = forwardRef<any, TextProps>(
       <TextAncestorContext.Provider value>{element}</TextAncestorContext.Provider>
     );
   },
-) as unknown as React.FunctionComponent<TextProps & React.RefAttributes<TextMethods>> & TextMethods;
+) as unknown as TextType;
 
 Text.displayName = 'Text';

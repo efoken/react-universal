@@ -1,5 +1,7 @@
 import type {
+  AccessibilityProps as RNAccessibilityProps,
   ImageStyle as RNImageStyle,
+  Role as RNRole,
   TextStyle as RNTextStyle,
   TransformsStyle as RNTransformsStyle,
   ViewStyle as RNViewStyle,
@@ -242,4 +244,30 @@ export interface OverridableComponent<P extends AnyProps, C extends React.Elemen
   (props: OverridableProps<P, C>): React.ReactNode;
   displayName?: string;
   propTypes?: any;
+}
+
+export type AccessibilityRole = 'code' | 'label' | 'listbox' | 'paragraph' | 'textbox' | RNRole;
+
+export interface AccessibilityProps
+  extends Omit<
+      RNAccessibilityProps,
+      | 'accessibilityActions'
+      | 'accessibilityElementsHidden'
+      | 'accessibilityLabel'
+      | 'accessibilityLabelledBy'
+      | 'accessibilityLiveRegion'
+      | 'accessibilityRole'
+      | 'accessibilityState'
+      | 'accessibilityValue'
+      | 'accessibilityViewIsModal'
+      | 'importantForAccessibility'
+      | 'role'
+    >,
+    Omit<React.AriaAttributes, keyof RNAccessibilityProps> {
+  'aria-atomic'?: boolean;
+  'aria-multiline'?: boolean;
+  'aria-multiselectable'?: boolean;
+  'aria-readonly'?: boolean;
+  'aria-required'?: boolean;
+  role?: AccessibilityRole;
 }
