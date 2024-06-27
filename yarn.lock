@@ -3999,7 +3999,7 @@ __metadata:
     react: "npm:18.2.0"
     react-native: "npm:0.74.2"
     react-native-safe-area-context: "npm:4.10.1"
-    react-native-unistyles: "npm:^2.7.2"
+    react-native-unistyles: "npm:^2.8.1"
   languageName: unknown
   linkType: soft
 
@@ -4037,7 +4037,7 @@ __metadata:
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
     react-native: "npm:0.74.2"
-    react-native-unistyles: "npm:^2.7.2"
+    react-native-unistyles: "npm:^2.8.1"
   peerDependencies:
     "@types/react": ^18.2.0
     react: ^18.2.0
@@ -11178,9 +11178,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-unistyles@npm:^2.7.2":
-  version: 2.7.2
-  resolution: "react-native-unistyles@npm:2.7.2"
+"react-native-unistyles@npm:^2.8.1":
+  version: 2.8.1
+  resolution: "react-native-unistyles@npm:2.8.1"
   peerDependencies:
     "@react-native/normalize-colors": "*"
     react: "*"
@@ -11195,7 +11195,7 @@ __metadata:
       optional: true
     react-native-windows:
       optional: true
-  checksum: 10c0/fbb0bb9f4ff1da98201eb9c8bad7cbc3182943d0a8047a43cff78c6faa1199bd91781fb82daa19e295b930d6ce53e73f1ebb0df10e84f15775f19d9a6eb5f55d
+  checksum: 10c0/e48281213748b44a09b655b9dc195bd035b71d27139ae422ae21d2a5f1f545b9861cff1b78ebd65744e921dc56878bfd07537de68b064136c13b49df0ce1afc5
   languageName: node
   linkType: hard
 
@@ -13235,7 +13235,7 @@ __metadata:
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
     react-native: "npm:0.74.2"
-    react-native-unistyles: "npm:^2.7.2"
+    react-native-unistyles: "npm:^2.8.1"
     react-test-renderer: "npm:18.2.0"
     typescript: "npm:^5.4.5"
     vitest: "npm:^1.6.0"
