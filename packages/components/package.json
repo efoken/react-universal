@@ -5,7 +5,6 @@
   "license": "MIT",
   "dependencies": {
     "@tamagui/compose-refs": "^1.101.3",
-    "@tamagui/react-native-use-responder-events": "^1.101.3",
     "@universal-ui/core": "workspace:*"
   },
   "devDependencies": {

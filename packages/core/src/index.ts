@@ -7,6 +7,7 @@ export * from './forwardedProps';
 export * from './hooks/useElementLayout';
 export * from './hooks/useOwnerState';
 export * from './hooks/usePlatformMethods';
+export * from './hooks/useResponderEvents';
 export * from './math';
 export * from './normalizeColor';
 export * from './normalizeLayoutEvent';

@@ -1,8 +1,8 @@
-import type { ResponderConfig } from '@tamagui/react-native-use-responder-events/types/ResponderSystem';
 import type {
   AccessibilityProps,
   LayoutEvent,
   RNStyle,
+  ResponderConfig,
   StyleProp,
   SxProps,
 } from '@universal-ui/core';

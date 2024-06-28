@@ -1,5 +1,4 @@
-import type { ResponderConfig } from '@tamagui/react-native-use-responder-events/types/ResponderSystem';
-import type { StyleProp, SxProps } from '@universal-ui/core';
+import type { ResponderConfig, StyleProp, SxProps } from '@universal-ui/core';
 import type {
   NativeSyntheticEvent,
   TextInputProps as RNTextInputProps,

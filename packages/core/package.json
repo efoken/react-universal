@@ -10,6 +10,7 @@
     "@emotion/utils": "^1.2.1",
     "@react-native/normalize-colors": "^0.74.84",
     "@tamagui/constants": "^1.101.3",
+    "@tamagui/react-native-use-responder-events": "^1.101.3",
     "@universal-ui/utils": "workspace:*"
   },
   "devDependencies": {

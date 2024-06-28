@@ -1,7 +1,6 @@
 'use client';
 
 import { useComposedRefs } from '@tamagui/compose-refs';
-import { useResponderEvents } from '@tamagui/react-native-use-responder-events';
 import type { AnyProps } from '@universal-ui/core';
 import {
   forwardedProps,
@@ -9,6 +8,7 @@ import {
   useElementLayout,
   useOwnerState,
   usePlatformMethods,
+  useResponderEvents,
 } from '@universal-ui/core';
 import { normalizeEvent, pick } from '@universal-ui/utils';
 import type React from 'react';

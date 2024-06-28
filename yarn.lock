@@ -3996,7 +3996,6 @@ __metadata:
   resolution: "@universal-ui/components@workspace:packages/components"
   dependencies:
     "@tamagui/compose-refs": "npm:^1.101.3"
-    "@tamagui/react-native-use-responder-events": "npm:^1.101.3"
     "@types/react": "npm:~18.2.79"
     "@universal-ui/core": "workspace:*"
     react: "npm:18.2.0"
@@ -4021,6 +4020,7 @@ __metadata:
     "@emotion/utils": "npm:^1.2.1"
     "@react-native/normalize-colors": "npm:^0.74.84"
     "@tamagui/constants": "npm:^1.101.3"
+    "@tamagui/react-native-use-responder-events": "npm:^1.101.3"
     "@types/react": "npm:~18.2.79"
     "@universal-ui/utils": "workspace:*"
     react: "npm:18.2.0"
