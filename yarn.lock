@@ -3510,10 +3510,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/compose-refs@npm:^1.101.3":
-  version: 1.101.3
-  resolution: "@tamagui/compose-refs@npm:1.101.3"
-  checksum: 10c0/5304cb881f578356ba0f5aaf6dc85f61ccbde97ff235b266b5f37990119401e3924d47669872f6296f6b93c7c74045d71d5b655311fab9894df6f3808300e9c4
+"@tamagui/compose-refs@npm:^1.101.5":
+  version: 1.101.5
+  resolution: "@tamagui/compose-refs@npm:1.101.5"
+  peerDependencies:
+    react: "*"
+  checksum: 10c0/0dbe4610aad804f761556a60f5c2c73f0e5839a200b05af1ecd1559f2b08f582300e9cf720e88864688a190dbc61f1ff981432f67f66b7240b68d3015ad48dfb
   languageName: node
   linkType: hard
 
@@ -3995,7 +3997,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@universal-ui/components@workspace:packages/components"
   dependencies:
-    "@tamagui/compose-refs": "npm:^1.101.3"
+    "@tamagui/compose-refs": "npm:^1.101.5"
     "@types/react": "npm:~18.2.79"
     "@universal-ui/core": "workspace:*"
     react: "npm:18.2.0"
