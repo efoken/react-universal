@@ -1,4 +1,9 @@
-import { normalizeLayoutEvent, normalizeRole, styled } from '@universal-ui/core';
+import {
+  normalizeLayoutEvent,
+  normalizeResponderEvent,
+  normalizeRole,
+  styled,
+} from '@universal-ui/core';
 import { normalizeEvent } from '@universal-ui/utils';
 import { forwardRef, useState } from 'react';
 import type {
@@ -20,10 +25,22 @@ export const TextInput = forwardRef<any, TextInputProps>(
   (
     {
       'aria-label': ariaLabel,
+      onChangeText,
       onContentSizeChange,
       onLayout,
-      onChangeText,
+      onMoveShouldSetResponder,
+      onMoveShouldSetResponderCapture,
+      onResponderEnd,
+      onResponderGrant,
+      onResponderMove,
+      onResponderReject,
+      onResponderRelease,
+      onResponderStart,
+      onResponderTerminate,
+      onResponderTerminationRequest,
       onSelectionChange,
+      onStartShouldSetResponder,
+      onStartShouldSetResponderCapture,
       role,
       style,
       ...props
@@ -62,7 +79,19 @@ export const TextInput = forwardRef<any, TextInputProps>(
         onChangeText={handleChangeText}
         onContentSizeChange={handleContentSizeChange}
         onLayout={normalizeLayoutEvent(onLayout)}
+        onMoveShouldSetResponder={normalizeResponderEvent(onMoveShouldSetResponder)}
+        onMoveShouldSetResponderCapture={normalizeResponderEvent(onMoveShouldSetResponderCapture)}
+        onResponderEnd={normalizeResponderEvent(onResponderEnd)}
+        onResponderGrant={normalizeResponderEvent(onResponderGrant)}
+        onResponderMove={normalizeResponderEvent(onResponderMove)}
+        onResponderReject={normalizeResponderEvent(onResponderReject)}
+        onResponderRelease={normalizeResponderEvent(onResponderRelease)}
+        onResponderStart={normalizeResponderEvent(onResponderStart)}
+        onResponderTerminate={normalizeResponderEvent(onResponderTerminate)}
+        onResponderTerminationRequest={normalizeResponderEvent(onResponderTerminationRequest)}
         onSelectionChange={handleSelectionChange}
+        onStartShouldSetResponder={normalizeResponderEvent(onStartShouldSetResponder)}
+        onStartShouldSetResponderCapture={normalizeResponderEvent(onStartShouldSetResponderCapture)}
         {...props}
       />
     );

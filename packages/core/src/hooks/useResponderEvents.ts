@@ -42,25 +42,25 @@ export interface ResponderEvent {
 }
 
 export interface ResponderConfig {
-  // Direct responder events dispatched directly to responder. Do not bubble.
-  onResponderEnd?: ((e: ResponderEvent) => void) | null;
-  onResponderGrant?: ((e: ResponderEvent) => void | boolean) | null;
-  onResponderMove?: ((e: ResponderEvent) => void) | null;
-  onResponderReject?: ((e: ResponderEvent) => void) | null;
-  onResponderRelease?: ((e: ResponderEvent) => void) | null;
-  onResponderStart?: ((e: ResponderEvent) => void) | null;
-  onResponderTerminate?: ((e: ResponderEvent) => void) | null;
-  onResponderTerminationRequest?: ((e: ResponderEvent) => boolean) | null;
-  // On pointer down, should this element become the responder?
-  onStartShouldSetResponder?: ((e: ResponderEvent) => boolean) | null;
-  onStartShouldSetResponderCapture?: ((e: ResponderEvent) => boolean) | null;
   // On pointer move, should this element become the responder?
-  onMoveShouldSetResponder?: ((e: ResponderEvent) => boolean) | null;
-  onMoveShouldSetResponderCapture?: ((e: ResponderEvent) => boolean) | null;
+  onMoveShouldSetResponder?: (event: ResponderEvent) => boolean;
+  onMoveShouldSetResponderCapture?: (event: ResponderEvent) => boolean;
+  // Direct responder events dispatched directly to responder. Do not bubble.
+  onResponderEnd?: (event: ResponderEvent) => void;
+  onResponderGrant?: (event: ResponderEvent) => void | boolean;
+  onResponderMove?: (event: ResponderEvent) => void;
+  onResponderReject?: (event: ResponderEvent) => void;
+  onResponderRelease?: (event: ResponderEvent) => void;
+  onResponderStart?: (event: ResponderEvent) => void;
+  onResponderTerminate?: (event: ResponderEvent) => void;
+  onResponderTerminationRequest?: (event: ResponderEvent) => boolean;
   // On scroll, should this element become the responder? Do no bubble
-  onScrollShouldSetResponder?: ((e: ResponderEvent) => boolean) | null;
-  onScrollShouldSetResponderCapture?: ((e: ResponderEvent) => boolean) | null;
+  onScrollShouldSetResponder?: (event: ResponderEvent) => boolean;
+  onScrollShouldSetResponderCapture?: (event: ResponderEvent) => boolean;
   // On text selection change, should this element become the responder?
-  onSelectionChangeShouldSetResponder?: ((e: ResponderEvent) => boolean) | null;
-  onSelectionChangeShouldSetResponderCapture?: ((e: ResponderEvent) => boolean) | null;
+  onSelectionChangeShouldSetResponder?: (event: ResponderEvent) => boolean;
+  onSelectionChangeShouldSetResponderCapture?: (event: ResponderEvent) => boolean;
+  // On pointer down, should this element become the responder?
+  onStartShouldSetResponder?: (event: ResponderEvent) => boolean;
+  onStartShouldSetResponderCapture?: (event: ResponderEvent) => boolean;
 }

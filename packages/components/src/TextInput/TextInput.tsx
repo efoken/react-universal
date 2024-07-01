@@ -340,7 +340,7 @@ export const TextInput = forwardRef<HTMLInputElement & TextInputMethods, TextInp
       onSelectionChangeShouldSetResponderCapture,
       onStartShouldSetResponder,
       onStartShouldSetResponderCapture,
-    } as any);
+    });
 
     const supportedProps: AnyProps = pickProps(props);
     supportedProps.autoCapitalize = autoCapitalize;

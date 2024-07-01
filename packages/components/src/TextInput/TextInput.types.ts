@@ -1,4 +1,4 @@
-import type { ResponderConfig, StyleProp, SxProps } from '@universal-ui/core';
+import type { StyleProp, SxProps } from '@universal-ui/core';
 import type {
   NativeSyntheticEvent,
   TextInputProps as RNTextInputProps,
@@ -44,16 +44,7 @@ export interface TextInputProps
       | 'returnKeyType'
       | 'style'
     >,
-    ViewProps,
-    Partial<
-      Pick<
-        ResponderConfig,
-        | 'onScrollShouldSetResponder'
-        | 'onScrollShouldSetResponderCapture'
-        | 'onSelectionChangeShouldSetResponder'
-        | 'onSelectionChangeShouldSetResponderCapture'
-      >
-    > {
+    ViewProps {
   dir?: 'ltr' | 'rtl' | 'auto';
   onContentSizeChange?: (event: TextInputContentSizeChangeEvent) => void;
   onSelectionChange?: (event: TextInputSelectionChangeEvent) => void;

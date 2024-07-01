@@ -1,7 +1,7 @@
 'use client';
 
 import { useComposedRefs } from '@tamagui/compose-refs';
-import type { LayoutEvent } from '@universal-ui/core';
+import type { LayoutEvent, ResponderEvent } from '@universal-ui/core';
 import { styled, useOwnerState } from '@universal-ui/core';
 import { isArray, noop } from '@universal-ui/utils';
 import { Children, cloneElement, forwardRef, useImperativeHandle, useRef } from 'react';
@@ -141,7 +141,7 @@ export const ScrollView = forwardRef<HTMLElement & ScrollViewMethods, ScrollView
       onTouchEnd?.(event);
     };
 
-    const handleResponderRelease = (event: GestureResponderEvent) => {
+    const handleResponderRelease = (event: ResponderEvent) => {
       onResponderRelease?.(event);
 
       // By default ScrollViews will unfocus a TextInput if another touch occurs
@@ -150,7 +150,6 @@ export const ScrollView = forwardRef<HTMLElement & ScrollViewMethods, ScrollView
       if (
         currentlyFocusedTextInput != null &&
         keyboardShouldPersistTaps !== 'always' &&
-        // @ts-expect-error: We have to handle better typing for the event
         event.target !== currentlyFocusedTextInput &&
         !observedScrollSinceBecomingResponder.current
       ) {
@@ -158,7 +157,7 @@ export const ScrollView = forwardRef<HTMLElement & ScrollViewMethods, ScrollView
       }
     };
 
-    const handleResponderGrant = (event: GestureResponderEvent) => {
+    const handleResponderGrant = (event: ResponderEvent) => {
       observedScrollSinceBecomingResponder.current = false;
       onResponderGrant?.(event);
     };

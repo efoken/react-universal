@@ -1,4 +1,9 @@
-import { normalizeLayoutEvent, normalizeRole, styled } from '@universal-ui/core';
+import {
+  normalizeLayoutEvent,
+  normalizeResponderEvent,
+  normalizeRole,
+  styled,
+} from '@universal-ui/core';
 import { forwardRef } from 'react';
 import { ScrollView as RNScrollView } from 'react-native';
 import type { ScrollViewProps, ScrollViewType } from './ScrollView.types';
@@ -11,7 +16,30 @@ const ScrollViewRoot = styled(RNScrollView, {
 });
 
 export const ScrollView = forwardRef<any, ScrollViewProps>(
-  ({ contentContainerStyle, onLayout, onWheel, refreshControl, role, style, ...props }, ref) => (
+  (
+    {
+      contentContainerStyle,
+      onLayout,
+      onMoveShouldSetResponder,
+      onMoveShouldSetResponderCapture,
+      onResponderEnd,
+      onResponderGrant,
+      onResponderMove,
+      onResponderReject,
+      onResponderRelease,
+      onResponderStart,
+      onResponderTerminate,
+      onResponderTerminationRequest,
+      onStartShouldSetResponder,
+      onStartShouldSetResponderCapture,
+      onWheel,
+      refreshControl,
+      role,
+      style,
+      ...props
+    },
+    ref,
+  ) => (
     <ScrollViewRoot
       ref={ref}
       contentContainerStyle={contentContainerStyle as any}
@@ -19,6 +47,18 @@ export const ScrollView = forwardRef<any, ScrollViewProps>(
       role={normalizeRole(role)}
       style={style as any}
       onLayout={normalizeLayoutEvent(onLayout)}
+      onMoveShouldSetResponder={normalizeResponderEvent(onMoveShouldSetResponder)}
+      onMoveShouldSetResponderCapture={normalizeResponderEvent(onMoveShouldSetResponderCapture)}
+      onResponderEnd={normalizeResponderEvent(onResponderEnd)}
+      onResponderGrant={normalizeResponderEvent(onResponderGrant)}
+      onResponderMove={normalizeResponderEvent(onResponderMove)}
+      onResponderReject={normalizeResponderEvent(onResponderReject)}
+      onResponderRelease={normalizeResponderEvent(onResponderRelease)}
+      onResponderStart={normalizeResponderEvent(onResponderStart)}
+      onResponderTerminate={normalizeResponderEvent(onResponderTerminate)}
+      onResponderTerminationRequest={normalizeResponderEvent(onResponderTerminationRequest)}
+      onStartShouldSetResponder={normalizeResponderEvent(onStartShouldSetResponder)}
+      onStartShouldSetResponderCapture={normalizeResponderEvent(onStartShouldSetResponderCapture)}
       {...props}
     />
   ),

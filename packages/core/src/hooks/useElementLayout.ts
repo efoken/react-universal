@@ -2,7 +2,7 @@ import { useIsomorphicLayoutEffect } from '@tamagui/constants';
 import { getBoundingClientRect, isFunction } from '@universal-ui/utils';
 import type { MeasureOnSuccessCallback } from 'react-native';
 
-const layoutHandlers = new WeakMap<Element, (e: LayoutEvent) => void>();
+const layoutHandlers = new WeakMap<Element, (event: LayoutEvent) => void>();
 const resizeListeners = new Set<() => void>();
 
 export interface LayoutValue {
@@ -120,7 +120,7 @@ if (typeof window !== 'undefined' && 'ResizeObserver' in window) {
 
 export function useElementLayout(
   ref: React.RefObject<HTMLElement>,
-  onLayout?: ((e: LayoutEvent) => void) | null,
+  onLayout?: ((event: LayoutEvent) => void) | null,
 ) {
   // Two effects because expensive to re-run on every change of onLayout
   useIsomorphicLayoutEffect(() => {

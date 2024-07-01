@@ -34,18 +34,16 @@ export type ViewStyle = Omit<
 export interface ViewProps
   extends Omit<
       RNViewProps,
-      keyof RNAccessibilityProps | 'focusable' | 'nativeID' | 'onLayout' | 'pointerEvents' | 'style'
+      | keyof RNAccessibilityProps
+      | keyof ResponderConfig
+      | 'focusable'
+      | 'nativeID'
+      | 'onLayout'
+      | 'pointerEvents'
+      | 'style'
     >,
     AccessibilityProps,
-    Partial<
-      Pick<
-        ResponderConfig,
-        | 'onScrollShouldSetResponder'
-        | 'onScrollShouldSetResponderCapture'
-        | 'onSelectionChangeShouldSetResponder'
-        | 'onSelectionChangeShouldSetResponderCapture'
-      >
-    > {
+    ResponderConfig {
   as?: React.ElementType;
   dir?: 'ltr' | 'rtl' | 'auto';
   href?: string;

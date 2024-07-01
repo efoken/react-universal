@@ -108,7 +108,7 @@ export const View = forwardRef<HTMLElement & ViewMethods, ViewProps>(
       onSelectionChangeShouldSetResponderCapture,
       onStartShouldSetResponder,
       onStartShouldSetResponderCapture,
-    } as any);
+    });
 
     let component: 'a' | 'div' = 'div';
 

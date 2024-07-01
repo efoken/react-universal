@@ -11,6 +11,7 @@ export * from './hooks/useResponderEvents';
 export * from './math';
 export * from './normalizeColor';
 export * from './normalizeLayoutEvent';
+export * from './normalizeResponderEvent';
 export * from './normalizeRole';
 export * from './styled';
 export * from './sxConfig';
