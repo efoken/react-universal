@@ -3,6 +3,7 @@ export * from './capitalize';
 export * from './cloneDeep';
 export * from './get';
 export * from './getBoundingClientRect';
+export * from './getOwnerDocument';
 export * from './getRect';
 export * from './is';
 export * from './mergeDeep';
