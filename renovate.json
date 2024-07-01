@@ -9,7 +9,11 @@
     },
     {
       "groupName": "tamagui monorepo",
-      "matchPackageNames": ["@tamagui/constants", "@tamagui/react-native-use-responder-events"]
+      "matchPackageNames": [
+        "@tamagui/compose-refs",
+        "@tamagui/constants",
+        "@tamagui/react-native-use-responder-events"
+      ]
     }
   ],
   "rangeStrategy": "bump",
