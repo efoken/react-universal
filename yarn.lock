@@ -3300,7 +3300,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native/normalize-colors@npm:0.74.85, @react-native/normalize-colors@npm:^0.74.84":
+"@react-native/normalize-colors@npm:0.74.85, @react-native/normalize-colors@npm:^0.74.85":
   version: 0.74.85
   resolution: "@react-native/normalize-colors@npm:0.74.85"
   checksum: 10c0/44fbb2e78ed4656b78b32aa41b79e2e8b6264e1577b892a6f81205a7991490aad62ae96b3900d6f6e1609ffd5bab7ed1760aa814f119a90c05d13ab80942fda7
@@ -4116,7 +4116,7 @@ __metadata:
     "@babel/core": "npm:^7.24.7"
     "@babel/preset-env": "npm:^7.24.7"
     "@expo/metro-runtime": "npm:~3.2.1"
-    "@react-native/normalize-colors": "npm:^0.74.84"
+    "@react-native/normalize-colors": "npm:^0.74.85"
     "@universal-ui/components": "workspace:*"
     "@universal-ui/core": "workspace:*"
     expo: "npm:~51.0.18"
@@ -4159,7 +4159,7 @@ __metadata:
     "@emotion/react": "npm:^11.11.4"
     "@emotion/serialize": "npm:^1.1.4"
     "@emotion/utils": "npm:^1.2.1"
-    "@react-native/normalize-colors": "npm:^0.74.84"
+    "@react-native/normalize-colors": "npm:^0.74.85"
     "@tamagui/constants": "npm:^1.101.7"
     "@tamagui/react-native-use-responder-events": "npm:^1.101.7"
     "@types/react": "npm:~18.2.79"
@@ -13325,7 +13325,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:^7.24.7"
     "@babel/preset-env": "npm:^7.24.7"
-    "@react-native/normalize-colors": "npm:^0.74.84"
+    "@react-native/normalize-colors": "npm:^0.74.85"
     "@testing-library/dom": "npm:^10.3.0"
     "@testing-library/jest-dom": "npm:^6.4.6"
     "@testing-library/react": "npm:^16.0.0"
