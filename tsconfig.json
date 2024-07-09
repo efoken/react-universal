@@ -12,6 +12,7 @@
     "target": "ES2022"
   },
   "include": [
+    "./.storybook/**/*",
     "./@types/*",
     "./app/**/*",
     "./docs/**/*",

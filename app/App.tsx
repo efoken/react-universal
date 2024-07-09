@@ -1,4 +1,4 @@
-import { Container, Text, View } from '@universal-ui/components';
+import { Button as ButtonBase, Container, Text, View } from '@universal-ui/components';
 import { ThemeProvider, isWeb, styled } from '@universal-ui/core';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import { StatusBar } from 'expo-status-bar';
@@ -17,10 +17,10 @@ const Grid = styled(Container)(({ theme }) => ({
   paddingTop: theme.space[10],
 }));
 
-const Button = styled(View)(({ theme }) => ({
+const Button = styled(ButtonBase)(({ theme }) => ({
   backgroundColor: {
     xs: theme.colors.black,
-    md: theme.colors.green,
+    md: theme.colors.white,
   },
   borderRadius: theme.radii[2],
   paddingBottom: theme.space[2],

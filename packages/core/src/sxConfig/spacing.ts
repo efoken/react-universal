@@ -202,7 +202,9 @@ function style(props: AnyProps & { theme: Theme }, keys: string[]) {
     }, {});
 }
 
-type SpacingProp<T> = BreakpointValue<T | ThemeValue<Theme['space']>>;
+type SpacingProp<T> = BreakpointValue<
+  T | ThemeValue<Theme['space'] extends number ? {} : Theme['space']>
+>;
 
 export interface MarginProps {
   m?: SpacingProp<RNStyle['margin']>;

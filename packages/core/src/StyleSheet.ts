@@ -26,7 +26,7 @@ function getBreakpointsStyles<T extends Record<string, any>>(
 function parseStyle<T extends Record<string, any>>(style: T, runtime: typeof StyleRuntime) {
   const nextStyle = Object.entries(style ?? {}).reduce<Record<string, any>>(
     (acc, [key, value]) =>
-      isObject(value)
+      isObject(value) && !key.startsWith('&')
         ? mergeDeep(acc, getBreakpointsStyles(key, value, runtime))
         : { ...acc, [key]: value },
     {},

@@ -53,6 +53,10 @@ export interface ViewProps
     target?: React.HTMLAttributeAnchorTarget;
   };
   lang?: Intl.UnicodeBCP47LocaleIdentifier;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLElement>) => void;
+  onKeyDownCapture?: (event: React.KeyboardEvent<HTMLElement>) => void;
+  onKeyUp?: (event: React.KeyboardEvent<HTMLElement>) => void;
+  onKeyUpCapture?: (event: React.KeyboardEvent<HTMLElement>) => void;
   /**
    * Callback invoked on mount and layout changes.
    */

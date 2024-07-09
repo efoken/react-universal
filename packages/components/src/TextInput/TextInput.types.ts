@@ -44,7 +44,7 @@ export interface TextInputProps
       | 'returnKeyType'
       | 'style'
     >,
-    ViewProps {
+    Omit<ViewProps, 'as' | 'href' | 'hrefAttrs'> {
   dir?: 'ltr' | 'rtl' | 'auto';
   onContentSizeChange?: (event: TextInputContentSizeChangeEvent) => void;
   onSelectionChange?: (event: TextInputSelectionChangeEvent) => void;

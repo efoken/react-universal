@@ -7,7 +7,7 @@ import type { ViewMethods, ViewProps } from '../View';
 import { View } from '../View';
 import type { ScrollViewProps } from './ScrollView.types';
 
-export interface ScrollViewBaseProps
+interface ScrollViewBaseProps
   extends ViewProps,
     Pick<
       ScrollViewProps,

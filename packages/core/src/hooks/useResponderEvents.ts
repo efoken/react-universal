@@ -1,9 +1,10 @@
 export { useResponderEvents } from '@tamagui/react-native-use-responder-events';
 
-export interface ResponderEvent {
-  bubbles: boolean;
-  cancelable: boolean;
-  currentTarget: any;
+export interface ResponderEvent
+  extends Omit<
+    React.BaseSyntheticEvent<TouchEvent, any, any>,
+    'defaultPrevented' | 'eventPhase' | 'isTrusted' | 'type'
+  > {
   defaultPrevented: boolean | null;
   dispatchConfig: {
     registrationName?: string;
@@ -13,15 +14,7 @@ export interface ResponderEvent {
     };
   };
   eventPhase: number | null;
-  isDefaultPrevented: () => boolean;
-  isPropagationStopped: () => boolean;
   isTrusted: boolean | null;
-  nativeEvent: TouchEvent;
-  persist: () => void;
-  preventDefault: () => void;
-  stopPropagation: () => void;
-  target: any;
-  timeStamp: number;
   touchHistory: {
     indexOfSingleActiveTouch: number;
     mostRecentTimeStamp: number;

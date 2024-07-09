@@ -12,7 +12,6 @@ export const defaultTheme = {
   colors: {
     black: '#000',
     white: '#fff',
-    green: '#f00',
   },
   fonts: {
     heading: {
@@ -56,7 +55,9 @@ export const defaultTheme = {
   sxConfig: undefined as any,
 };
 
-export type Theme = typeof defaultTheme;
+type DefaultTheme = typeof defaultTheme;
+
+export interface Theme extends DefaultTheme {}
 
 export type ThemeValue<T extends Record<string, any>> = {
   [K in keyof T]-?: Join<K, T[K] extends Record<string, any> ? ThemeValue<T[K]> : ''>;

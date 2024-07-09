@@ -67,7 +67,6 @@ function pickProps<T extends AnyProps>(props: T) {
     onChange: true,
     onScroll: true,
     placeholder: true,
-    pointerEvents: true,
     readOnly: true,
     rows: true,
     spellCheck: true,
@@ -360,7 +359,7 @@ export const TextInput = forwardRef<HTMLInputElement & TextInputMethods, TextInp
     supportedProps.virtualkeyboardpolicy = showSoftInputOnFocus ? 'auto' : 'manual';
 
     const platformMethodsRef = usePlatformMethods(hostRef);
-    const handleRef = useComposedRefs<any>(hostRef, platformMethodsRef, imperativeRef, ref);
+    const handleRef = useComposedRefs<HTMLElement>(hostRef, platformMethodsRef, imperativeRef, ref);
 
     supportedProps.ref = handleRef;
 

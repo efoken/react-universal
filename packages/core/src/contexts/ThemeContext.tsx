@@ -38,5 +38,5 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children, theme = 
 );
 
 export function useTheme() {
-  return useContext(ThemeContext) ?? defaultTheme;
+  return useContext(ThemeContext);
 }

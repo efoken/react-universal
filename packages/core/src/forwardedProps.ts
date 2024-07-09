@@ -100,8 +100,8 @@ const mouseProps = {
   onMouseEnter: true,
   onMouseLeave: true,
   onMouseMove: true,
-  onMouseOver: true,
   onMouseOut: true,
+  onMouseOver: true,
   onMouseUp: true,
 } as const;
 

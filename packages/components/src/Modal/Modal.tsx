@@ -1,5 +1,3 @@
-'use client';
-
 import { useComposedRefs } from '@tamagui/compose-refs';
 import type { AnyProps } from '@universal-ui/core';
 import {
@@ -8,13 +6,11 @@ import {
   styled,
   useElementLayout,
   useOwnerState,
-  usePlatformMethods,
   useResponderEvents,
 } from '@universal-ui/core';
-import { isString, pick } from '@universal-ui/utils';
-import { Children, forwardRef, useContext, useRef } from 'react';
-import { TextAncestorContext } from '../Text/TextAncestorContext';
-import type { ViewMethods, ViewOwnerState, ViewProps, ViewType } from './View.types';
+import { pick } from '@universal-ui/utils';
+import { forwardRef, useEffect, useRef } from 'react';
+import type { ModalMethods, ModalOwnerState, ModalProps, ModalType } from './Modal.types';
 
 function pickProps<T extends AnyProps>(props: T) {
   return pick(props, {
@@ -26,35 +22,41 @@ function pickProps<T extends AnyProps>(props: T) {
     ...forwardedProps.mouseProps,
     ...forwardedProps.touchProps,
     ...forwardedProps.styleProps,
-    href: true,
     lang: true,
     onScroll: true,
     onWheel: true,
   });
 }
 
-const ViewRoot = styled('div', {
-  name: 'View',
+const ModalRoot = styled('dialog', {
+  name: 'Modal',
   slot: 'Root',
-})<{ ownerState: ViewOwnerState }>(({ ownerState }) => ({
-  alignItems: 'stretch',
+})<{ ownerState: ModalOwnerState }>(({ ownerState }) => ({
   backgroundColor: 'transparent',
   borderColor: '#000',
   borderStyle: 'solid',
   borderWidth: 0,
-  display: ownerState.hasTextAncestor ? ('inline-flex' as any) : 'flex',
-  flexBasis: 'auto',
   flexDirection: 'column',
-  flexShrink: 0,
-  minHeight: 0,
-  minWidth: 0,
+  height: '100%',
+  inset: 0,
+  maxHeight: 'none',
+  maxWidth: 'none',
+  width: '100%',
+  '&::backdrop': [
+    {
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      display: ownerState.hideBackdrop ? 'none' : 'block',
+    },
+    ownerState.backdropStyle,
+  ],
 }));
 
-export const View = forwardRef<HTMLElement & ViewMethods, ViewProps>(
+export const Modal = forwardRef<HTMLDialogElement & ModalMethods, ModalProps>(
   (
     {
-      as: _as,
-      hrefAttrs,
+      backdropStyle,
+      hideBackdrop = false,
+      onClose,
       onLayout,
       onMoveShouldSetResponder,
       onMoveShouldSetResponderCapture,
@@ -72,22 +74,13 @@ export const View = forwardRef<HTMLElement & ViewMethods, ViewProps>(
       onSelectionChangeShouldSetResponderCapture,
       onStartShouldSetResponder,
       onStartShouldSetResponderCapture,
+      open,
+      role,
       ...props
     },
     ref,
   ) => {
-    if (process.env.NODE_ENV !== 'production') {
-      for (const item of Children.toArray(props.children)) {
-        if (isString(item)) {
-          console.error(
-            `universal-ui: Unexpected text node: ${item}. A text node cannot be a child of a <View>.`,
-          );
-        }
-      }
-    }
-
-    const hasTextAncestor = useContext(TextAncestorContext);
-    const hostRef = useRef<HTMLElement>(null);
+    const hostRef = useRef<HTMLDialogElement>(null);
 
     useElementLayout(hostRef, onLayout);
     useResponderEvents(hostRef, {
@@ -109,42 +102,56 @@ export const View = forwardRef<HTMLElement & ViewMethods, ViewProps>(
       onStartShouldSetResponderCapture,
     });
 
-    let component: 'a' | 'div' = 'div';
+    const handleCancel = (event: React.SyntheticEvent<HTMLDialogElement>) => {
+      event.preventDefault();
+    };
+
+    const handleClick = (event: React.MouseEvent<HTMLDialogElement>) => {
+      if (event.target === hostRef.current && hostRef.current.open && !hideBackdrop) {
+        onClose?.(event, 'backdropPress');
+      }
+    };
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLDialogElement>) => {
+      if (event.key === 'Escape' && hostRef.current?.open) {
+        onClose?.(event, 'escapeKeyDown');
+        event.stopPropagation();
+      }
+    };
 
     const langDirection = props.lang == null ? null : getLocaleDirection(props.lang);
     const componentDirection = props.dir ?? langDirection;
 
     const supportedProps: AnyProps = pickProps(props);
+    supportedProps['aria-live'] = 'polite';
+    supportedProps['aria-modal'] = role === 'dialog' || role === 'alertdialog' ? true : undefined;
     supportedProps.dir = componentDirection;
+    supportedProps.onCancel = handleCancel;
+    supportedProps.onClick = handleClick;
+    supportedProps.onKeyDown = handleKeyDown;
+    supportedProps.role = role;
 
-    if (props.href != null) {
-      component = 'a';
-      if (hrefAttrs != null) {
-        const { download, rel, target } = hrefAttrs;
-        if (download != null) {
-          supportedProps.download = download;
-        }
-        if (rel != null) {
-          supportedProps.rel = rel;
-        }
-        if (isString(target)) {
-          supportedProps.target = target.startsWith('_') ? target : `_${target}`;
-        }
-      }
-    }
-
-    const platformMethodsRef = usePlatformMethods(hostRef);
-    const handleRef = useComposedRefs<HTMLElement>(hostRef, platformMethodsRef, ref);
+    const handleRef = useComposedRefs<HTMLElement>(hostRef, ref);
 
     supportedProps.ref = handleRef;
 
+    useEffect(() => {
+      if (hostRef.current != null) {
+        if (open) {
+          hostRef.current?.showModal();
+        } else {
+          hostRef.current?.close();
+        }
+      }
+    }, [open]);
+
     const ownerState = useOwnerState({
-      hasTextAncestor,
-      role: props.role,
+      backdropStyle,
+      hideBackdrop,
     });
 
-    return <ViewRoot as={_as ?? component} ownerState={ownerState} {...supportedProps} />;
+    return <ModalRoot ownerState={ownerState} {...supportedProps} />;
   },
-) as unknown as ViewType;
+) as unknown as ModalType;
 
-View.displayName = 'View';
+Modal.displayName = 'Modal';

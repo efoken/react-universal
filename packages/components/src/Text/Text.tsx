@@ -28,7 +28,6 @@ function pickProps<T extends AnyProps>(props: T) {
     ...forwardedProps.styleProps,
     href: true,
     lang: true,
-    pointerEvents: true,
   });
 }
 
@@ -75,7 +74,7 @@ const TextRoot = styled('div', {
 );
 
 export const Text = forwardRef<HTMLElement & TextMethods, TextProps>(
-  ({ as: asProp, hrefAttrs, numberOfLines, onClick, onLayout, onPress, ...props }, ref) => {
+  ({ as: _as, hrefAttrs, numberOfLines, onClick, onLayout, onPress, ...props }, ref) => {
     const hasTextAncestor = useContext(TextAncestorContext);
     const hostRef = useRef<HTMLElement>(null);
 
@@ -137,9 +136,7 @@ export const Text = forwardRef<HTMLElement & TextMethods, TextProps>(
       role: props.role,
     });
 
-    const element = (
-      <TextRoot as={asProp ?? component} ownerState={ownerState} {...supportedProps} />
-    );
+    const element = <TextRoot as={_as ?? component} ownerState={ownerState} {...supportedProps} />;
 
     return hasTextAncestor ? (
       element

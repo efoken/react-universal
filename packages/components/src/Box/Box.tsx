@@ -17,4 +17,6 @@ export type BoxType = React.FC<BoxProps & React.RefAttributes<ViewMethods>> & Vi
 
 export const Box = styled(View, {
   name: 'Box',
-})() as unknown as BoxType;
+})({
+  flexDirection: 'row',
+}) as unknown as BoxType;
