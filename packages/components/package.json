@@ -4,7 +4,7 @@
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@tamagui/compose-refs": "^1.101.7",
+    "@tamagui/compose-refs": "^1.102.3",
     "@universal-ui/core": "workspace:*"
   },
   "devDependencies": {
