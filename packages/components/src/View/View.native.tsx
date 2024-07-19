@@ -18,6 +18,7 @@ const ViewRoot = styled(RNView, {
 export const View = forwardRef<any, ViewProps>(
   (
     {
+      lang,
       onLayout,
       onMoveShouldSetResponder,
       onMoveShouldSetResponderCapture,
@@ -39,6 +40,7 @@ export const View = forwardRef<any, ViewProps>(
   ) => (
     <ViewRoot
       ref={ref}
+      accessibilityLanguage={lang}
       role={normalizeRole(role)}
       style={style as any}
       onMoveShouldSetResponder={normalizeResponderEvent(onMoveShouldSetResponder)}

@@ -63,6 +63,8 @@ export type ThemeValue<T extends Record<string, any>> = {
   [K in keyof T]-?: Join<K, T[K] extends Record<string, any> ? ThemeValue<T[K]> : ''>;
 }[keyof T];
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore: react-native-unistyles is not always installed, as it's optional
 declare module 'react-native-unistyles' {
   export interface UnistylesThemes {
     default: Theme;

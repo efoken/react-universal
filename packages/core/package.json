@@ -4,10 +4,10 @@
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@emotion/css": "^11.11.2",
+    "@emotion/css": "^11.12.0",
     "@emotion/react": "^11.11.4",
-    "@emotion/serialize": "^1.1.4",
-    "@emotion/utils": "^1.2.1",
+    "@emotion/serialize": "^1.2.0",
+    "@emotion/utils": "^1.3.0",
     "@react-native/normalize-colors": "^0.74.85",
     "@tamagui/constants": "^1.101.7",
     "@tamagui/react-native-use-responder-events": "^1.101.7",
@@ -18,13 +18,13 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.3",
-    "react-native-unistyles": "^2.8.1"
+    "react-native-unistyles": "^2.8.3"
   },
   "peerDependencies": {
     "@types/react": "^18.2.0",
     "react": "^18.2.0",
     "react-native": ">=0.72.6",
-    "react-native-unistyles": "^2.7.2"
+    "react-native-unistyles": "^2.8.3"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -33,5 +33,8 @@
     "react-native-unistyles": {
       "optional": true
     }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts"
   }
 }

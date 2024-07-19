@@ -5,5 +5,8 @@
   "license": "MIT",
   "dependencies": {
     "@github/memoize": "^1.1.4"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts src/*.ts"
   }
 }

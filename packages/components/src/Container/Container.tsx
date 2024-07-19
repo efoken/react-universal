@@ -39,9 +39,9 @@ const ContainerRoot = styled(View)<{ ownerState: ContainerOwnerState }>(
   ({ runtime, theme }) => ({
     marginInline: 'auto',
     paddingInline: {
-      xs: max(theme.space[4], runtime.insets.left, runtime.insets.right) as any,
-      sm: max(theme.space[6], runtime.insets.left, runtime.insets.right) as any,
-      md: max(theme.space[7], runtime.insets.left, runtime.insets.right) as any,
+      xs: max(theme.space[4], runtime.insets.left, runtime.insets.right),
+      sm: max(theme.space[6], runtime.insets.left, runtime.insets.right),
+      md: max(theme.space[7], runtime.insets.left, runtime.insets.right),
     },
     width: '100%',
   }),

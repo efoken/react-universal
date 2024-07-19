@@ -26,6 +26,7 @@ export const Modal = forwardRef<any, ModalProps>(
       backdropStyle,
       children,
       hideBackdrop = false,
+      lang,
       onClose,
       onLayout,
       onMoveShouldSetResponder,
@@ -70,6 +71,7 @@ export const Modal = forwardRef<any, ModalProps>(
       <ModalRoot
         ref={ref}
         transparent
+        accessibilityLanguage={lang}
         animationType="fade"
         aria-live="polite"
         aria-modal={role === 'dialog' || role === 'alertdialog' ? true : undefined}

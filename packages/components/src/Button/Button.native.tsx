@@ -24,6 +24,7 @@ export const Button = forwardRef<any, ButtonProps>(
     {
       children,
       disabled = false,
+      lang,
       onBlur,
       onFocus,
       onFocusVisible,
@@ -70,6 +71,7 @@ export const Button = forwardRef<any, ButtonProps>(
     return (
       <ButtonRoot
         ref={ref}
+        accessibilityLanguage={lang}
         disabled={disabled}
         role={normalizeRole(role) ?? 'button'}
         style={_style}

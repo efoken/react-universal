@@ -73,7 +73,7 @@ export const StyleSheet = {
 
       return Object.fromEntries(
         Object.entries(_stylesheet).map(([name, style]) => [name, parseStyle(style, runtime)]),
-      );
+      ) as Record<string, Record<string, any>>;
     };
   },
 };

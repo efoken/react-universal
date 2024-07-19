@@ -14,10 +14,11 @@ const TextRoot = styled(RNText, {
 }));
 
 export const Text = forwardRef<any, TextProps>(
-  ({ 'aria-hidden': ariaHidden, onLayout, role, style, ...props }, ref) => (
+  ({ 'aria-hidden': ariaHidden, lang, onLayout, role, style, ...props }, ref) => (
     <TextRoot
       ref={ref}
       accessibilityElementsHidden={ariaHidden}
+      accessibilityLanguage={lang}
       aria-hidden={ariaHidden}
       importantForAccessibility={ariaHidden ? 'no-hide-descendants' : undefined}
       role={normalizeRole(role)}

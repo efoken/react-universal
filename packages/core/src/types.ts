@@ -200,6 +200,7 @@ export interface RNStyle
   top?: NonNullable<RNViewStyle['top']> | (string & {});
   transform?: string;
   transformOrigin?: string;
+  WebkitOverflowScrolling?: React.CSSProperties['WebkitOverflowScrolling'];
   width?: NonNullable<RNViewStyle['width']> | (string & {});
 }
 
@@ -255,6 +256,7 @@ export interface AccessibilityProps
       | 'accessibilityElementsHidden'
       | 'accessibilityLabel'
       | 'accessibilityLabelledBy'
+      | 'accessibilityLanguage'
       | 'accessibilityLiveRegion'
       | 'accessibilityRole'
       | 'accessibilityState'

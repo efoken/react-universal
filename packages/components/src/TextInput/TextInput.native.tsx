@@ -25,6 +25,7 @@ export const TextInput = forwardRef<any, TextInputProps>(
   (
     {
       'aria-label': ariaLabel,
+      lang,
       onChangeText,
       onContentSizeChange,
       onLayout,
@@ -74,6 +75,7 @@ export const TextInput = forwardRef<any, TextInputProps>(
       <TextInputRoot
         ref={ref}
         accessibilityLabel={ariaLabel}
+        accessibilityLanguage={lang}
         role={normalizeRole(role)}
         style={style as any}
         onChangeText={handleChangeText}

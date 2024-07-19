@@ -28,7 +28,7 @@ describe('View', () => {
   });
 
   describe('raw text nodes as children', () => {
-    let consoleErrorMock: MockInstance<[...params: any[]], void>;
+    let consoleErrorMock: MockInstance<(...params: any[]) => void>;
 
     beforeEach(() => {
       consoleErrorMock = vi.spyOn(console, 'error').mockImplementation(() => {});

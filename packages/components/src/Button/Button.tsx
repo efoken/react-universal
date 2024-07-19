@@ -54,7 +54,7 @@ export const Button = forwardRef<HTMLElement & ButtonMethods, ButtonProps>(
       tabIndex,
       type,
       ...props
-    },
+    }: ButtonProps,
     ref,
   ) => {
     const hostRef = useRef<HTMLElement>();

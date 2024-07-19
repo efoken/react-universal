@@ -10,6 +10,7 @@
     "plugin:unicorn/recommended",
     "prettier"
   ],
+  "ignorePatterns": ["dist/"],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
@@ -25,6 +26,7 @@
     ],
     "@typescript-eslint/consistent-type-exports": "error",
     "@typescript-eslint/consistent-type-imports": "error",
+    "@typescript-eslint/lines-between-class-members": "off",
     "@typescript-eslint/naming-convention": [
       "error",
       {

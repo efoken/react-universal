@@ -43,7 +43,7 @@ export interface ScrollViewProps
       | 'onScroll'
       | 'refreshControl'
     >,
-    ViewProps {
+    Omit<ViewProps, 'href' | 'hrefAttrs'> {
   /**
    * These styles will be applied to the ScrollView content container which
    * wraps all of the child views.
@@ -75,7 +75,7 @@ export interface ScrollViewProps
    * A RefreshControl component, used to provide pull-to-refresh functionality
    * for the ScrollView.
    */
-  refreshControl?: React.ReactElement<Omit<RNRefreshControlProps, keyof ViewProps> & ViewProps>;
+  refreshControl?: React.ReactElement<Omit<RNRefreshControlProps, keyof RNViewProps> & ViewProps>;
   /**
    * The system prop that allows defining system overrides as well as additional
    * CSS styles.

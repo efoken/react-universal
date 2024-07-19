@@ -19,6 +19,7 @@ export const ScrollView = forwardRef<any, ScrollViewProps>(
   (
     {
       contentContainerStyle,
+      lang,
       onLayout,
       onMoveShouldSetResponder,
       onMoveShouldSetResponderCapture,
@@ -42,6 +43,7 @@ export const ScrollView = forwardRef<any, ScrollViewProps>(
   ) => (
     <ScrollViewRoot
       ref={ref}
+      accessibilityLanguage={lang}
       contentContainerStyle={contentContainerStyle as any}
       refreshControl={refreshControl as any}
       role={normalizeRole(role)}

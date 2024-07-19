@@ -1,3 +1,5 @@
+'use client';
+
 import { useComposedRefs } from '@tamagui/compose-refs';
 import type { AnyProps } from '@universal-ui/core';
 import {

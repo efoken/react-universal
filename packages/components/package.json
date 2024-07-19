@@ -23,6 +23,6 @@
     }
   },
   "scripts": {
-    "build": "pkgroll"
+    "build": "tsup src/index.ts src/*/index.ts"
   }
 }
