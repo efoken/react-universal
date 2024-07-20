@@ -14,7 +14,7 @@
     "@storybook/addon-a11y": "^8.2.5",
     "@storybook/addon-essentials": "^8.2.5",
     "@storybook/react-vite": "^8.2.5",
-    "@testing-library/dom": "^10.3.1",
+    "@testing-library/dom": "^10.3.2",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
     "@types/react": "~18.2.79",
