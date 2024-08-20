@@ -12,7 +12,7 @@
     "@babel/preset-env": "^7.24.8",
     "@react-native/normalize-colors": "^0.74.87",
     "@storybook/addon-a11y": "^8.2.9",
-    "@storybook/addon-essentials": "^8.2.5",
+    "@storybook/addon-essentials": "^8.2.9",
     "@storybook/react-vite": "^8.2.9",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.4.8",
