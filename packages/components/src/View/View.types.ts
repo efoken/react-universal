@@ -45,6 +45,7 @@ export interface ViewProps
     AccessibilityProps,
     ResponderConfig {
   as?: React.ElementType;
+  dataSet?: Record<string, any>;
   dir?: 'ltr' | 'rtl' | 'auto';
   href?: string;
   hrefAttrs?: {
