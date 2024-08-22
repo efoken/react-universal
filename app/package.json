@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
-    "@babel/preset-env": "^7.25.3",
+    "@babel/preset-env": "^7.25.4",
     "@expo/metro-runtime": "~3.2.3",
     "expo-modules-autolinking": "^1.11.2"
   },
