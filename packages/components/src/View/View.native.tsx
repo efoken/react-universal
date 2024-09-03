@@ -59,6 +59,6 @@ export const View = forwardRef<any, ViewProps>(
       {...props}
     />
   ),
-) as unknown as ViewType;
+) as ViewType;
 
 View.displayName = 'View';

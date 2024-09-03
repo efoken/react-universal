@@ -25,6 +25,8 @@ export interface ButtonProps
   type?: 'button' | 'submit' | 'reset';
 }
 
-export type ButtonType = React.FC<ButtonProps & React.RefAttributes<ButtonMethods>> & ButtonMethods;
+export type ButtonType = React.ForwardRefExoticComponent<
+  React.PropsWithoutRef<ButtonProps> & React.RefAttributes<ButtonMethods>
+>;
 
 export type ButtonOwnerState = Required<Pick<ButtonProps, 'disabled'>>;

@@ -107,6 +107,6 @@ export const Modal = forwardRef<any, ModalProps>(
       </ModalRoot>
     );
   },
-) as unknown as ModalType;
+) as ModalType;
 
 Modal.displayName = 'Modal';

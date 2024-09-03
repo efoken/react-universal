@@ -6,6 +6,8 @@ import { forwardRef } from 'react';
 import type { TextMethods, TextProps } from '../Text';
 import { Text } from '../Text';
 
+export interface HeadingMethods extends TextMethods {}
+
 export interface HeadingProps extends TextProps {
   /**
    * The system prop that allows defining system overrides as well as additional
@@ -14,18 +16,20 @@ export interface HeadingProps extends TextProps {
   sx?: SxProps;
 }
 
-export type HeadingType = React.FC<HeadingProps & React.RefAttributes<TextMethods>> & TextMethods;
+export type HeadingType = React.ForwardRefExoticComponent<
+  React.PropsWithoutRef<HeadingProps> & React.RefAttributes<HTMLHeadingElement & HeadingMethods>
+>;
 
 const HeadingRoot = styled(Text, {
   name: 'Heading',
   slot: 'Root',
 })(({ theme }) => ({
   fontFamily: theme.fonts.heading.family,
-  fontWeight: '700',
+  fontWeight: 700,
 }));
 
-export const Heading = forwardRef<TextMethods, HeadingProps>((props, ref) => (
-  <HeadingRoot ref={ref} aria-level={2} role="heading" {...props} />
-)) as unknown as HeadingType;
+export const Heading = forwardRef<HTMLHeadingElement & HeadingMethods, HeadingProps>(
+  (props, ref) => <HeadingRoot ref={ref} aria-level={2} role="heading" {...props} />,
+) as HeadingType;
 
 Heading.displayName = 'Heading';

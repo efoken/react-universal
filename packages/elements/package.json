@@ -1,10 +1,10 @@
 {
-  "name": "@universal-ui/components",
+  "name": "@universal-ui/elements",
   "version": "1.0.0",
-  "main": "src/index.ts",
+  "main": "src/index.tsx",
   "license": "MIT",
   "dependencies": {
-    "@tamagui/compose-refs": "^1.110.1",
+    "@universal-ui/components": "workspace:*",
     "@universal-ui/core": "workspace:*"
   },
   "devDependencies": {
@@ -23,6 +23,6 @@
     }
   },
   "scripts": {
-    "build": "tsup src/index.ts src/*/index.ts"
+    "build": "tsup src/index.ts"
   }
 }

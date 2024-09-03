@@ -37,7 +37,7 @@ const TextRoot = styled('div', {
 })<{ ownerState: TextOwnerState }>(
   ({ ownerState, theme }) => ({
     backgroundColor: 'transparent',
-    borderColor: '#000',
+    borderColor: theme.colors.border.default,
     borderStyle: 'solid',
     borderWidth: 0,
     fontFamily: theme.fonts.body.family,

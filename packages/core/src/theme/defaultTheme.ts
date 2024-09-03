@@ -10,8 +10,17 @@ type Join<K, P> = K extends string | number
 export const defaultTheme = {
   breakpoints: defaultBreakpoints,
   colors: {
-    black: '#000',
-    white: '#fff',
+    black: '#09090b',
+    white: '#ffffff',
+    background: {
+      default: '#ffffff',
+    },
+    text: {
+      default: '#09090b',
+    },
+    border: {
+      default: '#e4e4e7',
+    },
   },
   fonts: {
     heading: {

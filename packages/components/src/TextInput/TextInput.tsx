@@ -89,7 +89,7 @@ const TextInputRoot = styled('input', {
 })<{ ownerState: TextInputOwnerState }>(({ ownerState, theme }) => ({
   appearance: 'none',
   backgroundColor: 'transparent',
-  borderColor: '#000',
+  borderColor: theme.colors.border.default,
   borderStyle: 'solid',
   borderWidth: 0,
   fontFamily: theme.fonts.body.family,

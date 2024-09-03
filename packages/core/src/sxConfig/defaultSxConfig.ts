@@ -20,6 +20,11 @@ interface OtherProps extends CSSCustomProps {
   boxShadow?: BreakpointValue<string>;
   opacity?: BreakpointValue<number>;
   pointerEvents?: BreakpointValue<any>;
+  transition?: BreakpointValue<React.CSSProperties['transition']>;
+  transitionDelay?: BreakpointValue<React.CSSProperties['transitionDelay']>;
+  transitionDuration?: BreakpointValue<React.CSSProperties['transitionDuration']>;
+  transitionProperty?: BreakpointValue<React.CSSProperties['transitionProperty']>;
+  transitionTimingFunction?: BreakpointValue<React.CSSProperties['transitionTimingFunction']>;
   typography?: BreakpointValue<string>;
 }
 
@@ -202,6 +207,11 @@ export const defaultSxConfig: SxConfig = {
   backdropFilter: {},
   opacity: {},
   pointerEvents: {},
+  transition: {},
+  transitionDelay: {},
+  transitionDuration: {},
+  transitionProperty: {},
+  transitionTimingFunction: {},
 
   // Layout
   aspectRatio: {},

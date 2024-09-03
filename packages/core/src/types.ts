@@ -23,6 +23,10 @@ export interface RNStyleWeb {
   /** @platform web */
   boxSizing?: React.CSSProperties['boxSizing'];
   /** @platform web */
+  caretColor?: React.CSSProperties['caretColor'];
+  /** @platform web */
+  caretShape?: React.CSSProperties['caretShape'];
+  /** @platform web */
   overflowX?: React.CSSProperties['overflowX'];
   /** @platform web */
   overflowY?: React.CSSProperties['overflowY'];
@@ -57,7 +61,13 @@ export interface RNStyleWeb {
   /** @platform web */
   textWrap?: React.CSSProperties['textWrap'];
   /** @platform web */
+  touchAction?: React.CSSProperties['touchAction'];
+  /** @platform web */
   visibility?: React.CSSProperties['visibility'];
+  /** @platform web */
+  whiteSpace?: React.CSSProperties['whiteSpace'];
+  /** @platform web */
+  wordWrap?: React.CSSProperties['wordWrap'];
 }
 
 export interface RNStyle

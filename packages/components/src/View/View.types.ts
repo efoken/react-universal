@@ -70,7 +70,9 @@ export interface ViewProps
   sx?: SxProps;
 }
 
-export type ViewType = React.FC<ViewProps & React.RefAttributes<ViewMethods>> & ViewMethods;
+export type ViewType = React.ForwardRefExoticComponent<
+  React.PropsWithoutRef<ViewProps> & React.RefAttributes<HTMLElement & ViewMethods>
+>;
 
 export type ViewOwnerState = Pick<ViewProps, 'role'> & {
   hasTextAncestor: boolean;

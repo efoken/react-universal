@@ -33,9 +33,9 @@ function pickProps<T extends AnyProps>(props: T) {
 const ModalRoot = styled('dialog', {
   name: 'Modal',
   slot: 'Root',
-})<{ ownerState: ModalOwnerState }>(({ ownerState }) => ({
+})<{ ownerState: ModalOwnerState }>(({ ownerState, theme }) => ({
   backgroundColor: 'transparent',
-  borderColor: '#000',
+  borderColor: theme.colors.border.default,
   borderStyle: 'solid',
   borderWidth: 0,
   flexDirection: 'column',
@@ -133,7 +133,7 @@ export const Modal = forwardRef<HTMLDialogElement & ModalMethods, ModalProps>(
     supportedProps.onKeyDown = handleKeyDown;
     supportedProps.role = role;
 
-    const handleRef = useComposedRefs<HTMLElement>(hostRef, ref);
+    const handleRef = useComposedRefs(hostRef, ref);
 
     supportedProps.ref = handleRef;
 
@@ -154,6 +154,6 @@ export const Modal = forwardRef<HTMLDialogElement & ModalMethods, ModalProps>(
 
     return <ModalRoot ownerState={ownerState} {...supportedProps} />;
   },
-) as unknown as ModalType;
+) as ModalType;
 
 Modal.displayName = 'Modal';

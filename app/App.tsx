@@ -36,7 +36,7 @@ const ButtonLabel = styled(Text)(({ theme }) => ({
 }));
 
 const Card = styled(View)(({ theme }) => ({
-  backgroundColor: '#fff',
+  backgroundColor: theme.colors.background.default,
   borderRadius: theme.radii[3],
   boxShadow: '0 0 16px rgba(0, 0, 0, 0.08)',
   flexGrow: 1,

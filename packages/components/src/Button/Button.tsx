@@ -187,9 +187,9 @@ export const Button = forwardRef<HTMLElement & ButtonMethods, ButtonProps>(
         href={href}
         ownerState={ownerState}
         role="button"
-        tabIndex={href == null ? tabIndex : disabled ? -1 : tabIndex ?? 0}
+        tabIndex={href == null ? tabIndex : disabled ? -1 : (tabIndex ?? 0)}
         style={isFunction(style) ? style({ focusVisible, hovered, pressed }) : style}
-        type={href == null ? type ?? 'button' : undefined}
+        type={href == null ? (type ?? 'button') : undefined}
         onBlur={handleBlur}
         onClick={handleClick}
         onFocus={handleFocus}
@@ -204,6 +204,6 @@ export const Button = forwardRef<HTMLElement & ButtonMethods, ButtonProps>(
       </ButtonRoot>
     );
   },
-) as unknown as ButtonType;
+) as ButtonType;
 
 Button.displayName = 'Button';

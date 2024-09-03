@@ -26,15 +26,17 @@ export interface LinkProps extends TextProps {
   sx?: SxProps;
 }
 
-export type LinkType = React.FC<LinkProps & React.RefAttributes<TextMethods>> & TextMethods;
+export type LinkType = React.ForwardRefExoticComponent<
+  React.PropsWithoutRef<LinkProps> & React.RefAttributes<HTMLAnchorElement & TextMethods>
+>;
 
 const LinkRoot = styled(Text, {
   name: 'Link',
   slot: 'Root',
 })();
 
-export const Link = forwardRef<TextMethods, LinkProps>((props, ref) => (
+export const Link = forwardRef<HTMLAnchorElement & TextMethods, LinkProps>((props, ref) => (
   <LinkRoot ref={ref} role="link" {...props} />
-)) as unknown as LinkType;
+)) as LinkType;
 
 Link.displayName = 'Link';

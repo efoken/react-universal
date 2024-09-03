@@ -1,2 +1,2 @@
 export { Box } from './Box';
-export type { BoxProps, BoxType } from './Box';
+export type { BoxMethods, BoxProps, BoxType } from './Box';

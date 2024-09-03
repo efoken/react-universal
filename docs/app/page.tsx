@@ -1,11 +1,11 @@
-import { Box, Container, Heading, Link, Text, TextInput } from '@universal-ui/components';
+import { Box, Container, Link, Text } from '@universal-ui/components';
+import { Code, H2, Main, P } from '@universal-ui/elements';
 import Image from 'next/image';
 import styles from './page.module.css';
 
 export default function Home() {
   return (
-    <Box
-      role="main"
+    <Main
       sx={{
         alignItems: 'center',
         display: 'flex',
@@ -29,8 +29,7 @@ export default function Home() {
           zIndex: 2,
         }}
       >
-        <Text
-          role="paragraph"
+        <P
           sx={{
             alignItems: 'center',
             backdropFilter: { xs: 'blur(24px)', md: 'unset' },
@@ -65,10 +64,8 @@ export default function Home() {
           }}
         >
           Get started by editing&nbsp;
-          <Text role="code" sx={{ fontFamily: 'var(--font-mono)', fontWeight: '700' }}>
-            app/page.tsx
-          </Text>
-        </Text>
+          <Code sx={{ fontFamily: 'var(--font-mono)', fontWeight: 700 }}>app/page.tsx</Code>
+        </P>
         <Box
           sx={{
             alignItems: { xs: 'flex-end', md: 'unset' as any },
@@ -117,7 +114,6 @@ export default function Home() {
           </Link>
         </Box>
       </Container>
-
       <Box
         sx={{
           alignItems: 'center',
@@ -166,9 +162,6 @@ export default function Home() {
           }
         />
       </Box>
-
-      <TextInput sx={{ bgColor: '#fff', borderWidth: 1, p: 3, borderRadius: 2 }} />
-
       <Container
         maxWidth="xl"
         sx={{
@@ -200,20 +193,24 @@ export default function Home() {
             borderWidth: 1,
             px: { xs: '2.5rem', md: '1.2rem' },
             py: '1rem',
+            transitionDuration: '200ms',
+            transitionProperty: 'background-color, border-color',
           }}
         >
-          <Heading
+          <H2
             sx={{
               fontSize: '1.5rem',
-              fontWeight: '600',
+              fontWeight: 600,
               lineHeight: '1.23' as any,
               mb: { xs: '0.5rem', md: '0.7rem' },
             }}
           >
-            Docs <Text sx={{ display: 'inline-block' as any }}>-&gt;</Text>
-          </Heading>
-          <Text
-            role="paragraph"
+            Docs{' '}
+            <Text sx={{ display: 'inline-block' as any, transition: 'transform 200ms' }}>
+              -&gt;
+            </Text>
+          </H2>
+          <P
             sx={{
               opacity: 0.6,
               fontSize: '0.9rem',
@@ -223,7 +220,7 @@ export default function Home() {
             }}
           >
             Find in-depth information about Next.js features and API.
-          </Text>
+          </P>
         </Link>
 
         <Link
@@ -241,20 +238,24 @@ export default function Home() {
             borderWidth: 1,
             px: { xs: '2.5rem', md: '1.2rem' },
             py: '1rem',
+            transitionDuration: '200ms',
+            transitionProperty: 'background-color, border-color',
           }}
         >
-          <Heading
+          <H2
             sx={{
               fontSize: '1.5rem',
-              fontWeight: '600',
+              fontWeight: 600,
               lineHeight: '1.23' as any,
               mb: { xs: '0.5rem', md: '0.7rem' },
             }}
           >
-            Learn <Text sx={{ display: 'inline-block' as any }}>-&gt;</Text>
-          </Heading>
-          <Text
-            role="paragraph"
+            Learn{' '}
+            <Text sx={{ display: 'inline-block' as any, transition: 'transform 200ms' }}>
+              -&gt;
+            </Text>
+          </H2>
+          <P
             sx={{
               opacity: 0.6,
               fontSize: '0.9rem',
@@ -264,7 +265,7 @@ export default function Home() {
             }}
           >
             Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </Text>
+          </P>
         </Link>
 
         <Link
@@ -282,20 +283,24 @@ export default function Home() {
             borderWidth: 1,
             px: { xs: '2.5rem', md: '1.2rem' },
             py: '1rem',
+            transitionDuration: '200ms',
+            transitionProperty: 'background-color, border-color',
           }}
         >
-          <Heading
+          <H2
             sx={{
               fontSize: '1.5rem',
-              fontWeight: '600',
+              fontWeight: 600,
               lineHeight: '1.23' as any,
               mb: { xs: '0.5rem', md: '0.7rem' },
             }}
           >
-            Templates <Text sx={{ display: 'inline-block' as any }}>-&gt;</Text>
-          </Heading>
-          <Text
-            role="paragraph"
+            Templates{' '}
+            <Text sx={{ display: 'inline-block' as any, transition: 'transform 200ms' }}>
+              -&gt;
+            </Text>
+          </H2>
+          <P
             sx={{
               opacity: 0.6,
               fontSize: '0.9rem',
@@ -305,7 +310,7 @@ export default function Home() {
             }}
           >
             Explore starter templates for Next.js.
-          </Text>
+          </P>
         </Link>
 
         <Link
@@ -323,20 +328,24 @@ export default function Home() {
             borderWidth: 1,
             px: { xs: '2.5rem', md: '1.2rem' },
             py: '1rem',
+            transitionDuration: '200ms',
+            transitionProperty: 'background-color, border-color',
           }}
         >
-          <Heading
+          <H2
             sx={{
               fontSize: '1.5rem',
-              fontWeight: '600',
+              fontWeight: 600,
               lineHeight: '1.23' as any,
               mb: { xs: '0.5rem', md: '0.7rem' },
             }}
           >
-            Deploy <Text sx={{ display: 'inline-block' as any }}>-&gt;</Text>
-          </Heading>
-          <Text
-            role="paragraph"
+            Deploy{' '}
+            <Text sx={{ display: 'inline-block' as any, transition: 'transform 200ms' }}>
+              -&gt;
+            </Text>
+          </H2>
+          <P
             sx={{
               opacity: 0.6,
               fontSize: '0.9rem',
@@ -346,9 +355,9 @@ export default function Home() {
             }}
           >
             Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </Text>
+          </P>
         </Link>
       </Container>
-    </Box>
+    </Main>
   );
 }
