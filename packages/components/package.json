@@ -2,6 +2,7 @@
   "name": "@universal-ui/components",
   "version": "1.0.0",
   "main": "src/index.ts",
+  "react-native": "src/index.ts",
   "license": "MIT",
   "dependencies": {
     "@tamagui/compose-refs": "^1.110.1",
