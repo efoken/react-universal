@@ -36,7 +36,7 @@ function parseStyle<T extends Record<string, any>>(style: T, runtime: typeof Sty
 }
 
 export const StyleSheet = {
-  flatten<T extends StyleValues>(style: StyleProp<T>): T[] {
+  flatten<T extends Record<string, any>>(style: StyleProp<T>): T[] {
     // eslint-disable-next-line unicorn/no-magic-array-flat-depth
     return [style].flat(20).filter(Boolean) as T[];
   },

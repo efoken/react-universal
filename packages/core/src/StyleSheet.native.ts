@@ -15,7 +15,7 @@ function parseStyle<T extends Record<string, any>>(
 }
 
 export const StyleSheet = {
-  flatten<T extends StyleValues>(style: StyleProp<T>): T[] {
+  flatten<T>(style: StyleProp<T>): T[] {
     return [RNStyleSheet.flatten([style])] as T[];
   },
 
