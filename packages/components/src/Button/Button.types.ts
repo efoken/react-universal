@@ -26,7 +26,7 @@ export interface ButtonProps
 }
 
 export type ButtonType = React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<ButtonProps> & React.RefAttributes<ButtonMethods>
+  React.PropsWithoutRef<ButtonProps> & React.RefAttributes<HTMLElement & ButtonMethods>
 >;
 
 export type ButtonOwnerState = Required<Pick<ButtonProps, 'disabled'>>;

@@ -1,9 +1,10 @@
 import { act, fireEvent, render } from '@testing-library/react';
+import { isFunction } from '@universal-ui/utils';
 import { createRef } from 'react';
 import type { MockInstance } from 'vitest';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import { View } from './View';
-import type { ViewMethods } from './View.types';
+import type { ViewMethods, ViewType } from './View.types';
 
 function createEventTarget(node: any) {
   return {
@@ -241,7 +242,7 @@ describe('View', () => {
 
     test('is called', () => {
       const onPointerDown = vi.fn();
-      const ref = createRef<ViewMethods>();
+      const ref = createRef<React.ElementRef<ViewType>>();
       act(() => {
         render(<View ref={ref} onPointerDown={onPointerDown} />);
       });
@@ -274,14 +275,14 @@ describe('View', () => {
     });
 
     test('node has imperative methods', () => {
-      const ref = createRef<ViewMethods>();
+      const ref = createRef<React.ElementRef<ViewType>>();
       act(() => {
         render(<View ref={ref} />);
       });
       const node = ref.current!;
-      expect(typeof node.measure === 'function');
-      expect(typeof node.measureLayout === 'function');
-      expect(typeof node.measureInWindow === 'function');
+      expect(isFunction(node.measure));
+      expect(isFunction(node.measureLayout));
+      expect(isFunction(node.measureInWindow));
     });
   });
 

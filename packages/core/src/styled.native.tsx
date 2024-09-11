@@ -17,7 +17,6 @@ export function styled<T extends React.ComponentClass<React.ComponentProps<T>>>(
   component: T,
   options?: StyledOptions,
 ): CreateStyledComponent<
-  T,
   React.ComponentProps<T> & {
     as?: React.ElementType;
     ref?: React.LegacyRef<InstanceType<T>>;
@@ -27,12 +26,12 @@ export function styled<T extends React.ComponentClass<React.ComponentProps<T>>>(
 export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
   component: T,
   options?: StyledOptions,
-): CreateStyledComponent<T, React.ComponentProps<T> & { as?: React.ElementType }>;
+): CreateStyledComponent<React.ComponentProps<T> & { as?: React.ElementType }>;
 
 export function styled<T extends keyof React.JSX.IntrinsicElements>(
   component: T,
   options?: StyledOptions,
-): CreateStyledComponent<T, React.JSX.IntrinsicElements[T] & { as?: React.ElementType }>;
+): CreateStyledComponent<React.JSX.IntrinsicElements[T] & { as?: React.ElementType }>;
 
 export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
   component: T,
@@ -48,7 +47,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
         style?: StyleProp<Record<string, any>>;
       }
     >(({ style, ...props }, ref) => {
-      const Component = shouldUseAs ? props.as ?? component : component;
+      const Component = shouldUseAs ? (props.as ?? component) : component;
 
       const { styles: _styles } = useStyles(
         // @ts-expect-error: We define our own `runtime` type
@@ -83,7 +82,9 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
     Styled.displayName =
       name == null
         ? `Styled(${
-            isString(component) ? component : component.displayName ?? component.name ?? 'Component'
+            isString(component)
+              ? component
+              : (component.displayName ?? component.name ?? 'Component')
           })`
         : `${name}${slot ?? ''}`;
 

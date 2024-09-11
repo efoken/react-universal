@@ -14,10 +14,10 @@ export type StyledComponent<P extends AnyProps, T extends React.ElementType> = O
   T
 >;
 
-export type CreateStyledComponent<T extends React.ElementType, P extends AnyProps> = <
+export type CreateStyledComponent<P extends AnyProps> = <
   AdditionalProps extends AnyProps = NonNullable<unknown>,
 >(
   ...styles: StyleInterpolation<
     P & AdditionalProps & { runtime: typeof StyleRuntime; theme: Theme }
   >[]
-) => React.FC<P & AdditionalProps & React.ComponentProps<T>>;
+) => React.FC<P & AdditionalProps>;

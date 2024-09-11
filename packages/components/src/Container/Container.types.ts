@@ -25,7 +25,7 @@ export interface ContainerProps extends ViewProps {
 }
 
 export type ContainerType = React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<ContainerProps> & React.RefAttributes<ContainerMethods>
+  React.PropsWithoutRef<ContainerProps> & React.RefAttributes<HTMLElement & ContainerMethods>
 >;
 
 export type ContainerOwnerState = Required<Pick<ContainerProps, 'fixed' | 'maxWidth'>>;

@@ -29,7 +29,9 @@ export interface StackProps extends ViewProps {
   sx?: SxProps;
 }
 
-export type StackType = React.FC<StackProps & React.RefAttributes<ViewMethods>> & ViewMethods;
+export type StackType = React.ForwardRefExoticComponent<
+  React.PropsWithoutRef<StackProps> & React.RefAttributes<HTMLElement & ViewMethods>
+>;
 
 type StackOwnerState = Required<Pick<StackProps, 'direction' | 'spacing'>>;
 
@@ -76,7 +78,7 @@ const StackRoot = styled(View, {
     })),
 );
 
-export const Stack = forwardRef<ViewMethods, StackProps>(
+export const Stack = forwardRef<HTMLElement & ViewMethods, StackProps>(
   ({ children, direction = 'column', divider, spacing = 0, ...props }, ref) => {
     const ownerState = useOwnerState({
       direction,
@@ -89,6 +91,6 @@ export const Stack = forwardRef<ViewMethods, StackProps>(
       </StackRoot>
     );
   },
-) as unknown as StackType;
+) as StackType;
 
 Stack.displayName = 'Stack';

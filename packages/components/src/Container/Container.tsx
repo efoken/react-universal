@@ -48,7 +48,7 @@ const ContainerRoot = styled(View)<{ ownerState: ContainerOwnerState }>(
     },
 );
 
-export const Container = forwardRef<ContainerMethods, ContainerProps>(
+export const Container = forwardRef<HTMLElement & ContainerMethods, ContainerProps>(
   ({ fixed = false, maxWidth = 'lg', ...props }, ref) => {
     const ownerState = useOwnerState({
       fixed,
