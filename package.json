@@ -10,7 +10,7 @@
   "dependencies": {
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.4",
-    "@react-native/normalize-colors": "^0.75.2",
+    "@react-native/normalize-colors": "^0.75.3",
     "@storybook/addon-a11y": "^8.2.9",
     "@storybook/addon-essentials": "^8.2.9",
     "@storybook/react-vite": "^8.2.9",
