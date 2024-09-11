@@ -18,6 +18,9 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children, theme = 
           padding: 0,
         },
         '*, *::before, *::after': {
+          borderColor: theme.colors.border.default,
+          borderStyle: 'solid',
+          borderWidth: 0,
           boxSizing: 'border-box',
         },
         body: {

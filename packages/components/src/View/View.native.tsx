@@ -11,9 +11,10 @@ import type { ViewProps, ViewType } from './View.types';
 const ViewRoot = styled(RNView, {
   name: 'View',
   slot: 'Root',
-})({
+})(({ theme }) => ({
+  borderColor: theme.colors.border.default,
   position: 'static',
-});
+}));
 
 export const View = forwardRef<any, ViewProps>(
   (

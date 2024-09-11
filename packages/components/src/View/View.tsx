@@ -36,12 +36,9 @@ function pickProps<T extends AnyProps>(props: T) {
 const ViewRoot = styled('div', {
   name: 'View',
   slot: 'Root',
-})<{ ownerState: ViewOwnerState }>(({ ownerState, theme }) => ({
+})<{ ownerState: ViewOwnerState }>(({ ownerState }) => ({
   alignItems: 'stretch',
   backgroundColor: 'transparent',
-  borderColor: theme.colors.border.default,
-  borderStyle: 'solid',
-  borderWidth: 0,
   display: ownerState.hasTextAncestor ? ('inline-flex' as any) : 'flex',
   flexBasis: 'auto',
   flexDirection: 'column',

@@ -11,9 +11,10 @@ import type { ScrollViewProps, ScrollViewType } from './ScrollView.types';
 const ScrollViewRoot = styled(RNScrollView, {
   name: 'ScrollView',
   slot: 'Root',
-})({
+})(({ theme }) => ({
+  borderColor: theme.colors.border.default,
   position: 'static',
-});
+}));
 
 export const ScrollView = forwardRef<any, ScrollViewProps>(
   (

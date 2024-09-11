@@ -33,11 +33,8 @@ function pickProps<T extends AnyProps>(props: T) {
 const ModalRoot = styled('dialog', {
   name: 'Modal',
   slot: 'Root',
-})<{ ownerState: ModalOwnerState }>(({ ownerState, theme }) => ({
+})<{ ownerState: ModalOwnerState }>(({ ownerState }) => ({
   backgroundColor: 'transparent',
-  borderColor: theme.colors.border.default,
-  borderStyle: 'solid',
-  borderWidth: 0,
   flexDirection: 'column',
   height: '100%',
   inset: 0,

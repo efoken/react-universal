@@ -7,6 +7,7 @@ const TextRoot = styled(RNText, {
   name: 'Text',
   slot: 'Root',
 })(({ theme }) => ({
+  borderColor: theme.colors.border.default,
   fontFamily: theme.fonts.body.family,
   fontStyle: 'normal',
   fontWeight: 'normal',

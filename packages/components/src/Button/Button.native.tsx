@@ -13,7 +13,8 @@ import type { ButtonProps, ButtonType } from './Button.types';
 const ButtonRoot = styled(RNPressable, {
   name: 'Button',
   slot: 'Root',
-})(() => ({
+})(({ theme }) => ({
+  borderColor: theme.colors.border.default,
   borderWidth: 1,
   flexDirection: 'row',
   padding: 1,

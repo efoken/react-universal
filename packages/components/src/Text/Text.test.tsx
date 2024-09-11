@@ -1,4 +1,5 @@
 import { act, fireEvent, render } from '@testing-library/react';
+import { isFunction } from '@universal-ui/utils';
 import { createRef } from 'react';
 import { describe, expect, test, vi } from 'vitest';
 import { Text } from './Text';
@@ -304,9 +305,9 @@ describe('Text', () => {
         render(<Text ref={ref} />);
       });
       const node = ref.current!;
-      expect(typeof node.measure === 'function');
-      expect(typeof node.measureLayout === 'function');
-      expect(typeof node.measureInWindow === 'function');
+      expect(isFunction(node.measure));
+      expect(isFunction(node.measureLayout));
+      expect(isFunction(node.measureInWindow));
     });
   });
 

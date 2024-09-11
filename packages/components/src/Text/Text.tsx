@@ -37,9 +37,6 @@ const TextRoot = styled('div', {
 })<{ ownerState: TextOwnerState }>(
   ({ ownerState, theme }) => ({
     backgroundColor: 'transparent',
-    borderColor: theme.colors.border.default,
-    borderStyle: 'solid',
-    borderWidth: 0,
     fontFamily: theme.fonts.body.family,
     textAlign: 'start' as any,
     whiteSpace: 'pre-wrap',
