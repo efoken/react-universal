@@ -5,7 +5,7 @@
   "react-native": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@tamagui/compose-refs": "^1.110.1",
+    "@tamagui/compose-refs": "^1.110.3",
     "@universal-ui/core": "workspace:*"
   },
   "devDependencies": {
