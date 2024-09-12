@@ -1,4 +1,4 @@
-import type { StyleProp, SxProps } from '@universal-ui/core';
+import type { StyleProp, SxProps } from '@react-universal/core';
 import type {
   NativeSyntheticEvent,
   TextInputProps as RNTextInputProps,

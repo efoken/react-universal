@@ -1,4 +1,4 @@
-import { isNumber } from '@universal-ui/utils';
+import { isNumber } from '@react-universal/utils';
 import type { BreakpointValue } from '../breakpoints';
 import { handleBreakpoints } from '../breakpoints';
 import type { Theme, ThemeValue } from '../theme/defaultTheme';

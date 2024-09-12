@@ -1,5 +1,5 @@
 {
-  "name": "@universal-ui/docs",
+  "name": "@react-universal/docs",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -9,9 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@universal-ui/components": "workspace:*",
-    "@universal-ui/core": "workspace:*",
-    "@universal-ui/elements": "workspace:*",
+    "@react-universal/components": "workspace:*",
+    "@react-universal/core": "workspace:*",
+    "@react-universal/elements": "workspace:*",
     "next": "14.2.10",
     "react": "18.3.1",
     "react-dom": "18.3.1",

@@ -1,4 +1,4 @@
-import { isFunction } from '@universal-ui/utils';
+import { isFunction } from '@react-universal/utils';
 import { StyleSheet as RNStyleSheet } from 'react-native';
 import type { UnistylesValues } from 'react-native-unistyles';
 import { createStyleSheet as createUnistylesStyleSheet } from 'react-native-unistyles';

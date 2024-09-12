@@ -1,7 +1,7 @@
 'use client';
 
-import type { Theme } from '@universal-ui/core';
-import { ThemeProvider } from '@universal-ui/core';
+import type { Theme } from '@react-universal/core';
+import { ThemeProvider } from '@react-universal/core';
 
 export function StylesProvider({
   children,

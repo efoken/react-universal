@@ -7,7 +7,7 @@ import {
   memoize,
   mergeDeep,
   noop,
-} from '@universal-ui/utils';
+} from '@react-universal/utils';
 import type { BreakpointValue } from '../breakpoints';
 import { handleBreakpoints } from '../breakpoints';
 import type { Theme, ThemeValue } from '../theme/defaultTheme';
@@ -77,7 +77,7 @@ export function createUnaryUnit<T extends number | any[] | Record<string, any>>(
       }
       if (process.env.NODE_ENV !== 'production' && !isNumber(abs)) {
         console.error(
-          `universal-ui: Expected ${propName} argument to be a number or a string, got ${abs as string}.`,
+          `React Universal: Expected ${propName} argument to be a number or a string, got ${abs as string}.`,
         );
       }
       return themeSpace * abs;
@@ -93,13 +93,13 @@ export function createUnaryUnit<T extends number | any[] | Record<string, any>>(
       if (process.env.NODE_ENV !== 'production') {
         if (!Number.isInteger(abs)) {
           console.error(
-            `universal-ui: The \`theme.${themeKey}\` array type cannot be combined with non integer values.` +
+            `React Universal: The \`theme.${themeKey}\` array type cannot be combined with non integer values.` +
               `You should either use an integer value that can be used as index, or define the \`theme.${themeKey}\` as a number.`,
           );
         } else if (abs > themeSpace.length - 1) {
           console.error(
             [
-              `universal-ui: The value provided (${abs}) overflows.`,
+              `React Universal: The value provided (${abs}) overflows.`,
               `The supported values are: ${JSON.stringify(themeSpace)}.`,
               `${abs} > ${themeSpace.length - 1}, you need to add the missing values.`,
             ].join('\n'),
@@ -118,7 +118,7 @@ export function createUnaryUnit<T extends number | any[] | Record<string, any>>(
   if (process.env.NODE_ENV !== 'production') {
     console.error(
       [
-        `universal-ui: The \`theme.${themeKey}\` value (${themeSpace as string}) is invalid.`,
+        `React Universal: The \`theme.${themeKey}\` value (${themeSpace as string}) is invalid.`,
         'It should be a number, an array or an object.',
       ].join('\n'),
     );

@@ -1,4 +1,4 @@
-import { isArray, isObject, mergeDeep } from '@universal-ui/utils';
+import { isArray, isObject, mergeDeep } from '@react-universal/utils';
 import type { Theme } from './theme/defaultTheme.js';
 
 export const defaultBreakpoints = {

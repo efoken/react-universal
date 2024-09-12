@@ -1,7 +1,7 @@
 'use client';
 
-import type { SxProps } from '@universal-ui/core';
-import { styled } from '@universal-ui/core';
+import type { SxProps } from '@react-universal/core';
+import { styled } from '@react-universal/core';
 import { forwardRef } from 'react';
 import type { TextMethods, TextProps } from '../Text';
 import { Text } from '../Text';

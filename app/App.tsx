@@ -1,6 +1,6 @@
-import { Button as ButtonBase, Container, Text, View } from '@universal-ui/components';
-import { ThemeProvider, isWeb, styled } from '@universal-ui/core';
-import { Defs, G, Path, Svg, TSpan, Text as TextSvg, Use } from '@universal-ui/svg';
+import { Button as ButtonBase, Container, Text, View } from '@react-universal/components';
+import { ThemeProvider, isWeb, styled } from '@react-universal/core';
+import { Defs, G, Path, Svg, TSpan, Text as TextSvg, Use } from '@react-universal/svg';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import { StatusBar } from 'expo-status-bar';
 import { ScrollView } from 'react-native';
@@ -15,7 +15,7 @@ const Grid = styled(Container)(({ theme }) => ({
   flexWrap: 'wrap',
   gap: theme.space[4],
   paddingBottom: theme.space[7],
-  paddingTop: theme.space[10],
+  paddingTop: theme.space[4],
 }));
 
 const Button = styled(ButtonBase)(({ theme }) => ({
@@ -59,7 +59,7 @@ export default function App() {
               aspectRatio: 620 / 472,
               maxW: '100%',
               w: { xs: 100, md: 200 },
-              h: 'auto',
+              // h: 'auto',
               mt: 10,
             }}
             viewBox="0 0 620 472"

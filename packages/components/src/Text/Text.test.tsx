@@ -1,5 +1,5 @@
+import { isFunction, noop } from '@react-universal/utils';
 import { act, fireEvent, render } from '@testing-library/react';
-import { isFunction, noop } from '@universal-ui/utils';
 import { createRef } from 'react';
 import { describe, expect, test, vi } from 'vitest';
 import { Text } from './Text';

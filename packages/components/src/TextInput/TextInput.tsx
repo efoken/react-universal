@@ -1,7 +1,6 @@
 'use client';
 
-import { useComposedRefs } from '@tamagui/compose-refs';
-import type { AnyProps } from '@universal-ui/core';
+import type { AnyProps } from '@react-universal/core';
 import {
   forwardedProps,
   styled,
@@ -9,8 +8,9 @@ import {
   useOwnerState,
   usePlatformMethods,
   useResponderEvents,
-} from '@universal-ui/core';
-import { normalizeEvent, pick } from '@universal-ui/utils';
+} from '@react-universal/core';
+import { normalizeEvent, pick } from '@react-universal/utils';
+import { useComposedRefs } from '@tamagui/compose-refs';
 import type React from 'react';
 import { forwardRef, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import type {

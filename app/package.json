@@ -1,13 +1,13 @@
 {
-  "name": "@universal-ui/app",
+  "name": "@react-universal/app",
   "version": "1.0.0",
   "private": true,
   "main": "index.ts",
   "dependencies": {
     "@react-native/normalize-colors": "^0.75.3",
-    "@universal-ui/components": "workspace:*",
-    "@universal-ui/core": "workspace:*",
-    "@universal-ui/svg": "workspace:*",
+    "@react-universal/components": "workspace:*",
+    "@react-universal/core": "workspace:*",
+    "@react-universal/svg": "workspace:*",
     "expo": "~51.0.32",
     "expo-dev-client": "~4.0.26",
     "expo-screen-orientation": "~7.0.5",

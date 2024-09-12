@@ -1,4 +1,4 @@
-import { isFunction, isString } from '@universal-ui/utils';
+import { isFunction, isString } from '@react-universal/utils';
 import { forwardRef } from 'react';
 import { useStyles } from 'react-native-unistyles';
 import { StyleSheet } from './StyleSheet';

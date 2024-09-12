@@ -1,7 +1,7 @@
 'use client';
 
-import type { BreakpointValue, RNStyle, SxProps, Theme, ThemeValue } from '@universal-ui/core';
-import { handleBreakpoints, styled, useOwnerState } from '@universal-ui/core';
+import type { BreakpointValue, RNStyle, SxProps, Theme, ThemeValue } from '@react-universal/core';
+import { handleBreakpoints, styled, useOwnerState } from '@react-universal/core';
 import { Children, cloneElement, forwardRef } from 'react';
 import type { ViewMethods, ViewProps } from '../View';
 import { View } from '../View';

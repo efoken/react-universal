@@ -3,8 +3,8 @@ import {
   normalizeResponderEvent,
   normalizeRole,
   styled,
-} from '@universal-ui/core';
-import { normalizeEvent } from '@universal-ui/utils';
+} from '@react-universal/core';
+import { normalizeEvent } from '@react-universal/utils';
 import { forwardRef, useState } from 'react';
 import type {
   NativeSyntheticEvent,

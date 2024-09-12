@@ -1,8 +1,8 @@
 'use client';
 
+import { styled, useOwnerState } from '@react-universal/core';
+import { isFunction, normalizeEvent } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
-import { styled, useOwnerState } from '@universal-ui/core';
-import { isFunction, normalizeEvent } from '@universal-ui/utils';
 import { forwardRef, useRef, useState } from 'react';
 import { View } from '../View';
 import type { ButtonMethods, ButtonOwnerState, ButtonProps, ButtonType } from './Button.types';

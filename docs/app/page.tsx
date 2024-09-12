@@ -1,5 +1,5 @@
-import { Box, Container, Link, Text } from '@universal-ui/components';
-import { Code, H2, Main, P } from '@universal-ui/elements';
+import { Box, Container, Link, Text } from '@react-universal/components';
+import { Code, H2, Main, P } from '@react-universal/elements';
 import Image from 'next/image';
 import styles from './page.module.css';
 

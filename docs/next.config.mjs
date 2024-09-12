@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   transpilePackages: [
-    '@universal-ui/components',
-    '@universal-ui/core',
-    '@universal-ui/elements',
-    '@universal-ui/svg',
-    '@universal-ui/utils',
+    '@react-universal/components',
+    '@react-universal/core',
+    '@react-universal/elements',
+    '@react-universal/svg',
+    '@react-universal/utils',
   ],
   webpack: (config) => ({
     ...config,
@@ -13,7 +13,7 @@ const nextConfig = {
       ...config.plugins,
       new (class {
         apply(compiler) {
-          compiler.hooks.afterEnvironment.tap('@universal-ui/webpack-plugin', () => {
+          compiler.hooks.afterEnvironment.tap('@react-universal/webpack-plugin', () => {
             compiler.options.resolve.conditionNames = [
               ...compiler.options.resolve.conditionNames,
               'source',

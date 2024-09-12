@@ -1,5 +1,5 @@
 {
-  "name": "@universal-ui/components",
+  "name": "@react-universal/components",
   "version": "1.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -7,8 +7,8 @@
   "react-native": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@tamagui/compose-refs": "^1.110.3",
-    "@universal-ui/core": "workspace:*"
+    "@react-universal/core": "workspace:*",
+    "@tamagui/compose-refs": "^1.110.3"
   },
   "devDependencies": {
     "@types/react": "~18.3.5",

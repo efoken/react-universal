@@ -1,7 +1,7 @@
 'use client';
 
-import type { SxProps } from '@universal-ui/core';
-import { styled } from '@universal-ui/core';
+import type { SxProps } from '@react-universal/core';
+import { styled } from '@react-universal/core';
 import type { ViewMethods, ViewProps } from '../View';
 import { View } from '../View';
 

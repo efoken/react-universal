@@ -1,6 +1,6 @@
 'use client';
 
-import { isString } from '@universal-ui/utils';
+import { isString } from '@react-universal/utils';
 import { createElement as createReactElement } from 'react';
 import type { Role as RNRole } from 'react-native';
 import { StyleSheet } from './StyleSheet';
@@ -183,7 +183,7 @@ export function createElement<P extends Record<string, any>>(
   props = {} as P,
 ) {
   // Use equivalent platform elements where possible.
-  const Component = isString(type) ? propsToAccessibilityComponent(props) ?? type : type;
+  const Component = isString(type) ? (propsToAccessibilityComponent(props) ?? type) : type;
   const domProps = createDOMProps(Component, props);
 
   const element = createReactElement(Component, domProps as P);

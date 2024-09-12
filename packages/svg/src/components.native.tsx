@@ -1,5 +1,5 @@
-import type { AnyProps, StyleProp } from '@universal-ui/core';
-import { normalizeRole, styled, StyleSheet } from '@universal-ui/core';
+import type { AnyProps, StyleProp } from '@react-universal/core';
+import { normalizeRole, styled, StyleSheet } from '@react-universal/core';
 import { forwardRef } from 'react';
 import {
   Circle as RNCircle,

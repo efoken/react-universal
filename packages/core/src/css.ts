@@ -1,4 +1,4 @@
-import { isArray, isFunction, isObject } from '@universal-ui/utils';
+import { isArray, isFunction, isObject } from '@react-universal/utils';
 import type { StyleInterpolation, StyleValues } from './types';
 
 let styles: StyleValues[];
@@ -9,7 +9,7 @@ function handleInterpolation(this: any, interpolation: StyleInterpolation<any>, 
       if (process.env.NODE_ENV !== 'production') {
         console.error(
           [
-            'universal-ui: Interpolating functions in css calls is not allowed.',
+            'React Universal: Interpolating functions in css calls is not allowed.',
             'If you want to have a css call based on props, create a function that returns a css call like this:',
             'const dynamicStyle = (props) => css({ color: props.color })',
             'It can be called directly with props or interpolated in a styled call like this:',

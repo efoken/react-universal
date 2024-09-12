@@ -1,4 +1,4 @@
-import { isString } from '@universal-ui/utils';
+import { isString } from '@react-universal/utils';
 import { normalizeColor } from './normalizeColor';
 
 // https://css-tricks.com/snippets/css/system-font-stack/

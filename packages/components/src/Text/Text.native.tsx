@@ -1,4 +1,4 @@
-import { normalizeLayoutEvent, normalizeRole, styled } from '@universal-ui/core';
+import { normalizeLayoutEvent, normalizeRole, styled } from '@react-universal/core';
 import { forwardRef } from 'react';
 import { Text as RNText } from 'react-native';
 import type { TextProps, TextType } from './Text.types';

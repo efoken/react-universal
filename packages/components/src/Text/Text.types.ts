@@ -4,7 +4,7 @@ import type {
   RNStyle,
   StyleProp,
   SxProps,
-} from '@universal-ui/core';
+} from '@react-universal/core';
 import type {
   NativeMethods,
   AccessibilityProps as RNAccessibilityProps,

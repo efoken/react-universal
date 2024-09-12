@@ -1,4 +1,4 @@
-import type { Breakpoint, SxProps } from '@universal-ui/core';
+import type { Breakpoint, SxProps } from '@react-universal/core';
 import type { ViewMethods, ViewProps } from '../View';
 
 export interface ContainerMethods extends ViewMethods {}

@@ -1,4 +1,4 @@
-import type { StyleProp, SxProps } from '@universal-ui/core';
+import type { StyleProp, SxProps } from '@react-universal/core';
 import type { PressableProps as RNPressableProps, ViewProps as RNViewProps } from 'react-native';
 import type { ViewMethods, ViewProps, ViewStyle } from '../View';
 

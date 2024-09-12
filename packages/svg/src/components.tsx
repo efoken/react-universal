@@ -1,8 +1,8 @@
 'use client';
 
-import type { ResponderEvent, StyleProp } from '@universal-ui/core';
-import { createElement, styled } from '@universal-ui/core';
-import { isArray, isNumber, isString } from '@universal-ui/utils';
+import type { ResponderEvent, StyleProp } from '@react-universal/core';
+import { createElement, styled } from '@react-universal/core';
+import { isArray, isNumber, isString } from '@react-universal/utils';
 import { forwardRef } from 'react';
 import type {
   CircleProps,

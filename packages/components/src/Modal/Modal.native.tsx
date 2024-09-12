@@ -4,7 +4,7 @@ import {
   normalizeRole,
   styled,
   useBackHandler,
-} from '@universal-ui/core';
+} from '@react-universal/core';
 import { forwardRef } from 'react';
 import type { GestureResponderEvent } from 'react-native';
 import { Modal as RNModal, Pressable as RNPressable } from 'react-native';

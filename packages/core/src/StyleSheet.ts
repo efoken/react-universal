@@ -1,4 +1,4 @@
-import { isFunction, isObject, isString, mergeDeep } from '@universal-ui/utils';
+import { isFunction, isObject, isString, mergeDeep } from '@react-universal/utils';
 import type { StyleRuntime } from './StyleRuntime';
 import { createReactDOMStyle } from './createReactDOMStyle';
 import { preprocess } from './preprocess';

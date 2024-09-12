@@ -1,7 +1,7 @@
 'use client';
 
+import { styled, useOwnerState } from '@react-universal/core';
 import { useComposedRefs } from '@tamagui/compose-refs';
-import { styled, useOwnerState } from '@universal-ui/core';
 import { forwardRef, useRef } from 'react';
 import type { ViewMethods, ViewProps } from '../View';
 import { View } from '../View';

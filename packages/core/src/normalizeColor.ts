@@ -1,5 +1,5 @@
 import normalizeCssColor from '@react-native/normalize-colors';
-import { isString } from '@universal-ui/utils';
+import { isString } from '@react-universal/utils';
 
 type VarColor = `var(${string})` | `rgba(var(${string}),${string})`;
 

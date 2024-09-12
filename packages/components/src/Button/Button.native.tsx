@@ -3,8 +3,8 @@ import {
   normalizeResponderEvent,
   normalizeRole,
   styled,
-} from '@universal-ui/core';
-import { isFunction } from '@universal-ui/utils';
+} from '@react-universal/core';
+import { isFunction } from '@react-universal/utils';
 import { forwardRef, useState } from 'react';
 import type { NativeSyntheticEvent, TargetedEvent } from 'react-native';
 import { Pressable as RNPressable } from 'react-native';

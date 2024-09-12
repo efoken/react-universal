@@ -1,5 +1,5 @@
+import { getRect } from '@react-universal/utils';
 import { useIsomorphicLayoutEffect } from '@tamagui/constants';
-import { getRect } from '@universal-ui/utils';
 import type {
   MeasureInWindowOnSuccessCallback,
   MeasureOnSuccessCallback,

@@ -1,5 +1,5 @@
+import { getBoundingClientRect, isFunction } from '@react-universal/utils';
 import { useIsomorphicLayoutEffect } from '@tamagui/constants';
-import { getBoundingClientRect, isFunction } from '@universal-ui/utils';
 import type { MeasureOnSuccessCallback } from 'react-native';
 
 const layoutHandlers = new WeakMap<Element, (event: LayoutEvent) => void>();

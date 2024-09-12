@@ -1,7 +1,6 @@
 'use client';
 
-import { useComposedRefs } from '@tamagui/compose-refs';
-import type { AnyProps } from '@universal-ui/core';
+import type { AnyProps } from '@react-universal/core';
 import {
   forwardedProps,
   getLocaleDirection,
@@ -10,8 +9,9 @@ import {
   useOwnerState,
   usePlatformMethods,
   useResponderEvents,
-} from '@universal-ui/core';
-import { isString, pick } from '@universal-ui/utils';
+} from '@react-universal/core';
+import { isString, pick } from '@react-universal/utils';
+import { useComposedRefs } from '@tamagui/compose-refs';
 import { Children, forwardRef, useContext, useRef } from 'react';
 import { TextAncestorContext } from '../Text/TextAncestorContext';
 import type { ViewMethods, ViewOwnerState, ViewProps, ViewType } from './View.types';
@@ -77,7 +77,7 @@ export const View = forwardRef<HTMLElement & ViewMethods, ViewProps>(
       for (const item of Children.toArray(props.children)) {
         if (isString(item)) {
           console.error(
-            `universal-ui: Unexpected text node: ${item}. A text node cannot be a child of a <View>.`,
+            `React Universal: Unexpected text node: ${item}. A text node cannot be a child of a <View>.`,
           );
         }
       }

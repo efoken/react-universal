@@ -3,7 +3,7 @@ import {
   normalizeResponderEvent,
   normalizeRole,
   styled,
-} from '@universal-ui/core';
+} from '@react-universal/core';
 import { forwardRef } from 'react';
 import { ScrollView as RNScrollView } from 'react-native';
 import type { ScrollViewProps, ScrollViewType } from './ScrollView.types';

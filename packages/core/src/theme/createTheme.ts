@@ -1,4 +1,4 @@
-import { mergeDeep } from '@universal-ui/utils';
+import { mergeDeep } from '@react-universal/utils';
 import { defaultTheme, type Theme } from './defaultTheme';
 
 interface PartialTheme extends Partial<Omit<Theme, 'breakpoints' | 'colors' | 'fonts' | 'space'>> {

@@ -1,4 +1,4 @@
-import { isString } from '@universal-ui/utils';
+import { isString } from '@react-universal/utils';
 import type {
   ImageStyle as RNImageStyle,
   TextStyle as RNTextStyle,
@@ -37,7 +37,9 @@ export const boxShadowPlugin: StylePlugin = () => ({
     if ('boxShadow' in acc && isString(acc.boxShadow)) {
       const parsedShadow = parseBoxShadow(acc.boxShadow);
       if (parsedShadow.length > 1) {
-        console.warn('universal-ui: Unsupported multiple values for style property "boxShadow".');
+        console.warn(
+          'React Universal: Unsupported multiple values for style property "boxShadow".',
+        );
       }
       const { offsetX, offsetY, blurRadius, color } = parsedShadow[0];
       acc.shadowColor = color;

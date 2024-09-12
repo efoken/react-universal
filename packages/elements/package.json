@@ -1,5 +1,5 @@
 {
-  "name": "@universal-ui/elements",
+  "name": "@react-universal/elements",
   "version": "1.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -7,8 +7,8 @@
   "react-native": "src/index.tsx",
   "license": "MIT",
   "dependencies": {
-    "@universal-ui/components": "workspace:*",
-    "@universal-ui/core": "workspace:*"
+    "@react-universal/components": "workspace:*",
+    "@react-universal/core": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "~18.3.5",

@@ -1,6 +1,6 @@
+import { ThemeProvider } from '@react-universal/core';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { Preview } from '@storybook/react';
-import { ThemeProvider } from '@universal-ui/core';
 
 const preview: Preview = {
   parameters: {

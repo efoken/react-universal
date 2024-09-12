@@ -1,4 +1,4 @@
-import type { AccessibilityProps, RNStyle, StyleProp, SxProps } from '@universal-ui/core';
+import type { AccessibilityProps, RNStyle, StyleProp, SxProps } from '@react-universal/core';
 import type {
   GestureResponderEvent,
   NativeMethods,

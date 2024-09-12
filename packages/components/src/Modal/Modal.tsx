@@ -1,7 +1,6 @@
 'use client';
 
-import { useComposedRefs } from '@tamagui/compose-refs';
-import type { AnyProps } from '@universal-ui/core';
+import type { AnyProps } from '@react-universal/core';
 import {
   forwardedProps,
   getLocaleDirection,
@@ -9,8 +8,9 @@ import {
   useElementLayout,
   useOwnerState,
   useResponderEvents,
-} from '@universal-ui/core';
-import { pick } from '@universal-ui/utils';
+} from '@react-universal/core';
+import { pick } from '@react-universal/utils';
+import { useComposedRefs } from '@tamagui/compose-refs';
 import { forwardRef, useEffect, useRef } from 'react';
 import type { ModalMethods, ModalOwnerState, ModalProps, ModalType } from './Modal.types';
 

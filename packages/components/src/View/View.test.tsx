@@ -1,5 +1,5 @@
+import { isFunction, noop } from '@react-universal/utils';
 import { act, fireEvent, render } from '@testing-library/react';
-import { isFunction, noop } from '@universal-ui/utils';
 import { createRef } from 'react';
 import type { MockInstance } from 'vitest';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';

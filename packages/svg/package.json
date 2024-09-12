@@ -1,5 +1,5 @@
 {
-  "name": "@universal-ui/svg",
+  "name": "@react-universal/svg",
   "version": "1.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -7,8 +7,8 @@
   "react-native": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@universal-ui/core": "workspace:*",
-    "@universal-ui/utils": "workspace:*"
+    "@react-universal/core": "workspace:*",
+    "@react-universal/utils": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "~18.3.5",

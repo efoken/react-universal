@@ -1,4 +1,4 @@
-import { isArray, isNumber } from '@universal-ui/utils';
+import { isArray, isNumber } from '@react-universal/utils';
 
 const standardProps: Record<string, string> = {
   borderBottomEndRadius: 'borderEndEndRadius',

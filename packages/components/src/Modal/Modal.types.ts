@@ -1,4 +1,4 @@
-import type { ResponderEvent, StyleProp, SxProps } from '@universal-ui/core';
+import type { ResponderEvent, StyleProp, SxProps } from '@react-universal/core';
 import type { ModalProps as RNModalProps, ViewProps as RNViewProps } from 'react-native';
 import type { ViewProps, ViewStyle } from '../View';
 

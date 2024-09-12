@@ -1,5 +1,5 @@
+import { isNumber } from '@react-universal/utils';
 import { isWeb } from '@tamagui/constants';
-import { isNumber } from '@universal-ui/utils';
 import { parseRem } from './parseRem';
 
 type Operand = string | number | { toString: () => string };

@@ -1,4 +1,4 @@
-import { createTheme } from '@universal-ui/core';
+import { createTheme } from '@react-universal/core';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';

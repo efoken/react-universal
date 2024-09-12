@@ -3,7 +3,7 @@ import {
   normalizeResponderEvent,
   normalizeRole,
   styled,
-} from '@universal-ui/core';
+} from '@react-universal/core';
 import { forwardRef } from 'react';
 import { View as RNView } from 'react-native';
 import type { ViewProps, ViewType } from './View.types';

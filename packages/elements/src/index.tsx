@@ -7,10 +7,10 @@ import type {
   TextProps,
   ViewMethods,
   ViewProps,
-} from '@universal-ui/components';
-import { Heading, Link, Text, View } from '@universal-ui/components';
-import type { RNStyle, StyleProp } from '@universal-ui/core';
-import { styled } from '@universal-ui/core';
+} from '@react-universal/components';
+import { Heading, Link, Text, View } from '@react-universal/components';
+import type { RNStyle, StyleProp } from '@react-universal/core';
+import { styled } from '@react-universal/core';
 import { forwardRef } from 'react';
 
 function createComponent<T = any, P extends { style?: StyleProp<any> } = {}>(

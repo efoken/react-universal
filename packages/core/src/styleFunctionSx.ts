@@ -7,7 +7,7 @@ import {
   isString,
   mergeDeep,
   runIfFunction,
-} from '@universal-ui/utils';
+} from '@react-universal/utils';
 import { handleBreakpoints } from './breakpoints';
 import type { SxConfig, SxProps } from './sxConfig/defaultSxConfig';
 import { defaultSxConfig } from './sxConfig/defaultSxConfig';

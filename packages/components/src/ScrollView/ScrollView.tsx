@@ -1,9 +1,9 @@
 'use client';
 
+import type { LayoutEvent, ResponderEvent } from '@react-universal/core';
+import { styled, useOwnerState } from '@react-universal/core';
+import { isArray, noop } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
-import type { LayoutEvent, ResponderEvent } from '@universal-ui/core';
-import { styled, useOwnerState } from '@universal-ui/core';
-import { isArray, noop } from '@universal-ui/utils';
 import { Children, cloneElement, forwardRef, useImperativeHandle, useRef } from 'react';
 import type { GestureResponderEvent } from 'react-native';
 import { TextInputState } from '../TextInput/TextInputState';
@@ -131,7 +131,7 @@ export const ScrollView = forwardRef<HTMLElement & ScrollViewMethods, ScrollView
 
     // eslint-disable-next-line unicorn/consistent-function-scoping
     const handleResponderReject = () => {
-      console.warn("universal-ui: ScrollView doesn't take rejection well - scrolls anyway");
+      console.warn("React Universal: ScrollView doesn't take rejection well - scrolls anyway");
     };
 
     const handleResponderTerminationRequest = () => !observedScrollSinceBecomingResponder.current;
@@ -216,7 +216,7 @@ export const ScrollView = forwardRef<HTMLElement & ScrollViewMethods, ScrollView
     const handleScroll = (event: ScrollEvent) => {
       if (process.env.NODE_ENV !== 'production' && onScroll != null && scrollEventThrottle === 0) {
         console.log(
-          'universal-ui: You specified `onScroll` on a `<ScrollView>` but ' +
+          'React Universal: You specified `onScroll` on a `<ScrollView>` but ' +
             'not `scrollEventThrottle`. You will only receive one event. ' +
             'Using `16` you get all the events but be aware that it may ' +
             "cause frame drops, use a bigger number if you don't need as " +

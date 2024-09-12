@@ -1,6 +1,6 @@
 'use client';
 
-import { clamp, max, min, styled, useOwnerState } from '@universal-ui/core';
+import { clamp, max, min, styled, useOwnerState } from '@react-universal/core';
 import { forwardRef } from 'react';
 import { View } from '../View';
 import type {
