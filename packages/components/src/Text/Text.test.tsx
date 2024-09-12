@@ -1,9 +1,9 @@
 import { act, fireEvent, render } from '@testing-library/react';
-import { isFunction } from '@universal-ui/utils';
+import { isFunction, noop } from '@universal-ui/utils';
 import { createRef } from 'react';
 import { describe, expect, test, vi } from 'vitest';
 import { Text } from './Text';
-import type { TextMethods } from './Text.types';
+import type { TextType } from './Text.types';
 
 function createEventTarget(node: any) {
   return {
@@ -170,7 +170,7 @@ describe('Text', () => {
   describe('prop "onBlur"', () => {
     test('is called', () => {
       const onBlur = vi.fn();
-      const ref = createRef<TextMethods>();
+      const ref = createRef<React.ElementRef<TextType>>();
       act(() => {
         // @ts-expect-error: `onBlur` is Web only and does not exist in types
         render(<Text ref={ref} onBlur={onBlur} />);
@@ -187,7 +187,7 @@ describe('Text', () => {
   describe('prop "onClick"', () => {
     test('is called', () => {
       const onClick = vi.fn();
-      const ref = createRef<TextMethods>();
+      const ref = createRef<React.ElementRef<TextType>>();
       act(() => {
         render(<Text ref={ref} onClick={onClick} />);
       });
@@ -200,9 +200,9 @@ describe('Text', () => {
 
     test('is still called if "onPress" is provided', () => {
       const onClick = vi.fn();
-      const ref = createRef<TextMethods>();
+      const ref = createRef<React.ElementRef<TextType>>();
       act(() => {
-        render(<Text ref={ref} onClick={onClick} onPress={() => {}} />);
+        render(<Text ref={ref} onClick={onClick} onPress={noop} />);
       });
       const target = createEventTarget(ref.current);
       act(() => {
@@ -215,7 +215,7 @@ describe('Text', () => {
   describe('prop "onFocus"', () => {
     test('is called', () => {
       const onFocus = vi.fn();
-      const ref = createRef<TextMethods>();
+      const ref = createRef<React.ElementRef<TextType>>();
       act(() => {
         // @ts-expect-error: `onFocus` is Web only and does not exist in types
         render(<Text ref={ref} onFocus={onFocus} />);
@@ -238,7 +238,7 @@ describe('Text', () => {
 
     test('is called', () => {
       const onPointerDown = vi.fn();
-      const ref = createRef<TextMethods>();
+      const ref = createRef<React.ElementRef<TextType>>();
       act(() => {
         // @ts-expect-error: `onPointerDown` is Web only and does not exist in types
         render(<Text ref={ref} onPointerDown={onPointerDown} />);
@@ -254,7 +254,7 @@ describe('Text', () => {
   describe('prop "onPress"', () => {
     test('is called', () => {
       const onPress = vi.fn();
-      const ref = createRef<TextMethods>();
+      const ref = createRef<React.ElementRef<TextType>>();
       act(() => {
         render(<Text ref={ref} onPress={onPress} />);
       });
@@ -267,9 +267,9 @@ describe('Text', () => {
 
     test('is not called if "onClick" is provided', () => {
       const onPress = vi.fn();
-      const ref = createRef<TextMethods>();
+      const ref = createRef<React.ElementRef<TextType>>();
       act(() => {
-        render(<Text ref={ref} onClick={() => {}} onPress={onPress} />);
+        render(<Text ref={ref} onClick={noop} onPress={onPress} />);
       });
       const target = createEventTarget(ref.current);
       act(() => {
@@ -300,7 +300,7 @@ describe('Text', () => {
     });
 
     test('node has imperative methods', () => {
-      const ref = createRef<TextMethods>();
+      const ref = createRef<React.ElementRef<TextType>>();
       act(() => {
         render(<Text ref={ref} />);
       });

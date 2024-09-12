@@ -1,10 +1,10 @@
 import { act, fireEvent, render } from '@testing-library/react';
-import { isFunction } from '@universal-ui/utils';
+import { isFunction, noop } from '@universal-ui/utils';
 import { createRef } from 'react';
 import type { MockInstance } from 'vitest';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import { View } from './View';
-import type { ViewMethods, ViewType } from './View.types';
+import type { ViewType } from './View.types';
 
 function createEventTarget(node: any) {
   return {
@@ -32,7 +32,7 @@ describe('View', () => {
     let consoleErrorMock: MockInstance<(...params: any[]) => void>;
 
     beforeEach(() => {
-      consoleErrorMock = vi.spyOn(console, 'error').mockImplementation(() => {});
+      consoleErrorMock = vi.spyOn(console, 'error').mockImplementation(noop);
     });
 
     afterEach(() => {
@@ -185,7 +185,7 @@ describe('View', () => {
   describe('prop "onBlur"', () => {
     test('is called', () => {
       const onBlur = vi.fn();
-      const ref = createRef<ViewMethods>();
+      const ref = createRef<React.ElementRef<ViewType>>();
       act(() => {
         // @ts-expect-error: `onBlur` is Web only and does not exist in types
         render(<View ref={ref} onBlur={onBlur} />);
@@ -202,7 +202,7 @@ describe('View', () => {
   describe('prop "onClick"', () => {
     test('is called', () => {
       const onClick = vi.fn();
-      const ref = createRef<ViewMethods>();
+      const ref = createRef<React.ElementRef<ViewType>>();
       act(() => {
         // @ts-expect-error: `onClick` is Web only and does not exist in types
         render(<View ref={ref} onClick={onClick} />);
@@ -218,7 +218,7 @@ describe('View', () => {
   describe('prop "onFocus"', () => {
     test('is called', () => {
       const onFocus = vi.fn();
-      const ref = createRef<ViewMethods>();
+      const ref = createRef<React.ElementRef<ViewType>>();
       act(() => {
         // @ts-expect-error: `onFocus` is Web only and does not exist in types
         render(<View ref={ref} onFocus={onFocus} />);
@@ -246,7 +246,7 @@ describe('View', () => {
       act(() => {
         render(<View ref={ref} onPointerDown={onPointerDown} />);
       });
-      const target = createEventTarget(ref.current as unknown as HTMLElement);
+      const target = createEventTarget(ref.current);
       act(() => {
         target.pointerDown({ pointerType: 'touch' });
       });
