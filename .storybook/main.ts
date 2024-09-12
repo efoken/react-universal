@@ -11,6 +11,13 @@ const config: StorybookConfig = {
   core: {
     disableTelemetry: true,
   },
+  viteFinal: (config) => ({
+    ...config,
+    resolve: {
+      ...config.resolve,
+      conditions: ['source'],
+    },
+  }),
 };
 
 export default config;

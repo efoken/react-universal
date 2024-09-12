@@ -1,7 +1,9 @@
 {
   "name": "@universal-ui/elements",
   "version": "1.0.0",
-  "main": "src/index.tsx",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "react-native": "src/index.tsx",
   "license": "MIT",
   "dependencies": {
@@ -24,6 +26,21 @@
     }
   },
   "scripts": {
-    "build": "tsup src/index.ts"
+    "build": "tsup src/index.tsx"
+  },
+  "exports": {
+    ".": {
+      "source": "./src/index.tsx",
+      "react-native": "./src/index.tsx",
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./package.json": "./package.json"
   }
 }

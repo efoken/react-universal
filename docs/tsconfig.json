@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "allowJs": true,
+    "customConditions": ["source"],
     "esModuleInterop": true,
     "incremental": true,
     "isolatedModules": true,

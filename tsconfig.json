@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
     "allowJs": true,
+    "customConditions": ["source"],
     "esModuleInterop": true,
     "jsx": "react-jsx",
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "module": "ESNext",
-    "moduleResolution": "Node10",
+    "moduleResolution": "Bundler",
     "noEmit": true,
     "skipLibCheck": true,
     "strict": true,
