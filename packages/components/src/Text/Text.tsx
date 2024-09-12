@@ -141,6 +141,6 @@ export const Text = forwardRef<HTMLElement & TextMethods, TextProps>(
       <TextAncestorContext.Provider value>{element}</TextAncestorContext.Provider>
     );
   },
-) as unknown as TextType;
+) as TextType;
 
 Text.displayName = 'Text';

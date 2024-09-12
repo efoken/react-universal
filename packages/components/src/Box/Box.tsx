@@ -16,7 +16,7 @@ export interface BoxProps extends ViewProps {
 }
 
 export type BoxType = React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<BoxProps> & React.RefAttributes<BoxMethods>
+  React.PropsWithoutRef<BoxProps> & React.RefAttributes<HTMLElement & BoxMethods>
 >;
 
 export const Box = styled(View, {

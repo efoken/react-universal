@@ -370,6 +370,6 @@ export const TextInput = forwardRef<HTMLInputElement & TextInputMethods, TextInp
 
     return <TextInputRoot as={component} ownerState={ownerState} {...supportedProps} />;
   },
-) as unknown as TextInputType;
+) as TextInputType;
 
 TextInput.displayName = 'TextInput';

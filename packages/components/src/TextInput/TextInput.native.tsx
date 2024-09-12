@@ -98,6 +98,6 @@ export const TextInput = forwardRef<any, TextInputProps>(
       />
     );
   },
-) as unknown as TextInputType;
+) as TextInputType;
 
 TextInput.displayName = 'TextInput';

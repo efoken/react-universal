@@ -65,6 +65,6 @@ export const ScrollView = forwardRef<any, ScrollViewProps>(
       {...props}
     />
   ),
-) as unknown as ScrollViewType;
+) as ScrollViewType;
 
 ScrollView.displayName = 'ScrollView';

@@ -70,7 +70,7 @@ const ScrollViewRoot = styled(View, {
     },
 );
 
-export const ScrollViewBase = forwardRef<any, ScrollViewBaseProps>(
+export const ScrollViewBase = forwardRef<HTMLElement & ViewMethods, ScrollViewBaseProps>(
   (
     {
       onLayout,
@@ -147,6 +147,6 @@ export const ScrollViewBase = forwardRef<any, ScrollViewBaseProps>(
       />
     );
   },
-) as unknown as React.FC<ScrollViewBaseProps & React.RefAttributes<ViewMethods>> & ViewMethods;
+);
 
 ScrollViewBase.displayName = 'ScrollViewBase';

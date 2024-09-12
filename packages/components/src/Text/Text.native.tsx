@@ -28,6 +28,6 @@ export const Text = forwardRef<any, TextProps>(
       {...props}
     />
   ),
-) as unknown as TextType;
+) as TextType;
 
 Text.displayName = 'Text';

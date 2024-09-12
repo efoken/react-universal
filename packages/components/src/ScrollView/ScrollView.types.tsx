@@ -83,8 +83,9 @@ export interface ScrollViewProps
   sx?: SxProps;
 }
 
-export type ScrollViewType = React.FC<ScrollViewProps & React.RefAttributes<ScrollViewMethods>> &
-  ScrollViewMethods;
+export type ScrollViewType = React.ForwardRefExoticComponent<
+  React.PropsWithoutRef<ScrollViewProps> & React.RefAttributes<HTMLElement & ScrollViewMethods>
+>;
 
 export type ScrollViewOwnerState = Required<
   Pick<ScrollViewProps, 'centerContent' | 'horizontal' | 'pagingEnabled'>

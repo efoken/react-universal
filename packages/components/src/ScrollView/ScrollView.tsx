@@ -294,6 +294,6 @@ export const ScrollView = forwardRef<HTMLElement & ScrollViewMethods, ScrollView
 
     return scrollView;
   },
-) as unknown as ScrollViewType;
+) as ScrollViewType;
 
 ScrollView.displayName = 'ScrollView';

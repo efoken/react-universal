@@ -44,7 +44,9 @@ export interface TextProps
   sx?: SxProps;
 }
 
-export type TextType = React.FC<TextProps & React.RefAttributes<TextMethods>> & TextMethods;
+export type TextType = React.ForwardRefExoticComponent<
+  React.PropsWithoutRef<TextProps> & React.RefAttributes<HTMLElement & TextMethods>
+>;
 
 export type TextOwnerState = Pick<TextProps, 'numberOfLines' | 'role'> & {
   hasTextAncestor: boolean;
