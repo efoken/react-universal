@@ -1,4 +1,5 @@
 import { StorybookConfig } from '@storybook/react-vite';
+import { mergeConfig } from 'vite';
 
 const config: StorybookConfig = {
   stories: [
@@ -11,13 +12,12 @@ const config: StorybookConfig = {
   core: {
     disableTelemetry: true,
   },
-  viteFinal: (config) => ({
-    ...config,
-    resolve: {
-      ...config.resolve,
-      conditions: ['source'],
-    },
-  }),
+  viteFinal: (config) =>
+    mergeConfig(config, {
+      resolve: {
+        conditions: ['source'],
+      },
+    }),
 };
 
 export default config;
