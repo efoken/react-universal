@@ -3507,7 +3507,7 @@ __metadata:
   dependencies:
     "@react-universal/core": "workspace:*"
     "@tamagui/compose-refs": "npm:^1.112.7"
-    "@types/react": "npm:~18.3.5"
+    "@types/react": "npm:~18.3.10"
     react: "npm:18.3.1"
     react-native: "npm:0.75.3"
   peerDependencies:
@@ -3532,7 +3532,7 @@ __metadata:
     "@react-universal/utils": "workspace:*"
     "@tamagui/constants": "npm:^1.112.7"
     "@tamagui/react-native-use-responder-events": "npm:^1.112.7"
-    "@types/react": "npm:~18.3.5"
+    "@types/react": "npm:~18.3.10"
     react: "npm:18.3.1"
     react-native: "npm:0.75.3"
     react-native-unistyles: "npm:^2.9.2"
@@ -3557,7 +3557,7 @@ __metadata:
     "@react-universal/core": "workspace:*"
     "@react-universal/elements": "workspace:*"
     "@types/node": "npm:^20.16.10"
-    "@types/react": "npm:~18.3.5"
+    "@types/react": "npm:~18.3.10"
     "@types/react-dom": "npm:~18.3.0"
     eslint: "npm:^8.57.1"
     eslint-config-next: "npm:14.2.11"
@@ -3576,7 +3576,7 @@ __metadata:
   dependencies:
     "@react-universal/components": "workspace:*"
     "@react-universal/core": "workspace:*"
-    "@types/react": "npm:~18.3.5"
+    "@types/react": "npm:~18.3.10"
     react: "npm:18.3.1"
     react-native: "npm:0.75.3"
   peerDependencies:
@@ -3595,7 +3595,7 @@ __metadata:
   dependencies:
     "@react-universal/core": "workspace:*"
     "@react-universal/utils": "workspace:*"
-    "@types/react": "npm:~18.3.5"
+    "@types/react": "npm:~18.3.10"
     react: "npm:18.3.1"
     react-native: "npm:0.75.3"
     react-native-svg: "npm:^15.6.0"
@@ -4606,13 +4606,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^16.8.0 || ^17.0.0 || ^18.0.0, @types/react@npm:~18.3.5":
-  version: 18.3.5
-  resolution: "@types/react@npm:18.3.5"
+"@types/react@npm:*, @types/react@npm:^16.8.0 || ^17.0.0 || ^18.0.0, @types/react@npm:~18.3.10":
+  version: 18.3.10
+  resolution: "@types/react@npm:18.3.10"
   dependencies:
     "@types/prop-types": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 10c0/548b1d3d7c2f0242fbfdbbd658731b4ce69a134be072fa83e6ab516f2840402a3f20e3e7f72e95133b23d4880ef24a6d864050dc8e1f7c68f39fa87ca8445917
+  checksum: 10c0/f5be1de1b0331c1fdb33d577f4cf7f1b949d4bded5347b2351a537f03c51dade5be115e21b161dcf1b37061954d320f6a0bdf8d7b70e24eda51071fdd614383d
   languageName: node
   linkType: hard
 
@@ -12781,7 +12781,7 @@ __metadata:
     "@testing-library/dom": "npm:^10.4.0"
     "@testing-library/jest-dom": "npm:^6.5.0"
     "@testing-library/react": "npm:^16.0.1"
-    "@types/react": "npm:~18.3.5"
+    "@types/react": "npm:~18.3.10"
     "@typescript-eslint/eslint-plugin": "npm:^7.18.0"
     "@typescript-eslint/parser": "npm:^7.18.0"
     eslint: "npm:^8.57.1"
