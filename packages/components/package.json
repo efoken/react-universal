@@ -8,7 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "@react-universal/core": "workspace:*",
-    "@tamagui/compose-refs": "^1.110.3"
+    "@tamagui/compose-refs": "^1.112.7"
   },
   "devDependencies": {
     "@types/react": "~18.3.5",
