@@ -13,8 +13,8 @@
     "@emotion/utils": "^1.4.1",
     "@react-native/normalize-colors": "^0.75.3",
     "@react-universal/utils": "workspace:*",
-    "@tamagui/constants": "^1.112.7",
-    "@tamagui/react-native-use-responder-events": "^1.112.7"
+    "@tamagui/constants": "^1.112.9",
+    "@tamagui/react-native-use-responder-events": "^1.112.9"
   },
   "devDependencies": {
     "@types/react": "~18.3.10",
