@@ -7,12 +7,11 @@ import { getRegisteredStyles, insertStyles, registerStyles } from '@emotion/util
 import { isFunction, isString } from '@react-universal/utils';
 import { isServer } from '@tamagui/constants';
 import { useMemo } from 'react';
-import { StyleRuntime } from './StyleRuntime';
-import { StyleSheet } from './StyleSheet';
-import { useTheme } from './contexts/ThemeContext';
 import { createElement } from './createElement';
 import { css } from './css';
 import { useInsertionEffectAlwaysWithSyncFallback } from './hooks/useInsertionEffectAlwaysWithSyncFallback';
+import { useStyles } from './hooks/useStyles';
+import { interpolate } from './interpolate';
 import { styleFunctionSx } from './styleFunctionSx';
 import type { CreateStyledComponent, StyledOptions } from './styled.types';
 import type { AnyProps, RNStyle, StyleInterpolation, StyleProp } from './types';
@@ -86,33 +85,30 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
     const Styled = withEmotionCache<
       React.ComponentProps<T> & {
         as?: React.ElementType;
-        dir?: 'ltr' | 'rtl';
-        lang?: Intl.UnicodeBCP47LocaleIdentifier;
         style?: StyleProp<Record<string, any>>;
       },
       T
     >(({ style, ...props }, cache, ref) => {
       const Component = shouldUseAs ? (props.as ?? component) : component;
 
-      const theme = useTheme();
-
       const classInterpolations: string[] = [];
-      let { className } = useMemo(() => StyleSheet.props(style), [style]);
+      let { className } = useMemo(() => css.props(style), [style]);
       if (className != null) {
         className = getRegisteredStyles(cache.registered, classInterpolations, className);
       }
 
+      const { styles: _styles } = useStyles(
+        css.create((theme, runtime) => ({
+          style: interpolate.call(
+            { ...props, runtime, theme },
+            styles,
+            !skipSx && styleFunctionSx({ ...props, theme }),
+          ),
+        })),
+      );
+
       const serialized = serializeStyles(
-        [
-          StyleSheet.create((currentTheme, runtime) => ({
-            styles: css.call(
-              { ...props, runtime, theme: currentTheme },
-              styles,
-              !skipSx && styleFunctionSx({ ...props, theme: currentTheme }),
-            ),
-          }))(theme, StyleRuntime).styles,
-          classInterpolations,
-        ],
+        [_styles.style, classInterpolations],
         cache.registered,
         props,
       );

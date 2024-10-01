@@ -7,6 +7,7 @@ import type {
   ViewStyle as RNViewStyle,
 } from 'react-native';
 import type { Breakpoint } from './breakpoints';
+import type { StyleRuntime } from './StyleRuntime';
 import type { Theme } from './theme/defaultTheme';
 
 export type { DistributiveOmit } from '@emotion/react';
@@ -84,6 +85,7 @@ export interface RNStyle
       | 'borderTopWidth'
       | 'bottom'
       | 'columnGap'
+      | 'display'
       | 'end'
       | 'flexBasis'
       | 'fontSize'
@@ -160,6 +162,7 @@ export interface RNStyle
   bottom?: NonNullable<RNViewStyle['bottom']> | (string & {});
   boxShadow?: string;
   columnGap?: string | number;
+  display?: RNViewStyle['display'] | 'block';
   flexBasis?: NonNullable<RNViewStyle['flexBasis']> | (string & {});
   fontSize?: NonNullable<RNTextStyle['fontSize']> | (string & {});
   gap?: string | number;
@@ -204,7 +207,7 @@ export interface RNStyle
   paddingRight?: NonNullable<RNViewStyle['paddingRight']> | (string & {});
   paddingTop?: NonNullable<RNViewStyle['paddingTop']> | (string & {});
   placeContent?: Exclude<NonNullable<RNViewStyle['alignContent']>, 'stretch'>;
-  position?: NonNullable<RNViewStyle['position']> | 'fixed';
+  position?: RNViewStyle['position'] | 'fixed';
   right?: NonNullable<RNViewStyle['right']> | (string & {});
   rowGap?: string | number;
   top?: NonNullable<RNViewStyle['top']> | (string & {});
@@ -220,7 +223,11 @@ export type StyleValues = {
   [K in RNStyleKeys]?: RNStyle[K] | { [B in Breakpoint]?: RNStyle[K] };
 };
 
-// export type StyleSheet = Record<string, StyleValues>;
+export type StyleSheet = Record<string, StyleValues>;
+
+export type StyleSheetWithSuperPowers =
+  | ((theme: Theme, runtime: typeof StyleRuntime) => StyleSheet)
+  | StyleSheet;
 
 type RecursiveArray<T> = (T | T[] | RecursiveArray<T>)[];
 

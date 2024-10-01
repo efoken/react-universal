@@ -3,8 +3,8 @@
 import { isString } from '@react-universal/utils';
 import { createElement as createReactElement } from 'react';
 import type { Role as RNRole } from 'react-native';
-import { StyleSheet } from './StyleSheet';
 import { LocaleProvider } from './contexts/LocaleContext';
+import { css } from './css';
 import type { StyleProp } from './types';
 
 const roleComponents: Partial<
@@ -159,7 +159,7 @@ function createDOMProps(
   }
 
   // Resolve styles
-  Object.assign(domProps, StyleSheet.props([style]));
+  Object.assign(domProps, css.props([style]));
 
   // Automated test IDs
   if (testID != null) {

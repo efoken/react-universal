@@ -1,5 +1,5 @@
 import { isFunction } from '@react-universal/utils';
-import { StyleSheet as RNStyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import type { UnistylesValues } from 'react-native-unistyles';
 import { createStyleSheet as createUnistylesStyleSheet } from 'react-native-unistyles';
 import type { StyleRuntime } from './StyleRuntime';
@@ -14,13 +14,9 @@ function parseStyle<T extends Record<string, any>>(
   return style;
 }
 
-export const StyleSheet = {
-  flatten<T>(style: StyleProp<T>): T[] {
-    return [RNStyleSheet.flatten([style])] as T[];
-  },
-
-  props<T extends StyleValues>(style: StyleProp<T>) {
-    return { className: undefined, style };
+export const css = {
+  props<T extends Record<string, any>>(style: StyleProp<T>): { className?: string; style: T } {
+    return { style: StyleSheet.flatten(style) };
   },
 
   create<T extends Record<string, StyleValues>>(

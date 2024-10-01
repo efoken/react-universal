@@ -205,7 +205,7 @@ const SvgRoot = styled('svg', {
   name: 'Svg',
   slot: 'Root',
 })({
-  display: 'block' as any,
+  display: 'block',
 });
 
 export const Svg = createComponent<SVGSVGElement & SvgMethods, SvgProps>(SvgRoot, 'Svg');

@@ -4,7 +4,7 @@ import {
   normalizeRole,
   styled,
 } from '@react-universal/core';
-import { isFunction } from '@react-universal/utils';
+import { runIfFunction } from '@react-universal/utils';
 import { forwardRef, useState } from 'react';
 import type { NativeSyntheticEvent, TargetedEvent } from 'react-native';
 import { Pressable as RNPressable } from 'react-native';
@@ -65,9 +65,7 @@ export const Button = forwardRef<any, ButtonProps>(
     };
 
     const _style = ({ pressed }: { pressed: boolean }) =>
-      isFunction(style)
-        ? (style({ focusVisible, hovered: false, pressed }) as any)
-        : (style as any);
+      runIfFunction(style, { focusVisible, hovered: false, pressed }) as any;
 
     return (
       <ButtonRoot
@@ -93,9 +91,7 @@ export const Button = forwardRef<any, ButtonProps>(
         onStartShouldSetResponderCapture={normalizeResponderEvent(onStartShouldSetResponderCapture)}
         {...props}
       >
-        {({ pressed }) =>
-          isFunction(children) ? children({ focusVisible, hovered: false, pressed }) : children
-        }
+        {({ pressed }) => runIfFunction(children, { focusVisible, hovered: false, pressed })}
       </ButtonRoot>
     );
   },

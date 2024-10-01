@@ -1,7 +1,7 @@
 'use client';
 
 import { styled, useOwnerState } from '@react-universal/core';
-import { isFunction, normalizeEvent } from '@react-universal/utils';
+import { normalizeEvent, runIfFunction } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
 import { forwardRef, useRef, useState } from 'react';
 import { View } from '../View';
@@ -188,7 +188,7 @@ export const Button = forwardRef<HTMLElement & ButtonMethods, ButtonProps>(
         ownerState={ownerState}
         role="button"
         tabIndex={href == null ? tabIndex : disabled ? -1 : (tabIndex ?? 0)}
-        style={isFunction(style) ? style({ focusVisible, hovered, pressed }) : style}
+        style={runIfFunction(style, { focusVisible, hovered, pressed })}
         type={href == null ? (type ?? 'button') : undefined}
         onBlur={handleBlur}
         onClick={handleClick}
@@ -200,7 +200,7 @@ export const Button = forwardRef<HTMLElement & ButtonMethods, ButtonProps>(
         onMouseLeave={handleMouseLeave}
         {...props}
       >
-        {isFunction(children) ? children({ focusVisible, hovered, pressed }) : children}
+        {runIfFunction(children, { focusVisible, hovered, pressed })}
       </ButtonRoot>
     );
   },

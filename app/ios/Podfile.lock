@@ -6,9 +6,9 @@ PODS:
   - EXJSONUtils (0.13.1)
   - EXManifests (0.14.3):
     - ExpoModulesCore
-  - Expo (51.0.32):
+  - Expo (51.0.34):
     - ExpoModulesCore
-  - expo-dev-client (4.0.26):
+  - expo-dev-client (4.0.27):
     - EXManifests
     - expo-dev-launcher
     - expo-dev-menu
@@ -268,7 +268,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - EXSplashScreen (0.27.5):
+  - EXSplashScreen (0.27.6):
     - DoubleConversion
     - ExpoModulesCore
     - glog
@@ -2076,8 +2076,8 @@ SPEC CHECKSUMS:
   EXConstants: 9a008dbf262550884e6280dea95b81b51f65ea6f
   EXJSONUtils: 30c17fd9cc364d722c0946a550dfbf1be92ef6a4
   EXManifests: c1fab4c3237675e7b0299ea8df0bcb14baca4f42
-  Expo: 33132a667698a3259a4e6c0af1b4936388e5fa33
-  expo-dev-client: 4f9100af6be210a360aa67f42649881251aa362a
+  Expo: 963ef4ae102e4f4ac114a8510d70127c44adffbf
+  expo-dev-client: 85deba11af998ea86e62093b17fce56aa2c6f26b
   expo-dev-launcher: fc33891203a796c1e9cf0507d54707bf75a8b7de
   expo-dev-menu: d93c46bfa7bd088b20423945b6d0fb3dff7d647b
   expo-dev-menu-interface: be32c09f1e03833050f0ee290dcc86b3ad0e73e4
@@ -2087,7 +2087,7 @@ SPEC CHECKSUMS:
   ExpoKeepAwake: 3b8815d9dd1d419ee474df004021c69fdd316d08
   ExpoModulesCore: 0f12e4d48d4484886e2940ece708f4dc73d6319c
   ExpoScreenOrientation: 9a13e7438f4b62f313ca3c22d1abeeef847c9599
-  EXSplashScreen: 5461621eafa685600296f3702ed35cc8dcb18aae
+  EXSplashScreen: ba896e2d289a08d56d00c6140d23b896c49ae5df
   EXUpdatesInterface: 996527fd7d1a5d271eb523258d603f8f92038f24
   FBLazyVector: 7b438dceb9f904bd85ca3c31d64cce32a035472b
   fmt: 4c2741a687cc09f0634a2e2c72a838b99f1ff120

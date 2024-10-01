@@ -2,13 +2,15 @@
 
 import type {
   HeadingProps,
+  ImageMethods,
+  ImageProps,
   LinkProps,
   TextMethods,
   TextProps,
   ViewMethods,
   ViewProps,
 } from '@react-universal/components';
-import { Heading, Link, Text, View } from '@react-universal/components';
+import { Heading, Image, Link, Text, View } from '@react-universal/components';
 import type { RNStyle, StyleProp } from '@react-universal/core';
 import { styled } from '@react-universal/core';
 import { forwardRef } from 'react';
@@ -97,3 +99,5 @@ export const Strong = createComponent<HTMLElement & TextMethods, TextProps>(
   { as: 'strong' },
   { fontWeight: 700 },
 );
+
+export const Img = createComponent<HTMLImageElement & ImageMethods, ImageProps>(Image, 'Img');

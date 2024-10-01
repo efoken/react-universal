@@ -359,7 +359,7 @@ export const polyfillPlugin: StylePlugin = () => ({
             flatStyle.paddingStart = styleValue;
             break;
           }
-          // placeContent
+          // Flex
           case 'placeContent': {
             flatStyle.alignContent = styleValue;
             flatStyle.justifyContent = styleValue;

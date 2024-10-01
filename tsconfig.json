@@ -10,7 +10,8 @@
     "noEmit": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ES2022"
+    "target": "ES2022",
+    "verbatimModuleSyntax": true
   },
   "include": [
     "./.storybook/**/*",
@@ -18,6 +19,7 @@
     "./app/**/*",
     "./docs/**/*",
     "./packages/**/*",
+    "./eslint.config.mjs",
     "./vitest.config.ts",
     "./vitest.setup.ts"
   ]

@@ -1,6 +1,6 @@
 import type { BreakpointValue } from '../breakpoints';
 import type { Theme } from '../theme/defaultTheme';
-import type { SimpleStyleFunction } from '../types';
+import type { RNStyle, SimpleStyleFunction } from '../types';
 import type { BackgroundProps } from './background';
 import type { BorderProps } from './borders';
 import type { FlexboxProps } from './flexbox';
@@ -18,8 +18,11 @@ type CSSCustomProps = Record<`--${string}`, string>;
 interface OtherProps extends CSSCustomProps {
   backdropFilter?: BreakpointValue<string>;
   boxShadow?: BreakpointValue<string>;
+  filter?: BreakpointValue<string>;
   opacity?: BreakpointValue<number>;
   pointerEvents?: BreakpointValue<any>;
+  transform?: BreakpointValue<RNStyle['transform']>;
+  transformOrigin?: BreakpointValue<RNStyle['transformOrigin']>;
   transition?: BreakpointValue<React.CSSProperties['transition']>;
   transitionDelay?: BreakpointValue<React.CSSProperties['transitionDelay']>;
   transitionDuration?: BreakpointValue<React.CSSProperties['transitionDuration']>;
@@ -205,8 +208,11 @@ export const defaultSxConfig: SxConfig = {
 
   // Others
   backdropFilter: {},
+  filter: {},
   opacity: {},
   pointerEvents: {},
+  transform: {},
+  transformOrigin: {},
   transition: {},
   transitionDelay: {},
   transitionDuration: {},

@@ -1,6 +1,6 @@
-import { Box, Container, Link, Text } from '@react-universal/components';
-import { Code, H2, Main, P } from '@react-universal/elements';
-import Image from 'next/image';
+import { Box, Container, Text } from '@react-universal/components';
+import { A, Code, H2, Main, P } from '@react-universal/elements';
+import { Image } from '../components/Image';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -19,12 +19,12 @@ export default function Home() {
       <Container
         maxWidth="xl"
         sx={{
-          alignItems: 'inherit' as any,
-          display: 'inherit' as any,
+          alignItems: 'center',
+          display: 'flex',
           flexDir: 'row',
           fontFamily: 'var(--font-mono)',
           fontSize: { xs: '0.8rem', md: '0.85rem' },
-          justifyContent: 'inherit' as any,
+          justifyContent: 'space-between',
           maxW: { xl: 'var(--max-width)' },
           zIndex: 2,
         }}
@@ -45,11 +45,11 @@ export default function Home() {
               md: 'rgba(var(--callout-border-rgb), 0.3)',
             },
             borderLeftWidth: { xs: 0, md: 1 },
-            borderRadius: { xs: 0, md: 'var(--border-radius)' as any },
+            borderRadius: { xs: 0, md: 'var(--border-radius)' },
             borderRightWidth: { xs: 0, md: 1 },
             borderTopWidth: { xs: 0, md: 1 },
             bottom: { xs: 'auto', md: 'unset' },
-            display: { xs: 'flex', md: 'block' as any },
+            display: { xs: 'flex', md: 'block' },
             fontFamily: 'inherit',
             justifyContent: 'center',
             left: { xs: 0, md: 'unset' },
@@ -88,12 +88,10 @@ export default function Home() {
             zIndex: { xs: 1, md: 'unset' as any },
           }}
         >
-          <Link
+          <A
             href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            hrefAttrs={{
-              target: '_blank',
-              rel: 'noopener noreferrer',
-            }}
+            target="_blank"
+            rel="noopener noreferrer"
             sx={{
               alignItems: 'center',
               display: 'flex',
@@ -104,14 +102,18 @@ export default function Home() {
           >
             By{' '}
             <Image
+              priority
               src="/vercel.svg"
               alt="Vercel Logo"
-              className={styles.vercelLogo}
               width={100}
               height={24}
-              priority
+              sx={{
+                filter: {
+                  // '@media (prefers-color-scheme: dark)': 'invert(1)',
+                },
+              }}
             />
-          </Link>
+          </A>
         </Box>
       </Container>
       <Box
@@ -125,41 +127,42 @@ export default function Home() {
         }}
       >
         <Box
-          sx={
-            {
-              backgroundImage: 'var(--secondary-glow)',
-              borderRadius: '50%',
-              filter: 'blur(45px)',
-              height: { xs: 300, md: 360 },
-              left: '50%',
-              marginLeft: -400,
-              position: 'absolute',
-              transform: { xs: 'none', md: 'translateZ(0)' },
-              width: 480,
-            } as any
-          }
+          sx={{
+            backgroundImage: 'var(--secondary-glow)',
+            borderRadius: '50%',
+            filter: 'blur(45px)',
+            height: { xs: 300, md: 360 },
+            left: '50%',
+            marginLeft: -400,
+            position: 'absolute',
+            transform: { xs: 'none', md: 'translateZ(0)' },
+            width: 480,
+          }}
         />
         <Image
           priority
-          className={styles.logo}
           src="/next.svg"
           alt="Next.js Logo"
           width={180}
           height={37}
+          sx={{
+            filter: {
+              // '@media (prefers-color-scheme: dark)': 'invert(1) drop-shadow(0 0 0.3rem #ffffff70)',
+            },
+            position: 'relative',
+          }}
         />
         <Box
-          sx={
-            {
-              backgroundImage: 'var(--primary-glow)',
-              filter: 'blur(45px)',
-              height: 180,
-              left: '50%',
-              position: 'absolute',
-              transform: 'translateZ(0)',
-              width: 240,
-              zIndex: -1,
-            } as any
-          }
+          sx={{
+            backgroundImage: 'var(--primary-glow)',
+            filter: 'blur(45px)',
+            height: 180,
+            left: '50%',
+            position: 'absolute',
+            transform: 'translateZ(0)',
+            width: 240,
+            zIndex: -1,
+          }}
         />
       </Box>
       <Container
@@ -178,17 +181,15 @@ export default function Home() {
           w: 'var(--max-width)',
         }}
       >
-        <Link
+        <A
           href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          hrefAttrs={{
-            target: '_blank',
-            rel: 'noopener noreferrer',
-          }}
+          target="_blank"
+          rel="noopener noreferrer"
           style={{ c: styles.card, $$css: true } as any}
           sx={{
             bgColor: 'rgba(var(--card-rgb), 0)',
             borderColor: 'rgba(var(--card-border-rgb), 0)',
-            borderRadius: 'var(--border-radius)' as any,
+            borderRadius: 'var(--border-radius)',
             borderWidth: 1,
             px: { xs: '2.5rem', md: '1.2rem' },
             py: '1rem',
@@ -200,7 +201,7 @@ export default function Home() {
             sx={{
               fontSize: '1.5rem',
               fontWeight: 600,
-              lineHeight: '1.23' as any,
+              lineHeight: 1.23,
               mb: { xs: '0.5rem', md: '0.7rem' },
             }}
           >
@@ -213,26 +214,23 @@ export default function Home() {
             sx={{
               opacity: 0.6,
               fontSize: '0.9rem',
-              lineHeight: '1.5' as any,
+              lineHeight: 1.5,
               maxWidth: '30ch',
               textWrap: 'balance',
             }}
           >
             Find in-depth information about Next.js features and API.
           </P>
-        </Link>
-
-        <Link
+        </A>
+        <A
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          hrefAttrs={{
-            target: '_blank',
-            rel: 'noopener noreferrer',
-          }}
+          target="_blank"
+          rel="noopener noreferrer"
           style={{ c: styles.card, $$css: true } as any}
           sx={{
             bgColor: 'rgba(var(--card-rgb), 0)',
             borderColor: 'rgba(var(--card-border-rgb), 0)',
-            borderRadius: 'var(--border-radius)' as any,
+            borderRadius: 'var(--border-radius)',
             borderWidth: 1,
             px: { xs: '2.5rem', md: '1.2rem' },
             py: '1rem',
@@ -244,7 +242,7 @@ export default function Home() {
             sx={{
               fontSize: '1.5rem',
               fontWeight: 600,
-              lineHeight: '1.23' as any,
+              lineHeight: 1.23,
               mb: { xs: '0.5rem', md: '0.7rem' },
             }}
           >
@@ -257,26 +255,23 @@ export default function Home() {
             sx={{
               opacity: 0.6,
               fontSize: '0.9rem',
-              lineHeight: '1.5' as any,
+              lineHeight: 1.5,
               maxWidth: '30ch',
               textWrap: 'balance',
             }}
           >
             Learn about Next.js in an interactive course with&nbsp;quizzes!
           </P>
-        </Link>
-
-        <Link
+        </A>
+        <A
           href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          hrefAttrs={{
-            target: '_blank',
-            rel: 'noopener noreferrer',
-          }}
+          target="_blank"
+          rel="noopener noreferrer"
           style={{ c: styles.card, $$css: true } as any}
           sx={{
             bgColor: 'rgba(var(--card-rgb), 0)',
             borderColor: 'rgba(var(--card-border-rgb), 0)',
-            borderRadius: 'var(--border-radius)' as any,
+            borderRadius: 'var(--border-radius)',
             borderWidth: 1,
             px: { xs: '2.5rem', md: '1.2rem' },
             py: '1rem',
@@ -288,7 +283,7 @@ export default function Home() {
             sx={{
               fontSize: '1.5rem',
               fontWeight: 600,
-              lineHeight: '1.23' as any,
+              lineHeight: 1.23,
               mb: { xs: '0.5rem', md: '0.7rem' },
             }}
           >
@@ -301,26 +296,23 @@ export default function Home() {
             sx={{
               opacity: 0.6,
               fontSize: '0.9rem',
-              lineHeight: '1.5' as any,
+              lineHeight: 1.5,
               maxWidth: '30ch',
               textWrap: 'balance',
             }}
           >
             Explore starter templates for Next.js.
           </P>
-        </Link>
-
-        <Link
+        </A>
+        <A
           href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          hrefAttrs={{
-            target: '_blank',
-            rel: 'noopener noreferrer',
-          }}
+          target="_blank"
+          rel="noopener noreferrer"
           style={{ c: styles.card, $$css: true } as any}
           sx={{
             bgColor: 'rgba(var(--card-rgb), 0)',
             borderColor: 'rgba(var(--card-border-rgb), 0)',
-            borderRadius: 'var(--border-radius)' as any,
+            borderRadius: 'var(--border-radius)',
             borderWidth: 1,
             px: { xs: '2.5rem', md: '1.2rem' },
             py: '1rem',
@@ -332,7 +324,7 @@ export default function Home() {
             sx={{
               fontSize: '1.5rem',
               fontWeight: 600,
-              lineHeight: '1.23' as any,
+              lineHeight: 1.23,
               mb: { xs: '0.5rem', md: '0.7rem' },
             }}
           >
@@ -345,14 +337,14 @@ export default function Home() {
             sx={{
               opacity: 0.6,
               fontSize: '0.9rem',
-              lineHeight: '1.5' as any,
+              lineHeight: 1.5,
               maxWidth: '30ch',
               textWrap: 'balance',
             }}
           >
             Instantly deploy your Next.js site to a shareable URL with Vercel.
           </P>
-        </Link>
+        </A>
       </Container>
     </Main>
   );

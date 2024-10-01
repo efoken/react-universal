@@ -23,6 +23,7 @@
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.4",
     "@expo/metro-runtime": "~3.2.3",
+    "@types/babel__core": "^7.20.5",
     "expo-modules-autolinking": "^1.11.2"
   },
   "scripts": {

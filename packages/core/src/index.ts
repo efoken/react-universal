@@ -2,6 +2,7 @@ export * from './breakpoints';
 export * from './contexts/LocaleContext';
 export * from './contexts/ThemeContext';
 export * from './createElement';
+export * from './css';
 export * from './forwardedProps';
 export * from './hooks/useBackHandler';
 export * from './hooks/useElementLayout';
@@ -15,9 +16,8 @@ export * from './normalizeLayoutEvent';
 export * from './normalizeResponderEvent';
 export * from './normalizeRole';
 export * from './styled';
-export * from './StyleSheet';
 export * from './sxConfig';
 export * from './theme';
-export * from './types';
+export type * from './types';
 
 export * from '@tamagui/constants';
