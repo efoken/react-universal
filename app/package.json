@@ -8,7 +8,7 @@
     "@react-universal/components": "workspace:*",
     "@react-universal/core": "workspace:*",
     "@react-universal/svg": "workspace:*",
-    "expo": "~51.0.34",
+    "expo": "~51.0.36",
     "expo-dev-client": "~4.0.27",
     "expo-screen-orientation": "~7.0.5",
     "expo-splash-screen": "~0.27.6",
@@ -24,7 +24,7 @@
     "@babel/preset-env": "^7.25.4",
     "@expo/metro-runtime": "~3.2.3",
     "@types/babel__core": "^7.20.5",
-    "expo-modules-autolinking": "^1.11.2"
+    "expo-modules-autolinking": "^1.11.3"
   },
   "scripts": {
     "start": "expo start",
