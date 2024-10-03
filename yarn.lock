@@ -3570,7 +3570,7 @@ __metadata:
     "@floating-ui/dom": "npm: ^1.6.11"
     "@floating-ui/react-native": "npm:^0.10.6"
     "@react-universal/core": "workspace:*"
-    "@tamagui/compose-refs": "npm:^1.112.17"
+    "@tamagui/compose-refs": "npm:^1.112.20"
     "@types/react": "npm:~18.3.11"
     react: "npm:18.3.1"
     react-native: "npm:0.75.4"
@@ -3594,8 +3594,8 @@ __metadata:
     "@emotion/utils": "npm:^1.4.1"
     "@react-native/normalize-colors": "npm:^0.75.4"
     "@react-universal/utils": "workspace:*"
-    "@tamagui/constants": "npm:^1.112.17"
-    "@tamagui/react-native-use-responder-events": "npm:^1.112.17"
+    "@tamagui/constants": "npm:^1.112.20"
+    "@tamagui/react-native-use-responder-events": "npm:^1.112.20"
     "@types/react": "npm:~18.3.11"
     react: "npm:18.3.1"
     react-native: "npm:0.75.4"
@@ -4300,30 +4300,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/compose-refs@npm:^1.112.17":
-  version: 1.112.17
-  resolution: "@tamagui/compose-refs@npm:1.112.17"
+"@tamagui/compose-refs@npm:^1.112.20":
+  version: 1.112.20
+  resolution: "@tamagui/compose-refs@npm:1.112.20"
   peerDependencies:
     react: "*"
-  checksum: 10c0/2165af5f5a9ac9a8b55ba25e31a0c3d3c47b36dcc5f112e158f8b6f87799de3d57ba17089416a317f5c8af55330b30abf20fa416e96bcaa75e295b9eea7d1d16
+  checksum: 10c0/50f494d0413e967c6f8e3aa8f306067b2bf9eecb8db9134c7a144f478bf6c88c720fbd56965c0912530e1cb8ca2e17ebc857c3d278c5559a95dda87e025ff52e
   languageName: node
   linkType: hard
 
-"@tamagui/constants@npm:^1.112.17":
-  version: 1.112.17
-  resolution: "@tamagui/constants@npm:1.112.17"
+"@tamagui/constants@npm:^1.112.20":
+  version: 1.112.20
+  resolution: "@tamagui/constants@npm:1.112.20"
   peerDependencies:
     react: "*"
-  checksum: 10c0/66e4344e4fddb981d7859aedd6d565dd07df52c213a50c18fa45785a934d45363401ee37d31bf6fb47ad0bd864038b1e98c1f44134505a709097323953eb7cef
+  checksum: 10c0/fb18de6777e8721cf32e8df10ef38d077ba8b12099ea76cbd5b6353ec966683059a639282f1287a9258ef247ad7c1b1a84d34c4e91747a0c055b07ae96ef8dae
   languageName: node
   linkType: hard
 
-"@tamagui/react-native-use-responder-events@npm:^1.112.17":
-  version: 1.112.17
-  resolution: "@tamagui/react-native-use-responder-events@npm:1.112.17"
+"@tamagui/react-native-use-responder-events@npm:^1.112.20":
+  version: 1.112.20
+  resolution: "@tamagui/react-native-use-responder-events@npm:1.112.20"
   peerDependencies:
     react: "*"
-  checksum: 10c0/8fac3ecb49946aacdca1a295778e6646b92b9d6cd2754ad9ada8a36dc92c060af7e201c711dc0bbc56e5474d2c0312c5e79879be7b2561b36c85dfe9d71542a7
+  checksum: 10c0/169e1ff7245fbd483f045f6ff8c3e2c561ff504565e4ce7b226402b98aa56729e6d7e7582411dc175c8bf23eb21458b5a4393d62c10b13315cd5e927a12948f6
   languageName: node
   linkType: hard
 
