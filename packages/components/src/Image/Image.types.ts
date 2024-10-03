@@ -57,6 +57,8 @@ export interface ImageProps
       | 'defaultSource'
       | 'nativeID'
       | 'onError'
+      | 'onLoadEnd'
+      | 'onLoadStart'
       | 'onLayout'
       | 'resizeMode'
       | 'source'

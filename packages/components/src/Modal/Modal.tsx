@@ -54,6 +54,7 @@ export const Modal = forwardRef<HTMLDialogElement & ModalMethods, ModalProps>(
   (
     {
       backdropStyle,
+      dir,
       hideBackdrop = false,
       onClose,
       onLayout,
@@ -118,8 +119,8 @@ export const Modal = forwardRef<HTMLDialogElement & ModalMethods, ModalProps>(
       }
     };
 
-    const langDirection = props.lang == null ? null : getLocaleDirection(props.lang);
-    const componentDirection = props.dir ?? langDirection;
+    const langDirection = props.lang == null ? undefined : getLocaleDirection(props.lang);
+    const componentDirection = dir ?? langDirection;
 
     const supportedProps: AnyProps = pickProps(props);
     supportedProps['aria-live'] = 'polite';
@@ -135,12 +136,10 @@ export const Modal = forwardRef<HTMLDialogElement & ModalMethods, ModalProps>(
     supportedProps.ref = handleRef;
 
     useEffect(() => {
-      if (hostRef.current != null) {
-        if (open) {
-          hostRef.current?.showModal();
-        } else {
-          hostRef.current?.close();
-        }
+      if (open) {
+        hostRef.current?.showModal();
+      } else {
+        hostRef.current?.close();
       }
     }, [open]);
 

@@ -7,6 +7,7 @@ export * from './forwardedProps';
 export * from './hooks/useBackHandler';
 export * from './hooks/useElementLayout';
 export * from './hooks/useFontScale';
+export * from './hooks/useKeyboard';
 export * from './hooks/useOwnerState';
 export * from './hooks/usePlatformMethods';
 export * from './hooks/useResponderEvents';

@@ -1,6 +1,7 @@
 export { default as memoize } from '@github/memoize';
 export * from './capitalize';
 export * from './cloneDeep';
+export * from './findLast';
 export * from './get';
 export * from './getBoundingClientRect';
 export * from './getOwnerDocument';

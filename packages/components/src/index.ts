@@ -5,6 +5,7 @@ export * from './Heading';
 export * from './Image';
 export * from './Link';
 export * from './Modal';
+export * from './Popover';
 export * from './ScrollView';
 export * from './Stack';
 export * from './Text';

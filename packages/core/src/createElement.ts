@@ -5,7 +5,7 @@ import { createElement as createReactElement } from 'react';
 import type { Role as RNRole } from 'react-native';
 import { LocaleProvider } from './contexts/LocaleContext';
 import { css } from './css';
-import type { StyleProp } from './types';
+import type { AccessibilityRole, StyleProp } from './types';
 
 const roleComponents: Partial<
   Record<
@@ -35,7 +35,7 @@ const roleComponents: Partial<
 };
 
 function propsToAccessibilityComponent(
-  props: { 'aria-level'?: number; role?: 'label' | 'textbox' | RNRole } = {},
+  props: { 'aria-level'?: number; role?: AccessibilityRole } = {},
 ) {
   // Special-case for "label" role which doesn't map to an ARIA role
   if (props.role === 'label') {
@@ -75,7 +75,7 @@ function createDOMProps(
     'aria-readonly'?: boolean;
     'aria-required'?: boolean;
     dataSet?: Record<string, any>;
-    role?: 'label' | 'textbox' | RNRole;
+    role?: AccessibilityRole;
     style?: StyleProp<Record<string, any>>;
     tabIndex?: 0 | -1;
     testID?: string;

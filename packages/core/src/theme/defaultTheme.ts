@@ -40,7 +40,7 @@ export const defaultTheme = {
   },
   space: {
     0: 0,
-    px: '1px',
+    /** 1px */ px: '1px',
     /** 2px */ 0.5: '0.125rem',
     /** 4px */ 1: '0.25rem',
     /** 8px */ 2: '0.5rem',

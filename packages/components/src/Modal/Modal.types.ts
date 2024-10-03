@@ -33,6 +33,9 @@ export interface ModalProps
     event: ResponderEvent | {},
     reason?: 'backdropPress' | 'escapeKeyDown' | 'hardwareBackPress',
   ) => void;
+  /**
+   * If `true`, the modal is visible.
+   */
   open: boolean;
   /**
    * The system prop that allows defining system overrides as well as additional

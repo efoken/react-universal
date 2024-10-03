@@ -71,7 +71,7 @@ const TextRoot = styled('div', {
 );
 
 export const Text = forwardRef<HTMLElement & TextMethods, TextProps>(
-  ({ as: _as, hrefAttrs, numberOfLines, onClick, onLayout, onPress, ...props }, ref) => {
+  ({ as: _as, dir, hrefAttrs, numberOfLines, onClick, onLayout, onPress, ...props }, ref) => {
     const hasTextAncestor = useContext(TextAncestorContext);
     const hostRef = useRef<HTMLElement>(null);
 
@@ -92,7 +92,7 @@ export const Text = forwardRef<HTMLElement & TextMethods, TextProps>(
     let component: 'a' | 'div' | 'span' = hasTextAncestor ? 'span' : 'div';
 
     const langDirection = props.lang == null ? undefined : getLocaleDirection(props.lang);
-    const componentDirection = props.dir ?? langDirection;
+    const componentDirection = dir ?? langDirection;
 
     const supportedProps: AnyProps = pickProps(props);
     supportedProps.dir = componentDirection;

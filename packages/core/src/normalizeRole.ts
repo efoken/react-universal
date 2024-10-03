@@ -1,8 +1,7 @@
 import type { Role as RNRole } from 'react-native';
+import type { AccessibilityRole } from './types';
 
-export function normalizeRole(
-  role?: 'code' | 'label' | 'listbox' | 'paragraph' | 'textbox' | RNRole,
-): RNRole | undefined {
+export function normalizeRole(role?: AccessibilityRole): RNRole | undefined {
   return role === 'code' ||
     role === 'label' ||
     role === 'listbox' ||

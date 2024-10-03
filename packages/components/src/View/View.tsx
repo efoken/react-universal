@@ -51,6 +51,7 @@ export const View = forwardRef<HTMLElement & ViewMethods, ViewProps>(
   (
     {
       as: _as,
+      dir,
       hrefAttrs,
       onLayout,
       onMoveShouldSetResponder,
@@ -108,8 +109,8 @@ export const View = forwardRef<HTMLElement & ViewMethods, ViewProps>(
 
     let component: 'a' | 'div' = 'div';
 
-    const langDirection = props.lang == null ? null : getLocaleDirection(props.lang);
-    const componentDirection = props.dir ?? langDirection;
+    const langDirection = props.lang == null ? undefined : getLocaleDirection(props.lang);
+    const componentDirection = dir ?? langDirection;
 
     const supportedProps: AnyProps = pickProps(props);
     supportedProps.dir = componentDirection;

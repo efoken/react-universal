@@ -48,16 +48,13 @@ const ImageRoot = styled('img', {
 });
 
 export const Image = forwardRef<HTMLImageElement & ImageMethods, ImageProps>(
-  (
-    { onError, onLayout, onLoad, onLoadEnd, onLoadStart, onProgress, onPartialLoad, ...props },
-    ref,
-  ) => {
+  ({ dir, onError, onLayout, onLoad, onProgress, onPartialLoad, ...props }, ref) => {
     const hostRef = useRef<HTMLImageElement>(null);
 
     useElementLayout(hostRef, onLayout);
 
-    const langDirection = props.lang == null ? null : getLocaleDirection(props.lang);
-    const componentDirection = props.dir ?? langDirection;
+    const langDirection = props.lang == null ? undefined : getLocaleDirection(props.lang);
+    const componentDirection = dir ?? langDirection;
 
     const supportedProps: AnyProps = pickProps(props);
     supportedProps.dir = componentDirection;

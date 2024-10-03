@@ -1,5 +1,5 @@
 import { getBoundingClientRect, isFunction } from '@react-universal/utils';
-import { useIsomorphicLayoutEffect } from '@tamagui/constants';
+import { isWindowDefined, useIsomorphicLayoutEffect } from '@tamagui/constants';
 import type { MeasureOnSuccessCallback } from 'react-native';
 
 const layoutHandlers = new WeakMap<Element, (event: LayoutEvent) => void>();
@@ -58,7 +58,6 @@ export function measureLayout(
   if (relativeNode instanceof HTMLElement) {
     const now = Date.now();
     cache.set(node, now);
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     Promise.all([getBoundingClientRectAsync(node), getBoundingClientRectAsync(relativeNode)]).then(
       ([nodeDim, relativeNodeDim]) => {
         if (relativeNodeDim && nodeDim && cache.get(node) === now) {
@@ -89,7 +88,7 @@ export async function measureElement(target: HTMLElement): Promise<LayoutEvent> 
 
 let resizeObserver: ResizeObserver | null = null;
 
-if (typeof window !== 'undefined' && 'ResizeObserver' in window) {
+if (isWindowDefined && 'ResizeObserver' in window) {
   // node resize/move
   resizeObserver = new ResizeObserver((entries) => {
     for (const { target } of entries) {
@@ -97,7 +96,6 @@ if (typeof window !== 'undefined' && 'ResizeObserver' in window) {
       if (!isFunction(onLayout)) {
         return;
       }
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       measureElement(target as HTMLElement).then((event) => {
         onLayout(event);
       });
@@ -146,7 +144,6 @@ export function useElementLayout(
       return;
     }
     const handleResize = () => {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       measureElement(node).then(onLayout);
     };
     resizeListeners.add(handleResize);

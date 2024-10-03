@@ -1,8 +1,9 @@
-import { Button as ButtonBase, Container, Text, View } from '@react-universal/components';
+import { Button as ButtonBase, Container, Popover, Text, View } from '@react-universal/components';
 import { ThemeProvider, isWeb, styled } from '@react-universal/core';
 import { Defs, G, Path, Svg, TSpan, Text as TextSvg, Use } from '@react-universal/svg';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import { StatusBar } from 'expo-status-bar';
+import { useRef, useState } from 'react';
 import { ScrollView } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -46,6 +47,10 @@ const Card = styled(View)(({ theme }) => ({
 }));
 
 export default function App() {
+  const [open, setOpen] = useState(false);
+
+  const anchorRef = useRef<React.ElementRef<typeof ButtonBase>>(null);
+
   return (
     <SafeAreaProvider>
       <StatusBar
@@ -263,6 +268,22 @@ export default function App() {
             </TextSvg>
           </Svg>
           <Grid>
+            <Popover
+              anchor={anchorRef}
+              id="default-popover"
+              open={open}
+              sx={{ bgColor: 'red', p: 4 }}
+            >
+              <Text>The content of the Popover.</Text>
+            </Popover>
+            <Button
+              ref={anchorRef}
+              aria-describedby="default-popover"
+              type="button"
+              onPress={() => setOpen((prevOpen) => !prevOpen)}
+            >
+              <ButtonLabel>Toggle Popup</ButtonLabel>
+            </Button>
             <Button>
               <ButtonLabel>Open up App.js to start working on your app!</ButtonLabel>
             </Button>
