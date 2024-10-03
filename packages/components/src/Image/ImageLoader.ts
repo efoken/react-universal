@@ -29,7 +29,6 @@ export class ImageUriCache {
       this.#entries[uri].refCount -= 1;
     }
     // Free up entries when the cache is "full"
-    // eslint-disable-next-line react/no-is-mounted
     this.#cleanUpIfNeeded();
   }
 
