@@ -4,7 +4,7 @@
   "private": true,
   "main": "index.ts",
   "dependencies": {
-    "@react-native/normalize-colors": "^0.75.3",
+    "@react-native/normalize-colors": "^0.75.4",
     "@react-universal/components": "workspace:*",
     "@react-universal/core": "workspace:*",
     "@react-universal/svg": "workspace:*",

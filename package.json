@@ -10,7 +10,7 @@
   "dependencies": {
     "@eslint/eslintrc": "^3.1.0",
     "@kesills/eslint-config-airbnb-typescript": "^20.0.0",
-    "@react-native/normalize-colors": "^0.75.3",
+    "@react-native/normalize-colors": "^0.75.4",
     "@storybook/addon-a11y": "^8.3.4",
     "@storybook/addon-essentials": "^8.3.4",
     "@storybook/react-vite": "^8.3.4",
