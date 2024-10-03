@@ -19,7 +19,7 @@
   "devDependencies": {
     "@types/react": "~18.3.10",
     "react": "18.3.1",
-    "react-native": "0.75.3",
+    "react-native": "0.75.4",
     "react-native-unistyles": "^2.10.0"
   },
   "peerDependencies": {
