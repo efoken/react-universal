@@ -88,7 +88,7 @@ export async function measureElement(target: HTMLElement): Promise<LayoutEvent> 
 
 let resizeObserver: ResizeObserver | null = null;
 
-if (isWindowDefined && 'ResizeObserver' in window) {
+if (isWindowDefined && 'ResizeObserver' in globalThis) {
   // node resize/move
   resizeObserver = new ResizeObserver((entries) => {
     for (const { target } of entries) {
