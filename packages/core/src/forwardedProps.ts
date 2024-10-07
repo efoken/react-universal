@@ -1,3 +1,13 @@
+export type ForwardedProps<T extends HTMLElement> = Omit<
+  T extends HTMLDialogElement
+    ? JSX.IntrinsicElements['dialog']
+    : T extends HTMLInputElement
+      ? JSX.IntrinsicElements['input']
+      : React.HTMLProps<T>,
+  'as' | 'ref' | 'style' | keyof typeof clickProps | keyof typeof touchProps
+> &
+  React.RefAttributes<T>;
+
 // https://github.com/necolas/react-native-web/blob/master/packages/react-native-web/src/exports/View/index.js
 const defaultProps = {
   children: true,

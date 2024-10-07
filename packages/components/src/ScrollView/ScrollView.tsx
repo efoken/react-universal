@@ -7,7 +7,7 @@ import { useComposedRefs } from '@tamagui/compose-refs';
 import { Children, cloneElement, forwardRef, useImperativeHandle, useRef } from 'react';
 import type { GestureResponderEvent } from 'react-native';
 import { TextInputState } from '../TextInput/TextInputState';
-import type { ViewMethods, ViewStyle } from '../View';
+import type { ViewStyle } from '../View';
 import { View } from '../View';
 import type {
   ScrollEvent,
@@ -110,8 +110,8 @@ export const ScrollView = forwardRef<HTMLElement & ScrollViewMethods, ScrollView
     },
     ref,
   ) => {
-    const scrollNodeRef = useRef<ViewMethods>();
-    const innerViewRef = useRef<any>(null);
+    const scrollNodeRef = useRef<React.ElementRef<typeof View>>();
+    const innerViewRef = useRef<React.ElementRef<typeof View>>(null);
 
     const getInnerViewNode = () => innerViewRef.current;
 

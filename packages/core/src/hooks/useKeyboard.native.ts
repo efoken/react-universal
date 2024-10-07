@@ -1,19 +1,15 @@
-import { startTransition, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Keyboard } from 'react-native';
 
 export function useKeyboard() {
   const [open, setOpen] = useState(false);
 
   const handleKeyboardDidShow = () => {
-    startTransition(() => {
-      setOpen(true);
-    });
+    setOpen(true);
   };
 
   const handleKeyboardDidHide = () => {
-    startTransition(() => {
-      setOpen(false);
-    });
+    setOpen(false);
   };
 
   useEffect(() => {

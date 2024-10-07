@@ -60,7 +60,7 @@ export const Image = forwardRef<HTMLImageElement & ImageMethods, ImageProps>(
     supportedProps.dir = componentDirection;
 
     const platformMethodsRef = usePlatformMethods(hostRef);
-    const handleRef = useComposedRefs<HTMLElement>(hostRef, platformMethodsRef, ref);
+    const handleRef = useComposedRefs<HTMLImageElement>(hostRef, platformMethodsRef, ref);
 
     supportedProps.ref = handleRef;
 

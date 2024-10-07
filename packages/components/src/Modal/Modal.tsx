@@ -1,6 +1,6 @@
 'use client';
 
-import type { AnyProps } from '@react-universal/core';
+import type { AnyProps, ForwardedProps } from '@react-universal/core';
 import {
   forwardedProps,
   getLocaleDirection,
@@ -122,11 +122,12 @@ export const Modal = forwardRef<HTMLDialogElement & ModalMethods, ModalProps>(
     const langDirection = props.lang == null ? undefined : getLocaleDirection(props.lang);
     const componentDirection = dir ?? langDirection;
 
-    const supportedProps: AnyProps = pickProps(props);
+    const supportedProps: ForwardedProps<HTMLDialogElement> = pickProps(props);
     supportedProps['aria-live'] = 'polite';
     supportedProps['aria-modal'] = role === 'dialog' || role === 'alertdialog' ? true : undefined;
     supportedProps.dir = componentDirection;
     supportedProps.onCancel = handleCancel;
+    // @ts-expect-error: `onClick` is currently missing in forwarded props
     supportedProps.onClick = handleClick;
     supportedProps.onKeyDown = handleKeyDown;
     supportedProps.role = role;

@@ -1,29 +1,10 @@
 'use client';
 
-import type { SxProps } from '@react-universal/core';
 import { styled } from '@react-universal/core';
 import { forwardRef } from 'react';
-import type { TextMethods, TextProps } from '../Text';
+import type { TextMethods } from '../Text';
 import { Text } from '../Text';
-
-export interface LinkProps extends Omit<TextProps, 'hrefAttrs'> {
-  download?: any;
-  /**
-   * The URL to link to when the link is clicked.
-   */
-  href?: string;
-  rel?: string;
-  /**
-   * The system prop that allows defining system overrides as well as additional
-   * CSS styles.
-   */
-  sx?: SxProps;
-  target?: React.HTMLAttributeAnchorTarget;
-}
-
-export type LinkType = React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<LinkProps> & React.RefAttributes<HTMLAnchorElement & TextMethods>
->;
+import type { LinkProps, LinkType } from './Link.types';
 
 const LinkRoot = styled(Text, {
   name: 'Link',

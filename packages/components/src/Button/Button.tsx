@@ -86,7 +86,7 @@ export const Button = forwardRef<HTMLElement & ButtonMethods, ButtonProps>(
       onBlur?.(normalizeEvent(event));
     };
 
-    const handleFocus = (event: React.FocusEvent<HTMLButtonElement>) => {
+    const handleFocus = (event: React.FocusEvent<HTMLElement>) => {
       // Fix for https://github.com/facebook/react/issues/7769
       if (!hostRef.current) {
         hostRef.current = event.currentTarget;

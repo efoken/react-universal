@@ -1,6 +1,6 @@
 'use client';
 
-import type { AnyProps } from '@react-universal/core';
+import type { AnyProps, ForwardedProps } from '@react-universal/core';
 import {
   forwardedProps,
   getLocaleDirection,
@@ -94,7 +94,7 @@ export const Text = forwardRef<HTMLElement & TextMethods, TextProps>(
     const langDirection = props.lang == null ? undefined : getLocaleDirection(props.lang);
     const componentDirection = dir ?? langDirection;
 
-    const supportedProps: AnyProps = pickProps(props);
+    const supportedProps: ForwardedProps<HTMLElement> = pickProps(props);
     supportedProps.dir = componentDirection;
     // 'auto' by default allows browsers to infer writing direction (root elements only)
     if (!hasTextAncestor) {
@@ -102,6 +102,7 @@ export const Text = forwardRef<HTMLElement & TextMethods, TextProps>(
     }
 
     if (onClick != null || onPress != null) {
+      // @ts-expect-error: `onClick` is currently missing in forwarded props
       supportedProps.onClick = handleClick;
     }
 

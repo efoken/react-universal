@@ -1,6 +1,6 @@
 'use client';
 
-import type { AnyProps } from '@react-universal/core';
+import type { AnyProps, ForwardedProps } from '@react-universal/core';
 import {
   forwardedProps,
   getLocaleDirection,
@@ -112,7 +112,7 @@ export const View = forwardRef<HTMLElement & ViewMethods, ViewProps>(
     const langDirection = props.lang == null ? undefined : getLocaleDirection(props.lang);
     const componentDirection = dir ?? langDirection;
 
-    const supportedProps: AnyProps = pickProps(props);
+    const supportedProps: ForwardedProps<HTMLElement> = pickProps(props);
     supportedProps.dir = componentDirection;
 
     if (props.href != null) {

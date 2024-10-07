@@ -7,9 +7,9 @@ import type {
 } from 'react-native';
 import { measureLayout } from './useElementLayout';
 
-export function usePlatformMethods(hostRef: React.RefObject<HTMLElement>) {
+export function usePlatformMethods<T extends HTMLElement>(hostRef: React.RefObject<T>) {
   useIsomorphicLayoutEffect(() => {
-    const node = hostRef.current as (HTMLElement & NativeMethods) | null;
+    const node = hostRef.current as (T & NativeMethods) | null;
     if (node != null) {
       // eslint-disable-next-line @typescript-eslint/unbound-method
       node.measure ||= (callback: MeasureOnSuccessCallback) => measureLayout(node, null, callback);

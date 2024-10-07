@@ -1,9 +1,17 @@
+'use client';
+
 import { computePosition, flip, shift, size } from '@floating-ui/dom';
-import { forwardedProps, getLocaleDirection, styled, type AnyProps } from '@react-universal/core';
+import {
+  forwardedProps,
+  getLocaleDirection,
+  styled,
+  type AnyProps,
+  type ForwardedProps,
+} from '@react-universal/core';
 import { pick } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
 import { forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
-import type { PopoverProps } from './Popover.types';
+import type { PopoverMethods, PopoverProps } from './Popover.types';
 import { parseModifiers, resolveAnchor } from './Popover.utils';
 
 function pickProps<T extends AnyProps>(props: T) {
@@ -31,7 +39,7 @@ const PopoverRoot = styled('div', {
   },
 }));
 
-export const Popover = forwardRef<any, PopoverProps>(
+export const Popover = forwardRef<HTMLDivElement & PopoverMethods, PopoverProps>(
   (
     {
       anchor: anchorProp,
@@ -93,7 +101,7 @@ export const Popover = forwardRef<any, PopoverProps>(
     const langDirection = props.lang == null ? undefined : getLocaleDirection(props.lang);
     const componentDirection = dir ?? langDirection;
 
-    const supportedProps: AnyProps = pickProps(props);
+    const supportedProps: ForwardedProps<HTMLDivElement> = pickProps(props);
     supportedProps.dir = componentDirection;
     supportedProps.popover = 'manual';
     supportedProps.role = role;

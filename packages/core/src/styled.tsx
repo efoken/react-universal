@@ -69,8 +69,10 @@ export function styled<T extends keyof React.JSX.IntrinsicElements>(
   component: T,
   options?: StyledOptions,
 ): CreateStyledComponent<
-  Omit<React.JSX.IntrinsicElements[T], 'style'> & {
+  Omit<React.JSX.IntrinsicElements[T], 'ref' | 'style'> & {
     as?: React.ElementType;
+    dataSet?: Record<string, any>;
+    ref?: React.LegacyRef<HTMLElement>;
     style?: StyleProp<RNStyle>;
   }
 >;

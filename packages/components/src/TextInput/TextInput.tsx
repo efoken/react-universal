@@ -1,6 +1,6 @@
 'use client';
 
-import type { AnyProps } from '@react-universal/core';
+import type { AnyProps, ForwardedProps } from '@react-universal/core';
 import {
   forwardedProps,
   styled,
@@ -111,7 +111,6 @@ export const TextInput = forwardRef<HTMLInputElement & TextInputMethods, TextInp
       blurOnSubmit,
       caretHidden = false,
       clearTextOnFocus = false,
-      dir,
       inputMode,
       multiline = false,
       onBlur,
@@ -131,6 +130,7 @@ export const TextInput = forwardRef<HTMLInputElement & TextInputMethods, TextInp
       onResponderStart,
       onResponderTerminate,
       onResponderTerminationRequest,
+      onScroll,
       onScrollShouldSetResponder,
       onScrollShouldSetResponderCapture,
       onSelectionChange,
@@ -341,25 +341,33 @@ export const TextInput = forwardRef<HTMLInputElement & TextInputMethods, TextInp
       onStartShouldSetResponderCapture,
     });
 
-    const supportedProps: AnyProps = pickProps(props);
+    const supportedProps: ForwardedProps<HTMLInputElement> = pickProps(props);
     supportedProps.autoCapitalize = autoCapitalize;
     supportedProps.autoComplete = autoComplete;
     supportedProps.autoCorrect = autoCorrect ? 'on' : 'off';
-    supportedProps.dir = dir ?? 'auto';
+    supportedProps.dir = props.dir ?? 'auto';
     supportedProps.inputMode = inputMode;
     supportedProps.onBlur = handleBlur;
     supportedProps.onChange = handleChange;
     supportedProps.onFocus = handleFocus;
     supportedProps.onKeyDown = handleKeyDown;
+    supportedProps.onScroll = onScroll as any;
     supportedProps.onSelect = handleSelectionChange;
     supportedProps.readOnly = readOnly;
-    supportedProps.rows = multiline ? rows : 1;
+    // @ts-expect-error: `rows` is only used <textarea>
+    supportedProps.rows = multiline ? rows : undefined;
     supportedProps.spellCheck = spellCheck ?? autoCorrect;
     supportedProps.type = multiline ? undefined : type;
+    // @ts-expect-error: `virtualkeyboardpolicy` is missing in React types
     supportedProps.virtualkeyboardpolicy = showSoftInputOnFocus ? 'auto' : 'manual';
 
     const platformMethodsRef = usePlatformMethods(hostRef);
-    const handleRef = useComposedRefs<HTMLElement>(hostRef, platformMethodsRef, imperativeRef, ref);
+    const handleRef = useComposedRefs<HTMLInputElement>(
+      hostRef,
+      platformMethodsRef,
+      imperativeRef,
+      ref,
+    );
 
     supportedProps.ref = handleRef;
 

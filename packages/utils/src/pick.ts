@@ -1,6 +1,6 @@
-type PickKeys<T> = {
-  [K in keyof T]: T[K] extends true ? (K extends string ? K : never) : never;
-}[keyof T];
+type PickKeys<T extends Record<string, any>, U extends Record<string, boolean>> = {
+  [K in keyof U]: U[K] extends true ? (K extends keyof T ? K : never) : never;
+}[keyof U];
 
 export function pick<T extends Record<string, any>, U extends Record<string, boolean>>(
   obj: T,
@@ -12,5 +12,5 @@ export function pick<T extends Record<string, any>, U extends Record<string, boo
       nextObj[key] = obj[key];
     }
   }
-  return nextObj as Pick<T, PickKeys<U>>;
+  return nextObj as Pick<T, PickKeys<T, U>>;
 }

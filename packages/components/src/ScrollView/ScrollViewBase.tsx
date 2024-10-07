@@ -88,7 +88,7 @@ export const ScrollViewBase = forwardRef<HTMLElement & ViewMethods, ScrollViewBa
     const scrollState = useRef({ scrolling: false, scrollLastTick: 0 });
     const scrollTimer = useRef<ReturnType<typeof setTimeout>>();
 
-    const hostRef = useRef<any>(null);
+    const hostRef = useRef<React.ElementRef<typeof View>>(null);
 
     const handleScrollTick = (event: React.UIEvent<HTMLElement>) => {
       scrollState.current.scrollLastTick = Date.now();
