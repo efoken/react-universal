@@ -2582,10 +2582,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@github/memoize@npm:^1.1.4":
-  version: 1.1.4
-  resolution: "@github/memoize@npm:1.1.4"
-  checksum: 10c0/2ee74b993e6994a01f786a1058feed97c4aa922a313ca16862bf66a778aa210853213e969f205169c3c4fbf671d3eb568d732a88a56d27cad41c7747aa328a43
+"@github/memoize@npm:^1.1.5":
+  version: 1.1.5
+  resolution: "@github/memoize@npm:1.1.5"
+  checksum: 10c0/f327292907486698b8d845e9061bd6572eb02f270b506b711fb106284d0843cc55df61bd37060a3ca16130baff131456bd9a664a79df5891fe56f3ad2b17fb02
   languageName: node
   linkType: hard
 
@@ -3575,7 +3575,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@react-universal/utils@workspace:packages/utils"
   dependencies:
-    "@github/memoize": "npm:^1.1.4"
+    "@github/memoize": "npm:^1.1.5"
   languageName: unknown
   linkType: soft
 
