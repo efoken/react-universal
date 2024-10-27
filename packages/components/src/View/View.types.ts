@@ -1,18 +1,18 @@
 import type {
   AccessibilityProps,
   LayoutEvent,
+  PlatformMethods,
   RNStyle,
   ResponderConfig,
   StyleProp,
   SxProps,
 } from '@react-universal/core';
 import type {
-  NativeMethods,
   AccessibilityProps as RNAccessibilityProps,
   ViewProps as RNViewProps,
 } from 'react-native';
 
-export interface ViewMethods extends Omit<NativeMethods, 'refs' | 'setNativeProps'> {}
+export interface ViewMethods extends PlatformMethods {}
 
 export type ViewStyle = Omit<
   RNStyle,

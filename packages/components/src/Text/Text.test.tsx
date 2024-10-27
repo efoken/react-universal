@@ -305,8 +305,11 @@ describe('Text', () => {
         render(<Text ref={ref} />);
       });
       const node = ref.current!;
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(isFunction(node.measure));
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(isFunction(node.measureLayout));
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(isFunction(node.measureInWindow));
     });
   });

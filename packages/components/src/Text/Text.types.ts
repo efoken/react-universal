@@ -1,17 +1,17 @@
 import type {
   AccessibilityProps,
   LayoutEvent,
+  PlatformMethods,
   RNStyle,
   StyleProp,
   SxProps,
 } from '@react-universal/core';
 import type {
-  NativeMethods,
   AccessibilityProps as RNAccessibilityProps,
   TextProps as RNTextProps,
 } from 'react-native';
 
-export interface TextMethods extends Omit<NativeMethods, 'refs' | 'setNativeProps'> {}
+export interface TextMethods extends PlatformMethods {}
 
 export type TextStyle = Omit<RNStyle, 'objectFit'>;
 

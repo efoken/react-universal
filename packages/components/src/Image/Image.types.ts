@@ -1,13 +1,13 @@
 import type {
   AccessibilityProps,
   LayoutEvent,
+  PlatformMethods,
   RNStyle,
   ResponderConfig,
   StyleProp,
   SxProps,
 } from '@react-universal/core';
 import type {
-  NativeMethods,
   AccessibilityProps as RNAccessibilityProps,
   Image as RNImage,
   ImageProps as RNImageProps,
@@ -24,7 +24,7 @@ export interface ImageSize {
   width: number;
 }
 
-export interface ImageMethods extends Omit<NativeMethods, 'refs' | 'setNativeProps'> {}
+export interface ImageMethods extends PlatformMethods {}
 
 export type ImageStyle = Omit<
   RNStyle,

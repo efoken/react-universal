@@ -1,7 +1,12 @@
-import type { AccessibilityProps, RNStyle, StyleProp, SxProps } from '@react-universal/core';
+import type {
+  AccessibilityProps,
+  PlatformMethods,
+  RNStyle,
+  StyleProp,
+  SxProps,
+} from '@react-universal/core';
 import type {
   GestureResponderEvent,
-  NativeMethods,
   ImageProps as RNImageProps,
   ViewProps as RNViewProps,
 } from 'react-native';
@@ -163,8 +168,7 @@ export interface GProps extends BasePathProps, FontProps {
   style?: StyleProp<GStyle>;
 }
 
-export interface SvgMethods
-  extends Omit<NativeMethods, 'blur' | 'focus' | 'refs' | 'setNativeProps'> {}
+export interface SvgMethods extends Omit<PlatformMethods, 'blur' | 'focus'> {}
 
 export interface SvgProps
   extends Omit<GProps, 'style'>,
