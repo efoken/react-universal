@@ -42,20 +42,20 @@ const PopoverRoot = styled('div', {
 export const Popover = forwardRef<HTMLDivElement & PopoverMethods, PopoverProps>(
   (
     {
-      anchor: anchorProp,
+      anchor: _anchor,
       dir,
-      modifiers: modifiersProp = [],
+      modifiers: _modifiers = [],
       open,
       placement = 'bottom',
       role = 'tooltip',
-      strategy: strategyProp = 'absolute',
+      strategy: _strategy = 'absolute',
       ...props
     },
     ref,
   ) => {
     const hostRef = useRef<HTMLDivElement>(null);
 
-    const anchor = resolveAnchor(anchorProp);
+    const anchor = resolveAnchor(_anchor);
 
     const modifiers = useMemo(
       () =>
@@ -68,9 +68,9 @@ export const Popover = forwardRef<HTMLDivElement & PopoverMethods, PopoverProps>
             name: 'shift',
             enabled: true,
           },
-          ...modifiersProp,
+          ..._modifiers,
         ]),
-      [modifiersProp],
+      [_modifiers],
     );
 
     const handleBeforeToggle = useCallback(
@@ -85,7 +85,7 @@ export const Popover = forwardRef<HTMLDivElement & PopoverMethods, PopoverProps>
               modifiers.size?.enabled ? size(modifiers.size.options) : false,
             ],
             placement,
-            strategy: strategyProp,
+            strategy: _strategy,
           }).then(({ strategy, x, y }) => {
             Object.assign(hostEl.style, {
               left: `${x}px`,
@@ -95,7 +95,7 @@ export const Popover = forwardRef<HTMLDivElement & PopoverMethods, PopoverProps>
           });
         }
       },
-      [anchor, modifiers, placement, strategyProp],
+      [_strategy, anchor, modifiers, placement],
     );
 
     const langDirection = props.lang == null ? undefined : getLocaleDirection(props.lang);

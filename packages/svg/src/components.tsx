@@ -9,7 +9,6 @@ import type {
   ClipPathProps,
   DefsProps,
   EllipseProps,
-  FilterProps,
   ForeignObjectProps,
   GProps,
   ImageProps,
@@ -214,7 +213,6 @@ export const Circle = createComponent<SVGCircleElement, CircleProps>('circle', '
 export const ClipPath = createComponent<SVGClipPathElement, ClipPathProps>('clipPath', 'ClipPath');
 export const Defs = createComponent<SVGDefsElement, DefsProps>('defs', 'Defs');
 export const Ellipse = createComponent<SVGEllipseElement, EllipseProps>('ellipse', 'Ellipse');
-export const Filter = createComponent<SVGFilterElement, FilterProps>('filter', 'Filter');
 export const ForeignObject = createComponent<SVGForeignObjectElement, ForeignObjectProps>(
   'foreignObject',
   'ForeignObject',

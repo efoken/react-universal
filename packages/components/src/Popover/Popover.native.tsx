@@ -23,14 +23,14 @@ const PopoverRoot = styled(RNView, {
 export const Popover = forwardRef<any, PopoverProps>(
   (
     {
-      anchor: anchorProp,
+      anchor: _anchor,
       children,
       lang,
-      modifiers: modifiersProp = [],
+      modifiers: _modifiers = [],
       open,
       placement = 'bottom',
       role = 'tooltip',
-      strategy: strategyProp,
+      strategy: _strategy,
       style,
       ...props
     },
@@ -38,7 +38,7 @@ export const Popover = forwardRef<any, PopoverProps>(
   ) => {
     const hostRef = useRef<RNView>(null);
 
-    const anchor = resolveAnchor(anchorProp);
+    const anchor = resolveAnchor(_anchor);
 
     const modifiers = useMemo(
       () =>
@@ -51,9 +51,9 @@ export const Popover = forwardRef<any, PopoverProps>(
             name: 'shift',
             enabled: true,
           },
-          ...modifiersProp,
+          ..._modifiers,
         ]),
-      [modifiersProp],
+      [_modifiers],
     );
 
     const { floatingStyles, refs, ...floating } = useFloating({

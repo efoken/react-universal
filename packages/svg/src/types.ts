@@ -232,17 +232,6 @@ export interface EllipseProps extends BasePathProps {
   style?: StyleProp<EllipseStyle>;
 }
 
-export interface FilterProps {
-  children?: React.ReactNode;
-  filterUnits?: Units;
-  height?: string | number;
-  id?: string;
-  primitiveUnits?: Units;
-  width?: string | number;
-  x?: string | number;
-  y?: string | number;
-}
-
 export interface ForeignObjectProps {
   children?: React.ReactNode;
   height?: string | number;

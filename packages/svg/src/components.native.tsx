@@ -7,7 +7,6 @@ import {
   ClipPath as RNClipPath,
   Defs as RNDefs,
   Ellipse as RNEllipse,
-  Filter as RNFilter,
   ForeignObject as RNForeignObject,
   G as RNG,
   Image as RNImage,
@@ -34,7 +33,6 @@ import type {
   ClipPathProps,
   DefsProps,
   EllipseProps,
-  FilterProps,
   ForeignObjectProps,
   GProps,
   ImageProps,
@@ -105,7 +103,6 @@ export const Circle = createComponent<CircleProps>(RNCircle, 'Circle');
 export const ClipPath = createComponent<ClipPathProps>(RNClipPath, 'ClipPath');
 export const Defs = createComponent<DefsProps>(RNDefs, 'Defs');
 export const Ellipse = createComponent<EllipseProps>(RNEllipse, 'Ellipse');
-export const Filter = createComponent<FilterProps>(RNFilter, 'Filter');
 export const ForeignObject = createComponent<ForeignObjectProps>(RNForeignObject, 'ForeignObject');
 export const G = createComponent<GProps>(RNG, 'G');
 export const Image = createComponent<ImageProps>(RNImage, 'Image');
