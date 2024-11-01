@@ -7,7 +7,7 @@
   "react-native": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@floating-ui/dom": " ^1.6.11",
+    "@floating-ui/dom": "^1.6.12",
     "@floating-ui/react-native": "^0.10.6",
     "@react-universal/core": "workspace:*",
     "@tamagui/compose-refs": "^1.116.12"

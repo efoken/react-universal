@@ -2747,13 +2747,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@floating-ui/dom@npm: ^1.6.11":
-  version: 1.6.11
-  resolution: "@floating-ui/dom@npm:1.6.11"
+"@floating-ui/dom@npm:^1.6.12":
+  version: 1.6.12
+  resolution: "@floating-ui/dom@npm:1.6.12"
   dependencies:
     "@floating-ui/core": "npm:^1.6.0"
     "@floating-ui/utils": "npm:^0.2.8"
-  checksum: 10c0/02ef34a75a515543c772880338eea7b66724997bd5ec7cd58d26b50325709d46d480a306b84e7d5509d734434411a4bcf23af5680c2e461e6e6a8bf45d751df8
+  checksum: 10c0/c67b39862175b175c6ac299ea970f17a22c7482cfdf3b1bc79313407bf0880188b022b878953fa69d3ce166ff2bd9ae57c86043e5dd800c262b470d877591b7d
   languageName: node
   linkType: hard
 
@@ -3669,7 +3669,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@react-universal/components@workspace:packages/components"
   dependencies:
-    "@floating-ui/dom": "npm: ^1.6.11"
+    "@floating-ui/dom": "npm:^1.6.12"
     "@floating-ui/react-native": "npm:^0.10.6"
     "@react-universal/core": "workspace:*"
     "@tamagui/compose-refs": "npm:^1.116.12"
