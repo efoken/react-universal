@@ -1,7 +1,7 @@
 import type { SxProps } from '@react-universal/core';
 import type { TextMethods, TextProps } from '../Text';
 
-export interface LinkProps extends Omit<TextProps, 'hrefAttrs'> {
+export interface LinkProps extends Omit<TextProps, 'as' | 'hrefAttrs'> {
   download?: any;
   /**
    * The URL to link to when the link is clicked.

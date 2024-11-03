@@ -1,5 +1,5 @@
 import { isFunction, isObject, isString, mergeDeep } from '@react-universal/utils';
-import type { StyleRuntime } from './StyleRuntime';
+import type { StyleMiniRuntime } from './StyleRuntime';
 import { createReactDOMStyle } from './createReactDOMStyle';
 import { preprocess } from './preprocess';
 import type { Theme } from './theme';
@@ -8,7 +8,7 @@ import type { StyleProp, StyleValues } from './types';
 function getBreakpointsStyles<T extends Record<string, any>>(
   prop: string,
   style: T,
-  runtime: typeof StyleRuntime,
+  runtime: StyleMiniRuntime,
 ) {
   return Object.entries(style).reduce<Record<string, any>>((acc, [key, value]) => {
     const breakpoint = runtime.breakpoints[key as keyof typeof runtime.breakpoints];
@@ -23,7 +23,7 @@ function getBreakpointsStyles<T extends Record<string, any>>(
   }, {}) as T;
 }
 
-function parseStyle<T extends Record<string, any>>(style: T, runtime: typeof StyleRuntime) {
+function parseStyle<T extends Record<string, any>>(style: T, runtime: StyleMiniRuntime) {
   const nextStyle = Object.entries(style ?? {}).reduce<Record<string, any>>(
     (acc, [key, value]) =>
       isObject(value) && !key.startsWith('&')
@@ -62,9 +62,9 @@ export const css = {
   },
 
   create<T extends Record<string, StyleValues>>(
-    stylesheet: T | ((theme: Theme, runtime: typeof StyleRuntime) => T),
+    stylesheet: T | ((theme: Theme, runtime: StyleMiniRuntime) => T),
   ) {
-    return (theme: Theme, runtime: typeof StyleRuntime) => {
+    return (theme: Theme, runtime: StyleMiniRuntime) => {
       // FIXME: Use `runIfFunction`
       const _stylesheet = isFunction(stylesheet) ? stylesheet(theme, runtime) : stylesheet;
 

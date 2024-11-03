@@ -1,3 +1,4 @@
+import type { Breakpoints } from './breakpoints';
 import type { Theme } from './theme';
 import { defaultTheme } from './theme';
 
@@ -30,4 +31,15 @@ export class StyleRuntime {
       top: 'env(safe-area-inset-top)',
     };
   }
+}
+
+export interface StyleMiniRuntime {
+  breakpoints: Breakpoints;
+  fontScale: number;
+  insets: {
+    bottom: string | number;
+    left: string | number;
+    right: string | number;
+    top: string | number;
+  };
 }

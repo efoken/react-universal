@@ -2,14 +2,12 @@ import { isFunction } from '@react-universal/utils';
 import { StyleSheet } from 'react-native';
 import type { UnistylesValues } from 'react-native-unistyles';
 import { createStyleSheet as createUnistylesStyleSheet } from 'react-native-unistyles';
-import type { StyleRuntime } from './StyleRuntime';
+import type { StyleMiniRuntime } from './StyleRuntime';
 import type { Theme } from './theme';
 import type { StyleProp, StyleValues } from './types';
 
 function parseStyle<T extends Record<string, any>>(
   style: T,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _runtime: typeof StyleRuntime,
 ): Omit<T, keyof UnistylesValues> & UnistylesValues {
   return style;
 }
@@ -20,17 +18,17 @@ export const css = {
   },
 
   create<T extends Record<string, StyleValues>>(
-    stylesheet: T | ((theme: Theme, runtime: typeof StyleRuntime) => T),
+    stylesheet: T | ((theme: Theme, runtime: StyleMiniRuntime) => T),
   ) {
-    return (theme: Theme, runtime: typeof StyleRuntime) => {
+    return createUnistylesStyleSheet((theme, runtime) => {
       // FIXME: Use `runIfFunction`
-      const _stylesheet = isFunction(stylesheet) ? stylesheet(theme, runtime) : stylesheet;
+      const _stylesheet = isFunction(stylesheet)
+        ? stylesheet(theme, { ...runtime, breakpoints: theme.breakpoints })
+        : stylesheet;
 
-      return createUnistylesStyleSheet(
-        Object.fromEntries(
-          Object.entries(_stylesheet).map(([name, style]) => [name, parseStyle(style, runtime)]),
-        ),
+      return Object.fromEntries(
+        Object.entries(_stylesheet).map(([name, style]) => [name, parseStyle(style)]),
       );
-    };
+    });
   },
 };
