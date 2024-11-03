@@ -1,3 +1,4 @@
+import type { AnyObject } from '@react-universal/utils';
 import type {
   AccessibilityProps as RNAccessibilityProps,
   ImageStyle as RNImageStyle,
@@ -11,8 +12,6 @@ import type { StyleRuntime } from './StyleRuntime';
 import type { Theme } from './theme/defaultTheme';
 
 export type { DistributiveOmit } from '@emotion/react';
-
-export type AnyProps<T = any> = Record<string, T>;
 
 export type ColorMode = 'light' | 'dark';
 
@@ -220,10 +219,10 @@ export interface RNStyle
 type RNStyleKeys = keyof RNStyle;
 
 export type StyleValues = {
-  [K in RNStyleKeys]?: RNStyle[K] | { [B in Breakpoint]?: RNStyle[K] };
+  [K in RNStyleKeys]?: RNStyle[K] | Partial<Record<Breakpoint, RNStyle[K]>>;
 };
 
-export type StyleSheet = Record<string, StyleValues>;
+export type StyleSheet = AnyObject<StyleValues>;
 
 export type StyleSheetWithSuperPowers =
   | ((theme: Theme, runtime: typeof StyleRuntime) => StyleSheet)
@@ -238,7 +237,7 @@ export type StyleProp<T> =
   | null
   | undefined;
 
-export type StyleInterpolation<P extends AnyProps> =
+export type StyleInterpolation<P extends AnyObject> =
   | null
   | undefined
   | boolean
@@ -246,7 +245,7 @@ export type StyleInterpolation<P extends AnyProps> =
   | StyleInterpolation<P>[]
   | ((props: P) => StyleInterpolation<P>);
 
-export type StyleFunction<P extends AnyProps> = (
+export type StyleFunction<P extends AnyObject> = (
   props: P,
 ) => StyleValues | undefined | (StyleValues | undefined)[];
 
@@ -254,10 +253,10 @@ export type SimpleStyleFunction<K extends string> = StyleFunction<
   { theme: Theme } & Partial<Record<K, any>>
 > & { filterProps: string[] };
 
-export type OverridableProps<P extends AnyProps, T extends React.ElementType> = P &
+export type OverridableProps<P extends AnyObject, T extends React.ElementType> = P &
   Omit<React.ComponentPropsWithRef<T>, keyof P>;
 
-export interface OverridableComponent<P extends AnyProps, C extends React.ElementType> {
+export interface OverridableComponent<P extends AnyObject, C extends React.ElementType> {
   <T extends React.ElementType>(props: { as: T } & OverridableProps<P, T>): React.ReactNode;
   (props: OverridableProps<P, C>): React.ReactNode;
   displayName?: string;

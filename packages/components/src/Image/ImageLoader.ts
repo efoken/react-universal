@@ -1,3 +1,4 @@
+import type { AnyObject } from '@react-universal/utils';
 import { normalizeEvent } from '@react-universal/utils';
 import type { ImageLoadEventData, NativeSyntheticEvent } from 'react-native';
 import type { ImageSize } from './Image.types';
@@ -5,7 +6,7 @@ import type { ImageSize } from './Image.types';
 export class ImageUriCache {
   static #maximumEntries = 256;
 
-  static #entries: Record<string, { lastUsedTimestamp: number; refCount: number }> = {};
+  static #entries: AnyObject<{ lastUsedTimestamp: number; refCount: number }> = {};
 
   static has(uri: string) {
     return uri.startsWith('data:') || !!this.#entries[uri];
@@ -165,7 +166,7 @@ export const ImageLoader = {
   },
 
   queryCache(uris: string[]) {
-    const result: Record<string, 'disk/memory'> = {};
+    const result: AnyObject<'disk/memory'> = {};
     for (const uri of uris) {
       if (ImageUriCache.has(uri)) {
         result[uri] = 'disk/memory';

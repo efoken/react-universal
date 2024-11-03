@@ -1,3 +1,4 @@
+import type { AnyObject } from '@react-universal/utils';
 import type { Breakpoints } from '../breakpoints';
 import { defaultBreakpoints } from '../breakpoints';
 
@@ -68,8 +69,8 @@ type DefaultTheme = typeof defaultTheme;
 
 export interface Theme extends DefaultTheme {}
 
-export type ThemeValue<T extends Record<string, any>> = {
-  [K in keyof T]-?: Join<K, T[K] extends Record<string, any> ? ThemeValue<T[K]> : ''>;
+export type ThemeValue<T extends AnyObject> = {
+  [K in keyof T]-?: Join<K, T[K] extends AnyObject ? ThemeValue<T[K]> : ''>;
 }[keyof T];
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

@@ -1,3 +1,4 @@
+import type { AnyObject } from '@react-universal/utils';
 import {
   get,
   isArray,
@@ -11,14 +12,14 @@ import {
 import type { BreakpointValue } from '../breakpoints';
 import { handleBreakpoints } from '../breakpoints';
 import type { Theme, ThemeValue } from '../theme/defaultTheme';
-import type { AnyProps, RNStyle, SimpleStyleFunction } from '../types';
+import type { RNStyle, SimpleStyleFunction } from '../types';
 
-const PROPERTIES: Record<string, string> = {
+const PROPERTIES: AnyObject<string> = {
   m: 'margin',
   p: 'padding',
 };
 
-const DIRECTIONS: Record<string, string | string[]> = {
+const DIRECTIONS: AnyObject<string | string[]> = {
   t: 'Top',
   r: 'Right',
   b: 'Bottom',
@@ -29,7 +30,7 @@ const DIRECTIONS: Record<string, string | string[]> = {
   y: ['Top', 'Bottom'],
 };
 
-const ALIASES: Record<string, string> = {
+const ALIASES: AnyObject<string> = {
   marginX: 'mx',
   marginY: 'my',
   paddingX: 'px',
@@ -55,7 +56,7 @@ const getCssProperties = memoize((prop: string) => {
 
 export type SpacingValue = string | number;
 
-export function createUnaryUnit<T extends number | any[] | Record<string, any>>(
+export function createUnaryUnit<T extends number | any[] | AnyObject>(
   theme: { space: T },
   themeKey: string,
   defaultSpace: T | number,
@@ -64,7 +65,7 @@ export function createUnaryUnit<T extends number | any[] | Record<string, any>>(
   ? <U extends string | number>(abs: U) => U
   : T extends any[]
     ? <K extends number>(abs: K | string) => T[K] | string
-    : T extends Record<string, any>
+    : T extends AnyObject
       ? <K extends keyof T>(abs: K | number) => T[K] | number
       : () => undefined {
   const themeSpace = get(theme, themeKey, defaultSpace) as T;
@@ -128,9 +129,7 @@ export function createUnaryUnit<T extends number | any[] | Record<string, any>>(
   return noop;
 }
 
-export function createUnarySpacing<T extends number | any[] | Record<string, any>>(theme: {
-  space: T;
-}) {
+export function createUnarySpacing<T extends number | any[] | AnyObject>(theme: { space: T }) {
   return createUnaryUnit(theme, 'space', 8, 'space');
 }
 
@@ -158,24 +157,17 @@ export function getStyleFromPropValue(
   transformer: (abs: SpacingValue) => SpacingValue,
 ) {
   return (propValue: SpacingValue) =>
-    cssProperties.reduce<Record<string, SpacingValue>>((acc, cssProperty) => {
+    cssProperties.reduce<AnyObject<SpacingValue>>((acc, cssProperty) => {
       acc[cssProperty] = getValue(transformer, propValue);
       return acc;
     }, {});
 }
 
 function resolveCssProperty(
-  props: { theme: Theme } & AnyProps,
+  props: { theme: Theme; [key: string]: any },
   keys: string[],
   prop: string,
   transformer: (abs: any) => any,
-): any;
-
-function resolveCssProperty(
-  props: { theme: Theme } & AnyProps,
-  keys: string[],
-  prop: string,
-  transformer: (abs: SpacingValue) => SpacingValue,
 ) {
   // Using a hash computation over an array iteration could be faster, but with
   // only 28 items, it's doesn't worth the bundle size.
@@ -189,12 +181,12 @@ function resolveCssProperty(
   return handleBreakpoints(props, props[prop], styleFromPropValue);
 }
 
-function style(props: AnyProps & { theme: Theme }, keys: string[]) {
+function style(props: { theme: Theme; [key: string]: any }, keys: string[]) {
   const transformer = createUnarySpacing(props.theme);
 
   return Object.keys(props)
     .map((prop) => resolveCssProperty(props, keys, prop, transformer))
-    .reduce<Record<string, any>>((acc, item) => {
+    .reduce<AnyObject>((acc, item) => {
       if (!item) {
         return acc;
       }

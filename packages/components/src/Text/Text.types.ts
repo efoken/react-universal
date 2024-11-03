@@ -6,6 +6,7 @@ import type {
   StyleProp,
   SxProps,
 } from '@react-universal/core';
+import type { AnyObject } from '@react-universal/utils';
 import type {
   AccessibilityProps as RNAccessibilityProps,
   TextProps as RNTextProps,
@@ -22,7 +23,7 @@ export interface TextProps
     >,
     AccessibilityProps {
   as?: React.ElementType;
-  dataSet?: Record<string, any>;
+  dataSet?: AnyObject;
   dir?: 'ltr' | 'rtl' | 'auto';
   href?: string;
   hrefAttrs?: {

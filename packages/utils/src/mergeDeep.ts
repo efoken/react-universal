@@ -1,16 +1,17 @@
 import { cloneDeep } from './cloneDeep';
+import type { AnyObject } from './is';
 import { isObject } from './is';
 
 export interface MergeDeepOptions {
   clone?: boolean;
 }
 
-export function mergeDeep<T extends Record<string, any>>(
+export function mergeDeep<T extends AnyObject>(
   target: T,
   source: unknown,
   { clone = true }: MergeDeepOptions = {},
 ) {
-  const output: Record<string, any> = clone ? { ...target } : target;
+  const output: AnyObject = clone ? { ...target } : target;
 
   if (isObject(target) && isObject(source)) {
     for (const key of Object.keys(source)) {

@@ -5,16 +5,16 @@ import {
   forwardedProps,
   getLocaleDirection,
   styled,
-  type AnyProps,
   type ForwardedProps,
 } from '@react-universal/core';
+import type { AnyObject } from '@react-universal/utils';
 import { pick } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
 import { forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
 import type { PopoverMethods, PopoverProps } from './Popover.types';
 import { parseModifiers, resolveAnchor } from './Popover.utils';
 
-function pickProps<T extends AnyProps>(props: T) {
+function pickProps<T extends AnyObject>(props: T) {
   return pick(props, {
     ...forwardedProps.defaultProps,
     ...forwardedProps.styleProps,

@@ -1,6 +1,6 @@
 'use client';
 
-import type { AnyProps, ForwardedProps } from '@react-universal/core';
+import type { ForwardedProps } from '@react-universal/core';
 import {
   forwardedProps,
   getLocaleDirection,
@@ -9,12 +9,13 @@ import {
   useOwnerState,
   useResponderEvents,
 } from '@react-universal/core';
+import type { AnyObject } from '@react-universal/utils';
 import { pick } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
 import { forwardRef, useEffect, useRef } from 'react';
 import type { ModalMethods, ModalOwnerState, ModalProps, ModalType } from './Modal.types';
 
-function pickProps<T extends AnyProps>(props: T) {
+function pickProps<T extends AnyObject>(props: T) {
   return pick(props, {
     ...forwardedProps.defaultProps,
     ...forwardedProps.accessibilityProps,

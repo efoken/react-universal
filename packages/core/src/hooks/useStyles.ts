@@ -1,3 +1,4 @@
+import type { AnyFunction } from '@react-universal/utils';
 import { isFunction } from '@react-universal/utils';
 import type { Breakpoints } from '../breakpoints';
 import { useTheme } from '../contexts/ThemeContext';
@@ -7,7 +8,7 @@ import type { StyleSheetWithSuperPowers } from '../types';
 
 interface ParsedStylesheet<T extends StyleSheetWithSuperPowers> {
   breakpoint: keyof Breakpoints;
-  styles: T extends (...args: any[]) => any ? ReturnType<T> : T;
+  styles: T extends AnyFunction ? ReturnType<T> : T;
   theme: Theme;
 }
 

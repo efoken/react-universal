@@ -5,6 +5,7 @@ import type {
   StyleProp,
   SxProps,
 } from '@react-universal/core';
+import type { AnyObject } from '@react-universal/utils';
 import type {
   GestureResponderEvent,
   ImageProps as RNImageProps,
@@ -151,7 +152,7 @@ interface BaseTextProps extends BasePathProps, FontProps {
     | 'after-edge'
     | 'hanging';
   baselineShift?: 'sub' | 'super' | 'baseline' | (string & {}) | number | (string | number)[];
-  fontData?: Record<string, unknown>;
+  fontData?: AnyObject<unknown>;
   fontFeatureSettings?: string;
   lengthAdjust?: 'spacing' | 'spacingAndGlyphs';
   textLength?: string | number;

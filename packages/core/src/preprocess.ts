@@ -1,18 +1,19 @@
+import type { AnyObject } from '@react-universal/utils';
 import { isArray, isNumber } from '@react-universal/utils';
 
-const standardProps: Record<string, string> = {
+const standardProps: AnyObject<string> = {
   borderBottomEndRadius: 'borderEndEndRadius',
   borderBottomStartRadius: 'borderEndStartRadius',
   borderTopEndRadius: 'borderStartEndRadius',
   borderTopStartRadius: 'borderStartStartRadius',
 };
 
-const ignoredProps: Record<string, boolean> = {
+const ignoredProps: AnyObject<boolean> = {
   elevation: true,
   includeFontPadding: true,
 };
 
-export function preprocess<T extends Record<string, any>>(style: T = {} as T): T {
+export function preprocess<T extends AnyObject>(style: T = {} as T): T {
   const nextStyle: React.CSSProperties = {};
 
   // Convert text shadow styles

@@ -1,3 +1,4 @@
+import type { AnyObject } from '@react-universal/utils';
 import { isString } from '@react-universal/utils';
 import { normalizeColor } from './normalizeColor';
 
@@ -6,7 +7,7 @@ const FONT_SYSTEM = 'system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif';
 
 const FONT_MONOSPACE = 'monospace,monospace';
 
-const shortFormProps: Record<string, string[]> = {
+const shortFormProps: AnyObject<string[]> = {
   borderBlockColor: ['borderBlockEndColor', 'borderBlockStartColor'],
   borderBlockStyle: ['borderBlockEndStyle', 'borderBlockStartStyle'],
   borderBlockWidth: ['borderBlockEndWidth', 'borderBlockStartWidth'],
@@ -36,7 +37,7 @@ const shortFormProps: Record<string, string[]> = {
   overscrollBehavior: ['overscrollBehaviorX', 'overscrollBehaviorY'],
 };
 
-const colorProps: Record<string, boolean> = {
+const colorProps: AnyObject<boolean> = {
   backgroundColor: true,
   borderBlockColor: true,
   borderBottomColor: true,
@@ -59,10 +60,7 @@ function normalizeValueWithProperty(value: any, prop?: string) {
   return value;
 }
 
-export function createReactDOMStyle(
-  style: Record<string, any>,
-  inline?: boolean,
-): Record<string, any> {
+export function createReactDOMStyle(style: AnyObject, inline?: boolean): AnyObject {
   if (!style) {
     return {};
   }

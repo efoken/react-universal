@@ -1,4 +1,5 @@
 import type { FlipOptions, ShiftOptions, SizeOptions } from '@floating-ui/react-native';
+import type { AnyObject } from '@react-universal/utils';
 import { findLast, runIfFunction } from '@react-universal/utils';
 import type { PopoverAnchor, PopoverModifier } from './Popover.types';
 
@@ -9,7 +10,7 @@ export function resolveAnchor(anchor: PopoverAnchor) {
   return runIfFunction(anchor);
 }
 
-export function parseModifiers(modifiers: PopoverModifier<string, Record<string, any>>[]) {
+export function parseModifiers(modifiers: PopoverModifier<string, AnyObject>[]) {
   return {
     flip: findLast(
       modifiers,

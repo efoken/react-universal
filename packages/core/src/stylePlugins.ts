@@ -1,3 +1,4 @@
+import type { AnyObject } from '@react-universal/utils';
 import { isString } from '@react-universal/utils';
 import type {
   ImageStyle as RNImageStyle,
@@ -14,7 +15,7 @@ type StylePlugin = (theme: Theme) => {
   name: string;
   onParsedStyle?: (
     styleKey: string,
-    style: Record<string, any>,
+    style: AnyObject,
     runtime: typeof StyleRuntime,
   ) => RNImageStyle & RNTextStyle & RNViewStyle;
 };

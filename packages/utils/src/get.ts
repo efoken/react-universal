@@ -1,6 +1,7 @@
+import type { AnyObject } from './is';
 import { isNumber, isString } from './is';
 
-export function get<T extends Record<string, any>>(
+export function get<T extends AnyObject>(
   obj: T,
   path: string | number | undefined,
   fallback?: any,

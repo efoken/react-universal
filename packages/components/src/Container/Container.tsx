@@ -1,6 +1,7 @@
 'use client';
 
 import { clamp, max, min, styled, useOwnerState } from '@react-universal/core';
+import type { AnyObject } from '@react-universal/utils';
 import { forwardRef } from 'react';
 import { View } from '../View';
 import type {
@@ -37,7 +38,7 @@ const ContainerRoot = styled(View)<{ ownerState: ContainerOwnerState }>(
   },
   ({ ownerState, theme }) =>
     ownerState.fixed && {
-      maxWidth: Object.entries(theme.breakpoints).reduce<Record<string, any>>(
+      maxWidth: Object.entries(theme.breakpoints).reduce<AnyObject>(
         (acc, [breakpoint, maxWidth]) => {
           acc[breakpoint] = clamp(MIN_WIDTH, maxWidth, MAX_WIDTH);
           return acc;

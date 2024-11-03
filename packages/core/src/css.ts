@@ -1,3 +1,4 @@
+import type { AnyObject } from '@react-universal/utils';
 import { isFunction, isObject, isString, mergeDeep } from '@react-universal/utils';
 import type { StyleMiniRuntime } from './StyleRuntime';
 import { createReactDOMStyle } from './createReactDOMStyle';
@@ -5,12 +6,12 @@ import { preprocess } from './preprocess';
 import type { Theme } from './theme';
 import type { StyleProp, StyleValues } from './types';
 
-function getBreakpointsStyles<T extends Record<string, any>>(
+function getBreakpointsStyles<T extends AnyObject>(
   prop: string,
   style: T,
   runtime: StyleMiniRuntime,
 ) {
-  return Object.entries(style).reduce<Record<string, any>>((acc, [key, value]) => {
+  return Object.entries(style).reduce<AnyObject>((acc, [key, value]) => {
     const breakpoint = runtime.breakpoints[key as keyof typeof runtime.breakpoints];
 
     if (breakpoint != null) {
@@ -23,8 +24,8 @@ function getBreakpointsStyles<T extends Record<string, any>>(
   }, {}) as T;
 }
 
-function parseStyle<T extends Record<string, any>>(style: T, runtime: StyleMiniRuntime) {
-  const nextStyle = Object.entries(style ?? {}).reduce<Record<string, any>>(
+function parseStyle<T extends AnyObject>(style: T, runtime: StyleMiniRuntime) {
+  const nextStyle = Object.entries(style ?? {}).reduce<AnyObject>(
     (acc, [key, value]) =>
       isObject(value) && !key.startsWith('&')
         ? mergeDeep(acc, getBreakpointsStyles(key, value, runtime))
@@ -36,10 +37,8 @@ function parseStyle<T extends Record<string, any>>(style: T, runtime: StyleMiniR
 }
 
 export const css = {
-  props<T extends Record<string, any>>(style: StyleProp<T>): { className?: string; style: T } {
-    const flatStyle = [style]
-      .flat<Record<string, any>, number>(Number.POSITIVE_INFINITY)
-      .filter(Boolean);
+  props<T extends AnyObject>(style: StyleProp<T>): { className?: string; style: T } {
+    const flatStyle = [style].flat<AnyObject, number>(Number.POSITIVE_INFINITY).filter(Boolean);
 
     let classNames: string[] = [];
 
@@ -61,7 +60,7 @@ export const css = {
     };
   },
 
-  create<T extends Record<string, StyleValues>>(
+  create<T extends AnyObject<StyleValues>>(
     stylesheet: T | ((theme: Theme, runtime: StyleMiniRuntime) => T),
   ) {
     return (theme: Theme, runtime: StyleMiniRuntime) => {
@@ -70,7 +69,7 @@ export const css = {
 
       return Object.fromEntries(
         Object.entries(_stylesheet).map(([name, style]) => [name, parseStyle(style, runtime)]),
-      ) as Record<string, Record<string, any>>;
+      ) as AnyObject<AnyObject>;
     };
   },
 };

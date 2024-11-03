@@ -1,6 +1,6 @@
 'use client';
 
-import type { AnyProps, ForwardedProps } from '@react-universal/core';
+import type { ForwardedProps } from '@react-universal/core';
 import {
   forwardedProps,
   styled,
@@ -9,6 +9,7 @@ import {
   usePlatformMethods,
   useResponderEvents,
 } from '@react-universal/core';
+import type { AnyObject } from '@react-universal/utils';
 import { normalizeEvent, pick } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
 import type React from 'react';
@@ -46,7 +47,7 @@ function setSelection(node: HTMLInputElement, selection: NonNullable<TextInputPr
   }
 }
 
-function pickProps<T extends AnyProps>(props: T) {
+function pickProps<T extends AnyObject>(props: T) {
   return pick(props, {
     ...forwardedProps.defaultProps,
     ...forwardedProps.accessibilityProps,

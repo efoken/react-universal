@@ -1,9 +1,9 @@
+import type { AnyObject } from '@react-universal/utils';
 import { isArray, isFunction, isObject } from '@react-universal/utils';
-import type { AnyProps } from './types';
 
-let objs: Record<string, any>[];
+let objs: AnyObject[];
 
-type Interpolation<T extends Record<string, any>, P extends AnyProps> =
+type Interpolation<T extends AnyObject, P extends AnyObject> =
   | null
   | undefined
   | boolean
@@ -11,7 +11,7 @@ type Interpolation<T extends Record<string, any>, P extends AnyProps> =
   | Interpolation<T, P>[]
   | ((props: P) => Interpolation<T, P>);
 
-function handleInterpolation<T extends Record<string, any>, P extends AnyProps>(
+function handleInterpolation<T extends AnyObject, P extends AnyObject>(
   this: P | void,
   interpolation: Interpolation<T, P>,
   index: number,
@@ -34,7 +34,7 @@ function handleInterpolation<T extends Record<string, any>, P extends AnyProps>(
   }
 }
 
-export function interpolate<T extends Record<string, any>, P extends AnyProps>(
+export function interpolate<T extends AnyObject, P extends AnyObject>(
   this: P | void,
   ...args: Interpolation<T, P>[]
 ) {

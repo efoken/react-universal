@@ -1,5 +1,6 @@
-import type { AnyProps, StyleProp } from '@react-universal/core';
+import type { StyleProp } from '@react-universal/core';
 import { normalizeRole, styled } from '@react-universal/core';
+import type { AnyObject } from '@react-universal/utils';
 import { forwardRef } from 'react';
 import { StyleSheet } from 'react-native';
 import {
@@ -69,7 +70,7 @@ function createComponent<
   prepareProps: (props: React.PropsWithoutRef<P>) => React.PropsWithoutRef<P> = (props) => props,
 ) {
   const Component = forwardRef<T, P>(({ style, ...props }, ref) => {
-    const styleProps = StyleSheet.flatten<AnyProps>(style);
+    const styleProps = StyleSheet.flatten<AnyObject>(style);
 
     return <Base ref={ref} {...prepareProps(props as React.PropsWithoutRef<P>)} {...styleProps} />;
   });

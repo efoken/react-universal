@@ -1,3 +1,4 @@
+import type { AnyObject } from '@react-universal/utils';
 import {
   capitalize,
   get,
@@ -12,9 +13,9 @@ import { handleBreakpoints } from './breakpoints';
 import type { SxConfig, SxProps } from './sxConfig/defaultSxConfig';
 import { defaultSxConfig } from './sxConfig/defaultSxConfig';
 import type { Theme } from './theme/defaultTheme';
-import type { AnyProps, StyleValues } from './types';
+import type { StyleValues } from './types';
 
-function objectsHaveSameKeys(...objs: Record<string, any>[]) {
+function objectsHaveSameKeys(...objs: AnyObject[]) {
   const keys = new Set(objs.reduce<string[]>((acc, obj) => [...acc, ...Object.keys(obj)], []));
   return objs.every((obj) => keys.size === Object.keys(obj).length);
 }
@@ -48,7 +49,7 @@ function getStyleValue(
 
 function getThemeValue(
   propName: keyof SxConfig,
-  propValue: string | number | Record<string, any>,
+  propValue: string | number | AnyObject,
   theme: Theme,
   config: SxConfig,
 ) {
@@ -75,7 +76,7 @@ function getThemeValue(
     return style(props);
   }
 
-  const styleFromPropValue = (propValueFinal: unknown): Record<string, any> => {
+  const styleFromPropValue = (propValueFinal: unknown): AnyObject => {
     let value = getStyleValue(themeMapping, transform, propValueFinal);
 
     if (propValueFinal === value && isString(propValueFinal)) {
@@ -101,9 +102,11 @@ function getThemeValue(
 }
 
 export interface StyleFunctionSx {
-  (
-    props: AnyProps & { sx?: SxProps; theme: Theme },
-  ): StyleValues | undefined | (StyleValues | undefined)[];
+  (props: {
+    sx?: SxProps;
+    theme: Theme;
+    [key: string]: any;
+  }): StyleValues | undefined | (StyleValues | undefined)[];
   filterProps?: string[];
 }
 

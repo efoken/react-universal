@@ -1,3 +1,4 @@
+import type { AnyObject } from '@react-universal/utils';
 import { isFunction, isString } from '@react-universal/utils';
 import { forwardRef } from 'react';
 import { createElement } from './createElement';
@@ -6,7 +7,7 @@ import { useStyles } from './hooks/useStyles';
 import { interpolate } from './interpolate';
 import { styleFunctionSx } from './styleFunctionSx';
 import type { CreateStyledComponent, StyledOptions } from './styled.types';
-import type { AnyProps, StyleInterpolation, StyleProp } from './types';
+import type { StyleInterpolation, StyleProp } from './types';
 
 export function defaultShouldForwardProp(prop: string) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
@@ -38,12 +39,12 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
 ) {
   const shouldUseAs = !shouldForwardProp('as');
 
-  return (styles: StyleInterpolation<AnyProps>) => {
+  return (styles: StyleInterpolation<AnyObject>) => {
     const Styled = forwardRef<
       T,
       React.ComponentProps<T> & {
         as?: React.ElementType;
-        style?: StyleProp<Record<string, any>>;
+        style?: StyleProp<AnyObject>;
       }
     >(({ style, ...props }, ref) => {
       const Component = shouldUseAs ? (props.as ?? component) : component;
@@ -58,7 +59,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
         })),
       );
 
-      const newProps: AnyProps = {};
+      const newProps: AnyObject = {};
 
       for (const prop of Object.keys(props)) {
         if (shouldUseAs && prop === 'as') {

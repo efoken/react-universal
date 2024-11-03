@@ -1,6 +1,6 @@
 'use client';
 
-import type { AnyProps, ForwardedProps } from '@react-universal/core';
+import type { ForwardedProps } from '@react-universal/core';
 import {
   forwardedProps,
   getLocaleDirection,
@@ -10,13 +10,14 @@ import {
   usePlatformMethods,
   useResponderEvents,
 } from '@react-universal/core';
+import type { AnyObject } from '@react-universal/utils';
 import { isString, pick } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
 import { Children, forwardRef, useContext, useRef } from 'react';
 import { TextAncestorContext } from '../Text/TextAncestorContext';
 import type { ViewMethods, ViewOwnerState, ViewProps, ViewType } from './View.types';
 
-function pickProps<T extends AnyProps>(props: T) {
+function pickProps<T extends AnyObject>(props: T) {
   return pick(props, {
     ...forwardedProps.defaultProps,
     ...forwardedProps.accessibilityProps,

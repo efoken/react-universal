@@ -1,4 +1,6 @@
-const ignoreElements: Record<string, boolean> = {
+import type { AnyObject } from '@react-universal/utils';
+
+const ignoreElements: AnyObject<boolean> = {
   A: true,
   BODY: true,
   INPUT: true,

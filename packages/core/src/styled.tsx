@@ -4,6 +4,7 @@ import { withEmotionCache } from '@emotion/react';
 import { serializeStyles } from '@emotion/serialize';
 import type { EmotionCache, SerializedStyles } from '@emotion/utils';
 import { getRegisteredStyles, insertStyles, registerStyles } from '@emotion/utils';
+import type { AnyObject } from '@react-universal/utils';
 import { isFunction, isString } from '@react-universal/utils';
 import { isServer } from '@tamagui/constants';
 import { useMemo } from 'react';
@@ -14,7 +15,7 @@ import { useStyles } from './hooks/useStyles';
 import { interpolate } from './interpolate';
 import { styleFunctionSx } from './styleFunctionSx';
 import type { CreateStyledComponent, StyledOptions } from './styled.types';
-import type { AnyProps, RNStyle, StyleInterpolation, StyleProp } from './types';
+import type { RNStyle, StyleInterpolation, StyleProp } from './types';
 
 export function defaultShouldForwardProp(prop: string) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
@@ -71,7 +72,7 @@ export function styled<T extends keyof React.JSX.IntrinsicElements>(
 ): CreateStyledComponent<
   Omit<React.JSX.IntrinsicElements[T], 'ref' | 'style'> & {
     as?: React.ElementType;
-    dataSet?: Record<string, any>;
+    dataSet?: AnyObject;
     ref?: React.LegacyRef<HTMLElement>;
     style?: StyleProp<RNStyle>;
   }
@@ -83,11 +84,11 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
 ) {
   const shouldUseAs = !shouldForwardProp('as');
 
-  return (...styles: StyleInterpolation<AnyProps>[]) => {
+  return (...styles: StyleInterpolation<AnyObject>[]) => {
     const Styled = withEmotionCache<
       React.ComponentProps<T> & {
         as?: React.ElementType;
-        style?: StyleProp<Record<string, any>>;
+        style?: StyleProp<AnyObject>;
       },
       T
     >(({ style, ...props }, cache, ref) => {
@@ -119,7 +120,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
         className: `${cache.key}-${serialized.name}`,
       };
 
-      const newProps: AnyProps = {};
+      const newProps: AnyObject = {};
 
       for (const prop of Object.keys(props)) {
         if (shouldUseAs && prop === 'as') {

@@ -1,3 +1,4 @@
+import type { AnyObject } from '@react-universal/utils';
 import { isFunction, noop } from '@react-universal/utils';
 import { act, fireEvent, render } from '@testing-library/react';
 import { createRef } from 'react';
@@ -11,8 +12,8 @@ function createEventTarget(node: any) {
     node,
     blur: () => fireEvent.blur(node),
     click: () => fireEvent.click(node),
-    focus: (payload?: Record<string, any>) => fireEvent.focus(node, payload),
-    pointerDown: (payload?: Record<string, any>) => fireEvent.pointerDown(node, payload),
+    focus: (payload?: AnyObject) => fireEvent.focus(node, payload),
+    pointerDown: (payload?: AnyObject) => fireEvent.pointerDown(node, payload),
   };
 }
 

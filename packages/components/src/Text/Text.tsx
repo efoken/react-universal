@@ -1,6 +1,6 @@
 'use client';
 
-import type { AnyProps, ForwardedProps } from '@react-universal/core';
+import type { ForwardedProps } from '@react-universal/core';
 import {
   forwardedProps,
   getLocaleDirection,
@@ -9,6 +9,7 @@ import {
   useOwnerState,
   usePlatformMethods,
 } from '@react-universal/core';
+import type { AnyObject } from '@react-universal/utils';
 import { isString, pick } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
 import { forwardRef, useCallback, useContext, useRef } from 'react';
@@ -16,7 +17,7 @@ import type { GestureResponderEvent } from 'react-native';
 import type { TextMethods, TextOwnerState, TextProps, TextType } from './Text.types';
 import { TextAncestorContext } from './TextAncestorContext';
 
-function pickProps<T extends AnyProps>(props: T) {
+function pickProps<T extends AnyObject>(props: T) {
   return pick(props, {
     ...forwardedProps.defaultProps,
     ...forwardedProps.accessibilityProps,

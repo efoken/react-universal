@@ -1,3 +1,4 @@
+import type { AnyObject } from '@react-universal/utils';
 import { isArray, isObject, mergeDeep } from '@react-universal/utils';
 import type { Theme } from './theme/defaultTheme.js';
 
@@ -16,7 +17,7 @@ export type Breakpoint = keyof Breakpoints;
 
 export type BreakpointValue<T> = T | (T | undefined)[] | Partial<Record<Breakpoint, T | undefined>>;
 
-export function handleBreakpoints<T extends (value: any) => Record<string, any>>(
+export function handleBreakpoints<T extends (value: any) => AnyObject>(
   props: { theme: Theme },
   propValue: unknown,
   styleFromPropValue: T,
@@ -24,7 +25,7 @@ export function handleBreakpoints<T extends (value: any) => Record<string, any>>
   const breakpointKeys = Object.keys(props.theme.breakpoints);
 
   if (isArray(propValue)) {
-    return propValue.reduce<Record<string, any>>(
+    return propValue.reduce<AnyObject>(
       (acc, _item, index) =>
         mergeDeep(
           acc,
@@ -41,7 +42,7 @@ export function handleBreakpoints<T extends (value: any) => Record<string, any>>
   }
 
   if (isObject(propValue)) {
-    return Object.keys(propValue).reduce<Record<string, any>>(
+    return Object.keys(propValue).reduce<AnyObject>(
       (acc, breakpoint) =>
         mergeDeep(
           acc,

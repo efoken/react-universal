@@ -7,6 +7,7 @@ import type {
   StyleProp,
   SxProps,
 } from '@react-universal/core';
+import type { AnyObject } from '@react-universal/utils';
 import type {
   AccessibilityProps as RNAccessibilityProps,
   Image as RNImage,
@@ -67,7 +68,7 @@ export interface ImageProps
     >,
     AccessibilityProps {
   as?: React.ElementType;
-  dataSet?: Record<string, any>;
+  dataSet?: AnyObject;
   dir?: 'ltr' | 'rtl' | 'auto';
   lang?: Intl.UnicodeBCP47LocaleIdentifier;
   /**
@@ -94,5 +95,5 @@ export type ImageType = React.ForwardRefExoticComponent<
     'abortPrefetch' | 'prefetch' | 'prefetchWithMetadata' | 'queryCache' | 'resolveAssetSource'
   > & {
     getSize: (uri: string) => Promise<ImageSize>;
-    getSizeWithHeaders: (uri: string, headers: Record<string, string>) => Promise<ImageSize>;
+    getSizeWithHeaders: (uri: string, headers: AnyObject<string>) => Promise<ImageSize>;
   };

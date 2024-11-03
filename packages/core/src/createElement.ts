@@ -1,5 +1,6 @@
 'use client';
 
+import type { AnyObject } from '@react-universal/utils';
 import { isString } from '@react-universal/utils';
 import { createElement as createReactElement } from 'react';
 import type { Role as RNRole } from 'react-native';
@@ -74,14 +75,14 @@ function createDOMProps(
     'aria-disabled'?: boolean;
     'aria-readonly'?: boolean;
     'aria-required'?: boolean;
-    dataSet?: Record<string, any>;
+    dataSet?: AnyObject;
     role?: AccessibilityRole;
-    style?: StyleProp<Record<string, any>>;
+    style?: StyleProp<AnyObject>;
     tabIndex?: 0 | -1;
     testID?: string;
   } = {},
 ) {
-  const domProps: Record<string, any> = { ...props };
+  const domProps: AnyObject = { ...props };
 
   // ACCESSIBILITY
   if (ariaDisabled === true) {
@@ -175,13 +176,12 @@ function createDOMProps(
 
 export function createElement<T extends keyof JSX.IntrinsicElements>(
   type: React.ElementType<any, T>,
-  props?: Record<string, any>,
+  props?: AnyObject,
 ): any;
 
-export function createElement<P extends Record<string, any>>(
-  type: React.ElementType<P>,
-  props = {} as P,
-) {
+export function createElement<P extends AnyObject>(type: React.ElementType<P>, props?: P): any;
+
+export function createElement<P extends AnyObject>(type: React.ElementType<P>, props = {} as P) {
   // Use equivalent platform elements where possible.
   const Component = isString(type) ? (propsToAccessibilityComponent(props) ?? type) : type;
   const domProps = createDOMProps(Component, props);
