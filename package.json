@@ -16,7 +16,7 @@
     "@storybook/react-vite": "^8.3.6",
     "@stylistic/eslint-plugin": "^2.9.0",
     "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.6.2",
+    "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
     "@types/eslint": "^8.56.12",
     "@types/eslint__eslintrc": "^2.1.2",
