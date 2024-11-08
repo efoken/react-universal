@@ -1,18 +1,27 @@
 {
-  "name": "@react-universal/utils",
+  "name": "@react-universal/vite-plugin",
   "version": "1.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "react-native": "src/index.ts",
   "license": "MIT",
+  "dependencies": {
+    "@pigment-css/react": "^0.0.25",
+    "@pigment-css/vite-plugin": "^0.0.25",
+    "@react-universal/core": "workspace:*"
+  },
+  "devDependencies": {
+    "vite": "^5.4.10"
+  },
+  "peerDependencies": {
+    "vite": "^5.0.0"
+  },
   "scripts": {
-    "build": "tsup src/index.ts src/*.ts"
+    "build": "tsup src/index.ts"
   },
   "exports": {
     ".": {
       "source": "./src/index.ts",
-      "react-native": "./src/index.ts",
       "import": {
         "types": "./dist/index.d.mts",
         "default": "./dist/index.mjs"
@@ -24,7 +33,6 @@
     },
     "./*": {
       "source": "./src/*.ts",
-      "react-native": "./src/*.ts",
       "import": {
         "types": "./dist/*.d.mts",
         "default": "./dist/*.mjs"

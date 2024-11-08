@@ -6,10 +6,10 @@ import type {
   ViewStyle as RNViewStyle,
 } from 'react-native';
 import type { StyleRuntime } from './StyleRuntime';
-import { parseBoxShadow } from './parseBoxShadow';
-import { parseRem } from './parseRem';
 import type { Theme } from './theme';
 import type { RNStyle, RNStyleWeb } from './types';
+import { parseBoxShadow } from './utils/parseBoxShadow';
+import { parseRem } from './utils/parseRem';
 
 type StylePlugin = (theme: Theme) => {
   name: string;

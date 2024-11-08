@@ -29,7 +29,7 @@ export const css = {
 
       return Object.fromEntries(
         Object.entries(_stylesheet).map(([name, style]) => [name, parseStyle(style)]),
-      );
+      ) as Record<keyof T, AnyObject>;
     });
   },
 };

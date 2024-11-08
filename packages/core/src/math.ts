@@ -1,6 +1,6 @@
 import { isNumber } from '@react-universal/utils';
 import { isWeb } from '@tamagui/constants';
-import { parseRem } from './parseRem';
+import { parseRem } from './utils/parseRem';
 
 type Operand = string | number | { toString: () => string };
 

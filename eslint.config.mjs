@@ -110,6 +110,7 @@ const config = [
       ],
       'no-restricted-syntax': 'off',
       'no-underscore-dangle': 'off',
+      'prefer-object-has-own': 'error',
     },
   },
   {

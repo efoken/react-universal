@@ -69,7 +69,7 @@ export const css = {
 
       return Object.fromEntries(
         Object.entries(_stylesheet).map(([name, style]) => [name, parseStyle(style, runtime)]),
-      ) as AnyObject<AnyObject>;
+      ) as Record<keyof T, AnyObject>;
     };
   },
 };

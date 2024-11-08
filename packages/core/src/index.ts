@@ -3,6 +3,7 @@ export * from './contexts/LocaleContext';
 export * from './contexts/ThemeContext';
 export * from './createElement';
 export * from './css';
+export * from './extendSxProp';
 export * from './forwardedProps';
 export * from './hooks/useBackHandler';
 export * from './hooks/useElementLayout';

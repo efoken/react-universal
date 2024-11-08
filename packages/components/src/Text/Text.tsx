@@ -35,44 +35,56 @@ function pickProps<T extends AnyObject>(props: T) {
 const TextRoot = styled('div', {
   name: 'Text',
   slot: 'Root',
-})<{ ownerState: TextOwnerState }>(
-  ({ ownerState, theme }) => ({
-    backgroundColor: 'transparent',
-    fontFamily: theme.fonts.body.family,
-    textAlign: 'start' as any,
-    whiteSpace: 'pre-wrap',
-    wordWrap: 'break-word',
-    ...(ownerState.hasTextAncestor && {
-      fontFamily: 'inherit' as any,
-      textAlign: 'inherit' as any,
-      whiteSpace: 'inherit',
-    }),
-    ...(ownerState.pressable && {
-      cursor: 'pointer',
-    }),
-  }),
-  ({ ownerState }) =>
-    ownerState.numberOfLines != null && {
-      ...(ownerState.numberOfLines === 1 && {
+})<{ ownerState: TextOwnerState }>(({ theme }) => ({
+  backgroundColor: 'transparent',
+  fontFamily: theme.fonts.body.family,
+  textAlign: 'start' as any,
+  whiteSpace: 'pre-wrap',
+  wordWrap: 'break-word',
+  variants: [
+    {
+      props: { hasTextAncestor: true },
+      style: {
+        fontFamily: 'inherit',
+        textAlign: 'inherit' as any,
+        whiteSpace: 'inherit',
+      },
+    },
+    {
+      props: { pressable: true },
+      style: {
+        cursor: 'pointer',
+      },
+    },
+    {
+      props: { numberOfLines: 1 },
+      style: {
         maxWidth: '100%',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
         wordWrap: 'normal',
-      }),
-      ...(ownerState.numberOfLines > 1 && {
+      },
+    },
+    {
+      props: ({ numberOfLines }) => numberOfLines != null && numberOfLines > 1,
+      style: {
         display: '-webkit-box' as any,
         maxWidth: '100%',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         WebkitBoxOrient: 'vertical',
-        WebkitLineClamp: ownerState.numberOfLines,
-      }),
+        WebkitLineClamp: 'var(--number-of-lines)',
+      },
     },
-);
+  ],
+}));
 
 export const Text = forwardRef<HTMLElement & TextMethods, TextProps>(
-  ({ as: _as, dir, hrefAttrs, numberOfLines, onClick, onLayout, onPress, ...props }, ref) => {
+  (
+    { as: _as, dir, hrefAttrs, numberOfLines, onClick, onLayout, onPress, style, ...props },
+    ref,
+  ) => {
     const hasTextAncestor = useContext(TextAncestorContext);
     const hostRef = useRef<HTMLElement>(null);
 
@@ -132,10 +144,16 @@ export const Text = forwardRef<HTMLElement & TextMethods, TextProps>(
       hasTextAncestor,
       numberOfLines,
       pressable: onClick != null || onPress != null,
-      role: props.role,
     });
 
-    const element = <TextRoot as={_as ?? component} ownerState={ownerState} {...supportedProps} />;
+    const element = (
+      <TextRoot
+        as={_as ?? component}
+        ownerState={ownerState}
+        style={[{ '--number-of-lines': numberOfLines }, style]}
+        {...supportedProps}
+      />
+    );
 
     return hasTextAncestor ? (
       element

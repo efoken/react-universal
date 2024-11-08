@@ -12,8 +12,6 @@ const shortFormProps: AnyObject<string[]> = {
   borderBlockStyle: ['borderBlockEndStyle', 'borderBlockStartStyle'],
   borderBlockWidth: ['borderBlockEndWidth', 'borderBlockStartWidth'],
   borderColor: ['borderBottomColor', 'borderLeftColor', 'borderRightColor', 'borderTopColor'],
-  // borderEndEndRadius: ['borderBottomRightRadius'],
-  // borderEndStartRadius: ['borderBottomLeftRadius'],
   borderInlineColor: ['borderInlineEndColor', 'borderInlineStartColor'],
   borderInlineStyle: ['borderInlineEndStyle', 'borderInlineStartStyle'],
   borderInlineWidth: ['borderInlineEndWidth', 'borderInlineStartWidth'],
@@ -23,8 +21,6 @@ const shortFormProps: AnyObject<string[]> = {
     'borderTopLeftRadius',
     'borderTopRightRadius',
   ],
-  // borderStartEndRadius: ['borderTopRightRadius'],
-  // borderStartStartRadius: ['borderTopLeftRadius'],
   borderStyle: ['borderBottomStyle', 'borderLeftStyle', 'borderRightStyle', 'borderTopStyle'],
   borderWidth: ['borderBottomWidth', 'borderLeftWidth', 'borderRightWidth', 'borderTopWidth'],
   insetBlock: ['insetBlockEnd', 'insetBlockStart'],
@@ -60,7 +56,7 @@ function normalizeValueWithProperty(value: any, prop?: string) {
   return value;
 }
 
-export function createReactDOMStyle(style: AnyObject, inline?: boolean): AnyObject {
+export function createReactDOMStyle(style: AnyObject): AnyObject {
   if (!style) {
     return {};
   }
@@ -101,34 +97,7 @@ export function createReactDOMStyle(style: AnyObject, inline?: boolean): AnyObje
       default: {
         const nextValue = normalizeValueWithProperty(style[prop], prop);
         const longFormProps = shortFormProps[prop];
-        if (inline && prop === 'inset') {
-          if (style.insetInline == null) {
-            nextStyle.left = nextValue;
-            nextStyle.right = nextValue;
-          }
-          if (style.insetBlock == null) {
-            nextStyle.top = nextValue;
-            nextStyle.bottom = nextValue;
-          }
-        } else if (inline && prop === 'margin') {
-          if (style.marginInline == null) {
-            nextStyle.marginLeft = nextValue;
-            nextStyle.marginRight = nextValue;
-          }
-          if (style.marginBlock == null) {
-            nextStyle.marginTop = nextValue;
-            nextStyle.marginBottom = nextValue;
-          }
-        } else if (inline && prop === 'padding') {
-          if (style.paddingInline == null) {
-            nextStyle.paddingLeft = nextValue;
-            nextStyle.paddingRight = nextValue;
-          }
-          if (style.paddingBlock == null) {
-            nextStyle.paddingTop = nextValue;
-            nextStyle.paddingBottom = nextValue;
-          }
-        } else if (longFormProps) {
+        if (longFormProps) {
           for (const longForm of longFormProps) {
             // The value of any longform property in the original styles takes
             // precedence over the shortform's value.

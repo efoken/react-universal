@@ -21,26 +21,42 @@ import { ScrollViewBase } from './ScrollViewBase';
 const ScrollViewRoot = styled(ScrollViewBase, {
   name: 'ScrollView',
   slot: 'Root',
-})<{ ownerState: ScrollViewOwnerState }>(({ ownerState }) => ({
+})<{ ownerState: ScrollViewOwnerState }>({
   flexGrow: 1,
   flexShrink: 1,
   WebkitOverflowScrolling: 'touch',
   transform: 'translateZ(0)',
-  ...(ownerState.horizontal
-    ? {
+  variants: [
+    {
+      props: { horizontal: true },
+      style: {
         flexDirection: 'row',
         overflowX: 'auto',
         overflowY: 'hidden',
-      }
-    : {
+      },
+    },
+    {
+      props: { horizontal: false },
+      style: {
         flexDirection: 'column',
         overflowX: 'hidden',
         overflowY: 'auto',
-      }),
-  ...(ownerState.pagingEnabled && {
-    scrollSnapType: ownerState.horizontal ? 'x mandatory' : 'y mandatory',
-  }),
-}));
+      },
+    },
+    {
+      props: { horizontal: true, pagingEnabled: true },
+      style: {
+        scrollSnapType: 'x mandatory',
+      },
+    },
+    {
+      props: { horizontal: false, pagingEnabled: true },
+      style: {
+        scrollSnapType: 'y mandatory',
+      },
+    },
+  ],
+});
 
 const scrollViewRefreshControlStyle: ViewStyle = {
   flexDirection: 'inherit' as any,
@@ -64,15 +80,23 @@ const ScrollViewStickyHeader = styled(View, {
 const ScrollViewContentContainer = styled(View, {
   name: 'ScrollView',
   slot: 'ContentContainer',
-})<{ ownerState: ScrollViewOwnerState }>(({ ownerState }) => ({
-  ...(ownerState.horizontal && {
-    flexDirection: 'row',
-  }),
-  ...(ownerState.centerContent && {
-    flexGrow: 1,
-    justifyContent: 'center',
-  }),
-}));
+})<{ ownerState: ScrollViewOwnerState }>({
+  variants: [
+    {
+      props: { horizontal: true },
+      style: {
+        flexDirection: 'row',
+      },
+    },
+    {
+      props: { centerContent: true },
+      style: {
+        flexGrow: 1,
+        justifyContent: 'center',
+      },
+    },
+  ],
+});
 
 const ScrollViewChild = styled(View, {
   name: 'ScrollView',

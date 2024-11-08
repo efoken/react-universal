@@ -1,3 +1,4 @@
+import memo from '@emotion/memoize';
 import type { AnyObject } from '@react-universal/utils';
 import {
   get,
@@ -5,7 +6,6 @@ import {
   isNumber,
   isObject,
   isString,
-  memoize,
   mergeDeep,
   noop,
 } from '@react-universal/utils';
@@ -37,7 +37,7 @@ const ALIASES: AnyObject<string> = {
   paddingY: 'py',
 };
 
-const getCssProperties = memoize((prop: string) => {
+const getCssProperties = memo((prop: string) => {
   // It's not a shorthand notation.
   if (prop.length > 2) {
     if (ALIASES[prop]) {

@@ -87,7 +87,7 @@ let focusTimeout: ReturnType<typeof setTimeout>;
 const TextInputRoot = styled('input', {
   name: 'TextInput',
   slot: 'Root',
-})<{ ownerState: TextInputOwnerState }>(({ ownerState, theme }) => ({
+})<{ ownerState: TextInputOwnerState }>(({ theme }) => ({
   appearance: 'none',
   backgroundColor: 'transparent',
   borderColor: theme.colors.border.default,
@@ -96,11 +96,16 @@ const TextInputRoot = styled('input', {
   fontFamily: theme.fonts.body.family,
   resize: 'none',
   '&::placeholder': {
-    color: ownerState.placeholderTextColor,
+    color: 'var(--placeholder-text-color)',
   },
-  ...(ownerState.caretHidden && {
-    caretColor: 'transparent',
-  }),
+  variants: [
+    {
+      props: { caretHidden: true },
+      style: {
+        caretColor: 'transparent',
+      },
+    },
+  ],
 }));
 
 export const TextInput = forwardRef<HTMLInputElement & TextInputMethods, TextInputProps>(
@@ -148,6 +153,7 @@ export const TextInput = forwardRef<HTMLInputElement & TextInputMethods, TextInp
       selectTextOnFocus = false,
       showSoftInputOnFocus = true,
       spellCheck,
+      style,
       ...props
     },
     ref,
@@ -377,7 +383,14 @@ export const TextInput = forwardRef<HTMLInputElement & TextInputMethods, TextInp
       placeholderTextColor,
     });
 
-    return <TextInputRoot as={component} ownerState={ownerState} {...supportedProps} />;
+    return (
+      <TextInputRoot
+        as={component}
+        ownerState={ownerState}
+        style={[{ '--placeholder-text-color': placeholderTextColor }, style]}
+        {...supportedProps}
+      />
+    );
   },
 ) as TextInputType;
 

@@ -49,7 +49,7 @@ export type TextType = React.ForwardRefExoticComponent<
   React.PropsWithoutRef<TextProps> & React.RefAttributes<HTMLElement & TextMethods>
 >;
 
-export type TextOwnerState = Pick<TextProps, 'numberOfLines' | 'role'> & {
+export type TextOwnerState = Pick<TextProps, 'numberOfLines'> & {
   hasTextAncestor: boolean;
   pressable: boolean;
 };

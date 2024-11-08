@@ -21,19 +21,26 @@ const ButtonRoot = styled(View, {
   onMouseLeave?: React.MouseEventHandler<HTMLElement>;
   ownerState: ButtonOwnerState;
   type?: 'button' | 'submit' | 'reset';
-}>(({ ownerState }) => ({
+}>({
   borderWidth: 1,
   flexDirection: 'row',
   padding: 1,
-  ...(ownerState.disabled
-    ? {
-        pointerEvents: 'box-none',
-      }
-    : {
+  variants: [
+    {
+      props: { disabled: false },
+      style: {
         cursor: 'pointer',
         touchAction: 'manipulation',
-      }),
-}));
+      },
+    },
+    {
+      props: { disabled: true },
+      style: {
+        pointerEvents: 'box-none',
+      },
+    },
+  ],
+});
 
 export const Button = forwardRef<HTMLElement & ButtonMethods, ButtonProps>(
   (

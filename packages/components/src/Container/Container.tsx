@@ -15,7 +15,7 @@ const MIN_WIDTH = '20rem';
 const MAX_WIDTH = '79.75rem';
 
 const ContainerRoot = styled(View)<{ ownerState: ContainerOwnerState }>(
-  ({ runtime, theme }) => ({
+  ({ ownerState, runtime, theme }) => ({
     marginInline: 'auto',
     paddingInline: {
       xs: max(theme.space[4], runtime.insets.left, runtime.insets.right),
@@ -23,30 +23,36 @@ const ContainerRoot = styled(View)<{ ownerState: ContainerOwnerState }>(
       md: max(theme.space[7], runtime.insets.left, runtime.insets.right),
     },
     width: '100%',
-  }),
-  ({ ownerState, theme }) => {
-    if (!ownerState.maxWidth) {
-      return {};
-    }
-    const maxWidth =
-      ownerState.maxWidth === 'xs'
-        ? max(theme.breakpoints.xs, MIN_WIDTH)
-        : min(theme.breakpoints[ownerState.maxWidth], MAX_WIDTH);
-    return {
-      maxWidth: { [ownerState.maxWidth]: maxWidth },
-    };
-  },
-  ({ ownerState, theme }) =>
-    ownerState.fixed && {
-      maxWidth: Object.entries(theme.breakpoints).reduce<AnyObject>(
-        (acc, [breakpoint, maxWidth]) => {
-          acc[breakpoint] = clamp(MIN_WIDTH, maxWidth, MAX_WIDTH);
-          return acc;
+    variants: [
+      {
+        props: ({ maxWidth }) => maxWidth != null && maxWidth !== false,
+        style: {
+          maxWidth:
+            ownerState.maxWidth != null && ownerState.maxWidth !== false
+              ? {
+                  [ownerState.maxWidth]:
+                    ownerState.maxWidth === 'xs'
+                      ? max(theme.breakpoints.xs, MIN_WIDTH)
+                      : min(theme.breakpoints[ownerState.maxWidth], MAX_WIDTH),
+                }
+              : undefined,
         },
-        {},
-      ),
-      minWidth: 0,
-    },
+      },
+      {
+        props: { fixed: true },
+        style: {
+          maxWidth: Object.entries(theme.breakpoints).reduce<AnyObject>(
+            (acc, [breakpoint, maxWidth]) => {
+              acc[breakpoint] = clamp(MIN_WIDTH, maxWidth, MAX_WIDTH);
+              return acc;
+            },
+            {},
+          ),
+          minWidth: 0,
+        },
+      },
+    ],
+  }),
 );
 
 export const Container = forwardRef<HTMLElement & ContainerMethods, ContainerProps>(

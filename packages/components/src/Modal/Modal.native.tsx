@@ -4,11 +4,12 @@ import {
   normalizeRole,
   styled,
   useBackHandler,
+  useOwnerState,
 } from '@react-universal/core';
 import { forwardRef } from 'react';
 import type { GestureResponderEvent } from 'react-native';
 import { Modal as RNModal, Pressable as RNPressable } from 'react-native';
-import type { ModalProps, ModalType } from './Modal.types';
+import type { ModalOwnerState, ModalProps, ModalType } from './Modal.types';
 
 const ModalRoot = styled(RNModal, {
   name: 'Modal',
@@ -18,7 +19,17 @@ const ModalRoot = styled(RNModal, {
 const ModalBackdrop = styled(RNPressable, {
   name: 'Modal',
   slot: 'Backdrop',
-})();
+})<{ ownerState: ModalOwnerState }>({
+  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  variants: [
+    {
+      props: { hideBackdrop: true },
+      style: {
+        display: 'none',
+      },
+    },
+  ],
+});
 
 export const Modal = forwardRef<any, ModalProps>(
   (
@@ -63,6 +74,11 @@ export const Modal = forwardRef<any, ModalProps>(
       return true;
     });
 
+    const ownerState = useOwnerState({
+      backdropStyle,
+      hideBackdrop,
+    });
+
     if (!open) {
       return null;
     }
@@ -98,6 +114,7 @@ export const Modal = forwardRef<any, ModalProps>(
       >
         {!hideBackdrop && (
           <ModalBackdrop
+            ownerState={ownerState}
             role="presentation"
             style={backdropStyle as any}
             onPress={handleBackdropPress}

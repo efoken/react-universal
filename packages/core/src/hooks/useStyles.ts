@@ -1,23 +1,48 @@
-import type { AnyFunction } from '@react-universal/utils';
-import { isFunction } from '@react-universal/utils';
-import type { Breakpoints } from '../breakpoints';
+import type { AnyObject } from '@react-universal/utils';
+import { useMemo } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
+import { css } from '../css';
+import { interpolate } from '../interpolate';
+import { styleFunctionSx } from '../styleFunctionSx';
 import { StyleRuntime } from '../StyleRuntime';
+import type { SxProps } from '../sxConfig';
 import type { Theme } from '../theme';
-import type { StyleSheetWithSuperPowers } from '../types';
+import type { StyleInterpolation } from '../types';
+import { processStyles } from '../utils/processStyles';
 
-interface ParsedStylesheet<T extends StyleSheetWithSuperPowers> {
-  breakpoint: keyof Breakpoints;
-  styles: T extends AnyFunction ? ReturnType<T> : T;
+interface UseStylesReturn {
+  styles: AnyObject;
   theme: Theme;
 }
 
-export function useStyles<T extends StyleSheetWithSuperPowers>(stylesheet: T): ParsedStylesheet<T> {
+export function useStyles(
+  styles: StyleInterpolation<AnyObject>,
+  {
+    skipSx,
+    sx,
+    ...props
+  }: {
+    skipSx: boolean;
+    sx?: SxProps;
+    [key: string]: any;
+  },
+): UseStylesReturn {
   const theme = useTheme();
 
+  const stylesheet = useMemo(() => {
+    const _styles = processStyles({ ...props, runtime: StyleRuntime, theme }, styles);
+
+    return css.create({
+      style: interpolate.call(
+        { ...props, runtime: StyleRuntime, theme },
+        _styles,
+        !skipSx && styleFunctionSx({ sx, theme }),
+      ),
+    });
+  }, [props, skipSx, styles, sx, theme]);
+
   return {
-    breakpoint: 'xs',
-    styles: isFunction(stylesheet) ? stylesheet(theme, StyleRuntime) : (stylesheet as any),
+    styles: stylesheet(theme, StyleRuntime).style,
     theme,
   };
 }

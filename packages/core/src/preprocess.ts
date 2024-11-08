@@ -1,19 +1,7 @@
-import type { AnyObject } from '@react-universal/utils';
-import { isArray, isNumber } from '@react-universal/utils';
+import { isArray } from '@react-universal/utils';
+import type { RNStyle } from './types';
 
-const standardProps: AnyObject<string> = {
-  borderBottomEndRadius: 'borderEndEndRadius',
-  borderBottomStartRadius: 'borderEndStartRadius',
-  borderTopEndRadius: 'borderStartEndRadius',
-  borderTopStartRadius: 'borderStartStartRadius',
-};
-
-const ignoredProps: AnyObject<boolean> = {
-  elevation: true,
-  includeFontPadding: true,
-};
-
-export function preprocess<T extends AnyObject>(style: T = {} as T): T {
+export function preprocess(style: RNStyle = {}) {
   const nextStyle: React.CSSProperties = {};
 
   // Convert text shadow styles
@@ -37,31 +25,20 @@ export function preprocess<T extends AnyObject>(style: T = {} as T): T {
   //   }
   // }
 
-  for (const originalProp of Object.keys(style)) {
-    if (
-      // Ignore some React Native styles
-      ignoredProps[originalProp] != null ||
-      originalProp === 'textShadowColor' ||
-      originalProp === 'textShadowOffset' ||
-      originalProp === 'textShadowRadius'
-    ) {
+  for (const prop of Object.keys(style) as (keyof RNStyle)[]) {
+    // Ignore some React Native styles
+    if (prop === 'borderCurve' || prop === 'elevation' || prop === 'includeFontPadding') {
       continue;
     }
 
-    const originalValue = style[originalProp];
-    const prop = standardProps[originalProp] || originalProp;
-    let value = originalValue;
+    const originalValue = style[prop];
+    let value: any = originalValue;
 
-    if (
-      !Object.prototype.hasOwnProperty.call(style, originalProp) ||
-      (prop !== originalProp && style[prop] != null)
-    ) {
+    if (!Object.hasOwn(style, prop)) {
       continue;
     }
 
-    if (prop === 'aspectRatio' && isNumber(value)) {
-      nextStyle[prop] = value.toString();
-    } else if (prop === 'fontVariant') {
+    if (prop === 'fontVariant') {
       if (isArray(value) && value.length > 0) {
         value = value.join(' ');
       }
@@ -72,5 +49,5 @@ export function preprocess<T extends AnyObject>(style: T = {} as T): T {
     }
   }
 
-  return nextStyle as any;
+  return nextStyle;
 }

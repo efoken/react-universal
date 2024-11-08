@@ -12,8 +12,6 @@ import { createElement } from './createElement';
 import { css } from './css';
 import { useInsertionEffectAlwaysWithSyncFallback } from './hooks/useInsertionEffectAlwaysWithSyncFallback';
 import { useStyles } from './hooks/useStyles';
-import { interpolate } from './interpolate';
-import { styleFunctionSx } from './styleFunctionSx';
 import type { CreateStyledComponent, StyledOptions } from './styled.types';
 import type { RNStyle, StyleInterpolation, StyleProp } from './types';
 
@@ -84,7 +82,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
 ) {
   const shouldUseAs = !shouldForwardProp('as');
 
-  return (...styles: StyleInterpolation<AnyObject>[]) => {
+  return (styles?: StyleInterpolation<AnyObject>) => {
     const Styled = withEmotionCache<
       React.ComponentProps<T> & {
         as?: React.ElementType;
@@ -100,21 +98,9 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
         className = getRegisteredStyles(cache.registered, classInterpolations, className);
       }
 
-      const { styles: _styles } = useStyles(
-        css.create((theme, runtime) => ({
-          style: interpolate.call(
-            { ...props, runtime, theme },
-            styles,
-            !skipSx && styleFunctionSx({ ...props, theme }),
-          ),
-        })),
-      );
+      const { styles: _styles } = useStyles(styles, { ...props, skipSx });
 
-      const serialized = serializeStyles(
-        [_styles.style, classInterpolations],
-        cache.registered,
-        props,
-      );
+      const serialized = serializeStyles([_styles, classInterpolations], cache.registered, props);
       const _style = {
         $$css: true,
         className: `${cache.key}-${serialized.name}`,

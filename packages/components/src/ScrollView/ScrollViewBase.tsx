@@ -57,18 +57,25 @@ const ScrollViewRoot = styled(View, {
   onScroll?: React.UIEventHandler<HTMLElement>;
   onWheel?: React.WheelEventHandler<HTMLElement>;
   ownerState: ScrollViewBaseOwnerState;
-}>(
-  ({ ownerState }) =>
-    ownerState.scrollEnabled && {
-      overflowX: 'hidden',
-      overflowY: 'hidden',
-      touchAction: 'none',
+}>({
+  variants: [
+    {
+      props: { scrollEnabled: true },
+      style: {
+        overflowX: 'hidden',
+        overflowY: 'hidden',
+        touchAction: 'none',
+      },
     },
-  ({ ownerState }) =>
-    (!ownerState.showsHorizontalScrollIndicator || !ownerState.showsVerticalScrollIndicator) && {
-      scrollbarWidth: 'none',
+    {
+      props: ({ showsHorizontalScrollIndicator, showsVerticalScrollIndicator }) =>
+        !showsHorizontalScrollIndicator || !showsVerticalScrollIndicator,
+      style: {
+        scrollbarWidth: 'none',
+      },
     },
-);
+  ],
+});
 
 export const ScrollViewBase = forwardRef<HTMLElement & ViewMethods, ScrollViewBaseProps>(
   (

@@ -1,7 +1,7 @@
-import { Box, Container, Text } from '@react-universal/components';
-import { A, Code, H2, Main, P } from '@react-universal/elements';
+import { Box, Container } from '@react-universal/components';
+import { A, Code, Main, P } from '@react-universal/elements';
+import { Card } from '../components/Card';
 import { Image } from '../components/Image';
-import styles from './page.module.css';
 
 export default function Home() {
   return (
@@ -181,170 +181,26 @@ export default function Home() {
           w: 'var(--max-width)',
         }}
       >
-        <A
+        <Card
           href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ c: styles.card, $$css: true } as any}
-          sx={{
-            bgColor: 'rgba(var(--card-rgb), 0)',
-            borderColor: 'rgba(var(--card-border-rgb), 0)',
-            borderRadius: 'var(--border-radius)',
-            borderWidth: 1,
-            px: { xs: '2.5rem', md: '1.2rem' },
-            py: '1rem',
-            transitionDuration: '200ms',
-            transitionProperty: 'background-color, border-color',
-          }}
-        >
-          <H2
-            sx={{
-              fontSize: '1.5rem',
-              fontWeight: 600,
-              lineHeight: 1.23,
-              mb: { xs: '0.5rem', md: '0.7rem' },
-            }}
-          >
-            Docs{' '}
-            <Text sx={{ display: 'inline-block' as any, transition: 'transform 200ms' }}>
-              -&gt;
-            </Text>
-          </H2>
-          <P
-            sx={{
-              opacity: 0.6,
-              fontSize: '0.9rem',
-              lineHeight: 1.5,
-              maxWidth: '30ch',
-              textWrap: 'balance',
-            }}
-          >
-            Find in-depth information about Next.js features and API.
-          </P>
-        </A>
-        <A
+          title="Docs"
+          description="Find in-depth information about Next.js features and API."
+        />
+        <Card
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ c: styles.card, $$css: true } as any}
-          sx={{
-            bgColor: 'rgba(var(--card-rgb), 0)',
-            borderColor: 'rgba(var(--card-border-rgb), 0)',
-            borderRadius: 'var(--border-radius)',
-            borderWidth: 1,
-            px: { xs: '2.5rem', md: '1.2rem' },
-            py: '1rem',
-            transitionDuration: '200ms',
-            transitionProperty: 'background-color, border-color',
-          }}
-        >
-          <H2
-            sx={{
-              fontSize: '1.5rem',
-              fontWeight: 600,
-              lineHeight: 1.23,
-              mb: { xs: '0.5rem', md: '0.7rem' },
-            }}
-          >
-            Learn{' '}
-            <Text sx={{ display: 'inline-block' as any, transition: 'transform 200ms' }}>
-              -&gt;
-            </Text>
-          </H2>
-          <P
-            sx={{
-              opacity: 0.6,
-              fontSize: '0.9rem',
-              lineHeight: 1.5,
-              maxWidth: '30ch',
-              textWrap: 'balance',
-            }}
-          >
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </P>
-        </A>
-        <A
+          title="Learn"
+          description="Learn about Next.js in an interactive course with quizzes!"
+        />
+        <Card
           href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ c: styles.card, $$css: true } as any}
-          sx={{
-            bgColor: 'rgba(var(--card-rgb), 0)',
-            borderColor: 'rgba(var(--card-border-rgb), 0)',
-            borderRadius: 'var(--border-radius)',
-            borderWidth: 1,
-            px: { xs: '2.5rem', md: '1.2rem' },
-            py: '1rem',
-            transitionDuration: '200ms',
-            transitionProperty: 'background-color, border-color',
-          }}
-        >
-          <H2
-            sx={{
-              fontSize: '1.5rem',
-              fontWeight: 600,
-              lineHeight: 1.23,
-              mb: { xs: '0.5rem', md: '0.7rem' },
-            }}
-          >
-            Templates{' '}
-            <Text sx={{ display: 'inline-block' as any, transition: 'transform 200ms' }}>
-              -&gt;
-            </Text>
-          </H2>
-          <P
-            sx={{
-              opacity: 0.6,
-              fontSize: '0.9rem',
-              lineHeight: 1.5,
-              maxWidth: '30ch',
-              textWrap: 'balance',
-            }}
-          >
-            Explore starter templates for Next.js.
-          </P>
-        </A>
-        <A
+          title="Templates"
+          description="Explore starter templates for Next.js."
+        />
+        <Card
           href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ c: styles.card, $$css: true } as any}
-          sx={{
-            bgColor: 'rgba(var(--card-rgb), 0)',
-            borderColor: 'rgba(var(--card-border-rgb), 0)',
-            borderRadius: 'var(--border-radius)',
-            borderWidth: 1,
-            px: { xs: '2.5rem', md: '1.2rem' },
-            py: '1rem',
-            transitionDuration: '200ms',
-            transitionProperty: 'background-color, border-color',
-          }}
-        >
-          <H2
-            sx={{
-              fontSize: '1.5rem',
-              fontWeight: 600,
-              lineHeight: 1.23,
-              mb: { xs: '0.5rem', md: '0.7rem' },
-            }}
-          >
-            Deploy{' '}
-            <Text sx={{ display: 'inline-block' as any, transition: 'transform 200ms' }}>
-              -&gt;
-            </Text>
-          </H2>
-          <P
-            sx={{
-              opacity: 0.6,
-              fontSize: '0.9rem',
-              lineHeight: 1.5,
-              maxWidth: '30ch',
-              textWrap: 'balance',
-            }}
-          >
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </P>
-        </A>
+          title="Deploy"
+          description="Instantly deploy your Next.js site to a shareable URL with Vercel."
+        />
       </Container>
     </Main>
   );

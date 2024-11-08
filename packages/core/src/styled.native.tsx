@@ -2,10 +2,7 @@ import type { AnyObject } from '@react-universal/utils';
 import { isFunction, isString } from '@react-universal/utils';
 import { forwardRef } from 'react';
 import { createElement } from './createElement';
-import { css } from './css';
 import { useStyles } from './hooks/useStyles';
-import { interpolate } from './interpolate';
-import { styleFunctionSx } from './styleFunctionSx';
 import type { CreateStyledComponent, StyledOptions } from './styled.types';
 import type { StyleInterpolation, StyleProp } from './types';
 
@@ -39,7 +36,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
 ) {
   const shouldUseAs = !shouldForwardProp('as');
 
-  return (styles: StyleInterpolation<AnyObject>) => {
+  return (styles?: StyleInterpolation<AnyObject>) => {
     const Styled = forwardRef<
       T,
       React.ComponentProps<T> & {
@@ -49,15 +46,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
     >(({ style, ...props }, ref) => {
       const Component = shouldUseAs ? (props.as ?? component) : component;
 
-      const { styles: _styles } = useStyles(
-        css.create((theme, runtime) => ({
-          style: interpolate.call(
-            { ...props, runtime, theme },
-            styles,
-            !skipSx && styleFunctionSx({ ...props, theme }),
-          ),
-        })),
-      );
+      const { styles: _style } = useStyles(styles, { ...props, skipSx });
 
       const newProps: AnyObject = {};
 
@@ -71,9 +60,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
       }
 
       newProps.ref = ref;
-      newProps.style = isFunction(style)
-        ? (state: any) => [_styles.style, style(state)]
-        : [_styles.style, style];
+      newProps.style = isFunction(style) ? (state: any) => [_style, style(state)] : [_style, style];
 
       return createElement(Component, newProps);
     });

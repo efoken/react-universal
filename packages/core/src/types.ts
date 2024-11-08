@@ -68,12 +68,16 @@ export interface RNStyleWeb {
   whiteSpace?: React.CSSProperties['whiteSpace'];
   /** @platform web */
   wordWrap?: React.CSSProperties['wordWrap'];
+  /** @platform web */
+  [key: `--${string}`]: string | number;
 }
 
 export interface RNStyle
   extends Omit<
       RNImageStyle & RNTextStyle & RNViewStyle,
       | keyof RNTransformsStyle
+      | 'borderBottomEndRadius'
+      | 'borderBottomStartRadius'
       | 'borderBottomWidth'
       | 'borderEndColor'
       | 'borderEndWidth'
@@ -81,6 +85,8 @@ export interface RNStyle
       | 'borderRightWidth'
       | 'borderStartColor'
       | 'borderStartWidth'
+      | 'borderTopEndRadius'
+      | 'borderTopStartRadius'
       | 'borderTopWidth'
       | 'bottom'
       | 'columnGap'
@@ -237,13 +243,18 @@ export type StyleProp<T> =
   | null
   | undefined;
 
+export interface StyleVariant<P extends AnyObject> {
+  props: Partial<P & P['ownerState']> | ((props: P & Partial<P['ownerState']>) => boolean);
+  style?: StyleValues | ((props: P & Partial<P['ownerState']>) => StyleValues);
+}
+
 export type StyleInterpolation<P extends AnyObject> =
   | null
   | undefined
   | boolean
-  | StyleValues
+  | (StyleValues & { variants?: StyleVariant<P>[] })
   | StyleInterpolation<P>[]
-  | ((props: P) => StyleInterpolation<P>);
+  | ((props: P) => StyleValues & { variants?: StyleVariant<P>[] });
 
 export type StyleFunction<P extends AnyObject> = (
   props: P,
@@ -252,16 +263,6 @@ export type StyleFunction<P extends AnyObject> = (
 export type SimpleStyleFunction<K extends string> = StyleFunction<
   { theme: Theme } & Partial<Record<K, any>>
 > & { filterProps: string[] };
-
-export type OverridableProps<P extends AnyObject, T extends React.ElementType> = P &
-  Omit<React.ComponentPropsWithRef<T>, keyof P>;
-
-export interface OverridableComponent<P extends AnyObject, C extends React.ElementType> {
-  <T extends React.ElementType>(props: { as: T } & OverridableProps<P, T>): React.ReactNode;
-  (props: OverridableProps<P, C>): React.ReactNode;
-  displayName?: string;
-  propTypes?: any;
-}
 
 export type AccessibilityRole = 'code' | 'label' | 'listbox' | 'paragraph' | 'textbox' | RNRole;
 
