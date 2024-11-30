@@ -86,7 +86,6 @@ const config = [
       'react/function-component-definition': 'off',
       'react/jsx-props-no-spreading': 'off',
       'react/no-array-index-key': 'off',
-      'react/no-is-mounted': 'off', // currently broken
       'react/no-typos': 'off',
       'react/no-unused-class-component-methods': 'off',
       'react/prop-types': 'off',

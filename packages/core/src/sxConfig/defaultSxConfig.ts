@@ -16,11 +16,11 @@ import type { TypographyProps } from './typography';
 type CSSCustomProps = Record<`--${string}`, string>;
 
 interface OtherProps extends CSSCustomProps {
-  backdropFilter?: BreakpointValue<string>;
-  boxShadow?: BreakpointValue<string>;
-  filter?: BreakpointValue<string>;
-  opacity?: BreakpointValue<number>;
-  pointerEvents?: BreakpointValue<any>;
+  backdropFilter?: BreakpointValue<React.CSSProperties['backdropFilter']>;
+  boxShadow?: BreakpointValue<RNStyle['boxShadow']>;
+  filter?: BreakpointValue<RNStyle['filter']>;
+  opacity?: BreakpointValue<RNStyle['opacity']>;
+  pointerEvents?: BreakpointValue<RNStyle['pointerEvents']>;
   transform?: BreakpointValue<RNStyle['transform']>;
   transformOrigin?: BreakpointValue<RNStyle['transformOrigin']>;
   transition?: BreakpointValue<React.CSSProperties['transition']>;

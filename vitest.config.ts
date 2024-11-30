@@ -5,7 +5,12 @@ export default defineConfig({
     conditions: ['source'],
   },
   test: {
-    environment: 'jsdom',
+    browser: {
+      enabled: true,
+      headless: true,
+      name: 'chromium',
+      provider: 'playwright',
+    },
     setupFiles: ['./vitest.setup.ts'],
   },
 });

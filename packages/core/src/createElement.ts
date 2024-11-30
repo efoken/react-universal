@@ -80,9 +80,10 @@ function createDOMProps(
     style?: StyleProp<AnyObject>;
     tabIndex?: 0 | -1;
     testID?: string;
+    [key: string]: any;
   } = {},
 ) {
-  const domProps: AnyObject = { ...props };
+  const domProps = { ...props };
 
   // ACCESSIBILITY
   if (ariaDisabled === true) {

@@ -2,7 +2,6 @@ import type { AnyObject } from '@react-universal/utils';
 import { isFunction, isObject, isString, mergeDeep } from '@react-universal/utils';
 import type { StyleMiniRuntime } from './StyleRuntime';
 import { createReactDOMStyle } from './createReactDOMStyle';
-import { preprocess } from './preprocess';
 import type { Theme } from './theme';
 import type { StyleProp, StyleValues } from './types';
 
@@ -15,9 +14,9 @@ function getBreakpointsStyles<T extends AnyObject>(
     const breakpoint = runtime.breakpoints[key as keyof typeof runtime.breakpoints];
 
     if (breakpoint != null) {
-      acc[`@media screen and (min-width: ${breakpoint}px)`] = createReactDOMStyle(
-        preprocess({ [prop]: value }),
-      );
+      acc[`@media screen and (min-width: ${breakpoint}px)`] = createReactDOMStyle({
+        [prop]: value,
+      });
     }
 
     return acc;
@@ -33,7 +32,7 @@ function parseStyle<T extends AnyObject>(style: T, runtime: StyleMiniRuntime) {
     {},
   );
 
-  return createReactDOMStyle(preprocess(nextStyle));
+  return createReactDOMStyle(nextStyle);
 }
 
 export const css = {

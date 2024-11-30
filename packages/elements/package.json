@@ -1,33 +1,7 @@
 {
   "name": "@react-universal/elements",
   "version": "1.0.0",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "react-native": "src/index.tsx",
   "license": "MIT",
-  "dependencies": {
-    "@react-universal/components": "workspace:*",
-    "@react-universal/core": "workspace:*"
-  },
-  "devDependencies": {
-    "@types/react": "~18.3.12",
-    "react": "18.3.1",
-    "react-native": "0.75.4"
-  },
-  "peerDependencies": {
-    "@types/react": "^18.2.0",
-    "react": "^18.2.0",
-    "react-native": ">=0.72.6"
-  },
-  "peerDependenciesMeta": {
-    "@types/react": {
-      "optional": true
-    }
-  },
-  "scripts": {
-    "build": "tsup src/index.tsx"
-  },
   "exports": {
     ".": {
       "source": "./src/index.tsx",
@@ -42,5 +16,31 @@
       }
     },
     "./package.json": "./package.json"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "react-native": "src/index.tsx",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.tsx"
+  },
+  "dependencies": {
+    "@react-universal/components": "workspace:*",
+    "@react-universal/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "~18.3.12",
+    "react": "18.3.1",
+    "react-native": "0.76.3"
+  },
+  "peerDependencies": {
+    "@types/react": "^18.2.0",
+    "react": "^18.2.0",
+    "react-native": ">=0.76.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
   }
 }

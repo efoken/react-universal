@@ -69,7 +69,7 @@ export interface RNStyleWeb {
   /** @platform web */
   wordWrap?: React.CSSProperties['wordWrap'];
   /** @platform web */
-  [key: `--${string}`]: string | number;
+  [key: `--${string}`]: any;
 }
 
 export interface RNStyle
@@ -96,11 +96,24 @@ export interface RNStyle
       | 'fontSize'
       | 'gap'
       | 'height'
+      | 'inset'
+      | 'insetBlock'
+      | 'insetBlockEnd'
+      | 'insetBlockStart'
+      | 'insetInline'
+      | 'insetInlineEnd'
+      | 'insetInlineStart'
       | 'left'
       | 'margin'
+      | 'marginBlock'
+      | 'marginBlockEnd'
+      | 'marginBlockStart'
       | 'marginBottom'
       | 'marginEnd'
       | 'marginHorizontal'
+      | 'marginInline'
+      | 'marginInlineEnd'
+      | 'marginInlineStart'
       | 'marginLeft'
       | 'marginRight'
       | 'marginStart'
@@ -131,6 +144,12 @@ export interface RNStyle
       | 'start'
       | 'textAlignVertical'
       | 'textShadowColor'
+      | 'paddingBlock'
+      | 'paddingBlockEnd'
+      | 'paddingBlockStart'
+      | 'paddingInline'
+      | 'paddingInlineEnd'
+      | 'paddingInlineStart'
       | 'textShadowOffset'
       | 'textShadowRadius'
       | 'tintColor'
@@ -140,7 +159,6 @@ export interface RNStyle
     >,
     RNStyleWeb {
   blockSize?: NonNullable<RNViewStyle['height']> | (string & {});
-  borderBlockColor?: NonNullable<RNViewStyle['borderColor']>;
   borderBlockEndStyle?: NonNullable<RNViewStyle['borderStyle']>;
   borderBlockEndWidth?: string | number;
   borderBlockStartStyle?: NonNullable<RNViewStyle['borderStyle']>;
@@ -168,27 +186,28 @@ export interface RNStyle
   boxShadow?: string;
   columnGap?: string | number;
   display?: RNViewStyle['display'] | 'block';
+  filter?: string;
   flexBasis?: NonNullable<RNViewStyle['flexBasis']> | (string & {});
   fontSize?: NonNullable<RNTextStyle['fontSize']> | (string & {});
   gap?: string | number;
   height?: NonNullable<RNViewStyle['height']> | (string & {});
   inlineSize?: NonNullable<RNViewStyle['width']> | (string & {});
-  inset?: NonNullable<RNViewStyle['top']> | (string & {});
-  insetBlock?: NonNullable<RNViewStyle['top']> | (string & {});
-  insetBlockEnd?: NonNullable<RNViewStyle['bottom']> | (string & {});
-  insetBlockStart?: NonNullable<RNViewStyle['top']> | (string & {});
-  insetInline?: NonNullable<RNViewStyle['start']> | (string & {});
-  insetInlineEnd?: NonNullable<RNViewStyle['end']> | (string & {});
-  insetInlineStart?: NonNullable<RNViewStyle['start']> | (string & {});
+  inset?: NonNullable<RNViewStyle['inset']> | (string & {});
+  insetBlock?: NonNullable<RNViewStyle['insetBlock']> | (string & {});
+  insetBlockEnd?: NonNullable<RNViewStyle['insetBlockEnd']> | (string & {});
+  insetBlockStart?: NonNullable<RNViewStyle['insetBlockStart']> | (string & {});
+  insetInline?: NonNullable<RNViewStyle['insetInline']> | (string & {});
+  insetInlineEnd?: NonNullable<RNViewStyle['insetInlineEnd']> | (string & {});
+  insetInlineStart?: NonNullable<RNViewStyle['insetInlineStart']> | (string & {});
   left?: NonNullable<RNViewStyle['left']> | (string & {});
   margin?: NonNullable<RNViewStyle['margin']> | (string & {});
-  marginBlock?: NonNullable<RNViewStyle['marginVertical']> | (string & {});
-  marginBlockEnd?: NonNullable<RNViewStyle['marginBottom']> | (string & {});
-  marginBlockStart?: NonNullable<RNViewStyle['marginTop']> | (string & {});
+  marginBlock?: NonNullable<RNViewStyle['marginBlock']> | (string & {});
+  marginBlockEnd?: NonNullable<RNViewStyle['marginBlockEnd']> | (string & {});
+  marginBlockStart?: NonNullable<RNViewStyle['marginBlockStart']> | (string & {});
   marginBottom?: NonNullable<RNViewStyle['marginBottom']> | (string & {});
-  marginInline?: NonNullable<RNViewStyle['marginHorizontal']> | (string & {});
-  marginInlineEnd?: NonNullable<RNViewStyle['marginEnd']> | (string & {});
-  marginInlineStart?: NonNullable<RNViewStyle['marginStart']> | (string & {});
+  marginInline?: NonNullable<RNViewStyle['marginInline']> | (string & {});
+  marginInlineEnd?: NonNullable<RNViewStyle['marginInlineEnd']> | (string & {});
+  marginInlineStart?: NonNullable<RNViewStyle['marginInlineStart']> | (string & {});
   marginLeft?: NonNullable<RNViewStyle['marginLeft']> | (string & {});
   marginRight?: NonNullable<RNViewStyle['marginRight']> | (string & {});
   marginTop?: NonNullable<RNViewStyle['marginTop']> | (string & {});
@@ -201,13 +220,13 @@ export interface RNStyle
   minInlineSize?: NonNullable<RNViewStyle['minWidth']> | (string & {});
   minWidth?: NonNullable<RNViewStyle['minWidth']> | (string & {});
   padding?: NonNullable<RNViewStyle['padding']> | (string & {});
-  paddingBlock?: NonNullable<RNViewStyle['paddingVertical']> | (string & {});
-  paddingBlockEnd?: NonNullable<RNViewStyle['paddingBottom']> | (string & {});
-  paddingBlockStart?: NonNullable<RNViewStyle['paddingTop']> | (string & {});
+  paddingBlock?: NonNullable<RNViewStyle['paddingBlock']> | (string & {});
+  paddingBlockEnd?: NonNullable<RNViewStyle['paddingBlockEnd']> | (string & {});
+  paddingBlockStart?: NonNullable<RNViewStyle['paddingBlockStart']> | (string & {});
   paddingBottom?: NonNullable<RNViewStyle['paddingBottom']> | (string & {});
-  paddingInline?: NonNullable<RNViewStyle['paddingHorizontal']> | (string & {});
-  paddingInlineEnd?: NonNullable<RNViewStyle['paddingEnd']> | (string & {});
-  paddingInlineStart?: NonNullable<RNViewStyle['paddingStart']> | (string & {});
+  paddingInline?: NonNullable<RNViewStyle['paddingInline']> | (string & {});
+  paddingInlineEnd?: NonNullable<RNViewStyle['paddingInlineEnd']> | (string & {});
+  paddingInlineStart?: NonNullable<RNViewStyle['paddingInlineStart']> | (string & {});
   paddingLeft?: NonNullable<RNViewStyle['paddingLeft']> | (string & {});
   paddingRight?: NonNullable<RNViewStyle['paddingRight']> | (string & {});
   paddingTop?: NonNullable<RNViewStyle['paddingTop']> | (string & {});
@@ -218,14 +237,11 @@ export interface RNStyle
   top?: NonNullable<RNViewStyle['top']> | (string & {});
   transform?: string;
   transformOrigin?: string;
-  WebkitOverflowScrolling?: React.CSSProperties['WebkitOverflowScrolling'];
   width?: NonNullable<RNViewStyle['width']> | (string & {});
 }
 
-type RNStyleKeys = keyof RNStyle;
-
 export type StyleValues = {
-  [K in RNStyleKeys]?: RNStyle[K] | Partial<Record<Breakpoint, RNStyle[K]>>;
+  [K in keyof RNStyle]?: RNStyle[K] | Partial<Record<Breakpoint, RNStyle[K]>>;
 };
 
 export type StyleSheet = AnyObject<StyleValues>;

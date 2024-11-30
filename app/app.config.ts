@@ -5,13 +5,14 @@ const config: ExpoConfig = {
   slug: 'react-universal-app',
   version: '1.0.0',
   icon: './assets/icon.png',
-  // userInterfaceStyle: 'light',
+  userInterfaceStyle: 'light',
   splash: {
     image: './assets/splash.png',
     resizeMode: 'contain',
     backgroundColor: '#ffffff',
   },
   assetBundlePatterns: ['**/*'],
+  newArchEnabled: true,
   ios: {
     supportsTablet: true,
     bundleIdentifier: 'com.react-universal.app',
@@ -32,17 +33,6 @@ const config: ExpoConfig = {
       'expo-screen-orientation',
       {
         initialOrientation: 'DEFAULT',
-      },
-    ],
-    [
-      'expo-build-properties',
-      {
-        ios: {
-          newArchEnabled: true,
-        },
-        android: {
-          newArchEnabled: true,
-        },
       },
     ],
   ],

@@ -14,6 +14,7 @@ export interface ReactUniversalOptions
   theme?: Theme;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function reactUniversal(options?: ReactUniversalOptions) {
   return pigment({});
 }

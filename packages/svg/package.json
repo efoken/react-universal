@@ -1,38 +1,7 @@
 {
   "name": "@react-universal/svg",
   "version": "1.0.0",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "react-native": "src/index.ts",
   "license": "MIT",
-  "dependencies": {
-    "@react-universal/core": "workspace:*",
-    "@react-universal/utils": "workspace:*"
-  },
-  "devDependencies": {
-    "@types/react": "~18.3.12",
-    "react": "18.3.1",
-    "react-native": "0.75.4",
-    "react-native-svg": "15.2.0"
-  },
-  "peerDependencies": {
-    "@types/react": "^18.2.0",
-    "react": "^18.2.0",
-    "react-native": ">=0.72.6",
-    "react-native-svg": "^15.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@types/react": {
-      "optional": true
-    },
-    "react-native-svg": {
-      "optional": true
-    }
-  },
-  "scripts": {
-    "build": "tsup src/index.ts"
-  },
   "exports": {
     ".": {
       "source": "./src/index.ts",
@@ -47,5 +16,36 @@
       }
     },
     "./package.json": "./package.json"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "react-native": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts"
+  },
+  "dependencies": {
+    "@react-universal/core": "workspace:*",
+    "@react-universal/utils": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "~18.3.12",
+    "react": "18.3.1",
+    "react-native": "0.76.3",
+    "react-native-svg": "15.8.0"
+  },
+  "peerDependencies": {
+    "@types/react": "^18.2.0",
+    "react": "^18.2.0",
+    "react-native": ">=0.76.0",
+    "react-native-svg": "^15.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    },
+    "react-native-svg": {
+      "optional": true
+    }
   }
 }

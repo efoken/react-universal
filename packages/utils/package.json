@@ -1,14 +1,7 @@
 {
   "name": "@react-universal/utils",
   "version": "1.0.0",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "react-native": "src/index.ts",
   "license": "MIT",
-  "scripts": {
-    "build": "tsup src/index.ts src/*.ts"
-  },
   "exports": {
     ".": {
       "source": "./src/index.ts",
@@ -35,5 +28,12 @@
       }
     },
     "./package.json": "./package.json"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "react-native": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts src/*.ts"
   }
 }

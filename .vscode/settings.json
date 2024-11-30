@@ -2,5 +2,7 @@
   "editor.codeActionsOnSave": {
     "source.organizeImports": "explicit"
   },
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "eslint.useFlatConfig": true,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

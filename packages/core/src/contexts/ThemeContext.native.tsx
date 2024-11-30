@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { UnistylesRegistry, useStyles } from 'react-native-unistyles';
 import { StyleRuntime } from '../StyleRuntime';
-import { boxShadowPlugin, fontPlugin, remPlugin } from '../stylePlugins';
+import { fontPlugin, remPlugin } from '../stylePlugins';
 import { defaultTheme } from '../theme/defaultTheme';
 import type { ThemeProviderProps } from './ThemeContext.types';
 
@@ -14,7 +14,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children, theme = 
       experimentalCSSMediaQueries: false,
       initialTheme: 'default',
       // @ts-expect-error: Plugin `runtime` types differ on purpose
-      plugins: [remPlugin(theme), boxShadowPlugin(theme), fontPlugin(theme)],
+      plugins: [remPlugin(theme), fontPlugin(theme)],
     });
 
   useEffect(() => {

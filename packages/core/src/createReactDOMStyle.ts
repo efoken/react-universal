@@ -1,13 +1,19 @@
-import type { AnyObject } from '@react-universal/utils';
-import { isString } from '@react-universal/utils';
+import { isArray, isString } from '@react-universal/utils';
 import { normalizeColor } from './normalizeColor';
+import type { RNStyle } from './types';
 
 // https://css-tricks.com/snippets/css/system-font-stack/
 const FONT_SYSTEM = 'system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif';
 
 const FONT_MONOSPACE = 'monospace,monospace';
 
-const shortFormProps: AnyObject<string[]> = {
+const ignoredProps: Partial<Record<keyof RNStyle, true>> = {
+  elevation: true,
+  borderCurve: true,
+  includeFontPadding: true,
+};
+
+const shortFormProps: Partial<Record<keyof RNStyle, (keyof React.CSSProperties)[]>> = {
   borderBlockColor: ['borderBlockEndColor', 'borderBlockStartColor'],
   borderBlockStyle: ['borderBlockEndStyle', 'borderBlockStartStyle'],
   borderBlockWidth: ['borderBlockEndWidth', 'borderBlockStartWidth'],
@@ -23,6 +29,7 @@ const shortFormProps: AnyObject<string[]> = {
   ],
   borderStyle: ['borderBottomStyle', 'borderLeftStyle', 'borderRightStyle', 'borderTopStyle'],
   borderWidth: ['borderBottomWidth', 'borderLeftWidth', 'borderRightWidth', 'borderTopWidth'],
+  inset: ['insetBlockEnd', 'insetBlockStart', 'insetInlineEnd', 'insetInlineStart'],
   insetBlock: ['insetBlockEnd', 'insetBlockStart'],
   insetInline: ['insetInlineEnd', 'insetInlineStart'],
   marginBlock: ['marginBlockEnd', 'marginBlockStart'],
@@ -33,9 +40,11 @@ const shortFormProps: AnyObject<string[]> = {
   overscrollBehavior: ['overscrollBehaviorX', 'overscrollBehaviorY'],
 };
 
-const colorProps: AnyObject<boolean> = {
+const colorProps: Partial<Record<Extract<keyof RNStyle, 'color' | `${string}Color`>, true>> = {
   backgroundColor: true,
   borderBlockColor: true,
+  borderBlockEndColor: true,
+  borderBlockStartColor: true,
   borderBottomColor: true,
   borderColor: true,
   borderInlineColor: true,
@@ -44,9 +53,10 @@ const colorProps: AnyObject<boolean> = {
   borderLeftColor: true,
   borderRightColor: true,
   borderTopColor: true,
+  caretColor: true,
   color: true,
+  scrollbarColor: true,
   textDecorationColor: true,
-  textShadowColor: true,
 };
 
 function normalizeValueWithProperty(value: any, prop?: string) {
@@ -56,14 +66,44 @@ function normalizeValueWithProperty(value: any, prop?: string) {
   return value;
 }
 
-export function createReactDOMStyle(style: AnyObject): AnyObject {
+export function createReactDOMStyle(style: RNStyle) {
   if (!style) {
     return {};
   }
 
   const nextStyle: React.CSSProperties = {};
 
-  for (const prop of Object.keys(style)) {
+  // Convert text shadow styles
+  // if (
+  //   (options.textShadow === true,
+  //   style.textShadowColor != null ||
+  //     style.textShadowOffset != null ||
+  //     style.textShadowRadius != null)
+  // ) {
+  //   console.warn(
+  //     'textShadowStyles',
+  //     `"textShadow*" style props are deprecated. Use "textShadow".`,
+  //   );
+  //   const textShadowValue = createTextShadowValue(style);
+  //   if (textShadowValue != null && nextStyle.textShadow == null) {
+  //     const { textShadow } = style;
+  //     const value = textShadow
+  //       ? `${textShadow}, ${textShadowValue}`
+  //       : textShadowValue;
+  //     nextStyle.textShadow = value;
+  //   }
+  // }
+
+  for (const prop of Object.keys(style) as (keyof RNStyle)[]) {
+    if (!Object.hasOwn(style, prop)) {
+      continue;
+    }
+
+    // Ignore some React Native styles
+    if (prop in ignoredProps) {
+      continue;
+    }
+
     const value = style[prop];
 
     // Ignore everything with a null value
@@ -94,16 +134,19 @@ export function createReactDOMStyle(style: AnyObject): AnyObject {
         }
         break;
       }
+      case 'fontVariant': {
+        nextStyle[prop] = isArray(value) && value.length > 0 ? value.join(' ') : value;
+        break;
+      }
       default: {
         const nextValue = normalizeValueWithProperty(style[prop], prop);
         const longFormProps = shortFormProps[prop];
         if (longFormProps) {
-          for (const longForm of longFormProps) {
+          for (const longFormProp of longFormProps) {
             // The value of any longform property in the original styles takes
             // precedence over the shortform's value.
-            if (style[longForm] == null) {
-              // @ts-expect-error: Force assignment
-              nextStyle[longForm] = nextValue;
+            if (style[longFormProp as keyof RNStyle] == null) {
+              nextStyle[longFormProp] = nextValue;
             }
           }
         } else {
