@@ -1,4 +1,5 @@
 import type { ResponderEvent, StyleProp, SxProps } from '@react-universal/core';
+import type { AnyObject } from '@react-universal/utils';
 import type { ModalProps as RNModalProps, ViewProps as RNViewProps } from 'react-native';
 import type { ViewProps, ViewStyle } from '../View';
 
@@ -30,7 +31,7 @@ export interface ModalProps
    * @param reason Can be: `"backdropPress"`, `"escapeKeyDown"`, `"hardwareBackPress"`.
    */
   onClose?: (
-    event: ResponderEvent | {},
+    event: ResponderEvent | AnyObject,
     reason?: 'backdropPress' | 'escapeKeyDown' | 'hardwareBackPress',
   ) => void;
   /**

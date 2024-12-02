@@ -19,7 +19,6 @@
     "./app/**/*",
     "./docs/**/*",
     "./packages/**/*",
-    "./eslint.config.mjs",
     "./vitest.config.ts",
     "./vitest.setup.ts"
   ]

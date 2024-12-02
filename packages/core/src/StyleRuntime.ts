@@ -2,18 +2,19 @@ import type { Breakpoints } from './breakpoints';
 import type { Theme } from './theme';
 import { defaultTheme } from './theme';
 
+// biome-ignore lint/complexity/noStaticOnlyClass:
 export class StyleRuntime {
   static #theme: Theme = defaultTheme;
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // biome-ignore lint/suspicious/noEmptyBlockStatements:
   static setTheme(_name: 'default') {}
 
   static updateTheme(_name: 'default', updater: (theme: Theme) => Theme) {
-    this.#theme = updater(this.#theme);
+    StyleRuntime.#theme = updater(StyleRuntime.#theme);
   }
 
   static get breakpoints() {
-    return this.#theme.breakpoints;
+    return StyleRuntime.#theme.breakpoints;
   }
 
   static fontScale = 1;

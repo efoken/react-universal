@@ -10,13 +10,18 @@ import {
   runIfFunction,
 } from '@react-universal/utils';
 import { handleBreakpoints } from './breakpoints';
-import type { SxConfig, SxProps } from './sxConfig/defaultSxConfig';
+import type { SxConfig, SxProps, SxStyleObject } from './sxConfig/defaultSxConfig';
 import { defaultSxConfig } from './sxConfig/defaultSxConfig';
 import type { Theme } from './theme/defaultTheme';
 import type { StyleValues } from './types';
 
 function objectsHaveSameKeys(...objs: AnyObject[]) {
-  const keys = new Set(objs.reduce<string[]>((acc, obj) => [...acc, ...Object.keys(obj)], []));
+  const keys = new Set(
+    objs.reduce<string[]>((acc, obj) => {
+      acc.push(...Object.keys(obj));
+      return acc;
+    }, []),
+  );
   return objs.every((obj) => keys.size === Object.keys(obj).length);
 }
 
@@ -26,12 +31,11 @@ function getStyleValue(
   propValueFinal: any,
   userValue = propValueFinal,
 ) {
-  let value;
+  let value: any;
 
   if (isFunction(themeMapping)) {
     value = themeMapping(propValueFinal);
   } else if (isArray(themeMapping)) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     value = themeMapping[propValueFinal] || userValue;
   } else if (isObject(themeMapping)) {
     value = get(themeMapping, propValueFinal, userValue);
@@ -124,7 +128,7 @@ export function createStyleFunctionSx(): StyleFunctionSx {
      * used in `styled`.
      */
     const traverse = (sxInput: boolean | Exclude<SxProps, readonly any[]>) => {
-      let sxObject;
+      let sxObject: SxStyleObject;
       if (isFunction(sxInput)) {
         sxObject = sxInput(theme);
       } else if (isObject(sxInput)) {
@@ -168,8 +172,7 @@ export function createStyleFunctionSx(): StyleFunctionSx {
     };
 
     return isArray(sx)
-      ? // eslint-disable-next-line unicorn/no-array-callback-reference
-        (sx as readonly any[]).map(traverse)
+      ? (sx as readonly any[]).map(traverse)
       : traverse(sx as Exclude<SxProps, readonly any[]>);
   };
 }

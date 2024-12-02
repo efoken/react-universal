@@ -207,13 +207,13 @@ export interface CircleProps extends BasePathProps {
 export interface ClipPathProps {
   children?: React.ReactNode;
   id?: string;
-  style?: StyleProp<{}>;
+  style?: StyleProp<Record<string, never>>;
 }
 
 export interface DefsProps {
   children?: React.ReactNode;
   id?: string;
-  style?: StyleProp<{}>;
+  style?: StyleProp<Record<string, never>>;
 }
 
 export interface EllipseStyle extends BasePathStyle {

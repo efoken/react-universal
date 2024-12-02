@@ -20,7 +20,6 @@ export function min(...operands: Operand[]) {
     : Math.min(...operands.map((o) => parseRem(o)));
 }
 
-// eslint-disable-next-line @typescript-eslint/no-shadow
 export function clamp(min: Operand, value: Operand, max: Operand) {
   return isWeb
     ? `clamp(${parsePx(min)},${parsePx(value)},${parsePx(max)})`

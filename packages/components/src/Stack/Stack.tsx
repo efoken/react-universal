@@ -46,6 +46,7 @@ function joinChildren(children: React.ReactNode, divider: React.ReactElement) {
     acc.push(child);
 
     if (index < _children.length - 1) {
+      // biome-ignore lint/suspicious/noArrayIndexKey:
       acc.push(cloneElement(divider, { key: `separator-${index}` }));
     }
 

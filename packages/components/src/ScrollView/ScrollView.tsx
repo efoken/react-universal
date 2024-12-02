@@ -147,13 +147,10 @@ export const ScrollView = forwardRef<HTMLElement & ScrollViewMethods, ScrollView
 
     const handleScrollShouldSetResponder = () => touching.current;
 
-    // eslint-disable-next-line unicorn/consistent-function-scoping
     const handleStartShouldSetResponder = () => false;
 
-    // eslint-disable-next-line unicorn/consistent-function-scoping
     const handleStartShouldSetResponderCapture = () => false;
 
-    // eslint-disable-next-line unicorn/consistent-function-scoping
     const handleResponderReject = () => {
       console.warn("React Universal: ScrollView doesn't take rejection well - scrolls anyway");
     };

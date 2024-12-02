@@ -28,12 +28,9 @@ export function usePlatformMethods<T extends HTMLElement>(hostRef: React.RefObje
   useIsomorphicLayoutEffect(() => {
     const node = hostRef.current as (T & PlatformMethods) | null;
     if (node != null) {
-      // eslint-disable-next-line @typescript-eslint/unbound-method
       node.measure ||= (callback) => measureLayout(node, null, callback);
-      // eslint-disable-next-line @typescript-eslint/unbound-method
       node.measureLayout ||= (relativeToNode: any, callback) =>
         measureLayout(node, relativeToNode, callback);
-      // eslint-disable-next-line @typescript-eslint/unbound-method
       node.measureInWindow ||= (callback) => {
         if (node == null) {
           return;

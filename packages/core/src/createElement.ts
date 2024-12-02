@@ -192,6 +192,7 @@ export function createElement<P extends AnyObject>(type: React.ElementType<P>, p
   // Update locale context if element's writing direction prop changes
   const elementWithLocaleProvider = domProps.dir
     ? createReactElement(LocaleProvider, {
+        // biome-ignore lint/correctness/noChildrenProp:
         children: element,
         direction: domProps.dir,
         locale: domProps.lang,

@@ -80,7 +80,7 @@ describe('View', () => {
 
   describe('prop "role"', () => {
     test('value is set', () => {
-      const { container } = render(<View role="none" />);
+      const { container } = render(<View role="presentation" />);
       expect(container.firstChild).toMatchSnapshot();
     });
 
@@ -114,7 +114,7 @@ describe('View', () => {
     });
 
     test('href with role', () => {
-      const { container } = render(<View role="none" href="https://example.com" />);
+      const { container } = render(<View role="presentation" href="https://example.com" />);
       expect(container.firstChild).toMatchSnapshot();
     });
   });
@@ -281,11 +281,8 @@ describe('View', () => {
         render(<View ref={ref} />);
       });
       const node = ref.current!;
-      // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(isFunction(node.measure));
-      // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(isFunction(node.measureLayout));
-      // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(isFunction(node.measureInWindow));
     });
   });

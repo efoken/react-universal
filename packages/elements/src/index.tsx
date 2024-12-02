@@ -21,9 +21,10 @@ import {
 } from '@react-universal/components';
 import type { RNStyle, StyleProp } from '@react-universal/core';
 import { styled } from '@react-universal/core';
+import type { AnyObject } from '@react-universal/utils';
 import { forwardRef } from 'react';
 
-function createComponent<T = any, P extends { style?: StyleProp<any> } = {}>(
+function createComponent<T = any, P extends { style?: StyleProp<any> } = AnyObject>(
   Base: React.ComponentType<P>,
   name: Capitalize<string>,
   defaultProps: Partial<P> = {},

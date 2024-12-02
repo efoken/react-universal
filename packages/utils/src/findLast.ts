@@ -14,7 +14,6 @@ export function findLast<T>(
 ): T | undefined {
   return arr.reduce<T | undefined>(
     (prevValue, value, index) => (predicate(value, index, arr) ? value : prevValue),
-    // eslint-disable-next-line unicorn/no-useless-undefined
     undefined,
   );
 }

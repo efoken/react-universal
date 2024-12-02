@@ -59,10 +59,7 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <StatusBar
-        // eslint-disable-next-line react/style-prop-object
-        style="auto"
-      />
+      <StatusBar style="auto" />
       <ThemeProvider>
         <ScrollView>
           <Svg

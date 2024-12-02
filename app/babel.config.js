@@ -6,4 +6,5 @@ const config = (api) => {
   };
 };
 
+// biome-ignore lint/nursery/noCommonJs:
 module.exports = config;

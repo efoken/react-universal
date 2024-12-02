@@ -54,7 +54,7 @@ describe('Text', () => {
 
   describe('prop "role"', () => {
     test('value is set', () => {
-      const { container } = render(<Text role="none" />);
+      const { container } = render(<Text role="presentation" />);
       expect(container.firstChild).toMatchSnapshot();
     });
 
@@ -88,7 +88,7 @@ describe('Text', () => {
     });
 
     test('href with role', () => {
-      const { container } = render(<Text role="none" href="https://example.com" />);
+      const { container } = render(<Text role="presentation" href="https://example.com" />);
       expect(container.firstChild).toMatchSnapshot();
     });
   });
@@ -306,11 +306,8 @@ describe('Text', () => {
         render(<Text ref={ref} />);
       });
       const node = ref.current!;
-      // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(isFunction(node.measure));
-      // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(isFunction(node.measureLayout));
-      // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(isFunction(node.measureInWindow));
     });
   });

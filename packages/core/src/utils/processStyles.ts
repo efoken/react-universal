@@ -9,7 +9,6 @@ function processVariants(
 ) {
   let mergedState: AnyObject; // We might not need it, initialized lazily
 
-  // eslint-disable-next-line no-labels
   variantLoop: for (const variant of variants) {
     if (isFunction(variant.props)) {
       mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
@@ -19,7 +18,6 @@ function processVariants(
     } else {
       for (const key in variant.props) {
         if (props[key] !== variant.props[key] && props.ownerState?.[key] !== variant.props[key]) {
-          // eslint-disable-next-line no-labels
           continue variantLoop;
         }
       }

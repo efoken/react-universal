@@ -1,0 +1,146 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true,
+    "defaultBranch": "main"
+  },
+  "files": {
+    "ignoreUnknown": false
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "a11y": {
+        "useSemanticElements": "off",
+        "useValidAriaRole": {
+          "level": "error",
+          "options": { "allowInvalidRoles": [], "ignoreNonDom": false }
+        }
+      },
+      "complexity": {
+        "noUselessStringConcat": "error",
+        "noUselessUndefinedInitialization": "error",
+        "noVoid": "error",
+        "noWith": "error",
+        "useDateNow": "error"
+      },
+      "correctness": {
+        "noNewSymbol": "error",
+        "noUndeclaredVariables": "error",
+        "noUnusedPrivateClassMembers": "error",
+        "noUnusedVariables": "error",
+        "useArrayLiterals": "error",
+        "useHookAtTopLevel": "error"
+      },
+      "style": {
+        "noNamespace": "error",
+        "noNonNullAssertion": "off",
+        "noRestrictedGlobals": {
+          "level": "error",
+          "options": {
+            "deniedGlobals": [
+              "addEventListener",
+              "blur",
+              "close",
+              "closed",
+              "confirm",
+              "defaultStatus",
+              "defaultstatus",
+              "event",
+              "external",
+              "find",
+              "focus",
+              "frameElement",
+              "frames",
+              "history",
+              "innerHeight",
+              "innerWidth",
+              "length",
+              "location",
+              "locationbar",
+              "menubar",
+              "moveBy",
+              "moveTo",
+              "name",
+              "onblur",
+              "onerror",
+              "onfocus",
+              "onload",
+              "onresize",
+              "onunload",
+              "open",
+              "opener",
+              "opera",
+              "outerHeight",
+              "outerWidth",
+              "pageXOffset",
+              "pageYOffset",
+              "parent",
+              "print",
+              "removeEventListener",
+              "resizeBy",
+              "resizeTo",
+              "screen",
+              "screenLeft",
+              "screenTop",
+              "screenX",
+              "screenY",
+              "scroll",
+              "scrollbars",
+              "scrollBy",
+              "scrollTo",
+              "scrollX",
+              "scrollY",
+              "self",
+              "status",
+              "statusbar",
+              "stop",
+              "toolbar",
+              "top"
+            ]
+          }
+        },
+        "noYodaExpression": "error",
+        "useBlockStatements": "error",
+        "useCollapsedElseIf": "error",
+        "useConsistentArrayType": "error",
+        "useConsistentBuiltinInstantiation": "error",
+        "useDefaultSwitchClause": "error",
+        "useExplicitLengthCheck": "error",
+        "useForOf": "error",
+        "useFragmentSyntax": "error",
+        "useNumericLiterals": "error",
+        "useShorthandAssign": "error",
+        "useThrowNewError": "error"
+      },
+      "suspicious": {
+        "noEmptyBlockStatements": "error",
+        "noEmptyInterface": "off",
+        "noExplicitAny": "off",
+        "useErrorMessage": "error",
+        "useNumberToFixedDigitsArgument": "error"
+      },
+      "nursery": {
+        "noCommonJs": "error"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single"
+    },
+    "globals": ["JSX", "React"]
+  }
+}

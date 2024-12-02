@@ -1,10 +1,10 @@
 import type { AnyObject } from '@react-universal/utils';
 import { useMemo } from 'react';
+import { StyleRuntime } from '../StyleRuntime';
 import { useTheme } from '../contexts/ThemeContext';
 import { css } from '../css';
 import { interpolate } from '../interpolate';
 import { styleFunctionSx } from '../styleFunctionSx';
-import { StyleRuntime } from '../StyleRuntime';
 import type { SxProps } from '../sxConfig';
 import type { Theme } from '../theme';
 import type { StyleInterpolation } from '../types';
@@ -39,6 +39,7 @@ export function useStyles(
         !skipSx && styleFunctionSx({ sx, theme }),
       ),
     });
+    // biome-ignore lint/correctness/useExhaustiveDependencies:
   }, [props, skipSx, styles, sx, theme]);
 
   return {

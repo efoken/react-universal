@@ -40,6 +40,7 @@ export interface ResponderConfig {
   onMoveShouldSetResponderCapture?: (event: ResponderEvent) => boolean;
   // Direct responder events dispatched directly to responder. Do not bubble.
   onResponderEnd?: (event: ResponderEvent) => void;
+  // biome-ignore lint/suspicious/noConfusingVoidType:
   onResponderGrant?: (event: ResponderEvent) => void | boolean;
   onResponderMove?: (event: ResponderEvent) => void;
   onResponderReject?: (event: ResponderEvent) => void;

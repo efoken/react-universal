@@ -12,6 +12,7 @@ type Interpolation<T extends AnyObject, P extends AnyObject> =
   | ((props: P) => Interpolation<T, P>);
 
 function handleInterpolation<T extends AnyObject, P extends AnyObject>(
+  // biome-ignore lint/suspicious/noConfusingVoidType:
   this: P | void,
   interpolation: Interpolation<T, P>,
   index: number,
@@ -35,6 +36,7 @@ function handleInterpolation<T extends AnyObject, P extends AnyObject>(
 }
 
 export function interpolate<T extends AnyObject, P extends AnyObject>(
+  // biome-ignore lint/suspicious/noConfusingVoidType:
   this: P | void,
   ...args: Interpolation<T, P>[]
 ) {

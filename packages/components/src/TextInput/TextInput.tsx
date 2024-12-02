@@ -158,7 +158,7 @@ export const TextInput = forwardRef<HTMLInputElement & TextInputMethods, TextInp
     },
     ref,
   ) => {
-    let type;
+    let type: 'email' | 'tel' | 'search' | 'url' | 'text' | 'password' | undefined;
 
     if (inputMode != null) {
       switch (inputMode) {
@@ -324,7 +324,7 @@ export const TextInput = forwardRef<HTMLInputElement & TextInputMethods, TextInp
       if (document.activeElement === node) {
         TextInputState.setCurrentlyFocusedNode(node);
       }
-    }, [hostRef, selection]);
+    }, [selection]);
 
     const component = multiline ? 'textarea' : 'input';
 

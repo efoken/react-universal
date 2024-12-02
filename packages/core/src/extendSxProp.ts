@@ -1,6 +1,6 @@
 import type { AnyObject } from '@react-universal/utils';
 import { isArray, isFunction, isObject } from '@react-universal/utils';
-import { defaultSxConfig, type SxProps } from './sxConfig';
+import { type SxProps, defaultSxConfig } from './sxConfig';
 import type { Theme } from './theme';
 
 function splitProps(props: { theme?: Theme; [key: string]: any }) {
@@ -35,9 +35,9 @@ export function extendSxProp({
 }) {
   const { systemProps, otherProps } = splitProps(props);
 
-  let sx;
+  let sx: SxProps;
   if (isArray(_sx)) {
-    sx = [systemProps, ..._sx];
+    sx = [systemProps, ...(_sx as any[])];
   } else if (isFunction(_sx)) {
     sx = (...args: any[]) => {
       // @ts-expect-error: Let's just pass all args

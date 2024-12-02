@@ -9,7 +9,6 @@ function getAttribute(container: HTMLElement, attribute: string) {
 }
 
 function getProperty(container: HTMLElement, prop: string) {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   return (container.firstChild as any)[prop];
 }
 

@@ -2,7 +2,7 @@
 
 import type { ResponderEvent, StyleProp } from '@react-universal/core';
 import { createElement, styled } from '@react-universal/core';
-import { isArray, isNumber, isString } from '@react-universal/utils';
+import { type AnyObject, isArray, isNumber, isString } from '@react-universal/utils';
 import { forwardRef } from 'react';
 import type {
   CircleProps,
@@ -12,8 +12,8 @@ import type {
   ForeignObjectProps,
   GProps,
   ImageProps,
-  LinearGradientProps,
   LineProps,
+  LinearGradientProps,
   MarkerProps,
   MaskProps,
   PathProps,
@@ -26,11 +26,11 @@ import type {
   SvgMethods,
   SvgProps,
   SymbolProps,
+  TSpanProps,
   TextPathProps,
   TextProps,
   TouchableProps,
   TransformProps,
-  TSpanProps,
   UseProps,
 } from './types';
 
@@ -93,7 +93,7 @@ function createComponent<
       children?: React.ReactNode;
       parent?: React.ComponentType;
       style?: StyleProp<any>;
-    } = {},
+    } = Record<string, never>,
 >(
   Base: keyof React.ReactSVG | React.ComponentType<any>,
   name: Capitalize<string>,
@@ -130,6 +130,7 @@ function createComponent<
       const cleanProps: typeof props & {
         gradientTransform?: string;
         onClick?: (event: any) => void;
+        // biome-ignore lint/suspicious/noConfusingVoidType:
         onResponderGrant?: (event: ResponderEvent) => void | boolean;
         onResponderMove?: (event: ResponderEvent) => void;
         onResponderRelease?: (event: ResponderEvent) => void;
@@ -243,6 +244,7 @@ export const RadialGradient = createComponent<SVGRadialGradientElement, RadialGr
 );
 export const Rect = createComponent<SVGRectElement, RectProps>('rect', 'Rect');
 export const Stop = createComponent<SVGStopElement, StopProps>('stop', 'Stop');
+// biome-ignore lint/suspicious/noShadowRestrictedNames:
 export const Symbol = createComponent<SVGSymbolElement, SymbolProps>('symbol', 'Symbol');
 export const Text = createComponent<SVGTextElement, TextProps>('text', 'Text');
 export const TextPath = createComponent<SVGTextPathElement, TextPathProps>('textPath', 'TextPath');

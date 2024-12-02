@@ -39,7 +39,7 @@ const Insertion: React.FC<{
     }
     return (
       <style
-        // eslint-disable-next-line react/no-danger
+        // biome-ignore lint/security/noDangerouslySetInnerHtml:
         dangerouslySetInnerHTML={{ __html: rules }}
         data-emotion={`${cache.key} ${serializedNames}`}
         nonce={cache.sheet.nonce}

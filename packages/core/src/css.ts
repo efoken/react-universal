@@ -24,13 +24,13 @@ function getBreakpointsStyles<T extends AnyObject>(
 }
 
 function parseStyle<T extends AnyObject>(style: T, runtime: StyleMiniRuntime) {
-  const nextStyle = Object.entries(style ?? {}).reduce<AnyObject>(
-    (acc, [key, value]) =>
-      isObject(value) && !key.startsWith('&')
-        ? mergeDeep(acc, getBreakpointsStyles(key, value, runtime))
-        : { ...acc, [key]: value },
-    {},
-  );
+  const nextStyle = Object.entries(style ?? {}).reduce<AnyObject>((acc, [key, value]) => {
+    if (isObject(value) && !key.startsWith('&')) {
+      return mergeDeep(acc, getBreakpointsStyles(key, value, runtime));
+    }
+    acc[key] = value;
+    return acc;
+  }, {});
 
   return createReactDOMStyle(nextStyle);
 }
@@ -46,7 +46,7 @@ export const css = {
         if ('$$css' in a && a.$$css === true) {
           classNames = [...classNames, ...Object.values(a).filter((b): b is string => isString(b))];
         } else {
-          // eslint-disable-next-line no-param-reassign
+          // biome-ignore lint/style/noParameterAssign:
           acc = mergeDeep(acc, a);
         }
       }

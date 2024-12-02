@@ -2,10 +2,10 @@
 
 import { computePosition, flip, shift, size } from '@floating-ui/dom';
 import {
+  type ForwardedProps,
   forwardedProps,
   getLocaleDirection,
   styled,
-  type ForwardedProps,
 } from '@react-universal/core';
 import type { AnyObject } from '@react-universal/utils';
 import { pick } from '@react-universal/utils';
@@ -13,6 +13,12 @@ import { useComposedRefs } from '@tamagui/compose-refs';
 import { forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
 import type { PopoverMethods, PopoverProps } from './Popover.types';
 import { parseModifiers, resolveAnchor } from './Popover.utils';
+
+declare global {
+  interface HTMLElementEventMap {
+    beforetoggle: ToggleEvent;
+  }
+}
 
 function pickProps<T extends AnyObject>(props: T) {
   return pick(props, {

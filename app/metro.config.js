@@ -1,5 +1,6 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
+// biome-ignore lint/nursery/noCommonJs:
 const { getDefaultConfig } = require('expo/metro-config');
+// biome-ignore lint/nursery/noCommonJs:
 const path = require('node:path');
 
 // This can be replaced with `find-yarn-workspace-root`
@@ -15,4 +16,5 @@ config.resolver.nodeModulesPaths = [
 ];
 config.resolver.disableHierarchicalLookup = true;
 
+// biome-ignore lint/nursery/noCommonJs:
 module.exports = config;

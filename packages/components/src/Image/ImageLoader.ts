@@ -3,22 +3,23 @@ import { normalizeEvent } from '@react-universal/utils';
 import type { ImageLoadEventData, NativeSyntheticEvent } from 'react-native';
 import type { ImageSize } from './Image.types';
 
+// biome-ignore lint/complexity/noStaticOnlyClass:
 export class ImageUriCache {
   static #maximumEntries = 256;
 
   static #entries: AnyObject<{ lastUsedTimestamp: number; refCount: number }> = {};
 
   static has(uri: string) {
-    return uri.startsWith('data:') || !!this.#entries[uri];
+    return uri.startsWith('data:') || !!ImageUriCache.#entries[uri];
   }
 
   static add(uri: string) {
     const lastUsedTimestamp = Date.now();
-    if (this.#entries[uri]) {
-      this.#entries[uri].lastUsedTimestamp = lastUsedTimestamp;
-      this.#entries[uri].refCount += 1;
+    if (ImageUriCache.#entries[uri]) {
+      ImageUriCache.#entries[uri].lastUsedTimestamp = lastUsedTimestamp;
+      ImageUriCache.#entries[uri].refCount += 1;
     } else {
-      this.#entries[uri] = {
+      ImageUriCache.#entries[uri] = {
         lastUsedTimestamp,
         refCount: 1,
       };
@@ -26,22 +27,22 @@ export class ImageUriCache {
   }
 
   static remove(uri: string) {
-    if (this.#entries[uri]) {
-      this.#entries[uri].refCount -= 1;
+    if (ImageUriCache.#entries[uri]) {
+      ImageUriCache.#entries[uri].refCount -= 1;
     }
     // Free up entries when the cache is "full"
-    this.#cleanUpIfNeeded();
+    ImageUriCache.#cleanUpIfNeeded();
   }
 
   static #cleanUpIfNeeded() {
-    const uris = Object.keys(this.#entries);
+    const uris = Object.keys(ImageUriCache.#entries);
 
-    if (uris.length + 1 > this.#maximumEntries) {
+    if (uris.length + 1 > ImageUriCache.#maximumEntries) {
       let leastRecentlyUsedKey: string | undefined;
       let leastRecentlyUsedEntry: { lastUsedTimestamp: number; refCount: number } | undefined;
 
       for (const uri of uris) {
-        const entry = this.#entries[uri];
+        const entry = ImageUriCache.#entries[uri];
         if (
           (!leastRecentlyUsedEntry ||
             entry.lastUsedTimestamp < leastRecentlyUsedEntry.lastUsedTimestamp) &&
@@ -53,7 +54,7 @@ export class ImageUriCache {
       }
 
       if (leastRecentlyUsedKey) {
-        delete this.#entries[leastRecentlyUsedKey];
+        delete ImageUriCache.#entries[leastRecentlyUsedKey];
       }
     }
   }
@@ -82,8 +83,6 @@ export const ImageLoader = {
   getSize(uri: string) {
     return new Promise<ImageSize>((resolve, reject) => {
       let complete = false;
-      let interval: ReturnType<typeof setInterval>;
-      let requestId: number;
 
       const handleLoad = () => {
         const request = requests[requestId];
@@ -106,8 +105,8 @@ export const ImageLoader = {
         clearInterval(interval);
       };
 
-      interval = setInterval(handleLoad, 16);
-      requestId = ImageLoader.load(uri, handleLoad, handleError);
+      const interval = setInterval(handleLoad, 16);
+      const requestId = ImageLoader.load(uri, handleLoad, handleError);
     });
   },
 

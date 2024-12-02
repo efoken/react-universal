@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Keyboard } from 'react-native';
 
 export function useKeyboard() {
   const [open, setOpen] = useState(false);
 
-  const handleKeyboardDidShow = () => {
+  const handleKeyboardDidShow = useCallback(() => {
     setOpen(true);
-  };
+  }, []);
 
-  const handleKeyboardDidHide = () => {
+  const handleKeyboardDidHide = useCallback(() => {
     setOpen(false);
-  };
+  }, []);
 
   useEffect(() => {
     const subscriptions = [
@@ -22,7 +22,7 @@ export function useKeyboard() {
         subscription.remove();
       }
     };
-  }, []);
+  }, [handleKeyboardDidHide, handleKeyboardDidShow]);
 
   return { open };
 }

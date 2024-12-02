@@ -24,9 +24,9 @@ import {
   Stop as RNStop,
   Svg as RNSvg,
   Symbol as RNSymbol,
+  TSpan as RNTSpan,
   Text as RNText,
   TextPath as RNTextPath,
-  TSpan as RNTSpan,
   Use as RNUse,
 } from 'react-native-svg';
 import type {
@@ -37,8 +37,8 @@ import type {
   ForeignObjectProps,
   GProps,
   ImageProps,
-  LinearGradientProps,
   LineProps,
+  LinearGradientProps,
   MarkerProps,
   MaskProps,
   PathProps,
@@ -50,9 +50,9 @@ import type {
   StopProps,
   SvgProps,
   SymbolProps,
+  TSpanProps,
   TextPathProps,
   TextProps,
-  TSpanProps,
   UseProps,
 } from './types';
 
@@ -124,6 +124,7 @@ export const RadialGradient = createComponent<RadialGradientProps>(
 );
 export const Rect = createComponent<RectProps>(RNRect, 'Rect');
 export const Stop = createComponent<StopProps>(RNStop, 'Stop');
+// biome-ignore lint/suspicious/noShadowRestrictedNames:
 export const Symbol = createComponent<SymbolProps>(RNSymbol, 'Symbol');
 export const Text = createComponent<TextProps>(RNText, 'Text');
 export const TextPath = createComponent<TextPathProps>(RNTextPath, 'TextPath');

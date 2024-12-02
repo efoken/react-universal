@@ -5,7 +5,7 @@ import { css } from '../css';
 import { interpolate } from '../interpolate';
 import { styleFunctionSx } from '../styleFunctionSx';
 import type { SxProps } from '../sxConfig';
-import { type Theme } from '../theme';
+import type { Theme } from '../theme';
 import type { StyleInterpolation } from '../types';
 import { processStyles } from '../utils/processStyles';
 
@@ -39,6 +39,7 @@ export function useStyles(
           ),
         };
       }),
+    // biome-ignore lint/correctness/useExhaustiveDependencies:
     [props, skipSx, styles, sx],
   );
 

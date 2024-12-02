@@ -21,7 +21,6 @@ function processColor(color?: string | number) {
   if (colorInt == null) {
     return;
   }
-  // eslint-disable-next-line no-bitwise
   return ((colorInt << 24) | (colorInt >>> 8)) >>> 0;
 }
 
@@ -34,13 +33,9 @@ export function normalizeColor(color?: number | string, opacity = 1) {
   }
   const colorInt = processColor(color);
   if (colorInt != null) {
-    // eslint-disable-next-line no-bitwise
     const r = (colorInt >> 16) & 255;
-    // eslint-disable-next-line no-bitwise
     const g = (colorInt >> 8) & 255;
-    // eslint-disable-next-line no-bitwise
     const b = colorInt & 255;
-    // eslint-disable-next-line no-bitwise
     const a = ((colorInt >> 24) & 255) / 255;
     const alpha = (a * opacity).toFixed(2);
     return `rgba(${r},${g},${b},${alpha})`;

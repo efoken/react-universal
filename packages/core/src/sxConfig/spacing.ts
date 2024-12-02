@@ -41,7 +41,7 @@ const getCssProperties = memo((prop: string) => {
   // It's not a shorthand notation.
   if (prop.length > 2) {
     if (ALIASES[prop]) {
-      // eslint-disable-next-line no-param-reassign
+      // biome-ignore lint/style/noParameterAssign:
       prop = ALIASES[prop];
     } else {
       return [prop];
@@ -195,7 +195,7 @@ function style(props: { theme: Theme; [key: string]: any }, keys: string[]) {
 }
 
 type SpacingProp<T> = BreakpointValue<
-  T | ThemeValue<Theme['space'] extends number ? {} : Theme['space']>
+  T | ThemeValue<Theme['space'] extends number ? Record<string, never> : Theme['space']>
 >;
 
 export interface MarginProps {

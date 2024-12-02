@@ -27,6 +27,7 @@ function focusElement(node: HTMLElement) {
   }
 }
 
+// biome-ignore lint/complexity/noStaticOnlyClass:
 export class TextInputState {
   /**
    * Internal state
@@ -37,7 +38,7 @@ export class TextInputState {
    * Sets the internal state.
    */
   static setCurrentlyFocusedNode(currentlyFocusedNode: HTMLElement | null) {
-    this.#currentlyFocusedNode = currentlyFocusedNode;
+    TextInputState.#currentlyFocusedNode = currentlyFocusedNode;
   }
 
   /**
@@ -45,10 +46,10 @@ export class TextInputState {
    * text field is focused it returns null.
    */
   static currentlyFocusedField() {
-    if (document.activeElement !== this.#currentlyFocusedNode) {
-      this.#currentlyFocusedNode = null;
+    if (document.activeElement !== TextInputState.#currentlyFocusedNode) {
+      TextInputState.#currentlyFocusedNode = null;
     }
-    return this.#currentlyFocusedNode;
+    return TextInputState.#currentlyFocusedNode;
   }
 
   /**
@@ -58,7 +59,7 @@ export class TextInputState {
    */
   static focusTextInput(textFieldNode: HTMLElement | null) {
     if (textFieldNode != null) {
-      this.#currentlyFocusedNode = textFieldNode;
+      TextInputState.#currentlyFocusedNode = textFieldNode;
       if (document.activeElement !== textFieldNode) {
         focusElement(textFieldNode);
       }
@@ -71,7 +72,7 @@ export class TextInputState {
    */
   static blurTextInput(textFieldNode: HTMLElement | null) {
     if (textFieldNode != null) {
-      this.#currentlyFocusedNode = null;
+      TextInputState.#currentlyFocusedNode = null;
       if (document.activeElement === textFieldNode) {
         try {
           textFieldNode.blur();
