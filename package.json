@@ -21,7 +21,7 @@
     "@storybook/react-vite": "^8.4.6",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.0.1",
+    "@testing-library/react": "^16.1.0",
     "@types/react": "~18.3.12",
     "@vitest/browser": "^2.1.8",
     "jsdom": "^25.0.1",
