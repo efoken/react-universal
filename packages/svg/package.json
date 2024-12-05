@@ -32,7 +32,7 @@
     "@types/react": "~18.3.12",
     "react": "18.3.1",
     "react-native": "0.76.3",
-    "react-native-svg": "15.8.0"
+    "react-native-svg": "15.10.1"
   },
   "peerDependencies": {
     "@types/react": "^18.2.0",
