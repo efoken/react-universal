@@ -22,7 +22,7 @@
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
-    "@types/react": "~18.3.12",
+    "@types/react": "~18.3.14",
     "@vitest/browser": "^2.1.8",
     "jsdom": "^25.0.1",
     "lefthook": "^1.8.5",
