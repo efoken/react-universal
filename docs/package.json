@@ -12,7 +12,7 @@
     "@react-universal/components": "workspace:*",
     "@react-universal/core": "workspace:*",
     "@react-universal/elements": "workspace:*",
-    "next": "^15.0.3",
+    "next": "^15.0.4",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-native": "0.76.3"
