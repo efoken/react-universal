@@ -15,9 +15,11 @@ export const defaultTheme = {
     white: '#ffffff',
     background: {
       default: '#ffffff',
+      muted: '#ffffff',
     },
     text: {
       default: '#09090b',
+      muted: '#52525b',
     },
     border: {
       default: '#e4e4e7',

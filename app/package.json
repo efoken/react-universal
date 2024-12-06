@@ -7,6 +7,7 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "start": "expo start",
+    "typecheck": "tsc",
     "web": "expo start --web"
   },
   "dependencies": {
@@ -14,10 +15,10 @@
     "@react-universal/components": "workspace:*",
     "@react-universal/core": "workspace:*",
     "@react-universal/svg": "workspace:*",
-    "expo": "^52.0.14",
+    "expo": "^52.0.17",
     "expo-dev-client": "~5.0.5",
-    "expo-screen-orientation": "~8.0.0",
-    "expo-splash-screen": "~0.29.13",
+    "expo-screen-orientation": "~8.0.1",
+    "expo-splash-screen": "~0.29.16",
     "expo-status-bar": "~2.0.0",
     "react": "18.3.1",
     "react-native": "0.76.3",
@@ -29,6 +30,7 @@
     "@babel/core": "^7.26.0",
     "@babel/preset-env": "^7.26.0",
     "@expo/metro-runtime": "~4.0.0",
-    "@types/babel__core": "^7.20.5"
+    "@types/babel__core": "^7.20.5",
+    "typescript": "~5.7.2"
   }
 }

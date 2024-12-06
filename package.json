@@ -1,28 +1,31 @@
 {
   "name": "react-universal",
   "private": true,
-  "workspaces": ["app", "docs", "packages/*", "tools/*"],
+  "workspaces": ["app", "docs", "packages/*", "sandbox/*"],
   "scripts": {
     "build": "yarn workspaces foreach -Apt --no-private run build",
     "clean": "yarn workspaces foreach -Ap exec run -T rimraf dist",
     "format": "biome format --write .",
     "lint": "biome lint .",
+    "postinstall": "manypkg check",
     "storybook": "yarn workspace @react-universal/vite-plugin build && sb dev",
-    "test": "vitest"
+    "test": "vitest",
+    "typecheck": "yarn tsc && yarn workspaces foreach -Apt run typecheck"
   },
   "resolutions": {
     "vite": "^5.4.11"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
+    "@manypkg/cli": "^0.23.0",
     "@react-native/normalize-colors": "0.76.3",
-    "@storybook/addon-a11y": "^8.4.6",
-    "@storybook/addon-essentials": "^8.4.6",
-    "@storybook/react-vite": "^8.4.6",
+    "@storybook/addon-a11y": "^8.4.7",
+    "@storybook/addon-essentials": "^8.4.7",
+    "@storybook/react-vite": "^8.4.7",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.0.1",
-    "@types/react": "~18.3.12",
+    "@testing-library/react": "^16.1.0",
+    "@types/react": "~18.3.14",
     "@vitest/browser": "^2.1.8",
     "jsdom": "^25.0.1",
     "lefthook": "^1.8.5",
@@ -33,7 +36,7 @@
     "react-native-unistyles": "^2.20.0",
     "react-test-renderer": "18.3.1",
     "rimraf": "^6.0.1",
-    "storybook": "^8.4.6",
+    "storybook": "^8.4.7",
     "tsup": "^8.3.5",
     "typescript": "~5.7.2",
     "vite": "^5.4.11",

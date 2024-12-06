@@ -2,7 +2,9 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "customConditions": ["source"],
+    "jsx": "react-jsx",
     "moduleResolution": "Bundler",
     "strict": true
-  }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "../@types/*.d.ts"]
 }

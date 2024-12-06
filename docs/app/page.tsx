@@ -184,23 +184,27 @@ export default function Home() {
         <Card
           href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           title="Docs"
-          description="Find in-depth information about Next.js features and API."
-        />
+        >
+          Find in-depth information about Next.js features and API.
+        </Card>
         <Card
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           title="Learn"
-          description="Learn about Next.js in an interactive course with quizzes!"
-        />
+        >
+          Learn about Next.js in an interactive course with quizzes!
+        </Card>
         <Card
           href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           title="Templates"
-          description="Explore starter templates for Next.js."
-        />
+        >
+          Explore starter templates for Next.js.
+        </Card>
         <Card
           href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           title="Deploy"
-          description="Instantly deploy your Next.js site to a shareable URL with Vercel."
-        />
+        >
+          Instantly deploy your Next.js site to a shareable URL with Vercel.
+        </Card>
       </Container>
     </Main>
   );

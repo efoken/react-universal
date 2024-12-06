@@ -1,4 +1,7 @@
 :root {
+  --header-height: 64px;
+  --content-height: calc(100dvh - var(--header-height));
+
   --max-width: 1164px;
   --border-radius: 12px;
   --font-mono:
@@ -24,6 +27,12 @@
   --callout-border-rgb: 172, 175, 176;
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
+}
+
+@media (min-width: 600px) {
+  :root {
+    --header-height: 104px;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

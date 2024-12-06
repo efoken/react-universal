@@ -109,6 +109,7 @@ export const Popover = forwardRef<HTMLDivElement & PopoverMethods, PopoverProps>
 
     const supportedProps: ForwardedProps<HTMLDivElement> = pickProps(props);
     supportedProps.dir = componentDirection;
+    // @ts-expect-error: `popover` is missing in React types
     supportedProps.popover = 'manual';
     supportedProps.role = role;
 

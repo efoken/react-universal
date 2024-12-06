@@ -2,17 +2,17 @@
 
 import type { ButtonMethods } from '@react-universal/components';
 import { Button } from '@react-universal/components';
-import { H2, P, Span } from '@react-universal/elements';
+import { Div, H2, Span } from '@react-universal/elements';
 import { forwardRef, useCallback, useState } from 'react';
 
-export interface CardProps {
-  description?: string;
+interface CardProps {
+  children?: string;
   href?: string;
   title?: string;
 }
 
 export const Card = forwardRef<HTMLAnchorElement & ButtonMethods, CardProps>(
-  ({ description, href, title }, ref) => {
+  ({ children, href, title }, ref) => {
     const [hovered, setHovered] = useState(false);
 
     const handleHoverIn = useCallback(() => setHovered(true), []);
@@ -62,7 +62,7 @@ export const Card = forwardRef<HTMLAnchorElement & ButtonMethods, CardProps>(
             -&gt;
           </Span>
         </H2>
-        <P
+        <Div
           sx={{
             fontSize: '0.9rem',
             lineHeight: 1.5,
@@ -71,8 +71,8 @@ export const Card = forwardRef<HTMLAnchorElement & ButtonMethods, CardProps>(
             textWrap: 'balance',
           }}
         >
-          {description}
-        </P>
+          {children}
+        </Div>
       </Button>
     );
   },

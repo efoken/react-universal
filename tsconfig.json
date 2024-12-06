@@ -15,10 +15,10 @@
   },
   "include": [
     "./.storybook/**/*",
-    "./@types/*",
+    "./@types/*.d.ts",
     "./app/**/*",
-    "./docs/**/*",
     "./packages/**/*",
+    "./sandbox/**/*",
     "./vitest.config.ts",
     "./vitest.setup.ts"
   ]

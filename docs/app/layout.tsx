@@ -2,7 +2,7 @@ import { createTheme } from '@react-universal/core';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { StylesProvider } from './styles-provider';
+import { AppRouterProdivder } from '@react-universal/next';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <StylesProvider
+        <AppRouterProdivder
           theme={createTheme({
             fonts: {
               body: {
@@ -32,7 +32,7 @@ export default function RootLayout({
           })}
         >
           {children}
-        </StylesProvider>
+        </AppRouterProdivder>
       </body>
     </html>
   );

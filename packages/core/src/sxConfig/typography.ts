@@ -9,6 +9,8 @@ type TypographyProp<T, K extends keyof Theme | undefined = undefined> = Breakpoi
 export interface TypographyPropsWeb {
   /** @platform web */
   textWrap?: TypographyProp<RNStyle['textWrap']>;
+  /** @platform web */
+  whiteSpace?: TypographyProp<RNStyle['whiteSpace']>;
 }
 
 export interface TypographyProps extends TypographyPropsWeb {

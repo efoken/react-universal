@@ -13,7 +13,7 @@ import type { MarginProps, PaddingProps } from './spacing';
 import { margin, padding } from './spacing';
 import type { TypographyProps } from './typography';
 
-type CSSCustomProps = Record<`--${string}`, string>;
+type CSSCustomProps = Record<`--${string}`, number | string>;
 
 interface OtherProps extends CSSCustomProps {
   backdropFilter?: BreakpointValue<React.CSSProperties['backdropFilter']>;
@@ -263,6 +263,7 @@ export const defaultSxConfig: SxConfig = {
   textAlign: {},
   textTransform: {},
   textWrap: {},
+  whiteSpace: {},
   typography: {
     cssProperty: false,
     themeKey: 'typography',
