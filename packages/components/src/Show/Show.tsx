@@ -3,15 +3,15 @@ import { isValidElement } from 'react';
 
 export interface ShowProps<T> {
   /**
-   * The children to render if `when` is `true`
+   * The children to render if `when` is `true`.
    */
   children: React.ReactNode | ((props: T) => React.ReactNode);
   /**
-   * The fallback content to render if `when` is `false`
+   * The fallback content to render if `when` is `false`.
    */
   fallback?: React.ReactNode;
   /**
-   * If `true`, it'll render the `children` prop
+   * If `true`, it'll render the `children` prop.
    */
   when: T | null | undefined;
 }
