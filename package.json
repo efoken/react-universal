@@ -5,7 +5,7 @@
   "scripts": {
     "build": "yarn workspaces foreach -Apt --no-private run build",
     "clean": "yarn workspaces foreach -Ap exec run -T rimraf dist",
-    "format": "biome format --write .",
+    "format": "biome format --write . && prettier --log-level error --write \"**/*.{md,mdx,yml}\"",
     "lint": "biome lint .",
     "postinstall": "manypkg check",
     "storybook": "yarn workspace @react-universal/vite-plugin build && sb dev",
@@ -30,6 +30,7 @@
     "jsdom": "^25.0.1",
     "lefthook": "^1.8.5",
     "playwright": "^1.49.0",
+    "prettier": "^3.4.2",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-native": "0.76.3",

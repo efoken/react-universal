@@ -4,5 +4,7 @@ pre-commit:
   commands:
     check:
       glob: '*.{js,jsx,cjs,mjs,ts,tsx,d.cts,d.mts,json}'
-      run: yarn biome check --write --no-errors-on-unmatched --files-ignore-unknown=true --colors=off {staged_files}
+      run:
+        yarn biome check --write --no-errors-on-unmatched --files-ignore-unknown=true --colors=off
+        {staged_files}
       stage_fixed: true

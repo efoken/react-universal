@@ -30,8 +30,8 @@ yarn add @react-universal/core
 
 ### Setup provider
 
-Wrap your application with the `Provider` component generated in the `components/ui/provider`
-component at the root of your application.
+Wrap your application with the `AppRouterProdivder` component imported from the
+`@react-universal/next` package.
 
 This provider composes the following:
 
@@ -39,14 +39,14 @@ This provider composes the following:
 - `ThemeProvider` from `next-themes` for color mode
 
 ```tsx
-import { Provider } from "@/components/ui/provider"
+import { AppRouterProdivder } from '@react-universal/next';
 
 function App({ Component, pageProps }) {
   return (
-    <Provider>
+    <AppRouterProdivder>
       <Component {...pageProps} />
-    </Provider>
-  )
+    </AppRouterProdivder>
+  );
 }
 ```
 
@@ -74,7 +74,7 @@ With the power of the snippets and the primitive components from React Universal
 UI faster.
 
 ```tsx
-import { Button, Stack } from "@react-universal/core"
+import { Button, Stack } from '@react-universal/core';
 
 function Demo() {
   return (
@@ -82,6 +82,6 @@ function Demo() {
       <Button>Click me</Button>
       <Button>Click me</Button>
     </Stack>
-  )
+  );
 }
 ```
