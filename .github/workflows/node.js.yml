@@ -7,24 +7,38 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x, 22.x]
-
     steps:
       - uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
+      - name: Install dependencies
+        uses: ./.github/actions/install
+
+      - run: yarn lint
+
+  types:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: yarn install --immutable
+        uses: ./.github/actions/install
+
+      - run: yarn typecheck
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        uses: ./.github/actions/install
+        with:
+          node-version: ${{ matrix.node-version }}
 
       - name: Get installed Playwright version
         run: echo "PLAYWRIGHT_VERSION=$(yarn info playwright --json | jq -r '.children.Version')" >> $GITHUB_ENV
@@ -41,5 +55,4 @@ jobs:
         run: yarn playwright install --with-deps
         if: steps.playwright-cache.outputs.cache-hit != 'true'
 
-      - run: yarn lint
       - run: yarn test

@@ -2,7 +2,7 @@
 
 import type { ResponderEvent, StyleProp } from '@react-universal/core';
 import { createElement, styled } from '@react-universal/core';
-import { type AnyObject, isArray, isNumber, isString } from '@react-universal/utils';
+import { isArray, isNumber, isString } from '@react-universal/utils';
 import { forwardRef } from 'react';
 import type {
   CircleProps,

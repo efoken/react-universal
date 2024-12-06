@@ -1,0 +1,27 @@
+name: 'Install'
+description: 'Setup Node.js and install dependencies'
+
+inputs:
+  node-version:
+    description: Node.js version
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Node.js
+      if: ${{ inputs.node-version == '' }}
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: .nvmrc
+        cache: 'yarn'
+
+    - name: Use Node.js ${{ inputs.node-version }}
+      if: ${{ inputs.node-version != '' }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'yarn'
+
+    - name: Install dependencies
+      shell: bash
+      run: yarn install --immutable

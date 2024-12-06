@@ -4,6 +4,9 @@ export default defineConfig({
   resolve: {
     conditions: ['source'],
   },
+  define: {
+    'process.env': process.env,
+  },
   test: {
     browser: {
       enabled: true,
