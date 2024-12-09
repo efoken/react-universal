@@ -18,7 +18,7 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@manypkg/cli": "^0.23.0",
-    "@react-native/normalize-colors": "0.76.3",
+    "@react-native/normalize-colors": "0.76.5",
     "@storybook/addon-a11y": "^8.4.7",
     "@storybook/addon-essentials": "^8.4.7",
     "@storybook/react-vite": "^8.4.7",
