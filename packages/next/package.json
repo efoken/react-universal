@@ -34,8 +34,8 @@
     "build": "tsup src/index.ts"
   },
   "dependencies": {
-    "@emotion/cache": "^11.13.5",
-    "@emotion/react": "^11.13.5",
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
     "@react-universal/core": "workspace:*",
     "@react-universal/utils": "workspace:*"
   },
