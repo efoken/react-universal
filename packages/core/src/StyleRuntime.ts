@@ -4,7 +4,7 @@ import { defaultTheme } from './theme';
 
 // biome-ignore lint/complexity/noStaticOnlyClass:
 export class StyleRuntime {
-  static #theme: Theme = defaultTheme;
+  static #theme: Theme = defaultTheme as Theme;
 
   // biome-ignore lint/suspicious/noEmptyBlockStatements:
   static setTheme(_name: 'light' | 'dark') {}

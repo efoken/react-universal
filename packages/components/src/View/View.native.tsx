@@ -36,7 +36,7 @@ export const View = forwardRef<any, ViewProps>(
       role,
       style,
       ...props
-    },
+    }: ViewProps,
     ref,
   ) => (
     <ViewRoot

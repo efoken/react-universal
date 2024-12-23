@@ -56,7 +56,7 @@ export const Modal = forwardRef<any, ModalProps>(
       role,
       style,
       ...props
-    },
+    }: ModalProps,
     ref,
   ) => {
     const handleAccessibilityEscape = () => {

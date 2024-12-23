@@ -49,7 +49,12 @@ export const Default: Story = {
 
     return (
       <>
-        <Button aria-describedby={id} type="button" onPress={handlePress}>
+        <Button
+          aria-describedby={id}
+          type="button"
+          sx={{ bgColor: 'background.muted', borderRadius: 2, p: 1 }}
+          onPress={handlePress}
+        >
           <Text>Toggle Popup</Text>
         </Button>
         <Popover {...args} anchor={anchor} id={id} open={open} />

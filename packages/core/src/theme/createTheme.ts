@@ -1,4 +1,5 @@
 import { mergeDeep } from '@react-universal/utils';
+import type { AnyObject } from '@react-universal/utils';
 import { defaultTheme } from './defaultTheme';
 import type { Theme } from './defaultTheme';
 
@@ -7,5 +8,5 @@ type DeepPartial<T> = {
 };
 
 export function createTheme(theme: DeepPartial<Theme> = {}) {
-  return mergeDeep<Theme>(defaultTheme, theme);
+  return mergeDeep<AnyObject>(defaultTheme, theme) as Theme;
 }

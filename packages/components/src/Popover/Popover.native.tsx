@@ -33,7 +33,7 @@ export const Popover = forwardRef<any, PopoverProps>(
       strategy: _strategy,
       style,
       ...props
-    },
+    }: PopoverProps,
     ref,
   ) => {
     const hostRef = useRef<RNView>(null);

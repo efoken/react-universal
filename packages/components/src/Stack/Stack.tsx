@@ -92,7 +92,7 @@ const StackRoot = styled(View, {
 }));
 
 export const Stack = forwardRef<HTMLElement & ViewMethods, StackProps>(
-  ({ children, direction = 'column', divider, spacing = 0, ...props }, ref) => {
+  ({ children, direction = 'column', divider, spacing = 0, ...props }: StackProps, ref) => {
     const ownerState = useOwnerState({
       direction,
       spacing,

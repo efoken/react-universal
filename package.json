@@ -8,7 +8,7 @@
     "format": "biome format --write . && prettier --log-level error --write \"**/*.{md,mdx,yml}\"",
     "lint": "biome lint .",
     "postinstall": "manypkg check",
-    "storybook": "yarn workspace @react-universal/vite-plugin build && sb dev",
+    "storybook": "yarn workspace @react-universal/vite-plugin dev && sb dev",
     "test": "vitest",
     "typecheck": "yarn tsc && yarn workspaces foreach -Apt run typecheck"
   },

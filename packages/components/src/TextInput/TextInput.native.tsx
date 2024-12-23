@@ -45,7 +45,7 @@ export const TextInput = forwardRef<any, TextInputProps>(
       role,
       style,
       ...props
-    },
+    }: TextInputProps,
     ref,
   ) => {
     const [text, setText] = useState<string>();

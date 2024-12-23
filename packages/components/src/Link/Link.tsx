@@ -12,7 +12,7 @@ const LinkRoot = styled(Text, {
 })();
 
 export const Link = forwardRef<HTMLAnchorElement & TextMethods, LinkProps>(
-  ({ download, rel, target, ...props }, ref) => (
+  ({ download, rel, target, ...props }: LinkProps, ref) => (
     <LinkRoot
       ref={ref}
       hrefAttrs={{

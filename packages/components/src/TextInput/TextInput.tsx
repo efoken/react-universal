@@ -112,9 +112,8 @@ export const TextInput = forwardRef<HTMLInputElement & TextInputMethods, TextInp
   (
     {
       autoCapitalize = 'sentences',
-      autoComplete = 'on',
+      autoComplete,
       autoCorrect = true,
-      blurOnSubmit,
       caretHidden = false,
       clearTextOnFocus = false,
       inputMode,
@@ -154,8 +153,9 @@ export const TextInput = forwardRef<HTMLInputElement & TextInputMethods, TextInp
       showSoftInputOnFocus = true,
       spellCheck,
       style,
+      submitBehavior,
       ...props
-    },
+    }: TextInputProps,
     ref,
   ) => {
     let type: 'email' | 'tel' | 'search' | 'url' | 'text' | 'password' | undefined;
@@ -275,7 +275,9 @@ export const TextInput = forwardRef<HTMLInputElement & TextInputMethods, TextInp
       event.stopPropagation();
 
       const blurOnSubmitDefault = !multiline;
-      const shouldBlurOnSubmit = blurOnSubmit ?? blurOnSubmitDefault;
+      const shouldBlurOnSubmit = submitBehavior
+        ? submitBehavior === 'blurAndSubmit'
+        : blurOnSubmitDefault;
 
       const composing = isEventComposing(event.nativeEvent);
 
@@ -283,7 +285,7 @@ export const TextInput = forwardRef<HTMLInputElement & TextInputMethods, TextInp
 
       // Do not call submit if composition is occuring
       if (event.key === 'Enter' && !event.shiftKey && !composing && !event.isDefaultPrevented()) {
-        if (!!blurOnSubmit || !multiline) {
+        if (submitBehavior === 'submit' || submitBehavior === 'blurAndSubmit' || !multiline) {
           // Prevent "Enter" from inserting a newline or submitting a form
           event.preventDefault();
           onSubmitEditing?.(normalizeEvent(event, { text: node.value }));

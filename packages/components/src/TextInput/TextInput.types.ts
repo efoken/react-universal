@@ -36,6 +36,7 @@ export interface TextInputProps
   extends Omit<
       RNTextInputProps,
       | keyof RNViewProps
+      | 'blurOnSubmit'
       | 'editable'
       | 'keyboardType'
       | 'numberOfLines'

@@ -39,7 +39,7 @@ export const ScrollView = forwardRef<any, ScrollViewProps>(
       role,
       style,
       ...props
-    },
+    }: ScrollViewProps,
     ref,
   ) => (
     <ScrollViewRoot

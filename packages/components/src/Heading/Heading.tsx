@@ -29,7 +29,7 @@ const HeadingRoot = styled(Text, {
 }));
 
 export const Heading = forwardRef<HTMLHeadingElement & HeadingMethods, HeadingProps>(
-  (props, ref) => <HeadingRoot ref={ref} aria-level={2} role="heading" {...props} />,
+  (props: HeadingProps, ref) => <HeadingRoot ref={ref} aria-level={2} role="heading" {...props} />,
 ) as HeadingType;
 
 Heading.displayName = 'Heading';

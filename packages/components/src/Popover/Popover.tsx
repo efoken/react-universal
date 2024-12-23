@@ -56,7 +56,7 @@ export const Popover = forwardRef<HTMLDivElement & PopoverMethods, PopoverProps>
       role = 'tooltip',
       strategy: _strategy = 'absolute',
       ...props
-    },
+    }: PopoverProps,
     ref,
   ) => {
     const hostRef = useRef<HTMLDivElement>(null);

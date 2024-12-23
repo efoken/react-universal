@@ -131,7 +131,7 @@ export const ScrollView = forwardRef<HTMLElement & ScrollViewMethods, ScrollView
       stickyHeaderIndices,
       style,
       ...props
-    },
+    }: ScrollViewProps,
     ref,
   ) => {
     const scrollNodeRef = useRef<React.ElementRef<typeof View>>();

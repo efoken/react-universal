@@ -1,10 +1,7 @@
-import { createTheme } from '@react-universal/core';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
 import { AppRouterProdivder } from '@react-universal/next';
-
-const inter = Inter({ subsets: ['latin'] });
+import type { Metadata } from 'next';
+import { font, theme } from './theme';
+import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,21 +15,8 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning lang="en">
-      <body className={inter.className}>
-        <AppRouterProdivder
-          theme={createTheme({
-            fonts: {
-              body: {
-                family: inter.style.fontFamily,
-              } as any,
-              heading: {
-                family: inter.style.fontFamily,
-              } as any,
-            },
-          })}
-        >
-          {children}
-        </AppRouterProdivder>
+      <body className={font.className}>
+        <AppRouterProdivder theme={theme}>{children}</AppRouterProdivder>
       </body>
     </html>
   );

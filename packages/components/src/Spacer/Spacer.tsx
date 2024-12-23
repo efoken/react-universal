@@ -29,8 +29,8 @@ const SpacerRoot = styled(View, {
   justifySelf: 'stretch',
 });
 
-export const Spacer = forwardRef<HTMLDivElement & SpacerMethods, SpacerProps>((props, ref) => (
-  <SpacerRoot ref={ref} {...props} />
-)) as SpacerType;
+export const Spacer = forwardRef<HTMLDivElement & SpacerMethods, SpacerProps>(
+  (props: SpacerProps, ref) => <SpacerRoot ref={ref} {...props} />,
+) as SpacerType;
 
 Spacer.displayName = 'Spacer';

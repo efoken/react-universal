@@ -83,7 +83,17 @@ const TextRoot = styled('div', {
 
 export const Text = forwardRef<HTMLElement & TextMethods, TextProps>(
   (
-    { as: _as, dir, hrefAttrs, numberOfLines, onClick, onLayout, onPress, style, ...props },
+    {
+      as: _as,
+      dir,
+      hrefAttrs,
+      numberOfLines,
+      onClick,
+      onLayout,
+      onPress,
+      style,
+      ...props
+    }: TextProps,
     ref,
   ) => {
     const hasTextAncestor = useContext(TextAncestorContext);

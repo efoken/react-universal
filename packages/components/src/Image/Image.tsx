@@ -1,12 +1,12 @@
 'use client';
 
 import {
+  type ForwardedProps,
   forwardedProps,
   getLocaleDirection,
   styled,
   useElementLayout,
   usePlatformMethods,
-  type ForwardedProps,
 } from '@react-universal/core';
 import type { AnyObject } from '@react-universal/utils';
 import { noop, pick } from '@react-universal/utils';
@@ -49,7 +49,7 @@ const ImageRoot = styled('img', {
 });
 
 export const Image = forwardRef<HTMLImageElement & ImageMethods, ImageProps>(
-  ({ dir, onError, onLayout, onLoad, onProgress, onPartialLoad, ...props }, ref) => {
+  ({ dir, onError, onLayout, onLoad, onProgress, onPartialLoad, ...props }: ImageProps, ref) => {
     const hostRef = useRef<HTMLImageElement>(null);
 
     useElementLayout(hostRef, onLayout);

@@ -37,7 +37,7 @@ function createCSSVariables(obj: AnyObject, parentKey = '') {
 
 export const UniversalProvider: React.FC<UniversalProviderProps> = ({
   children,
-  theme = defaultTheme,
+  theme = defaultTheme as Theme,
 }) => (
   <ThemeContext.Provider value={theme}>
     <Global

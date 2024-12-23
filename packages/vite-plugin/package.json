@@ -6,20 +6,21 @@
     ".": {
       "import": {
         "types": "./src/index.ts",
-        "default": "./src/index.mjs"
+        "default": "./dist/index.mjs"
       },
       "require": {
         "types": "./src/index.ts",
-        "default": "./src/index.js"
+        "default": "./dist/index.js"
       }
     },
     "./package.json": "./package.json"
   },
-  "main": "src/index.js",
-  "module": "src/index.mjs",
-  "types": "dist/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "src/index.ts",
   "scripts": {
-    "build": "run -T tsup src/index.ts"
+    "build": "run -T tsup src/index.ts",
+    "dev": "run esbuild src/index.ts --outfile=dist/index.js --format=cjs --log-level=silent"
   },
   "dependencies": {
     "@pigment-css/react": "^0.0.28",
@@ -27,6 +28,7 @@
     "@react-universal/core": "workspace:*"
   },
   "devDependencies": {
+    "esbuild": "^0.24.2",
     "react": "18.3.1",
     "vite": "^5.4.11"
   },

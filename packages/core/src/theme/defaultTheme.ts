@@ -12,7 +12,7 @@ type Prettify<T> = {
   [K in keyof T]: T[K];
 } & {};
 
-type Color = string | { _light: string; _dark: string };
+export type ThemeColor = string | { _light: string; _dark: string };
 
 type Font = {
   family: string;
@@ -22,19 +22,16 @@ type Font = {
 interface DefaultTheme {
   breakpoints: Breakpoints;
   colors: {
-    black: Color;
-    white: Color;
+    black: ThemeColor;
+    white: ThemeColor;
     background: {
-      default: Color;
-      muted: Color;
+      default: ThemeColor;
     };
     text: {
-      default: Color;
-      muted: Color;
+      default: ThemeColor;
     };
     border: {
-      default: Color;
-      muted: Color;
+      default: ThemeColor;
     };
   };
   fonts: {
@@ -71,18 +68,15 @@ export const defaultTheme: DefaultTheme = {
   breakpoints: defaultBreakpoints,
   colors: {
     black: '#09090b',
-    white: '#ffffff',
+    white: '#fff',
     background: {
       default: { _light: '#fff', _dark: '#000' },
-      muted: { _light: '#f4f4f5', _dark: '#18181b' },
     },
     text: {
       default: { _light: '#09090b', _dark: '#fafafa' },
-      muted: { _light: '#52525b', _dark: '#a1a1aa' },
     },
     border: {
       default: { _light: '#e4e4e7', _dark: '#27272a' },
-      muted: { _light: '#f4f4f5', _dark: '#18181b' },
     },
   },
   fonts: {
@@ -136,7 +130,7 @@ export type ThemeValue<T extends AnyObject> = {
 export type ExtractTheme<T> = Prettify<{
   [K in keyof T]: K extends 'sxConfig'
     ? T[K]
-    : T[K] extends number | Color
+    : T[K] extends number | ThemeColor
       ? string
       : T[K] extends Font
         ? T[K]

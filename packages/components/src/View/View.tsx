@@ -80,7 +80,7 @@ export const View = forwardRef<HTMLElement & ViewMethods, ViewProps>(
       onStartShouldSetResponder,
       onStartShouldSetResponderCapture,
       ...props
-    },
+    }: ViewProps,
     ref,
   ) => {
     if (process.env.NODE_ENV !== 'production') {

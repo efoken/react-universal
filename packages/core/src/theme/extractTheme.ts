@@ -1,9 +1,9 @@
 import { isNumber, isObject } from '@react-universal/utils';
 import type { AnyObject } from '@react-universal/utils';
-import type { Theme } from './defaultTheme';
+import type { Theme, ThemeColor } from './defaultTheme';
 
 export type ExtractedTheme<T extends AnyObject = Theme> = {
-  [K in keyof T]: T[K] extends number | string | { _light: string; _dark: string }
+  [K in keyof T]: T[K] extends number | string | ThemeColor
     ? string
     : T[K] extends AnyObject
       ? ExtractedTheme<T[K]>

@@ -78,7 +78,7 @@ export const Modal = forwardRef<HTMLDialogElement & ModalMethods, ModalProps>(
       open,
       role,
       ...props
-    },
+    }: ModalProps,
     ref,
   ) => {
     const hostRef = useRef<HTMLDialogElement>(null);
