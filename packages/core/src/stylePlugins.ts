@@ -35,14 +35,9 @@ export const fontPlugin: StylePlugin = (theme) => ({
   name: 'fontPlugin',
   onParsedStyle: (_key, acc) => {
     if ('fontWeight' in acc) {
-      switch (String(acc.fontWeight)) {
-        case '700':
-        case 'bold': {
-          acc.fontFamily = theme.fonts.body.weights[700].normal;
-          break;
-        }
-        default: {
-          acc.fontFamily = theme.fonts.body.weights[400].normal;
+      for (const [fontWeight, fontFamilies] of Object.entries(theme.fonts.body.weights)) {
+        if (String(acc.fontWeight) === fontWeight) {
+          acc.fontFamily = fontFamilies.normal;
           break;
         }
       }

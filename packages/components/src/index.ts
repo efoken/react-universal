@@ -9,6 +9,7 @@ export * from './Modal';
 export * from './Popover';
 export * from './ScrollView';
 export * from './Show';
+export * from './Spacer';
 export * from './Stack';
 export * from './Text';
 export * from './TextInput';

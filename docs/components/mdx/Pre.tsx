@@ -12,13 +12,13 @@ export const Pre: React.FC<BoxProps> = ({ children, sx, ...props }) => {
         bgColor: 'background.muted',
         borderRadius: '0.375rem',
         boxShadow: 'none',
-        fontSize: '0.9em',
+        fontSize: '0.875rem',
         fontWeight: 400,
-        mb: '1.6em',
-        mt: '1.6em',
+        mb: 6,
+        mt: 6,
         overflowX: 'auto',
-        px: '2em',
-        py: '2em',
+        px: 7,
+        py: 7,
         ...sx,
       }}
     >

@@ -98,7 +98,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
         className = getRegisteredStyles(cache.registered, classInterpolations, className);
       }
 
-      const { styles: _styles } = useStyles(styles, { ...props, skipSx });
+      const _styles = useStyles(styles, { ...props, skipSx });
 
       const serialized = serializeStyles([_styles, classInterpolations], cache.registered, props);
       const _style = {

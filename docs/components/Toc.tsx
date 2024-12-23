@@ -1,11 +1,9 @@
 'use client';
 
 import { Stack, Text } from '@react-universal/components';
-import { css, styled } from '@react-universal/core';
-import type { SxProps } from '@react-universal/core';
+import { styled } from '@react-universal/core';
 import { Nav } from '@react-universal/elements';
-import Link from 'next/link';
-import type { LinkProps } from 'next/link';
+import { Link } from '@react-universal/next';
 import { useEffect } from 'react';
 import { scrollIntoView } from '../lib/scrollIntoView';
 import { useScrollSpy } from '../lib/useScrollSpy';
@@ -20,33 +18,22 @@ interface TocProps {
   items: TocItem[];
 }
 
-const TocLink = styled(
-  ({
-    className,
-    style,
-    ...props
-  }: {
-    children?: React.ReactNode;
-    className?: string;
-    id?: string;
-    style?: React.CSSProperties;
-    sx?: SxProps;
-  } & LinkProps) => <Link {...css.props(style)} {...props} />,
-  {
-    name: 'Toc',
-    slot: 'Link',
-  },
-)(({ theme }) => ({
+const TocLink = styled(Link)(({ theme }) => ({
   color: theme.colors.text.muted,
   fontSize: '0.875rem',
   marginInlineStart: 'calc(1rem * var(--toc-depth))',
-  '&[aria-current="page"]': {
-    color: theme.colors.text.default,
-    fontWeight: 700,
-  },
   '&:hover': {
     color: theme.colors.text.default,
   },
+  variants: [
+    {
+      props: { 'aria-current': 'page' as const },
+      style: {
+        color: theme.colors.text.default,
+        fontWeight: 500,
+      },
+    },
+  ],
 }));
 
 export const Toc: React.FC<TocProps> = ({ items }) => {
@@ -68,7 +55,7 @@ export const Toc: React.FC<TocProps> = ({ items }) => {
   return (
     <Nav sx={{ fontSize: '0.875rem' }}>
       <Text sx={{ fontWeight: 600 }}>On this page</Text>
-      <Stack sx={{ mt: 3 }}>
+      <Stack sx={{ gap: 2, mt: 3 }}>
         {items.map((item, index) => (
           <TocLink
             // biome-ignore lint/suspicious/noArrayIndexKey:

@@ -138,6 +138,30 @@ export function createReactDOMStyle(style: RNStyle) {
         nextStyle[prop] = isArray(value) && value.length > 0 ? value.join(' ') : value;
         break;
       }
+      case 'fontWeight': {
+        if (value === 'ultralight') {
+          nextStyle[prop] = 100;
+        } else if (value === 'thin') {
+          nextStyle[prop] = 200;
+        } else if (value === 'light') {
+          nextStyle[prop] = 300;
+        } else if (value === 'regular') {
+          nextStyle[prop] = 400;
+        } else if (value === 'medium') {
+          nextStyle[prop] = 500;
+        } else if (value === 'semibold') {
+          nextStyle[prop] = 600;
+        } else if (value === 'bold') {
+          nextStyle[prop] = 700;
+        } else if (value === 'heavy') {
+          nextStyle[prop] = 800;
+        } else if (value === 'black') {
+          nextStyle[prop] = 900;
+        } else {
+          nextStyle[prop] = value;
+        }
+        break;
+      }
       default: {
         const nextValue = normalizeValueWithProperty(style[prop], prop);
         const longFormProps = shortFormProps[prop];

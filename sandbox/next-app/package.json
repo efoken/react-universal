@@ -13,13 +13,13 @@
     "@react-universal/core": "workspace:*",
     "@react-universal/elements": "workspace:*",
     "@react-universal/next": "workspace:*",
-    "@types/node": "^22.10.1",
-    "@types/react": "~18.3.14",
-    "@types/react-dom": "~18.3.2",
-    "next": "^15.0.4",
+    "@types/node": "^22.10.2",
+    "@types/react": "~18.3.18",
+    "@types/react-dom": "~18.3.5",
+    "next": "^15.1.2",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-native": "0.76.3",
+    "react-native": "0.76.5",
     "typescript": "~5.7.2"
   }
 }

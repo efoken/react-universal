@@ -5,14 +5,8 @@ import { css } from '../css';
 import { interpolate } from '../interpolate';
 import { styleFunctionSx } from '../styleFunctionSx';
 import type { SxProps } from '../sxConfig';
-import type { Theme } from '../theme';
 import type { StyleInterpolation } from '../types';
 import { processStyles } from '../utils/processStyles';
-
-interface UseStylesReturn {
-  styles: AnyObject;
-  theme: Theme;
-}
 
 export function useStyles(
   styles: StyleInterpolation<AnyObject>,
@@ -25,7 +19,7 @@ export function useStyles(
     sx?: SxProps;
     [key: string]: any;
   },
-): UseStylesReturn {
+): AnyObject {
   const stylesheet = useMemo(
     () =>
       css.create((theme, runtime) => {
@@ -43,10 +37,7 @@ export function useStyles(
     [props, skipSx, styles, sx],
   );
 
-  const { styles: _styles, theme } = useUnistyles(stylesheet as any);
+  const { styles: _styles } = useUnistyles(stylesheet as any);
 
-  return {
-    styles: _styles.style,
-    theme,
-  };
+  return _styles.style;
 }

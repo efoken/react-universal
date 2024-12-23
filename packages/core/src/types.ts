@@ -7,8 +7,8 @@ import type {
   TransformsStyle as RNTransformsStyle,
   ViewStyle as RNViewStyle,
 } from 'react-native';
-import type { Breakpoint } from './breakpoints';
 import type { StyleRuntime } from './StyleRuntime';
+import type { Breakpoint } from './breakpoints';
 import type { Theme } from './theme/defaultTheme';
 
 export type { DistributiveOmit } from '@emotion/react';
@@ -16,6 +16,8 @@ export type { DistributiveOmit } from '@emotion/react';
 export type ColorMode = 'light' | 'dark';
 
 export interface RNStyleWeb {
+  /** @platform web */
+  backdropFilter?: React.CSSProperties['backdropFilter'];
   /** @platform web */
   backgroundClip?: React.CSSProperties['backgroundClip'];
   /** @platform web */
@@ -26,6 +28,8 @@ export interface RNStyleWeb {
   caretColor?: React.CSSProperties['caretColor'];
   /** @platform web */
   caretShape?: React.CSSProperties['caretShape'];
+  /** @platform web */
+  justifySelf?: React.CSSProperties['justifySelf'];
   /** @platform web */
   overflowX?: React.CSSProperties['overflowX'];
   /** @platform web */
@@ -70,6 +74,12 @@ export interface RNStyleWeb {
   wordWrap?: React.CSSProperties['wordWrap'];
   /** @platform web */
   [key: `--${string}`]: any;
+  /** @platform web */
+  '&:active'?: RNStyle;
+  /** @platform web */
+  '&:focus'?: RNStyle;
+  /** @platform web */
+  '&:hover'?: RNStyle;
 }
 
 export interface RNStyle

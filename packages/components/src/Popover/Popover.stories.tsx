@@ -7,6 +7,29 @@ import { Popover } from './Popover';
 
 const meta = {
   component: Popover,
+  argTypes: {
+    placement: {
+      control: 'radio',
+      options: [
+        'top',
+        'right',
+        'bottom',
+        'left',
+        'top-start',
+        'top-end',
+        'right-start',
+        'right-end',
+        'bottom-start',
+        'bottom-end',
+        'left-start',
+        'left-end',
+      ],
+    },
+    strategy: {
+      control: 'radio',
+      options: ['absolute', 'fixed'],
+    },
+  },
 } satisfies Meta<typeof Popover>;
 
 export default meta;
@@ -37,5 +60,7 @@ export const Default: Story = {
     children: <Text>The content of the Popover.</Text>,
     id: 'default-popover',
     open: false,
+    placement: 'bottom',
+    strategy: 'absolute',
   },
 };

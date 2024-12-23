@@ -4,8 +4,9 @@ import createCache from '@emotion/cache';
 import type { Options } from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import type { Theme } from '@react-universal/core';
-import { ThemeProvider } from '@react-universal/core';
+import { UniversalProvider } from '@react-universal/core';
 import { isString } from '@react-universal/utils';
+import { ThemeProvider } from 'next-themes';
 import { useServerInsertedHTML } from 'next/navigation';
 import { useState } from 'react';
 
@@ -111,8 +112,10 @@ export const AppRouterProdivder: React.FC<AppRouterProdivderProps> = ({
   });
 
   return (
-    <CacheProvider value={registry.cache}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
-    </CacheProvider>
+    <ThemeProvider>
+      <CacheProvider value={registry.cache}>
+        <UniversalProvider theme={theme}>{children}</UniversalProvider>
+      </CacheProvider>
+    </ThemeProvider>
   );
 };

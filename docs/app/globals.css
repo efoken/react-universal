@@ -1,73 +1,10 @@
 :root {
   --header-height: 64px;
   --content-height: calc(100dvh - var(--header-height));
-
-  --max-width: 1164px;
-  --border-radius: 12px;
-  --font-mono:
-    ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono",
-    "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono",
-    "Courier New", monospace;
-
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-
-  --primary-glow: conic-gradient(
-    from 180deg at 50% 50%,
-    rgba(22, 171, 255, 0.2) 0deg,
-    rgba(8, 133, 255, 0.2) 55deg,
-    rgba(84, 214, 255, 0.2) 120deg,
-    rgba(0, 113, 255, 0.2) 160deg,
-    transparent 360deg
-  );
-  --secondary-glow: radial-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-
-  --callout-rgb: 238, 240, 241;
-  --callout-border-rgb: 172, 175, 176;
-  --card-rgb: 180, 185, 188;
-  --card-border-rgb: 131, 134, 135;
 }
 
 @media (min-width: 600px) {
   :root {
-    --header-height: 104px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-
-    --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
-    --secondary-glow: linear-gradient(
-      to bottom right,
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0.3)
-    );
-
-    --callout-rgb: 20, 20, 20;
-    --callout-border-rgb: 108, 108, 108;
-    --card-rgb: 100, 100, 100;
-    --card-border-rgb: 200, 200, 200;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
-    rgb(var(--background-start-rgb));
-}
-
-html {
-  color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+    --header-height: 64px;
   }
 }

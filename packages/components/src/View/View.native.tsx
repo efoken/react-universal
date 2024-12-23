@@ -43,7 +43,10 @@ export const View = forwardRef<any, ViewProps>(
       ref={ref}
       accessibilityLanguage={lang}
       role={normalizeRole(role)}
-      style={style as any}
+      {...{
+        experimental_layoutConformance: 'strict',
+        style: style as any,
+      }}
       onMoveShouldSetResponder={normalizeResponderEvent(onMoveShouldSetResponder)}
       onMoveShouldSetResponderCapture={normalizeResponderEvent(onMoveShouldSetResponderCapture)}
       onResponderEnd={normalizeResponderEvent(onResponderEnd)}

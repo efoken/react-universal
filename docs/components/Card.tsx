@@ -6,7 +6,7 @@ import { Div, H2, Span } from '@react-universal/elements';
 import { forwardRef, useCallback, useState } from 'react';
 
 interface CardProps {
-  children?: string;
+  children?: React.ReactNode;
   href?: string;
   title?: string;
 }
@@ -30,12 +30,10 @@ export const Card = forwardRef<HTMLAnchorElement & ButtonMethods, CardProps>(
         role="link"
         sx={{
           bgColor: `rgba(var(--card-rgb), ${hovered ? 0.1 : 0})`,
-          borderColor: `rgba(var(--card-border-rgb), ${hovered ? 0.15 : 0})`,
-          borderRadius: 'var(--border-radius)',
+          borderRadius: '0.5rem',
           borderWidth: 1,
           flexDir: 'column',
-          px: { xs: '2.5rem', md: '1.2rem' },
-          py: '1rem',
+          p: 5,
           transitionDuration: '200ms',
           transitionProperty: 'background-color, border-color',
         }}

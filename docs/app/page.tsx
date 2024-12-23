@@ -1,7 +1,7 @@
 import { Box, Container } from '@react-universal/components';
 import { A, Code, Main, P } from '@react-universal/elements';
+import { Image } from '@react-universal/next';
 import { Card } from '../components/Card';
-import { Image } from '../components/Image';
 
 export default function Home() {
   return (
@@ -185,25 +185,25 @@ export default function Home() {
           href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           title="Docs"
         >
-          Find in-depth information about Next.js features and API.
+          <P>Find in-depth information about Next.js features and API.</P>
         </Card>
         <Card
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           title="Learn"
         >
-          Learn about Next.js in an interactive course with quizzes!
+          <P>Learn about Next.js in an interactive course with quizzes!</P>
         </Card>
         <Card
           href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           title="Templates"
         >
-          Explore starter templates for Next.js.
+          <P>Explore starter templates for Next.js.</P>
         </Card>
         <Card
           href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           title="Deploy"
         >
-          Instantly deploy your Next.js site to a shareable URL with Vercel.
+          <P>Instantly deploy your Next.js site to a shareable URL with Vercel.</P>
         </Card>
       </Container>
     </Main>

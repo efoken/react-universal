@@ -8,7 +8,8 @@ function isWebColor(color: string): color is 'currentcolor' | 'inherit' | VarCol
     color.toLowerCase() === 'currentcolor' ||
     color === 'inherit' ||
     color.startsWith('var(') ||
-    color.startsWith('rgba(var(')
+    color.startsWith('rgba(var(') ||
+    color.startsWith('color-mix(')
   );
 }
 

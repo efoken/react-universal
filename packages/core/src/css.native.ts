@@ -24,7 +24,8 @@ export const css = {
     return createUnistylesStyleSheet((theme, runtime) => {
       // FIXME: Use `runIfFunction`
       const _stylesheet = isFunction(stylesheet)
-        ? stylesheet(theme, { ...runtime, breakpoints: theme.breakpoints })
+        ? // @ts-expect-error
+          stylesheet(theme, { ...runtime, breakpoints: theme.breakpoints })
         : stylesheet;
 
       return Object.fromEntries(

@@ -14,9 +14,9 @@ export const Default: Story = {
   args: {
     children: <Text>Button</Text>,
     sx: {
-      backgroundColor: '#ddd',
+      bgColor: '#ddd',
       borderRadius: '1',
-      padding: 1,
+      p: 1,
     },
   },
 };

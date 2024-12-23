@@ -9,6 +9,7 @@ const nextConfig = {
     '@react-universal/components',
     '@react-universal/core',
     '@react-universal/elements',
+    '@react-universal/next',
     '@react-universal/svg',
     '@react-universal/utils',
   ],

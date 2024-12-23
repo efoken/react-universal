@@ -28,6 +28,7 @@ function pickProps<T extends AnyObject>(props: T) {
     ...forwardedProps.touchProps,
     ...forwardedProps.styleProps,
     href: true,
+    htmlFor: true,
     lang: true,
   });
 }

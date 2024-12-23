@@ -16,7 +16,6 @@
   "include": [
     "./.storybook/**/*",
     "./@types/*.d.ts",
-    "./app/**/*",
     "./packages/**/*",
     "./sandbox/**/*",
     "./vitest.config.ts",

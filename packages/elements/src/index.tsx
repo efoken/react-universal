@@ -163,6 +163,14 @@ export const I = createComponent<HTMLElement & TextMethods, Omit<TextProps, 'hre
 export const Img = createComponent<HTMLImageElement & ImageMethods, ImageProps>(Image, 'Img');
 
 /**
+ * "label" (inline)
+ */
+export const Label = createComponent<
+  HTMLElement & TextMethods,
+  Omit<TextProps, 'href' | 'hrefAttrs'> & { htmlFor?: string }
+>(Text, 'Label', { as: 'label' });
+
+/**
  * "main" (block)
  */
 export const Main = createComponent<

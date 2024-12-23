@@ -6,7 +6,7 @@ import {
   Text,
   View,
 } from '@react-universal/components';
-import { ThemeProvider, isWeb, styled } from '@react-universal/core';
+import { UniversalProvider, isWeb, styled } from '@react-universal/core';
 import { Defs, G, Path, Svg, TSpan, Text as TextSvg, Use } from '@react-universal/svg';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import { StatusBar } from 'expo-status-bar';
@@ -60,7 +60,7 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <StatusBar style="auto" />
-      <ThemeProvider>
+      <UniversalProvider>
         <ScrollView>
           <Svg
             sx={{
@@ -297,7 +297,7 @@ export default function App() {
             ))}
           </Grid>
         </ScrollView>
-      </ThemeProvider>
+      </UniversalProvider>
     </SafeAreaProvider>
   );
 }

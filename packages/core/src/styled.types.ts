@@ -1,6 +1,6 @@
 import type { AnyObject } from '@react-universal/utils';
 import type { StyleRuntime } from './StyleRuntime';
-import type { Theme } from './theme/defaultTheme';
+import type { ExtractTheme, Theme } from './theme/defaultTheme';
 import type { StyleInterpolation } from './types';
 
 export interface StyledOptions {
@@ -13,5 +13,7 @@ export interface StyledOptions {
 export type CreateStyledComponent<P extends AnyObject> = <
   AdditionalProps extends AnyObject = NonNullable<unknown>,
 >(
-  styles?: StyleInterpolation<P & AdditionalProps & { runtime: typeof StyleRuntime; theme: Theme }>,
+  styles?: StyleInterpolation<
+    P & AdditionalProps & { runtime: typeof StyleRuntime; theme: ExtractTheme<Theme> }
+  >,
 ) => React.FC<P & AdditionalProps>;

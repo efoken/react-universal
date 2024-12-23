@@ -13,7 +13,7 @@ import type {
 } from './Container.types';
 
 const MIN_WIDTH = '20rem';
-const MAX_WIDTH = '79.75rem';
+const MAX_WIDTH = '90rem';
 
 const ContainerRoot = styled(View)<{ ownerState: ContainerOwnerState }>(({ runtime, theme }) => ({
   marginInline: 'auto',
@@ -24,7 +24,7 @@ const ContainerRoot = styled(View)<{ ownerState: ContainerOwnerState }>(({ runti
   },
   width: '100%',
   variants: [
-    ...(Object.entries(theme.breakpoints) as [Breakpoint, number][]).map(
+    ...(Object.entries(theme.breakpoints) as [Breakpoint, string][]).map(
       ([breakpoint, maxWidth]) => ({
         props: { maxWidth: breakpoint },
         style: {
@@ -51,7 +51,7 @@ const ContainerRoot = styled(View)<{ ownerState: ContainerOwnerState }>(({ runti
 }));
 
 export const Container = forwardRef<HTMLElement & ContainerMethods, ContainerProps>(
-  ({ fixed = false, maxWidth = false, ...props }, ref) => {
+  ({ fixed = false, maxWidth = false, ...props }: ContainerProps, ref) => {
     const ownerState = useOwnerState({
       fixed,
       maxWidth,

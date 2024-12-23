@@ -16,7 +16,7 @@ interface PageHeaderProps {
 
 export const PageHeader: React.FC<PageHeaderProps> = ({ title, description, links }) => (
   <Stack sx={{ gap: 4, pb: 4 }}>
-    <H1>{title}</H1>
+    <H1 sx={{ fontSize: '1.875rem' }}>{title}</H1>
     <Text sx={{ color: 'text.muted' }}>{description}</Text>
     {links && (
       <Stack direction="row" sx={{ gap: 6, mb: 4, flexWrap: 'wrap' }}>

@@ -9,6 +9,7 @@ import {
   mergeDeep,
   noop,
 } from '@react-universal/utils';
+import { isWeb } from '@tamagui/constants';
 import type { BreakpointValue } from '../breakpoints';
 import { handleBreakpoints } from '../breakpoints';
 import type { Theme, ThemeValue } from '../theme/defaultTheme';
@@ -24,8 +25,8 @@ const DIRECTIONS: AnyObject<string | string[]> = {
   r: 'Right',
   b: 'Bottom',
   l: 'Left',
-  s: 'Start',
-  e: 'End',
+  s: 'InlineStart',
+  e: 'InlineEnd',
   x: ['Left', 'Right'],
   y: ['Top', 'Bottom'],
 };
@@ -149,7 +150,7 @@ export function getValue<T extends SpacingValue>(transformer: (abs: any) => any,
     return -transformed;
   }
 
-  return `-${transformed}`;
+  return isWeb ? `calc(${transformed} * -1)` : `-${transformed}`;
 }
 
 export function getStyleFromPropValue(

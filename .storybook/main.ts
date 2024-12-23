@@ -1,3 +1,4 @@
+import { reactUniversal } from '@react-universal/vite-plugin';
 import type { StorybookConfig } from '@storybook/react-vite';
 import { mergeConfig } from 'vite';
 
@@ -15,6 +16,7 @@ const config: StorybookConfig = {
   // eslint-disable-next-line @typescript-eslint/no-shadow
   viteFinal: (config) =>
     mergeConfig(config, {
+      plugins: [reactUniversal()],
       resolve: {
         conditions: ['source'],
       },

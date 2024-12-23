@@ -7,9 +7,9 @@ export class StyleRuntime {
   static #theme: Theme = defaultTheme;
 
   // biome-ignore lint/suspicious/noEmptyBlockStatements:
-  static setTheme(_name: 'default') {}
+  static setTheme(_name: 'light' | 'dark') {}
 
-  static updateTheme(_name: 'default', updater: (theme: Theme) => Theme) {
+  static updateTheme(_name: 'light' | 'dark', updater: (theme: Theme) => Theme) {
     StyleRuntime.#theme = updater(StyleRuntime.#theme);
   }
 

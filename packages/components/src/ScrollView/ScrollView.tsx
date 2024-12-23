@@ -236,7 +236,7 @@ export const ScrollView = forwardRef<HTMLElement & ScrollViewMethods, ScrollView
 
     const handleScroll = (event: ScrollEvent) => {
       if (process.env.NODE_ENV !== 'production' && onScroll != null && scrollEventThrottle === 0) {
-        console.log(
+        console.info(
           'React Universal: You specified `onScroll` on a `<ScrollView>` but ' +
             'not `scrollEventThrottle`. You will only receive one event. ' +
             'Using `16` you get all the events but be aware that it may ' +

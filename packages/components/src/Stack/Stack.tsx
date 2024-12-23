@@ -75,6 +75,20 @@ const StackRoot = styled(View, {
     // @ts-expect-error: It's fine as we check if `propValue` exists in space.
     gap: theme.space[propValue] ?? propValue,
   })),
+  variants: [
+    {
+      props: ({ direction }) => direction === 'row' || direction === 'row-reverse',
+      style: {
+        alignItems: 'center',
+      },
+    },
+    {
+      props: ({ direction }) => direction === 'column' || direction === 'column-reverse',
+      style: {
+        justifyContent: 'center',
+      },
+    },
+  ],
 }));
 
 export const Stack = forwardRef<HTMLElement & ViewMethods, StackProps>(

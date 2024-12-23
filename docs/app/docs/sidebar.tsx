@@ -1,8 +1,54 @@
-import type { BoxProps } from '@react-universal/components';
+'use client';
+
+import type { ViewProps, ViewType } from '@react-universal/components';
 import { Stack } from '@react-universal/components';
 import { Aside } from '@react-universal/elements';
+import { useRef } from 'react';
+import { SideNav } from '#/components/SideNav';
+import { useRoute } from '#/lib/useRoute';
+import { useScrollIntoView } from '#/lib/useScrollIntoView';
 
-export const SidebarEnd: React.FC<BoxProps> = ({ children, sx, ...props }) => (
+export const SidebarStart: React.FC<ViewProps> = (props) => {
+  const containerRef = useRef<React.ElementRef<ViewType>>(null);
+  const route = useRoute();
+
+  useScrollIntoView(containerRef, '[aria-current="page"]', 'center');
+
+  return (
+    <Aside
+      ref={containerRef}
+      sx={{
+        display: { xs: 'none', md: 'block' },
+        flexShrink: 0,
+        fontSize: '0.875rem',
+        height: 'var(--content-height)',
+        ms: -3,
+        overflowY: 'auto',
+        overscrollBehavior: 'contain',
+        pe: 5,
+        position: 'sticky' as any,
+        py: 8,
+        top: 'var(--header-height)',
+        width: '16rem',
+      }}
+      {...props}
+    >
+      <Stack spacing={6}>
+        {route.getSidebarNavItems().map((group) => (
+          <SideNav
+            key={group.title}
+            currentUrl={route.currentUrl}
+            title={group.title}
+            items={group.items}
+            status={group.status}
+          />
+        ))}
+      </Stack>
+    </Aside>
+  );
+};
+
+export const SidebarEnd: React.FC<ViewProps> = ({ children, sx, ...props }) => (
   <Aside
     as="aside"
     sx={{

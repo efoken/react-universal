@@ -46,7 +46,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
     >(({ style, ...props }, ref) => {
       const Component = shouldUseAs ? (props.as ?? component) : component;
 
-      const { styles: _style } = useStyles(styles, { ...props, skipSx });
+      const _style = useStyles(styles, { ...props, skipSx });
 
       const newProps: AnyObject = {};
 

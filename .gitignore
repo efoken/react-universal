@@ -5,6 +5,7 @@ node_modules/
 
 # next.js
 .next/
+.velite/
 
 # Expo
 .expo/

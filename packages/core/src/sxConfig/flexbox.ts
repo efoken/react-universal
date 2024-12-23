@@ -1,4 +1,4 @@
-import { handleBreakpoints, type BreakpointValue } from '../breakpoints';
+import { type BreakpointValue, handleBreakpoints } from '../breakpoints';
 import type { Theme, ThemeValue } from '../theme/defaultTheme';
 import type { RNStyle, SimpleStyleFunction } from '../types';
 import type { SpacingValue } from './spacing';
@@ -36,7 +36,7 @@ export interface FlexboxProps extends FlexboxPropsWeb {
 
 export const gap: SimpleStyleFunction<'gap'> = (props) => {
   if (props.gap != null) {
-    const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'gap');
+    const transformer = createUnaryUnit(props.theme, 'space', 8, 'gap');
     const styleFromPropValue = (propValue: SpacingValue) => ({
       gap: getValue(transformer, propValue),
     });
@@ -48,7 +48,7 @@ gap.filterProps = ['gap'];
 
 export const columnGap: SimpleStyleFunction<'columnGap'> = (props) => {
   if (props.columnGap != null) {
-    const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'columnGap');
+    const transformer = createUnaryUnit(props.theme, 'space', 8, 'columnGap');
     const styleFromPropValue = (propValue: SpacingValue) => ({
       columnGap: getValue(transformer, propValue),
     });
@@ -60,7 +60,7 @@ columnGap.filterProps = ['columnGap'];
 
 export const rowGap: SimpleStyleFunction<'rowGap'> = (props) => {
   if (props.rowGap != null) {
-    const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'rowGap');
+    const transformer = createUnaryUnit(props.theme, 'space', 8, 'rowGap');
     const styleFromPropValue = (propValue: SpacingValue) => ({
       rowGap: getValue(transformer, propValue),
     });

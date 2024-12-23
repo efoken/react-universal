@@ -1,6 +1,5 @@
 import type { AnyObject } from '@react-universal/utils';
 import { isArray, isObject, mergeDeep } from '@react-universal/utils';
-import type { Theme } from './theme/defaultTheme.js';
 
 export const defaultBreakpoints = {
   xs: 0,
@@ -18,7 +17,7 @@ export type Breakpoint = keyof Breakpoints;
 export type BreakpointValue<T> = T | (T | undefined)[] | Partial<Record<Breakpoint, T | undefined>>;
 
 export function handleBreakpoints<T extends (value: any) => AnyObject>(
-  props: { theme: Theme },
+  props: { theme: { breakpoints: Record<string, any> } },
   propValue: unknown,
   styleFromPropValue: T,
 ): ReturnType<T> {

@@ -1,4 +1,4 @@
-import type { ThemeProvider as ThemeProviderType } from '@react-universal/core';
+import type { UniversalProvider as UniversalProviderType } from '@react-universal/core';
 import { defaultTheme } from '@react-universal/core';
 import '@testing-library/jest-dom/vitest';
 import { cleanup } from '@testing-library/react';
@@ -14,9 +14,11 @@ function useTheme() {
 
 beforeAll(() => {
   vi.mock('./packages/core/src/contexts/ThemeContext', async (importOriginal) => {
-    const { ThemeProvider } = await importOriginal<{ ThemeProvider: typeof ThemeProviderType }>();
+    const { UniversalProvider } = await importOriginal<{
+      UniversalProvider: typeof UniversalProviderType;
+    }>();
     return {
-      ThemeProvider,
+      UniversalProvider,
       useTheme,
     };
   });
