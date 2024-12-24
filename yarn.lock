@@ -3463,6 +3463,38 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@pigment-css/react@npm:^0.0.29":
+  version: 0.0.29
+  resolution: "@pigment-css/react@npm:0.0.29"
+  dependencies:
+    "@babel/core": "npm:^7.26.0"
+    "@babel/helper-module-imports": "npm:^7.25.9"
+    "@babel/helper-plugin-utils": "npm:^7.25.9"
+    "@babel/parser": "npm:^7.26.2"
+    "@babel/types": "npm:^7.26.0"
+    "@emotion/css": "npm:^11.13.4"
+    "@emotion/is-prop-valid": "npm:^1.3.1"
+    "@emotion/react": "npm:^11.13.3"
+    "@emotion/serialize": "npm:^1.3.2"
+    "@emotion/styled": "npm:^11.13.0"
+    "@mui/system": "npm:^6.1.6"
+    "@mui/utils": "npm:^6.1.6"
+    "@wyw-in-js/processor-utils": "npm:^0.5.5"
+    "@wyw-in-js/shared": "npm:^0.5.5"
+    "@wyw-in-js/transform": "npm:^0.5.5"
+    clsx: "npm:^2.1.1"
+    cssesc: "npm:^3.0.0"
+    csstype: "npm:^3.1.3"
+    lodash: "npm:^4.17.21"
+    prop-types: "npm:^15.8.1"
+    stylis: "npm:^4.3.4"
+    stylis-plugin-rtl: "npm:^2.1.1"
+  peerDependencies:
+    react: ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/116890ccff9a6ab0b76627e19b4cd633c9fd39fe0aa973d2b625beb9451034fb24318c9ed053a29943e2daa9effd8beac0d0573513071a7b5653c89276afbcd9
+  languageName: node
+  linkType: hard
+
 "@pigment-css/vite-plugin@npm:^0.0.28":
   version: 0.0.28
   resolution: "@pigment-css/vite-plugin@npm:0.0.28"
@@ -3888,7 +3920,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@react-universal/vite-plugin@workspace:packages/vite-plugin"
   dependencies:
-    "@pigment-css/react": "npm:^0.0.28"
+    "@pigment-css/react": "npm:^0.0.29"
     "@pigment-css/vite-plugin": "npm:^0.0.28"
     "@react-universal/core": "workspace:*"
     esbuild: "npm:^0.24.2"
