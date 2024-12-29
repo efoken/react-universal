@@ -28,6 +28,9 @@ export const theme = createTheme({
     heading: {
       family: font.style.fontFamily,
     },
+    mono: {
+      family: 'monospace',
+    },
   },
 });
 

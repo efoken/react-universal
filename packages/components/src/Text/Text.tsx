@@ -38,8 +38,7 @@ const TextRoot = styled('div', {
   slot: 'Root',
 })<{ ownerState: TextOwnerState }>(({ theme }) => ({
   backgroundColor: 'transparent',
-  fontFamily: theme.fonts.body.family,
-  textAlign: 'start' as any,
+  fontFamily: theme.fonts.body,
   whiteSpace: 'pre-wrap',
   wordWrap: 'break-word',
   variants: [
@@ -47,7 +46,6 @@ const TextRoot = styled('div', {
       props: { hasTextAncestor: true },
       style: {
         fontFamily: 'inherit',
-        textAlign: 'inherit' as any,
         whiteSpace: 'inherit',
       },
     },

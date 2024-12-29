@@ -14,7 +14,7 @@ type Prettify<T> = {
 
 export type ThemeColor = string | { _light: string; _dark: string };
 
-type Font = {
+export type ThemeFont = {
   family: string;
   weights: Partial<Record<100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900, { normal: string }>>;
 };
@@ -35,8 +35,9 @@ interface DefaultTheme {
     };
   };
   fonts: {
-    heading: Font;
-    body: Font;
+    body: ThemeFont;
+    heading: ThemeFont;
+    mono: ThemeFont;
   };
   space: {
     0: number;
@@ -80,6 +81,13 @@ export const defaultTheme: DefaultTheme = {
     },
   },
   fonts: {
+    body: {
+      family: 'Roboto, sans-serif',
+      weights: {
+        400: { normal: 'Roboto-Regular' },
+        700: { normal: 'Roboto-Bold' },
+      },
+    },
     heading: {
       family: 'Roboto, sans-serif',
       weights: {
@@ -87,11 +95,11 @@ export const defaultTheme: DefaultTheme = {
         700: { normal: 'Roboto-Bold' },
       },
     },
-    body: {
-      family: 'Roboto, sans-serif',
+    mono: {
+      family: 'Roboto Mono, sans-serif',
       weights: {
-        400: { normal: 'Roboto-Regular' },
-        700: { normal: 'Roboto-Bold' },
+        400: { normal: 'RobotoMono-Regular' },
+        700: { normal: 'RobotoMono-Bold' },
       },
     },
   },
@@ -130,13 +138,11 @@ export type ThemeValue<T extends AnyObject> = {
 export type ExtractTheme<T> = Prettify<{
   [K in keyof T]: K extends 'sxConfig'
     ? T[K]
-    : T[K] extends number | ThemeColor
+    : T[K] extends number | ThemeColor | ThemeFont
       ? string
-      : T[K] extends Font
-        ? T[K]
-        : T[K] extends AnyObject
-          ? ExtractTheme<T[K]>
-          : T[K];
+      : T[K] extends AnyObject
+        ? ExtractTheme<T[K]>
+        : T[K];
 }>;
 
 // @ts-ignore: react-native-unistyles is not always installed, as it's optional

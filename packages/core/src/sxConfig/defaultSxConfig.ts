@@ -254,7 +254,7 @@ export const defaultSxConfig: SxConfig = {
 
   // Typography
   color: { themeKey: 'colors' },
-  fontFamily: {},
+  fontFamily: { themeKey: 'fonts' },
   fontSize: {},
   fontStyle: {},
   fontWeight: {},

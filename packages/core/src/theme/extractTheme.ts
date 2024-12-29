@@ -12,11 +12,11 @@ export type ExtractedTheme<T extends AnyObject = Theme> = {
 
 export function extractTheme(theme: Theme, mode: 'light' | 'dark') {
   const traverse = (obj: any) => {
-    if (!isObject(obj) || obj == null) {
-      return obj;
-    }
     if (isNumber(obj)) {
       return `${obj}px`;
+    }
+    if (!isObject(obj)) {
+      return obj;
     }
     if (Object.hasOwn(obj, '_light') && Object.hasOwn(obj, '_dark')) {
       return obj[`_${mode}`];

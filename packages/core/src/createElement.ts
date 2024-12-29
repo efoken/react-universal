@@ -3,17 +3,11 @@
 import type { AnyObject } from '@react-universal/utils';
 import { isString } from '@react-universal/utils';
 import { createElement as createReactElement } from 'react';
-import type { Role as RNRole } from 'react-native';
 import { LocaleProvider } from './contexts/LocaleContext';
 import { css } from './css';
 import type { AccessibilityRole, StyleProp } from './types';
 
-const roleComponents: Partial<
-  Record<
-    'blockquote' | 'code' | 'deletion' | 'emphasis' | 'insertion' | 'paragraph' | 'strong' | RNRole,
-    keyof React.JSX.IntrinsicElements
-  >
-> = {
+const roleComponents: Partial<Record<AccessibilityRole, keyof React.JSX.IntrinsicElements>> = {
   article: 'article',
   banner: 'header',
   blockquote: 'blockquote',
@@ -38,10 +32,6 @@ const roleComponents: Partial<
 function propsToAccessibilityComponent(
   props: { 'aria-level'?: number; role?: AccessibilityRole } = {},
 ) {
-  // Special-case for "label" role which doesn't map to an ARIA role
-  if (props.role === 'label') {
-    return 'label';
-  }
   if (props.role != null) {
     if (props.role === 'heading') {
       const level = props['aria-level'];
@@ -50,7 +40,6 @@ function propsToAccessibilityComponent(
       }
       return 'h1';
     }
-    // @ts-expect-error: It's fine if role doesn't exist, we return `undefined`
     return roleComponents[props.role];
   }
 }

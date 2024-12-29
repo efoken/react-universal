@@ -15,7 +15,7 @@ export interface TypographyPropsWeb {
 
 export interface TypographyProps extends TypographyPropsWeb {
   color?: TypographyProp<RNStyle['color'], 'colors'>;
-  fontFamily?: TypographyProp<RNStyle['fontFamily']>;
+  fontFamily?: TypographyProp<RNStyle['fontFamily'], 'fonts'>;
   fontSize?: TypographyProp<RNStyle['fontSize']>;
   fontStyle?: TypographyProp<RNStyle['fontStyle']>;
   fontWeight?: TypographyProp<RNStyle['fontWeight']>;

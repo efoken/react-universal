@@ -24,7 +24,7 @@ const HeadingRoot = styled(Text, {
   name: 'Heading',
   slot: 'Root',
 })(({ theme }) => ({
-  fontFamily: theme.fonts.heading.family,
+  fontFamily: theme.fonts.heading,
   fontWeight: 700,
 }));
 

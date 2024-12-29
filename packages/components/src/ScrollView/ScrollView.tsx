@@ -72,7 +72,7 @@ const ScrollViewStickyHeader = styled(View, {
   name: 'ScrollView',
   slot: 'StickyHeader',
 })({
-  position: 'sticky' as any,
+  position: 'sticky',
   top: 0,
   zIndex: 10,
 });

@@ -22,7 +22,7 @@ export default function Home() {
           alignItems: 'center',
           display: 'flex',
           flexDir: 'row',
-          fontFamily: 'var(--font-mono)',
+          fontFamily: 'mono',
           fontSize: { xs: '0.8rem', md: '0.85rem' },
           justifyContent: 'space-between',
           maxW: { xl: 'var(--max-width)' },
@@ -32,11 +32,11 @@ export default function Home() {
         <P
           sx={{
             alignItems: 'center',
-            backdropFilter: { xs: 'blur(24px)', md: 'unset' },
+            backdropFilter: { xs: 'blur(24px)', md: 'none' },
             backgroundClip: { xs: 'padding-box', md: 'unset' },
             backgroundImage: {
               xs: 'linear-gradient(to bottom, rgba(var(--background-start-rgb), 1), rgba(var(--callout-rgb), 0.5))',
-              md: 'unset',
+              md: 'none',
             },
             bgColor: { xs: 'transparent', md: 'rgba(var(--callout-rgb), 0.5)' },
             borderBottomWidth: 1,
@@ -48,44 +48,43 @@ export default function Home() {
             borderRadius: { xs: 0, md: 'var(--border-radius)' },
             borderRightWidth: { xs: 0, md: 1 },
             borderTopWidth: { xs: 0, md: 1 },
-            bottom: { xs: 'auto', md: 'unset' },
+            bottom: 'auto',
             display: { xs: 'flex', md: 'block' },
             fontFamily: 'inherit',
             justifyContent: 'center',
-            left: { xs: 0, md: 'unset' },
+            left: 0,
             m: 0,
             pb: { xs: '1.4rem', md: '1rem' },
-            position: { xs: 'fixed', md: 'unset' as any },
+            position: { xs: 'fixed', md: 'static' },
             pt: { xs: '2rem', md: '1rem' },
             px: '1rem',
-            right: { xs: 0, md: 'unset' },
-            top: { xs: 0, md: 'unset' },
-            w: { xs: '100%', md: 'unset' },
+            right: 0,
+            top: 0,
+            w: { xs: '100%', md: 'auto' },
           }}
         >
           Get started by editing&nbsp;
-          <Code sx={{ fontFamily: 'var(--font-mono)', fontWeight: 700 }}>app/page.tsx</Code>
+          <Code sx={{ fontWeight: 700 }}>app/page.tsx</Code>
         </P>
         <Box
           sx={{
-            alignItems: { xs: 'flex-end', md: 'unset' as any },
+            alignItems: 'flex-end',
             backgroundImage: {
               xs: 'linear-gradient(to bottom, transparent 0%, rgb(var(--background-end-rgb)) 40%)',
-              md: 'unset',
+              md: 'none',
             },
-            bottom: { xs: 0, md: 'unset' },
-            display: { xs: 'flex', md: 'unset' as any },
-            flexDir: { xs: 'row', md: 'unset' as any },
-            h: { xs: 200, md: 'unset' },
-            justifyContent: { xs: 'center', md: 'unset' as any },
-            left: { xs: 0, md: 'unset' },
+            bottom: 0,
+            display: { xs: 'flex', md: 'block' },
+            h: { xs: 200, md: 'auto' },
+            justifyContent: 'center',
+            left: 0,
             p: { xs: '2rem', md: 0 },
-            pointerEvents: { xs: 'none', md: 'unset' as any },
-            position: { xs: 'fixed', md: 'unset' as any },
-            right: { xs: 0, md: 'unset' },
-            top: { xs: 'auto', md: 'unset' },
-            w: { xs: '100%', md: 'unset' },
-            zIndex: { xs: 1, md: 'unset' as any },
+            pointerEvents: { xs: 'none', md: 'auto' },
+            position: { xs: 'fixed', md: 'static' },
+            right: 0,
+            top: 'auto',
+            w: { xs: '100%', md: 'auto' },
+            zIndex: 1,
           }}
         >
           <A
@@ -168,15 +167,15 @@ export default function Home() {
       <Container
         maxWidth="xl"
         sx={{
-          display: 'grid' as any,
+          display: 'grid',
           gridTemplateColumns: {
             xs: '1fr',
             md: 'repeat(2, 50%)',
             xl: 'repeat(4, minmax(25%, auto))',
           },
           maxW: { xs: 368, md: '100%' },
-          mb: { xs: 120, md: 'unset' },
-          mx: 'unset',
+          mb: { xs: 120, md: 0 },
+          mx: 0,
           textAlign: { xs: 'center', md: 'unset' as any },
           w: 'var(--max-width)',
         }}

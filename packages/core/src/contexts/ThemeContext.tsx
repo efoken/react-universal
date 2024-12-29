@@ -7,6 +7,7 @@ import { createContext, useContext } from 'react';
 import type { Theme } from '../theme/defaultTheme';
 import { defaultTheme } from '../theme/defaultTheme';
 import { extractTheme } from '../theme/extractTheme';
+import { isFont } from '../utils/isFont';
 import type { UniversalProviderProps } from './ThemeContext.types';
 
 const ThemeContext = createContext<Theme>(undefined as any);
@@ -15,10 +16,14 @@ function createCSSVariables(obj: AnyObject, parentKey = '') {
   const result: Record<`--${string}`, any> = {};
 
   const traverse = (currentObj: any, currentKey: string | number) => {
-    if (isObject(currentObj) && currentObj != null) {
-      for (const key of Object.keys(currentObj)) {
-        const newKey = currentKey ? `${currentKey}-${key}` : key;
-        traverse(currentObj[key], newKey);
+    if (isObject(currentObj)) {
+      if (isFont(currentObj)) {
+        result[`--${currentKey}`] = currentObj.family;
+      } else {
+        for (const key of Object.keys(currentObj)) {
+          const newKey = currentKey ? `${currentKey}-${key}` : key;
+          traverse(currentObj[key], newKey);
+        }
       }
     } else if (isArray(currentObj)) {
       for (const key of currentObj.keys()) {

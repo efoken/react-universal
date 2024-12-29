@@ -162,6 +162,10 @@ export function createReactDOMStyle(style: RNStyle) {
         }
         break;
       }
+      case 'textAlign': {
+        nextStyle[prop] = value === 'auto' ? 'unset' : value;
+        break;
+      }
       default: {
         const nextValue = normalizeValueWithProperty(style[prop], prop);
         const longFormProps = shortFormProps[prop];

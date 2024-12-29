@@ -1,5 +1,5 @@
 import type { AnyObject } from '@react-universal/utils';
-import { normalizeEvent } from '@react-universal/utils';
+import { isFunction, normalizeEvent } from '@react-universal/utils';
 import type { ImageLoadEventData, NativeSyntheticEvent } from 'react-native';
 import type { ImageSize } from './Image.types';
 
@@ -130,7 +130,7 @@ export const ImageLoader = {
             source: { height: image.naturalHeight, uri, width: image.naturalWidth },
           }),
         );
-      if (typeof image.decode === 'function') {
+      if (isFunction(image.decode)) {
         // Safari currently throws exceptions when decoding SVGs. We want to
         // catch that error and allow the load handler to be forwarded to the
         // onLoad handler in this case

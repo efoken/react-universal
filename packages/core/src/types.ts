@@ -114,6 +114,7 @@ export interface RNStyle
       | 'insetInlineEnd'
       | 'insetInlineStart'
       | 'left'
+      | 'letterSpacing'
       | 'margin'
       | 'marginBlock'
       | 'marginBlockEnd'
@@ -195,7 +196,7 @@ export interface RNStyle
   bottom?: NonNullable<RNViewStyle['bottom']> | (string & {});
   boxShadow?: string;
   columnGap?: string | number;
-  display?: RNViewStyle['display'] | 'block';
+  display?: RNViewStyle['display'] | 'block' | 'grid';
   filter?: string;
   flexBasis?: NonNullable<RNViewStyle['flexBasis']> | (string & {});
   fontSize?: NonNullable<RNTextStyle['fontSize']> | (string & {});
@@ -210,6 +211,7 @@ export interface RNStyle
   insetInlineEnd?: NonNullable<RNViewStyle['insetInlineEnd']> | (string & {});
   insetInlineStart?: NonNullable<RNViewStyle['insetInlineStart']> | (string & {});
   left?: NonNullable<RNViewStyle['left']> | (string & {});
+  letterSpacing?: NonNullable<RNTextStyle['letterSpacing']> | (string & {});
   margin?: NonNullable<RNViewStyle['margin']> | (string & {});
   marginBlock?: NonNullable<RNViewStyle['marginBlock']> | (string & {});
   marginBlockEnd?: NonNullable<RNViewStyle['marginBlockEnd']> | (string & {});
@@ -241,7 +243,7 @@ export interface RNStyle
   paddingRight?: NonNullable<RNViewStyle['paddingRight']> | (string & {});
   paddingTop?: NonNullable<RNViewStyle['paddingTop']> | (string & {});
   placeContent?: Exclude<NonNullable<RNViewStyle['alignContent']>, 'stretch'>;
-  position?: RNViewStyle['position'] | 'fixed';
+  position?: RNViewStyle['position'] | 'fixed' | 'sticky';
   right?: NonNullable<RNViewStyle['right']> | (string & {});
   rowGap?: string | number;
   top?: NonNullable<RNViewStyle['top']> | (string & {});
@@ -290,7 +292,17 @@ export type SimpleStyleFunction<K extends string> = StyleFunction<
   { theme: Theme } & Partial<Record<K, any>>
 > & { filterProps: string[] };
 
-export type AccessibilityRole = 'code' | 'label' | 'listbox' | 'paragraph' | 'textbox' | RNRole;
+export type AccessibilityRole =
+  | 'blockquote'
+  | 'code'
+  | 'deletion'
+  | 'emphasis'
+  | 'insertion'
+  | 'listbox'
+  | 'paragraph'
+  | 'strong'
+  | 'textbox'
+  | RNRole;
 
 export interface AccessibilityProps
   extends Omit<

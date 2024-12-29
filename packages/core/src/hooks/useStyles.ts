@@ -9,6 +9,7 @@ import { styleFunctionSx } from '../styleFunctionSx';
 import type { SxProps } from '../sxConfig';
 import type { ExtractTheme, Theme } from '../theme';
 import type { StyleInterpolation } from '../types';
+import { isFont } from '../utils/isFont';
 import { processStyles } from '../utils/processStyles';
 
 const transformToCSSVariables = memo((theme: Theme) => {
@@ -17,8 +18,10 @@ const transformToCSSVariables = memo((theme: Theme) => {
   const traverse = (obj: any, currentKey: string) =>
     Object.entries(obj).reduce<any>((acc, [key, value]) => {
       const newKey = currentKey ? `${currentKey}-${key}` : key;
-      if (isObject(value) && value != null) {
+      if (isObject(value)) {
         if (Object.hasOwn(value, '_light') && Object.hasOwn(value, '_dark')) {
+          acc[key] = `var(--${newKey})`;
+        } else if (isFont(value)) {
           acc[key] = `var(--${newKey})`;
         } else {
           acc[key] = traverse(value, newKey);

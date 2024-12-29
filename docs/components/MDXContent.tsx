@@ -1,4 +1,4 @@
-import { A, H2, H3, H4, Img, P, Strong } from '@react-universal/elements';
+import { A, H2, H3, H4, Hr, Img, Kbd, P, Strong } from '@react-universal/elements';
 import type { AnyObject } from '@react-universal/utils';
 import * as runtime from 'react/jsx-runtime';
 import { Card } from './Card';
@@ -22,7 +22,7 @@ const sharedComponents = {
   h4: (props: Pick<React.HTMLProps<HTMLHeadingElement>, 'children' | 'id'>) => (
     <H4 sx={{ fontSize: '1.125rem', mb: 1, mt: 7 }} {...props} />
   ),
-  // kbd: Kbd,
+  kbd: Kbd,
   pre: Pre,
   code: Code,
   // ol: Ol,
@@ -35,7 +35,7 @@ const sharedComponents = {
   // card: Card,
   // "card-group": CardGroup,
   Card,
-  // hr: Hr,
+  hr: Hr,
   // "code-block": CodeBlock,
 };
 

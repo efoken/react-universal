@@ -19,7 +19,7 @@ import {
   Text,
   View,
 } from '@react-universal/components';
-import type { RNStyle, StyleProp } from '@react-universal/core';
+import type { ExtractTheme, StyleInterpolation, StyleProp, Theme } from '@react-universal/core';
 import { styled } from '@react-universal/core';
 import type { AnyObject } from '@react-universal/utils';
 import { forwardRef } from 'react';
@@ -28,7 +28,7 @@ function createComponent<T = any, P extends { style?: StyleProp<any> } = AnyObje
   Base: React.ComponentType<P>,
   name: Capitalize<string>,
   defaultProps: Partial<P> = {},
-  styles?: RNStyle,
+  styles?: StyleInterpolation<P & { theme: ExtractTheme<Theme> }>,
 ) {
   const ComponentRoot = styled<any>(Base, { name, slot: 'Root' })(styles);
   const Component = forwardRef<T, Omit<P, 'as'>>((props, ref) => (
@@ -70,6 +70,30 @@ export const B = createComponent<HTMLElement & TextMethods, Omit<TextProps, 'hre
 );
 
 /**
+ * "bdi" (inline)
+ */
+export const Bdi = createComponent<
+  HTMLElement & TextMethods,
+  Omit<TextProps, 'href' | 'hrefAttrs'>
+>(Text, 'Bdi', { as: 'bdi' });
+
+/**
+ * "bdo" (inline)
+ */
+export const Bdo = createComponent<
+  HTMLElement & TextMethods,
+  Omit<TextProps, 'href' | 'hrefAttrs'>
+>(Text, 'Bdo', { as: 'bdo' });
+
+/**
+ * "blockquote" (inline)
+ */
+export const Blockquote = createComponent<
+  HTMLElement & ViewMethods,
+  Omit<ViewProps, 'href' | 'hrefAttrs'>
+>(View, 'Blockquote', { role: 'blockquote' });
+
+/**
  * "button" (block)
  */
 export const Button = createComponent<
@@ -83,7 +107,17 @@ export const Button = createComponent<
 export const Code = createComponent<
   HTMLElement & TextMethods,
   Omit<TextProps, 'href' | 'hrefAttrs'>
->(Text, 'Code', { role: 'code' }, { fontFamily: 'monospace' });
+>(Text, 'Code', { role: 'code' }, ({ theme }) => ({
+  fontFamily: theme.fonts.mono,
+}));
+
+/**
+ * "del" (inline)
+ */
+export const Del = createComponent<
+  HTMLElement & TextMethods,
+  Omit<TextProps, 'href' | 'hrefAttrs'>
+>(Text, 'Del', { role: 'deletion' }, { textDecorationLine: 'line-through' });
 
 /**
  * "div" (block)
@@ -99,9 +133,17 @@ export const Div = createComponent<
 export const Em = createComponent<HTMLElement & TextMethods, Omit<TextProps, 'href' | 'hrefAttrs'>>(
   Text,
   'Em',
-  { as: 'em' },
+  { role: 'emphasis' },
   { fontStyle: 'italic' },
 );
+
+/**
+ * "fieldset" (block)
+ */
+export const Fieldset = createComponent<
+  HTMLFieldSetElement & ViewMethods,
+  Omit<ViewProps, 'href' | 'hrefAttrs'>
+>(View, 'Fieldset');
 
 /**
  * "footer" (block)
@@ -148,6 +190,17 @@ export const Header = createComponent<
 >(View, 'Header', { role: 'banner' });
 
 /**
+ * "hr" (block)
+ */
+export const Hr = createComponent<
+  HTMLHRElement & ViewMethods,
+  Omit<ViewProps, 'href' | 'hrefAttrs'>
+>(View, 'Hr', { as: 'hr' }, ({ theme }) => ({
+  backgroundColor: theme.colors.border.default,
+  height: 1,
+}));
+
+/**
  * "i" (inline)
  */
 export const I = createComponent<HTMLElement & TextMethods, Omit<TextProps, 'href' | 'hrefAttrs'>>(
@@ -161,6 +214,24 @@ export const I = createComponent<HTMLElement & TextMethods, Omit<TextProps, 'hre
  * "img" (inline)
  */
 export const Img = createComponent<HTMLImageElement & ImageMethods, ImageProps>(Image, 'Img');
+
+/**
+ * "ins" (inline)
+ */
+export const Ins = createComponent<
+  HTMLElement & TextMethods,
+  Omit<TextProps, 'href' | 'hrefAttrs'>
+>(Text, 'Ins', { role: 'insertion' }, { textDecorationLine: 'underline' });
+
+/**
+ * "kbd" (inline)
+ */
+export const Kbd = createComponent<
+  HTMLElement & TextMethods,
+  Omit<TextProps, 'href' | 'hrefAttrs'>
+>(Text, 'Kbd', { as: 'kbd' }, ({ theme }) => ({
+  fontFamily: theme.fonts.mono,
+}));
 
 /**
  * "label" (inline)
@@ -184,7 +255,10 @@ export const Main = createComponent<
 export const Mark = createComponent<
   HTMLElement & TextMethods,
   Omit<TextProps, 'href' | 'hrefAttrs'>
->(Text, 'Mark', { as: 'mark' });
+>(Text, 'Mark', { as: 'mark' }, ({ theme }) => ({
+  backgroundColor: 'yellow',
+  color: theme.colors.text.default,
+}));
 
 /**
  * "nav" (block)
@@ -195,12 +269,38 @@ export const Nav = createComponent<
 >(View, 'Nav', { role: 'navigation' });
 
 /**
+ * "ol" (block)
+ */
+export const Ol = createComponent<
+  HTMLOListElement & ViewMethods,
+  Omit<ViewProps, 'href' | 'hrefAttrs'>
+>(View, 'Ol', { as: 'ol' });
+
+/**
  * "p" (block)
  */
 export const P = createComponent<
   HTMLParagraphElement & TextMethods,
   Omit<TextProps, 'href' | 'hrefAttrs'>
 >(Text, 'P', { role: 'paragraph' });
+
+/**
+ * "pre" (block)
+ */
+export const Pre = createComponent<
+  HTMLPreElement & ViewMethods,
+  Omit<ViewProps, 'href' | 'hrefAttrs'>
+>(View, 'Pre', { as: 'pre' }, ({ theme }) => ({
+  fontFamily: theme.fonts.mono,
+}));
+
+/**
+ * "s" (block)
+ */
+export const S = createComponent<
+  HTMLParagraphElement & TextMethods,
+  Omit<TextProps, 'href' | 'hrefAttrs'>
+>(Text, 'S', { as: 's' }, { textDecorationLine: 'line-through' });
 
 /**
  * "section" (block)
@@ -224,4 +324,38 @@ export const Span = createComponent<
 export const Strong = createComponent<
   HTMLElement & TextMethods,
   Omit<TextProps, 'href' | 'hrefAttrs'>
->(Text, 'Strong', { as: 'strong' }, { fontWeight: 700 });
+>(Text, 'Strong', { role: 'strong' }, { fontWeight: 700 });
+
+/**
+ * "sub" (inline)
+ */
+export const Sub = createComponent<
+  HTMLElement & TextMethods,
+  Omit<TextProps, 'href' | 'hrefAttrs'>
+>(Text, 'Sub', { as: 'sub' });
+
+/**
+ * "sup" (inline)
+ */
+export const Sup = createComponent<
+  HTMLElement & TextMethods,
+  Omit<TextProps, 'href' | 'hrefAttrs'>
+>(Text, 'Sup', { as: 'sup' });
+
+/**
+ * "u" (inline)
+ */
+export const U = createComponent<HTMLElement & TextMethods, Omit<TextProps, 'href' | 'hrefAttrs'>>(
+  Text,
+  'U',
+  { as: 'u' },
+  { textDecorationLine: 'line-through' },
+);
+
+/**
+ * "ul" (block)
+ */
+export const Ul = createComponent<
+  HTMLUListElement & ViewMethods,
+  Omit<ViewProps, 'href' | 'hrefAttrs'>
+>(View, 'Ul', { role: 'list' });
