@@ -11,7 +11,6 @@ import { Defs, G, Path, Svg, TSpan, Text as TextSvg, Use } from '@react-universa
 import * as ScreenOrientation from 'expo-screen-orientation';
 import { StatusBar } from 'expo-status-bar';
 import { useRef, useState } from 'react';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 if (!isWeb) {
   ScreenOrientation.unlockAsync().catch(console.log);
@@ -58,7 +57,7 @@ export default function App() {
   const anchorRef = useRef<React.ElementRef<typeof ButtonBase>>(null);
 
   return (
-    <SafeAreaProvider>
+    <View>
       <StatusBar style="auto" />
       <UniversalProvider>
         <ScrollView>
@@ -298,6 +297,6 @@ export default function App() {
           </Grid>
         </ScrollView>
       </UniversalProvider>
-    </SafeAreaProvider>
+    </View>
   );
 }
