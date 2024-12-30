@@ -17,7 +17,7 @@
     "@react-universal/svg": "workspace:*",
     "@types/react": "~18.3.18",
     "expo": "^52.0.23",
-    "expo-dev-client": "~5.0.7",
+    "expo-dev-client": "~5.0.8",
     "expo-screen-orientation": "~8.0.2",
     "expo-splash-screen": "~0.29.18",
     "expo-status-bar": "~2.0.0",
