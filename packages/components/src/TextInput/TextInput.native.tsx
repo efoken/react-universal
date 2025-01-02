@@ -17,9 +17,10 @@ import type { TextInputProps, TextInputType } from './TextInput.types';
 const TextInputRoot = styled(RNTextInput, {
   name: 'TextInput',
   slot: 'Root',
-})({
+})(({ theme }) => ({
+  fontFamily: theme.fonts.body,
   position: 'static',
-});
+}));
 
 export const TextInput = forwardRef<any, TextInputProps>(
   (

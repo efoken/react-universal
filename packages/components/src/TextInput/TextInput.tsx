@@ -93,7 +93,7 @@ const TextInputRoot = styled('input', {
   borderColor: theme.colors.border.default,
   borderStyle: 'solid',
   borderWidth: 0,
-  fontFamily: theme.fonts.body.family,
+  fontFamily: theme.fonts.body,
   resize: 'none',
   '&::placeholder': {
     color: 'var(--placeholder-text-color)',
