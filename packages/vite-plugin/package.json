@@ -23,7 +23,7 @@
     "dev": "run esbuild src/index.ts --outfile=dist/index.js --format=cjs --log-level=silent"
   },
   "dependencies": {
-    "@pigment-css/react": "^0.0.28",
+    "@pigment-css/react": "^0.0.30",
     "@pigment-css/vite-plugin": "^0.0.28",
     "@react-universal/core": "workspace:*"
   },
