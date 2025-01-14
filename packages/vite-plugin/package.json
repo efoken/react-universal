@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@pigment-css/react": "^0.0.28",
-    "@pigment-css/vite-plugin": "^0.0.28",
+    "@pigment-css/vite-plugin": "^0.0.30",
     "@react-universal/core": "workspace:*"
   },
   "devDependencies": {
