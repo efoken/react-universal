@@ -13,7 +13,7 @@
     "typecheck": "yarn tsc && yarn workspaces foreach -Apt run typecheck"
   },
   "resolutions": {
-    "vite": "^5.4.11"
+    "vite": "^6.3.5"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
@@ -39,7 +39,7 @@
     "storybook": "^8.4.7",
     "tsup": "^8.3.5",
     "typescript": "~5.7.2",
-    "vite": "^5.4.11",
+    "vite": "^6.3.5",
     "vitest": "^2.1.8"
   },
   "packageManager": "yarn@4.6.0"
