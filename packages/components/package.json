@@ -37,7 +37,7 @@
     "build": "tsup src/index.ts src/*/index.ts"
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.7.0",
+    "@floating-ui/dom": "^1.7.1",
     "@floating-ui/react-native": "^0.10.7",
     "@react-universal/core": "workspace:*",
     "@tamagui/compose-refs": "^1.126.12"
