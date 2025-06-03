@@ -1,7 +1,7 @@
 import type { AnyObject } from '@react-universal/utils';
-import { isFunction, isObject, isString, mergeDeep } from '@react-universal/utils';
-import type { StyleMiniRuntime } from './StyleRuntime';
+import { isObject, isString, mergeDeep, runIfFunction } from '@react-universal/utils';
 import { createReactDOMStyle } from './createReactDOMStyle';
+import type { StyleMiniRuntime } from './StyleRuntime';
 import type { Theme } from './theme';
 import type { StyleProp, StyleValues } from './types';
 
@@ -46,7 +46,6 @@ export const css = {
         if ('$$css' in a && a.$$css === true) {
           classNames = [...classNames, ...Object.values(a).filter((b): b is string => isString(b))];
         } else {
-          // biome-ignore lint/style/noParameterAssign:
           acc = mergeDeep(acc, a);
         }
       }
@@ -63,8 +62,7 @@ export const css = {
     stylesheet: T | ((theme: Theme, runtime: StyleMiniRuntime) => T),
   ) {
     return (theme: Theme, runtime: StyleMiniRuntime) => {
-      // FIXME: Use `runIfFunction`
-      const _stylesheet = isFunction(stylesheet) ? stylesheet(theme, runtime) : stylesheet;
+      const _stylesheet = runIfFunction(stylesheet, theme, runtime);
 
       return Object.fromEntries(
         Object.entries(_stylesheet).map(([name, style]) => [name, parseStyle(style, runtime)]),

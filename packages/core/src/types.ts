@@ -7,8 +7,8 @@ import type {
   TransformsStyle as RNTransformsStyle,
   ViewStyle as RNViewStyle,
 } from 'react-native';
-import type { StyleRuntime } from './StyleRuntime';
 import type { Breakpoint } from './breakpoints';
+import type { StyleRuntime } from './StyleRuntime';
 import type { Theme } from './theme/defaultTheme';
 
 export type { DistributiveOmit } from '@emotion/react';
@@ -23,13 +23,15 @@ export interface RNStyleWeb {
   /** @platform web */
   backgroundImage?: React.CSSProperties['backgroundImage'];
   /** @platform web */
-  boxSizing?: React.CSSProperties['boxSizing'];
-  /** @platform web */
   caretColor?: React.CSSProperties['caretColor'];
   /** @platform web */
   caretShape?: React.CSSProperties['caretShape'];
   /** @platform web */
   justifySelf?: React.CSSProperties['justifySelf'];
+  /** @platform web */
+  listStylePosition?: React.CSSProperties['listStylePosition'];
+  /** @platform web */
+  listStyleType?: React.CSSProperties['listStyleType'];
   /** @platform web */
   overflowX?: React.CSSProperties['overflowX'];
   /** @platform web */
@@ -99,9 +101,11 @@ export interface RNStyle
       | 'borderTopStartRadius'
       | 'borderTopWidth'
       | 'bottom'
+      | 'boxShadow'
       | 'columnGap'
       | 'display'
       | 'end'
+      | 'filter'
       | 'flexBasis'
       | 'fontSize'
       | 'gap'
@@ -167,6 +171,7 @@ export interface RNStyle
       | 'top'
       | 'width'
       | 'writingDirection'
+      | `experimental_${string}`
     >,
     RNStyleWeb {
   blockSize?: NonNullable<RNViewStyle['height']> | (string & {});

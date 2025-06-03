@@ -2,7 +2,6 @@
 
 import type { SxProps } from '@react-universal/core';
 import { styled } from '@react-universal/core';
-import { forwardRef } from 'react';
 import type { TextMethods, TextProps } from '../Text';
 import { Text } from '../Text';
 
@@ -16,7 +15,7 @@ export interface HeadingProps extends TextProps {
   sx?: SxProps;
 }
 
-export type HeadingType = React.ForwardRefExoticComponent<
+export type HeadingType = React.FC<
   React.PropsWithoutRef<HeadingProps> & React.RefAttributes<HTMLHeadingElement & HeadingMethods>
 >;
 
@@ -28,8 +27,8 @@ const HeadingRoot = styled(Text, {
   fontWeight: 700,
 }));
 
-export const Heading = forwardRef<HTMLHeadingElement & HeadingMethods, HeadingProps>(
-  (props: HeadingProps, ref) => <HeadingRoot ref={ref} aria-level={2} role="heading" {...props} />,
-) as HeadingType;
+export const Heading: React.FC<
+  HeadingProps & React.RefAttributes<HTMLHeadingElement & HeadingMethods>
+> = (props) => <HeadingRoot aria-level={2} role="heading" {...props} />;
 
 Heading.displayName = 'Heading';

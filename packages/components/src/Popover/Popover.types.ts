@@ -6,20 +6,19 @@ import type {
   Strategy,
   VirtualElement,
 } from '@floating-ui/react-native';
-import type { SxProps } from '@react-universal/core';
-import type { View as RNView } from 'react-native';
+import type { PlatformMethods, SxProps } from '@react-universal/core';
 import type { ViewProps } from '../View';
 
 export type PopoverAnchor =
   | VirtualElement
   | (() => VirtualElement)
-  | React.RefObject<VirtualElement>
+  | React.RefObject<VirtualElement | null>
   | HTMLElement
   | (() => HTMLElement)
-  | React.RefObject<HTMLElement>
-  | RNView
-  | (() => RNView)
-  | React.RefObject<RNView>
+  | React.RefObject<HTMLElement | null>
+  | PlatformMethods
+  | (() => PlatformMethods)
+  | React.RefObject<PlatformMethods | null>
   | undefined
   | null;
 
@@ -69,6 +68,6 @@ export interface PopoverProps
   sx?: SxProps;
 }
 
-export type PopoverType = React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<PopoverProps> & React.RefAttributes<HTMLDivElement & PopoverMethods>
+export type PopoverType = React.FC<
+  React.PropsWithoutRef<PopoverProps> & React.RefAttributes<HTMLElement & PopoverMethods>
 >;

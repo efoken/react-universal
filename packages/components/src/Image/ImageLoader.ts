@@ -3,7 +3,6 @@ import { isFunction, normalizeEvent } from '@react-universal/utils';
 import type { ImageLoadEventData, NativeSyntheticEvent } from 'react-native';
 import type { ImageSize } from './Image.types';
 
-// biome-ignore lint/complexity/noStaticOnlyClass:
 export class ImageUriCache {
   static #maximumEntries = 256;
 
@@ -17,7 +16,7 @@ export class ImageUriCache {
     const lastUsedTimestamp = Date.now();
     if (ImageUriCache.#entries[uri]) {
       ImageUriCache.#entries[uri].lastUsedTimestamp = lastUsedTimestamp;
-      ImageUriCache.#entries[uri].refCount += 1;
+      ImageUriCache.#entries[uri].refCount++;
     } else {
       ImageUriCache.#entries[uri] = {
         lastUsedTimestamp,
@@ -28,7 +27,7 @@ export class ImageUriCache {
 
   static remove(uri: string) {
     if (ImageUriCache.#entries[uri]) {
-      ImageUriCache.#entries[uri].refCount -= 1;
+      ImageUriCache.#entries[uri].refCount--;
     }
     // Free up entries when the cache is "full"
     ImageUriCache.#cleanUpIfNeeded();
@@ -119,7 +118,7 @@ export const ImageLoader = {
     onLoad: (event: NativeSyntheticEvent<ImageLoadEventData>) => void,
     onError: () => void,
   ) {
-    id += 1;
+    id++;
     const image = new Image();
 
     const handleLoad = (e: Event) => {

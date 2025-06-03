@@ -117,7 +117,7 @@ if (isWindowDefined && 'ResizeObserver' in globalThis) {
 }
 
 export function useElementLayout(
-  ref: React.RefObject<HTMLElement>,
+  ref: React.RefObject<HTMLElement | null>,
   onLayout?: ((event: LayoutEvent) => void) | null,
 ) {
   // Two effects because expensive to re-run on every change of onLayout

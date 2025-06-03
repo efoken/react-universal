@@ -57,7 +57,7 @@ const HeaderPrimaryNavbar: React.FC = () => {
   const route = useRoute();
 
   return (
-    <Stack direction="row" sx={{ gap: 7, minH: '3rem' }} aria-label="primary navigation">
+    <Stack direction="row" sx={{ gap: 8, minH: '3rem' }} aria-label="primary navigation">
       <HeaderLogoLink />
       {route.getPrimaryNavItems().map((item) => (
         <HeaderPrimaryNavbarLink

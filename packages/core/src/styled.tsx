@@ -39,7 +39,7 @@ const Insertion: React.FC<{
     }
     return (
       <style
-        // biome-ignore lint/security/noDangerouslySetInnerHtml:
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: rules is trusted
         dangerouslySetInnerHTML={{ __html: rules }}
         data-emotion={`${cache.key} ${serializedNames}`}
         nonce={cache.sheet.nonce}
@@ -55,7 +55,7 @@ export function styled<T extends React.ComponentClass<React.ComponentProps<T>>>(
 ): CreateStyledComponent<
   React.ComponentProps<T> & {
     as?: React.ElementType;
-    ref?: React.LegacyRef<InstanceType<T>>;
+    ref?: React.Ref<InstanceType<T>>;
   }
 >;
 
@@ -70,8 +70,7 @@ export function styled<T extends keyof React.JSX.IntrinsicElements>(
 ): CreateStyledComponent<
   Omit<React.JSX.IntrinsicElements[T], 'ref' | 'style'> & {
     as?: React.ElementType;
-    dataSet?: AnyObject;
-    ref?: React.LegacyRef<HTMLElement>;
+    ref?: React.Ref<HTMLElement>;
     style?: StyleProp<RNStyle>;
   }
 >;

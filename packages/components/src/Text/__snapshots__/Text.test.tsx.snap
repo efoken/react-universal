@@ -4,7 +4,9 @@ exports[`Text > default 1`] = `
 <div
   class="css-1uf2odc"
   dir="auto"
-/>
+>
+  Text
+</div>
 `;
 
 exports[`Text > nested 1`] = `
@@ -15,7 +17,9 @@ exports[`Text > nested 1`] = `
   <span
     class="css-er042u"
     data-testid="child"
-  />
+  >
+    Text
+  </span>
 </div>
 `;
 
@@ -24,7 +28,9 @@ exports[`Text > prop "aria-label" > value is set 1`] = `
   aria-label="accessibility label"
   class="css-1uf2odc"
   dir="auto"
-/>
+>
+  Text
+</div>
 `;
 
 exports[`Text > prop "aria-labelledby" > value is set 1`] = `
@@ -32,7 +38,9 @@ exports[`Text > prop "aria-labelledby" > value is set 1`] = `
   aria-labelledby="123"
   class="css-1uf2odc"
   dir="auto"
-/>
+>
+  Text
+</div>
 `;
 
 exports[`Text > prop "aria-live" > value is set 1`] = `
@@ -40,14 +48,18 @@ exports[`Text > prop "aria-live" > value is set 1`] = `
   aria-live="polite"
   class="css-1uf2odc"
   dir="auto"
-/>
+>
+  Text
+</div>
 `;
 
 exports[`Text > prop "dir" > value is "ltr" 1`] = `
 <div
   class="css-1uf2odc"
   dir="ltr"
-/>
+>
+  Text
+</div>
 `;
 
 exports[`Text > prop "dir" > value is "rtl" 1`] = `
@@ -58,10 +70,9 @@ exports[`Text > prop "dir" > value is "rtl" 1`] = `
 `;
 
 exports[`Text > prop "href" > href with role 1`] = `
-<a
+<div
   class="css-1uf2odc"
   dir="auto"
-  href="https://example.com"
   role="presentation"
 />
 `;
@@ -71,7 +82,9 @@ exports[`Text > prop "href" > value is set 1`] = `
   class="css-1uf2odc"
   dir="auto"
   href="https://example.com"
-/>
+>
+  Text
+</a>
 `;
 
 exports[`Text > prop "hrefAttrs" > null values are excluded 1`] = `
@@ -106,7 +119,9 @@ exports[`Text > prop "hrefAttrs" > value is set 1`] = `
   href="https://example.com"
   rel="nofollow"
   target="_blank"
-/>
+>
+  Text
+</a>
 `;
 
 exports[`Text > prop "id" > value is set 1`] = `
@@ -114,7 +129,9 @@ exports[`Text > prop "id" > value is set 1`] = `
   class="css-1uf2odc"
   dir="auto"
   id="ID"
-/>
+>
+  Text
+</div>
 `;
 
 exports[`Text > prop "lang" > ar 1`] = `
@@ -130,7 +147,9 @@ exports[`Text > prop "lang" > fr 1`] = `
   class="css-1uf2odc"
   dir="ltr"
   lang="fr"
-/>
+>
+  Text
+</div>
 `;
 
 exports[`Text > prop "lang" > undefined 1`] = `
@@ -153,7 +172,12 @@ exports[`Text > prop "numberOfLines" > value is set 1`] = `
   class="css-ydnelt"
   dir="auto"
   style="--number-of-lines: 3;"
-/>
+>
+  Text
+Text
+Text
+Text
+</div>
 `;
 
 exports[`Text > prop "numberOfLines" > value is set to one 1`] = `
@@ -184,7 +208,9 @@ exports[`Text > prop "role" > value is set 1`] = `
   class="css-1uf2odc"
   dir="auto"
   role="presentation"
-/>
+>
+  Text
+</div>
 `;
 
 exports[`Text > prop "style" > value is set 1`] = `
@@ -192,7 +218,9 @@ exports[`Text > prop "style" > value is set 1`] = `
   class="css-1uf2odc"
   dir="auto"
   style="border-width: 5px;"
-/>
+>
+  Text
+</div>
 `;
 
 exports[`Text > prop "testID" > value is set 1`] = `
@@ -200,5 +228,7 @@ exports[`Text > prop "testID" > value is set 1`] = `
   class="css-1uf2odc"
   data-testid="123"
   dir="auto"
-/>
+>
+  Text
+</div>
 `;

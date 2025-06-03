@@ -1,6 +1,5 @@
 import type { AnyObject } from '@react-universal/utils';
 import { isFunction, isString } from '@react-universal/utils';
-import { forwardRef } from 'react';
 import { createElement } from './createElement';
 import { useStyles } from './hooks/useStyles';
 import type { CreateStyledComponent, StyledOptions } from './styled.types';
@@ -16,7 +15,7 @@ export function styled<T extends React.ComponentClass<React.ComponentProps<T>>>(
 ): CreateStyledComponent<
   React.ComponentProps<T> & {
     as?: React.ElementType;
-    ref?: React.LegacyRef<InstanceType<T>>;
+    ref?: React.Ref<InstanceType<T>>;
   }
 >;
 
@@ -37,13 +36,13 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
   const shouldUseAs = !shouldForwardProp('as');
 
   return (styles?: StyleInterpolation<AnyObject>) => {
-    const Styled = forwardRef<
-      T,
+    const Styled: React.FC<
       React.ComponentProps<T> & {
         as?: React.ElementType;
+        ref?: React.Ref<T>;
         style?: StyleProp<AnyObject>;
       }
-    >(({ style, ...props }, ref) => {
+    > = ({ ref, style, ...props }) => {
       const Component = shouldUseAs ? (props.as ?? component) : component;
 
       const _style = useStyles(styles, { ...props, skipSx });
@@ -63,7 +62,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
       newProps.style = isFunction(style) ? (state: any) => [_style, style(state)] : [_style, style];
 
       return createElement(Component, newProps);
-    });
+    };
 
     Styled.displayName =
       name == null

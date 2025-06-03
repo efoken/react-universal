@@ -1,10 +1,10 @@
 'use client';
 
 import type { TextStyle } from '@react-universal/components';
-import { css, styled } from '@react-universal/core';
 import type { StyleProp, SxProps } from '@react-universal/core';
-import NextLink from 'next/link';
+import { css, styled } from '@react-universal/core';
 import type { LinkProps as NextLinkProps } from 'next/link';
+import NextLink from 'next/link';
 
 export interface LinkProps
   extends Omit<
@@ -26,6 +26,4 @@ export const Link = styled(
     // We need to allow the `as` prop to be forwarded to the root element
     shouldForwardProp: (prop) => prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx',
   },
-)() as React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<LinkProps> & React.RefAttributes<HTMLAnchorElement>
->;
+)() as React.FC<React.PropsWithoutRef<LinkProps> & React.RefAttributes<HTMLAnchorElement>>;

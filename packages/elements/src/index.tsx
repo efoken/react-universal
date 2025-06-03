@@ -22,7 +22,6 @@ import {
 import type { ExtractTheme, StyleInterpolation, StyleProp, Theme } from '@react-universal/core';
 import { styled } from '@react-universal/core';
 import type { AnyObject } from '@react-universal/utils';
-import { forwardRef } from 'react';
 
 function createComponent<T = any, P extends { style?: StyleProp<any> } = AnyObject>(
   Base: React.ComponentType<P>,
@@ -31,9 +30,9 @@ function createComponent<T = any, P extends { style?: StyleProp<any> } = AnyObje
   styles?: StyleInterpolation<P & { theme: ExtractTheme<Theme> }>,
 ) {
   const ComponentRoot = styled<any>(Base, { name, slot: 'Root' })(styles);
-  const Component = forwardRef<T, Omit<P, 'as'>>((props, ref) => (
-    <ComponentRoot ref={ref} {...defaultProps} {...props} />
-  ));
+  const Component: React.FC<Omit<P, 'as'> & React.RefAttributes<T>> = (props) => (
+    <ComponentRoot {...defaultProps} {...props} />
+  );
   Component.displayName = name;
   return Component;
 }
@@ -242,6 +241,14 @@ export const Label = createComponent<
 >(Text, 'Label', { as: 'label' });
 
 /**
+ * "li" (block)
+ */
+export const Li = createComponent<
+  HTMLLIElement & ViewMethods,
+  Omit<ViewProps, 'href' | 'hrefAttrs'>
+>(Text, 'Li', { role: 'listitem' }, { display: 'list-item' as any });
+
+/**
  * "main" (block)
  */
 export const Main = createComponent<
@@ -274,7 +281,7 @@ export const Nav = createComponent<
 export const Ol = createComponent<
   HTMLOListElement & ViewMethods,
   Omit<ViewProps, 'href' | 'hrefAttrs'>
->(View, 'Ol', { as: 'ol' });
+>(View, 'Ol', { as: 'ol' }, { listStyleType: 'decimal' });
 
 /**
  * "p" (block)
@@ -358,4 +365,4 @@ export const U = createComponent<HTMLElement & TextMethods, Omit<TextProps, 'hre
 export const Ul = createComponent<
   HTMLUListElement & ViewMethods,
   Omit<ViewProps, 'href' | 'hrefAttrs'>
->(View, 'Ul', { role: 'list' });
+>(View, 'Ul', { role: 'list' }, { listStyleType: 'disc' });

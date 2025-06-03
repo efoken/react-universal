@@ -42,7 +42,6 @@ const getCssProperties = memo((prop: string) => {
   // It's not a shorthand notation.
   if (prop.length > 2) {
     if (ALIASES[prop]) {
-      // biome-ignore lint/style/noParameterAssign:
       prop = ALIASES[prop];
     } else {
       return [prop];
@@ -57,34 +56,17 @@ const getCssProperties = memo((prop: string) => {
 
 export type SpacingValue = string | number;
 
-export function createUnaryUnit<T extends number | any[] | AnyObject>(
+export function createUnaryUnit<T extends any[] | AnyObject>(
   theme: { space: T },
   themeKey: string,
   defaultSpace: T | number,
-  propName: string,
-): T extends number
-  ? <U extends string | number>(abs: U) => U
-  : T extends any[]
-    ? <K extends number>(abs: K | string) => T[K] | string
-    : T extends AnyObject
-      ? <K extends keyof T>(abs: K | number) => T[K] | number
-      : () => undefined {
+  _propName: string,
+): T extends any[]
+  ? <K extends number>(abs: K | string) => T[K] | string
+  : T extends AnyObject
+    ? <K extends keyof T>(abs: K | number) => T[K] | number
+    : () => undefined {
   const themeSpace = get(theme, themeKey, defaultSpace) as T;
-
-  if (isNumber(themeSpace)) {
-    // @ts-expect-error: Return type is explicitly specified above.
-    return (abs: string | number) => {
-      if (isString(abs)) {
-        return abs;
-      }
-      if (process.env.NODE_ENV !== 'production' && !isNumber(abs)) {
-        console.error(
-          `React Universal: Expected ${propName} argument to be a number or a string, got ${abs as string}.`,
-        );
-      }
-      return themeSpace * abs;
-    };
-  }
 
   if (isArray(themeSpace)) {
     // @ts-expect-error: Return type is explicitly specified above.
@@ -114,7 +96,7 @@ export function createUnaryUnit<T extends number | any[] | AnyObject>(
 
   if (isObject(themeSpace)) {
     // @ts-expect-error: Return type is explicitly specified above.
-    return (abs: string | number) => themeSpace[abs] ?? abs;
+    return (abs: string | number) => (isString(abs) ? (themeSpace[abs] ?? abs) : abs);
   }
 
   if (process.env.NODE_ENV !== 'production') {
@@ -130,24 +112,19 @@ export function createUnaryUnit<T extends number | any[] | AnyObject>(
   return noop;
 }
 
-export function createUnarySpacing<T extends number | any[] | AnyObject>(theme: { space: T }) {
+export function createUnarySpacing<T extends any[] | AnyObject>(theme: { space: T }) {
   return createUnaryUnit(theme, 'space', 8, 'space');
 }
 
 export function getValue<T extends SpacingValue>(transformer: (abs: any) => any, propValue: T) {
-  if (isString(propValue) || propValue == null) {
+  if (isNumber(propValue) || propValue == null) {
     return propValue;
   }
 
-  const transformed = transformer(Math.abs(propValue));
+  const transformed = transformer(propValue.replace(/^-/, ''));
 
-  // @ts-expect-error: According to the line above `propValue` only be number.
-  if (propValue >= 0) {
+  if (!propValue.startsWith('-')) {
     return transformed;
-  }
-
-  if (isNumber(transformed)) {
-    return -transformed;
   }
 
   return isWeb ? `calc(${transformed} * -1)` : `-${transformed}`;
@@ -195,9 +172,7 @@ function style(props: { theme: Theme; [key: string]: any }, keys: string[]) {
     }, {});
 }
 
-type SpacingProp<T> = BreakpointValue<
-  T | ThemeValue<Theme['space'] extends number ? Record<string, never> : Theme['space']>
->;
+type SpacingProp<T> = BreakpointValue<T | ThemeValue<Theme['space']>>;
 
 export interface MarginProps {
   m?: SpacingProp<RNStyle['margin']>;

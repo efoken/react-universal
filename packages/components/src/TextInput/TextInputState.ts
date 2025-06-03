@@ -27,7 +27,6 @@ function focusElement(node: HTMLElement) {
   }
 }
 
-// biome-ignore lint/complexity/noStaticOnlyClass:
 export class TextInputState {
   /**
    * Internal state

@@ -164,7 +164,7 @@ function createDOMProps(
   return domProps;
 }
 
-export function createElement<T extends keyof JSX.IntrinsicElements>(
+export function createElement<T extends keyof React.JSX.IntrinsicElements>(
   type: React.ElementType<any, T>,
   props?: AnyObject,
 ): any;
@@ -181,7 +181,7 @@ export function createElement<P extends AnyObject>(type: React.ElementType<P>, p
   // Update locale context if element's writing direction prop changes
   const elementWithLocaleProvider = domProps.dir
     ? createReactElement(LocaleProvider, {
-        // biome-ignore lint/correctness/noChildrenProp:
+        // biome-ignore lint/correctness/noChildrenProp: `children` prop is required
         children: element,
         direction: domProps.dir,
         locale: domProps.lang,

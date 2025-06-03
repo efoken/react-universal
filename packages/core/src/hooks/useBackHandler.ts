@@ -1,3 +1,3 @@
-// biome-ignore lint/correctness/noUnusedVariables:
-// biome-ignore lint/suspicious/noEmptyBlockStatements:
-export function useBackHandler(handler: () => boolean) {}
+import { noop } from '@react-universal/utils';
+
+export const useBackHandler: (handler: () => boolean) => void = noop;

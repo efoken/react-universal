@@ -13,6 +13,9 @@ const config: StorybookConfig = {
   core: {
     disableTelemetry: true,
   },
+  typescript: {
+    reactDocgen: false,
+  },
   // eslint-disable-next-line @typescript-eslint/no-shadow
   viteFinal: (config) =>
     mergeConfig(config, {

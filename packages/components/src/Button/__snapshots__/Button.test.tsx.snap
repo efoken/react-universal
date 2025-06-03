@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Button > default 1`] = `
+<button
+  class="css-r14355 css-91gi4e"
+  type="button"
+>
+  <div
+    class="css-1uf2odc"
+    dir="auto"
+  >
+    Button
+  </div>
+</button>
+`;

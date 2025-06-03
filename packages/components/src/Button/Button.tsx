@@ -3,9 +3,9 @@
 import { styled, useOwnerState } from '@react-universal/core';
 import { normalizeEvent, runIfFunction } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
-import { forwardRef, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { View } from '../View';
-import type { ButtonMethods, ButtonOwnerState, ButtonProps, ButtonType } from './Button.types';
+import type { ButtonMethods, ButtonOwnerState, ButtonProps } from './Button.types';
 
 const ButtonRoot = styled(View, {
   name: 'Button',
@@ -42,175 +42,171 @@ const ButtonRoot = styled(View, {
   ],
 });
 
-export const Button = forwardRef<HTMLElement & ButtonMethods, ButtonProps>(
-  (
-    {
-      as: _as,
-      children,
-      disabled = false,
-      href,
-      onBlur,
-      onFocus,
-      onFocusVisible,
-      onHoverIn,
-      onHoverOut,
-      onKeyDown,
-      onKeyUp,
-      onPress,
-      style,
-      tabIndex,
-      type,
-      ...props
-    }: ButtonProps,
-    ref,
-  ) => {
-    const hostRef = useRef<HTMLElement>();
+export const Button: React.FC<ButtonProps & React.RefAttributes<HTMLElement & ButtonMethods>> = ({
+  as: _as,
+  children,
+  disabled = false,
+  href,
+  onBlur,
+  onFocus,
+  onFocusVisible,
+  onHoverIn,
+  onHoverOut,
+  onKeyDown,
+  onKeyUp,
+  onPress,
+  ref,
+  style,
+  tabIndex,
+  type,
+  ...props
+}) => {
+  const hostRef = useRef<HTMLElement>(null);
 
-    const [hovered, setHovered] = useState<boolean>(false);
-    const [pressed, setPressed] = useState<boolean>(false);
+  const [hovered, setHovered] = useState<boolean>(false);
+  const [pressed, setPressed] = useState<boolean>(false);
 
-    const [focusVisible, setFocusVisible] = useState(false);
-    if (disabled && focusVisible) {
+  const [focusVisible, setFocusVisible] = useState(false);
+  if (disabled && focusVisible) {
+    setFocusVisible(false);
+  }
+
+  const handleMouseEnter = (event: React.MouseEvent<HTMLElement>) => {
+    setHovered(true);
+    onHoverIn?.(normalizeEvent(event));
+  };
+
+  const handleMouseLeave = (event: React.MouseEvent<HTMLElement>) => {
+    if (focusVisible) {
+      event.preventDefault();
+    }
+    onHoverOut?.(normalizeEvent(event));
+  };
+
+  const handleBlur = (event: React.FocusEvent<HTMLElement>) => {
+    if (!event.target.matches(':focus-visible')) {
       setFocusVisible(false);
     }
+    onBlur?.(normalizeEvent(event));
+  };
 
-    const handleMouseEnter = (event: React.MouseEvent<HTMLElement>) => {
-      setHovered(true);
-      onHoverIn?.(normalizeEvent(event));
-    };
+  const handleFocus = (event: React.FocusEvent<HTMLElement>) => {
+    // Fix for https://github.com/facebook/react/issues/7769
+    if (!hostRef.current) {
+      hostRef.current = event.currentTarget;
+    }
 
-    const handleMouseLeave = (event: React.MouseEvent<HTMLElement>) => {
-      if (focusVisible) {
-        event.preventDefault();
-      }
-      onHoverOut?.(normalizeEvent(event));
-    };
+    if (event.target.matches(':focus-visible')) {
+      setFocusVisible(true);
+      onFocusVisible?.(normalizeEvent(event));
+    }
 
-    const handleBlur = (event: React.FocusEvent<HTMLElement>) => {
-      if (!event.target.matches(':focus-visible')) {
-        setFocusVisible(false);
-      }
-      onBlur?.(normalizeEvent(event));
-    };
+    onFocus?.(normalizeEvent(event));
+  };
 
-    const handleFocus = (event: React.FocusEvent<HTMLElement>) => {
-      // Fix for https://github.com/facebook/react/issues/7769
-      if (!hostRef.current) {
-        hostRef.current = event.currentTarget;
-      }
+  const isNativeButton = () =>
+    hostRef.current?.tagName === 'BUTTON' ||
+    (hostRef.current?.tagName === 'A' && (hostRef.current as HTMLAnchorElement).href);
 
-      if (event.target.matches(':focus-visible')) {
-        setFocusVisible(true);
-        onFocusVisible?.(normalizeEvent(event));
-      }
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    if (!disabled) {
+      onPress?.(normalizeEvent(event));
+    }
+  };
 
-      onFocus?.(normalizeEvent(event));
-    };
+  const handleMouseDown = () => {
+    if (!disabled) {
+      setPressed(true);
+      document.addEventListener(
+        'mouseup',
+        () => {
+          setPressed(false);
+        },
+        { once: true },
+      );
+    }
+  };
 
-    const isNativeButton = () =>
-      hostRef.current?.tagName === 'BUTTON' ||
-      (hostRef.current?.tagName === 'A' && (hostRef.current as HTMLAnchorElement).href);
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+    onKeyDown?.(event);
 
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-      if (!disabled) {
-        onPress?.(normalizeEvent(event));
-      }
-    };
+    if (event.defaultPrevented) {
+      return;
+    }
 
-    const handleMouseDown = () => {
-      if (!disabled) {
-        setPressed(true);
-        document.addEventListener(
-          'mouseup',
-          () => {
-            setPressed(false);
-          },
-          { once: true },
-        );
-      }
-    };
+    if (event.target === event.currentTarget && !isNativeButton() && event.key === ' ') {
+      event.preventDefault();
+    }
 
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
-      onKeyDown?.(event);
+    if (event.target === event.currentTarget && event.key === ' ' && !disabled) {
+      setPressed(true);
+    }
 
-      if (event.defaultPrevented) {
-        return;
-      }
+    // Keyboard accessibility for non interactive elements
+    if (
+      event.target === event.currentTarget &&
+      !isNativeButton() &&
+      event.key === 'Enter' &&
+      !disabled
+    ) {
+      onPress?.(normalizeEvent(event));
+      event.preventDefault();
+    }
+  };
 
-      if (event.target === event.currentTarget && !isNativeButton() && event.key === ' ') {
-        event.preventDefault();
-      }
+  const handleKeyUp = (event: React.KeyboardEvent<HTMLElement>) => {
+    // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
+    // https://codesandbox.io/p/sandbox/button-keyup-preventdefault-dn7f0
 
-      if (event.target === event.currentTarget && event.key === ' ' && !disabled) {
-        setPressed(true);
-      }
+    if (event.target === event.currentTarget) {
+      setPressed(false);
+    }
 
-      // Keyboard accessibility for non interactive elements
-      if (
-        event.target === event.currentTarget &&
-        !isNativeButton() &&
-        event.key === 'Enter' &&
-        !disabled
-      ) {
-        onPress?.(normalizeEvent(event));
-        event.preventDefault();
-      }
-    };
+    onKeyUp?.(event);
 
-    const handleKeyUp = (event: React.KeyboardEvent<HTMLElement>) => {
-      // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
-      // https://codesandbox.io/p/sandbox/button-keyup-preventdefault-dn7f0
+    // Keyboard accessibility for non interactive elements
+    if (
+      event.target === event.currentTarget &&
+      !isNativeButton() &&
+      !disabled &&
+      event.key === ' ' &&
+      !event.defaultPrevented
+    ) {
+      onPress?.(normalizeEvent(event));
+    }
+  };
 
-      if (event.target === event.currentTarget) {
-        setPressed(false);
-      }
+  const handleRef = useComposedRefs<any>(hostRef, ref);
 
-      onKeyUp?.(event);
+  const ownerState = useOwnerState({
+    disabled,
+  });
 
-      // Keyboard accessibility for non interactive elements
-      if (
-        event.target === event.currentTarget &&
-        !isNativeButton() &&
-        !disabled &&
-        event.key === ' ' &&
-        !event.defaultPrevented
-      ) {
-        onPress?.(normalizeEvent(event));
-      }
-    };
-
-    const handleRef = useComposedRefs<any>(hostRef, ref);
-
-    const ownerState = useOwnerState({
-      disabled,
-    });
-
-    return (
-      <ButtonRoot
-        ref={handleRef}
-        aria-disabled={href == null ? undefined : disabled}
-        as={_as ?? (href == null ? 'button' : 'a')}
-        disabled={href == null ? disabled : undefined}
-        href={href}
-        ownerState={ownerState}
-        role="button"
-        tabIndex={href == null ? tabIndex : disabled ? -1 : (tabIndex ?? 0)}
-        style={runIfFunction(style, { focusVisible, hovered, pressed })}
-        type={href == null ? (type ?? 'button') : undefined}
-        onBlur={handleBlur}
-        onClick={handleClick}
-        onFocus={handleFocus}
-        onKeyDown={handleKeyDown}
-        onKeyUp={handleKeyUp}
-        onMouseDown={handleMouseDown}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        {...props}
-      >
-        {runIfFunction(children, { focusVisible, hovered, pressed })}
-      </ButtonRoot>
-    );
-  },
-) as ButtonType;
+  return (
+    <ButtonRoot
+      ref={handleRef}
+      aria-disabled={href == null ? undefined : disabled}
+      as={_as ?? (href == null ? 'button' : 'a')}
+      disabled={href == null ? disabled : undefined}
+      href={href}
+      ownerState={ownerState}
+      role="button"
+      tabIndex={href == null ? tabIndex : disabled ? -1 : (tabIndex ?? 0)}
+      style={runIfFunction(style, { focusVisible, hovered, pressed })}
+      type={href == null ? (type ?? 'button') : undefined}
+      onBlur={handleBlur}
+      onClick={handleClick}
+      onFocus={handleFocus}
+      onKeyDown={handleKeyDown}
+      onKeyUp={handleKeyUp}
+      onMouseDown={handleMouseDown}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      {...props}
+    >
+      {runIfFunction(children, { focusVisible, hovered, pressed })}
+    </ButtonRoot>
+  );
+};
 
 Button.displayName = 'Button';

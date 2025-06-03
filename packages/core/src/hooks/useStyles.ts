@@ -1,10 +1,10 @@
 import memo from '@emotion/weak-memoize';
 import { type AnyObject, isObject, mergeDeep } from '@react-universal/utils';
 import { useMemo } from 'react';
-import { StyleRuntime } from '../StyleRuntime';
 import { useTheme } from '../contexts/ThemeContext';
 import { css } from '../css';
 import { interpolate } from '../interpolate';
+import { StyleRuntime } from '../StyleRuntime';
 import { styleFunctionSx } from '../styleFunctionSx';
 import type { SxProps } from '../sxConfig';
 import type { ExtractTheme, Theme } from '../theme';
@@ -62,7 +62,7 @@ export function useStyles(
         !skipSx && styleFunctionSx({ sx, theme: _theme as any }),
       ),
     });
-    // biome-ignore lint/correctness/useExhaustiveDependencies:
+    // biome-ignore lint/correctness/useExhaustiveDependencies: props do not change on every render
   }, [props, skipSx, styles, sx, theme]);
 
   return stylesheet(theme, StyleRuntime).style;

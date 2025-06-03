@@ -32,7 +32,8 @@ export interface TextProps
     target?: React.HTMLAttributeAnchorTarget;
   };
   lang?: Intl.UnicodeBCP47LocaleIdentifier;
-  onClick?: NonNullable<RNTextProps['onPress']>;
+  /** @platform web */
+  onClick?: React.MouseEventHandler<HTMLElement>;
   /**
    * Callback invoked on mount and layout changes.
    */
@@ -45,7 +46,7 @@ export interface TextProps
   sx?: SxProps;
 }
 
-export type TextType = React.ForwardRefExoticComponent<
+export type TextType = React.FC<
   React.PropsWithoutRef<TextProps> & React.RefAttributes<HTMLElement & TextMethods>
 >;
 

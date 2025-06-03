@@ -45,7 +45,7 @@ export interface ModalProps
   sx?: SxProps;
 }
 
-export type ModalType = React.ForwardRefExoticComponent<
+export type ModalType = React.FC<
   React.PropsWithoutRef<ModalProps> & React.RefAttributes<HTMLDialogElement & ModalMethods>
 >;
 

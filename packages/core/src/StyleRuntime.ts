@@ -2,12 +2,12 @@ import type { Breakpoints } from './breakpoints';
 import type { Theme } from './theme';
 import { defaultTheme } from './theme';
 
-// biome-ignore lint/complexity/noStaticOnlyClass:
 export class StyleRuntime {
   static #theme: Theme = defaultTheme as Theme;
 
-  // biome-ignore lint/suspicious/noEmptyBlockStatements:
-  static setTheme(_name: 'light' | 'dark') {}
+  static setTheme(_name: 'light' | 'dark') {
+    // noop
+  }
 
   static updateTheme(_name: 'light' | 'dark', updater: (theme: Theme) => Theme) {
     StyleRuntime.#theme = updater(StyleRuntime.#theme);

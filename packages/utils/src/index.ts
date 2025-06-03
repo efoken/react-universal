@@ -1,5 +1,6 @@
 export * from './capitalize';
 export * from './cloneDeep';
+export * from './EventEmitter';
 export * from './findLast';
 export * from './get';
 export * from './getBoundingClientRect';
@@ -10,4 +11,6 @@ export * from './mergeDeep';
 export * from './noop';
 export * from './normalizeEvent';
 export * from './pick';
+export * from './requestIdleCallback';
 export * from './runIfFunction';
+export * from './types';

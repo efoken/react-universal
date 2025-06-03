@@ -24,7 +24,7 @@ export interface ContainerProps extends ViewProps {
   sx?: SxProps;
 }
 
-export type ContainerType = React.ForwardRefExoticComponent<
+export type ContainerType = React.FC<
   React.PropsWithoutRef<ContainerProps> & React.RefAttributes<HTMLElement & ContainerMethods>
 >;
 

@@ -15,8 +15,7 @@ export interface ReactUniversalOptions
   theme?: Theme;
 }
 
-// biome-ignore lint/correctness/noUnusedVariables:
-export function reactUniversal(options: ReactUniversalOptions = {}): Plugin {
+export function reactUniversal(_options: ReactUniversalOptions = {}): Plugin {
   return {
     name: 'react-universal',
     config: (config) => {

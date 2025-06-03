@@ -1,8 +1,8 @@
-import type { GestureResponderEvent } from 'react-native';
+import type { GestureResponderEvent as RNGestureResponderEvent } from 'react-native';
 import type { ResponderEvent } from './hooks/useResponderEvents';
 
 export function normalizeResponderEvent<T extends (event: ResponderEvent) => any>(fn?: T) {
-  return (event: GestureResponderEvent) =>
+  return (event: RNGestureResponderEvent) =>
     fn?.({
       bubbles: event.bubbles,
       cancelable: event.cancelable,
@@ -13,18 +13,19 @@ export function normalizeResponderEvent<T extends (event: ResponderEvent) => any
       isDefaultPrevented: event.isDefaultPrevented.bind(event),
       isPropagationStopped: event.isPropagationStopped.bind(event),
       isTrusted: event.isTrusted,
-      // @ts-expect-error: Some properties are missing in the native event
       nativeEvent: event.nativeEvent,
       persist: event.persist.bind(event),
       preventDefault: event.preventDefault.bind(event),
       stopPropagation: event.stopPropagation.bind(event),
       target: event.target,
       timeStamp: event.timeStamp,
-      touchHistory: {
+      // @ts-expect-error: `touchHistory` is missing in React Native types
+      touchHistory: event.touchHistory ?? {
         indexOfSingleActiveTouch: 0,
         mostRecentTimeStamp: event.timeStamp,
         numberActiveTouches: 1,
         touchBank: [],
       },
+      type: event.type,
     });
 }

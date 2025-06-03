@@ -28,9 +28,9 @@ export default async function Page({ params }: PageProps) {
           flexShrink: 1,
           minH: 'var(--content-height)',
           overflow: 'auto' as any,
-          pb: 16,
-          pt: 10,
-          px: { md: 12 },
+          pb: 18,
+          pt: 13,
+          px: { md: 15 },
           w: '100%',
         }}
       >

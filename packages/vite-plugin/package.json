@@ -23,17 +23,17 @@
     "dev": "run esbuild src/index.ts --outfile=dist/index.js --format=cjs --log-level=silent"
   },
   "dependencies": {
-    "@pigment-css/react": "^0.0.28",
-    "@pigment-css/vite-plugin": "^0.0.28",
+    "@pigment-css/react": "^0.0.30",
+    "@pigment-css/vite-plugin": "^0.0.30",
     "@react-universal/core": "workspace:*"
   },
   "devDependencies": {
-    "esbuild": "^0.24.2",
-    "react": "18.3.1",
-    "vite": "^5.4.11"
+    "esbuild": "^0.25.4",
+    "react": "19.0.0",
+    "vite": "^6.3.5"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
+    "react": "^19.0.0",
     "vite": "^5.0.0 || ^6.0.0"
   }
 }

@@ -5,14 +5,14 @@ import {
   styled,
 } from '@react-universal/core';
 import { normalizeEvent } from '@react-universal/utils';
-import { forwardRef, useState } from 'react';
+import { useState } from 'react';
 import type {
   NativeSyntheticEvent,
   TextInputContentSizeChangeEventData as RNTextInputContentSizeChangeEventData,
   TextInputSelectionChangeEventData as RNTextInputSelectionChangeEventData,
 } from 'react-native';
 import { TextInput as RNTextInput } from 'react-native';
-import type { TextInputProps, TextInputType } from './TextInput.types';
+import type { TextInputProps } from './TextInput.types';
 
 const TextInputRoot = styled(RNTextInput, {
   name: 'TextInput',
@@ -22,83 +22,87 @@ const TextInputRoot = styled(RNTextInput, {
   position: 'static',
 }));
 
-export const TextInput = forwardRef<any, TextInputProps>(
-  (
-    {
-      'aria-label': ariaLabel,
-      lang,
-      onChangeText,
-      onContentSizeChange,
-      onLayout,
-      onMoveShouldSetResponder,
-      onMoveShouldSetResponderCapture,
-      onResponderEnd,
-      onResponderGrant,
-      onResponderMove,
-      onResponderReject,
-      onResponderRelease,
-      onResponderStart,
-      onResponderTerminate,
-      onResponderTerminationRequest,
-      onSelectionChange,
-      onStartShouldSetResponder,
-      onStartShouldSetResponderCapture,
-      role,
-      style,
-      ...props
-    }: TextInputProps,
-    ref,
+export const TextInput: React.FC<TextInputProps & React.RefAttributes<any>> = ({
+  'aria-label': ariaLabel,
+  lang,
+  onChangeText,
+  onContentSizeChange,
+  onLayout,
+  onMoveShouldSetResponder,
+  onMoveShouldSetResponderCapture,
+  onResponderEnd,
+  onResponderGrant,
+  onResponderMove,
+  onResponderReject,
+  onResponderRelease,
+  onResponderStart,
+  onResponderTerminate,
+  onResponderTerminationRequest,
+  onSelectionChange,
+  onStartShouldSetResponder,
+  onStartShouldSetResponderCapture,
+  onTouchCancel,
+  onTouchEnd,
+  onTouchEndCapture,
+  onTouchMove,
+  onTouchStart,
+  role,
+  style,
+  ...props
+}) => {
+  const [text, setText] = useState<string>();
+
+  const handleChangeText = (nextText: string) => {
+    setText(nextText);
+    onChangeText?.(nextText);
+  };
+
+  const handleContentSizeChange = (
+    event: NativeSyntheticEvent<RNTextInputContentSizeChangeEventData>,
   ) => {
-    const [text, setText] = useState<string>();
+    onContentSizeChange?.({
+      nativeEvent: {
+        contentSize: event.nativeEvent.contentSize,
+      },
+    });
+  };
 
-    const handleChangeText = (nextText: string) => {
-      setText(nextText);
-      onChangeText?.(nextText);
-    };
+  const handleSelectionChange = (
+    event: NativeSyntheticEvent<RNTextInputSelectionChangeEventData>,
+  ) => {
+    onSelectionChange?.(normalizeEvent(event, { text }));
+  };
 
-    const handleContentSizeChange = (
-      event: NativeSyntheticEvent<RNTextInputContentSizeChangeEventData>,
-    ) => {
-      onContentSizeChange?.({
-        nativeEvent: {
-          contentSize: event.nativeEvent.contentSize,
-        },
-      });
-    };
-
-    const handleSelectionChange = (
-      event: NativeSyntheticEvent<RNTextInputSelectionChangeEventData>,
-    ) => {
-      onSelectionChange?.(normalizeEvent(event, { text }));
-    };
-
-    return (
-      <TextInputRoot
-        ref={ref}
-        accessibilityLabel={ariaLabel}
-        accessibilityLanguage={lang}
-        role={normalizeRole(role)}
-        style={style as any}
-        onChangeText={handleChangeText}
-        onContentSizeChange={handleContentSizeChange}
-        onLayout={normalizeLayoutEvent(onLayout)}
-        onMoveShouldSetResponder={normalizeResponderEvent(onMoveShouldSetResponder)}
-        onMoveShouldSetResponderCapture={normalizeResponderEvent(onMoveShouldSetResponderCapture)}
-        onResponderEnd={normalizeResponderEvent(onResponderEnd)}
-        onResponderGrant={normalizeResponderEvent(onResponderGrant)}
-        onResponderMove={normalizeResponderEvent(onResponderMove)}
-        onResponderReject={normalizeResponderEvent(onResponderReject)}
-        onResponderRelease={normalizeResponderEvent(onResponderRelease)}
-        onResponderStart={normalizeResponderEvent(onResponderStart)}
-        onResponderTerminate={normalizeResponderEvent(onResponderTerminate)}
-        onResponderTerminationRequest={normalizeResponderEvent(onResponderTerminationRequest)}
-        onSelectionChange={handleSelectionChange}
-        onStartShouldSetResponder={normalizeResponderEvent(onStartShouldSetResponder)}
-        onStartShouldSetResponderCapture={normalizeResponderEvent(onStartShouldSetResponderCapture)}
-        {...props}
-      />
-    );
-  },
-) as TextInputType;
+  return (
+    <TextInputRoot
+      accessibilityLabel={ariaLabel}
+      accessibilityLanguage={lang}
+      role={normalizeRole(role)}
+      style={style as any}
+      onChangeText={handleChangeText}
+      onContentSizeChange={handleContentSizeChange}
+      onLayout={normalizeLayoutEvent(onLayout)}
+      onMoveShouldSetResponder={normalizeResponderEvent(onMoveShouldSetResponder)}
+      onMoveShouldSetResponderCapture={normalizeResponderEvent(onMoveShouldSetResponderCapture)}
+      onResponderEnd={normalizeResponderEvent(onResponderEnd)}
+      onResponderGrant={normalizeResponderEvent(onResponderGrant)}
+      onResponderMove={normalizeResponderEvent(onResponderMove)}
+      onResponderReject={normalizeResponderEvent(onResponderReject)}
+      onResponderRelease={normalizeResponderEvent(onResponderRelease)}
+      onResponderStart={normalizeResponderEvent(onResponderStart)}
+      onResponderTerminate={normalizeResponderEvent(onResponderTerminate)}
+      onResponderTerminationRequest={normalizeResponderEvent(onResponderTerminationRequest)}
+      onSelectionChange={handleSelectionChange}
+      onStartShouldSetResponder={normalizeResponderEvent(onStartShouldSetResponder)}
+      onStartShouldSetResponderCapture={normalizeResponderEvent(onStartShouldSetResponderCapture)}
+      onTouchCancel={normalizeResponderEvent(onTouchCancel)}
+      onTouchEnd={normalizeResponderEvent(onTouchEnd)}
+      onTouchEndCapture={normalizeResponderEvent(onTouchEndCapture)}
+      onTouchMove={normalizeResponderEvent(onTouchMove)}
+      onTouchStart={normalizeResponderEvent(onTouchStart)}
+      {...props}
+    />
+  );
+};
 
 TextInput.displayName = 'TextInput';

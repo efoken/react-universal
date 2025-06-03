@@ -39,7 +39,7 @@ const TocLink = styled(Link)(({ theme }) => ({
 export const Toc: React.FC<TocProps> = ({ items }) => {
   const activeItem = useScrollSpy(items.map((entry) => entry.url));
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies:
+  // biome-ignore lint/correctness/useExhaustiveDependencies: we need to run this effect when the activeItem changes
   useEffect(() => {
     const activeLink = document.querySelector<HTMLElement>('[data-toc][aria-current="page"]');
     const toc = document.getElementById('toc');
@@ -56,10 +56,9 @@ export const Toc: React.FC<TocProps> = ({ items }) => {
     <Nav sx={{ fontSize: '0.875rem' }}>
       <Text sx={{ fontWeight: 600 }}>On this page</Text>
       <Stack sx={{ gap: 2, mt: 3 }}>
-        {items.map((item, index) => (
+        {items.map((item) => (
           <TocLink
-            // biome-ignore lint/suspicious/noArrayIndexKey:
-            key={index}
+            key={item.url}
             data-toc
             aria-current={item.url === activeItem ? 'page' : undefined}
             href={item.url}

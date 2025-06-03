@@ -16,7 +16,7 @@ export const Default: Story = {
     sx: {
       bgColor: 'background.default',
       borderRadius: 2,
-      p: 1,
+      p: '1',
     },
   },
 };

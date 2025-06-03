@@ -8,14 +8,16 @@ import {
   useElementLayout,
   usePlatformMethods,
 } from '@react-universal/core';
-import type { AnyObject } from '@react-universal/utils';
 import { noop, pick } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
-import { forwardRef, useRef } from 'react';
-import type { ImageMethods, ImageProps, ImageType } from './Image.types';
+import { useRef } from 'react';
+import type { ImageType } from './Image.types';
 import { ImageLoader } from './ImageLoader';
 
-function pickProps<T extends AnyObject>(props: T) {
+function pickProps<T extends { ref?: React.Ref<any> }>(
+  props: T,
+): ForwardedProps<NonNullable<T['ref']> extends React.Ref<infer T> ? T : HTMLElement> {
+  // @ts-expect-error
   return pick(props, {
     ...forwardedProps.defaultProps,
     ...forwardedProps.accessibilityProps,
@@ -48,26 +50,24 @@ const ImageRoot = styled('img', {
   display: 'block',
 });
 
-export const Image = forwardRef<HTMLImageElement & ImageMethods, ImageProps>(
-  ({ dir, onError, onLayout, onLoad, onProgress, onPartialLoad, ...props }: ImageProps, ref) => {
-    const hostRef = useRef<HTMLImageElement>(null);
+export const Image = (({ dir, onError, onLayout, onLoad, onPartialLoad, onProgress, ...props }) => {
+  const hostRef = useRef<HTMLImageElement>(null);
 
-    useElementLayout(hostRef, onLayout);
+  useElementLayout(hostRef, onLayout);
 
-    const langDirection = props.lang == null ? undefined : getLocaleDirection(props.lang);
-    const componentDirection = dir ?? langDirection;
+  const langDirection = props.lang == null ? undefined : getLocaleDirection(props.lang);
+  const componentDirection = dir ?? langDirection;
 
-    const supportedProps: ForwardedProps<HTMLImageElement> = pickProps(props);
-    supportedProps.dir = componentDirection;
+  const supportedProps = pickProps(props);
+  supportedProps.dir = componentDirection;
 
-    const platformMethodsRef = usePlatformMethods(hostRef);
-    const handleRef = useComposedRefs<HTMLImageElement>(hostRef, platformMethodsRef, ref);
+  const platformMethodsRef = usePlatformMethods(hostRef);
+  const handleRef = useComposedRefs(hostRef, platformMethodsRef, props.ref);
 
-    supportedProps.ref = handleRef;
+  supportedProps.ref = handleRef;
 
-    return <ImageRoot {...supportedProps} />;
-  },
-) as ImageType;
+  return <ImageRoot {...supportedProps} />;
+}) as ImageType;
 
 Image.displayName = 'Image';
 

@@ -33,7 +33,7 @@ export function useStyles(
           ),
         };
       }),
-    // biome-ignore lint/correctness/useExhaustiveDependencies:
+    // biome-ignore lint/correctness/useExhaustiveDependencies: props do not change on every render
     [props, skipSx, styles, sx],
   );
 

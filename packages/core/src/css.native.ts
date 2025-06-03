@@ -1,5 +1,5 @@
 import type { AnyObject } from '@react-universal/utils';
-import { isFunction } from '@react-universal/utils';
+import { runIfFunction } from '@react-universal/utils';
 import { StyleSheet } from 'react-native';
 import type { UnistylesValues } from 'react-native-unistyles';
 import { createStyleSheet as createUnistylesStyleSheet } from 'react-native-unistyles';
@@ -22,11 +22,11 @@ export const css = {
     stylesheet: T | ((theme: Theme, runtime: StyleMiniRuntime) => T),
   ) {
     return createUnistylesStyleSheet((theme, runtime) => {
-      // FIXME: Use `runIfFunction`
-      const _stylesheet = isFunction(stylesheet)
-        ? // @ts-expect-error
-          stylesheet(theme, { ...runtime, breakpoints: theme.breakpoints })
-        : stylesheet;
+      // @ts-expect-error
+      const _stylesheet = runIfFunction(stylesheet, theme, {
+        ...runtime,
+        breakpoints: theme.breakpoints,
+      });
 
       return Object.fromEntries(
         Object.entries(_stylesheet).map(([name, style]) => [name, parseStyle(style)]),

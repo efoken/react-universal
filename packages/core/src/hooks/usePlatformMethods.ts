@@ -1,5 +1,7 @@
+import type { AnyObject } from '@react-universal/utils';
 import { getRect } from '@react-universal/utils';
 import { useIsomorphicLayoutEffect } from '@tamagui/constants';
+import type React from 'react';
 import type {
   MeasureInWindowOnSuccessCallback,
   MeasureLayoutOnSuccessCallback,
@@ -18,19 +20,20 @@ export interface PlatformMethods {
   measure(callback: MeasureOnSuccessCallback): void;
   measureInWindow(callback: MeasureInWindowOnSuccessCallback): void;
   measureLayout(
-    relativeToNode: React.ElementRef<PlatformComponent<unknown>> | number,
+    relativeToNativeComponentRef: Omit<PlatformMethods, 'refs'> | number,
     callback: MeasureLayoutOnSuccessCallback,
     error?: () => void,
   ): void;
+  setNativeProps(nativeProps: AnyObject): void;
 }
 
-export function usePlatformMethods<T extends HTMLElement>(hostRef: React.RefObject<T>) {
+export function usePlatformMethods<T extends HTMLElement>(hostRef: React.RefObject<T | null>) {
   useIsomorphicLayoutEffect(() => {
     const node = hostRef.current as (T & PlatformMethods) | null;
     if (node != null) {
       node.measure ||= (callback) => measureLayout(node, null, callback);
-      node.measureLayout ||= (relativeToNode: any, callback) =>
-        measureLayout(node, relativeToNode, callback);
+      node.measureLayout ||= (relativeToNativeComponentRef: any, callback) =>
+        measureLayout(node, relativeToNativeComponentRef, callback);
       node.measureInWindow ||= (callback) => {
         if (node == null) {
           return;
@@ -43,5 +46,5 @@ export function usePlatformMethods<T extends HTMLElement>(hostRef: React.RefObje
     }
   }, [hostRef]);
 
-  return hostRef;
+  return hostRef as React.RefObject<T & PlatformMethods>;
 }

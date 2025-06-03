@@ -1,16 +1,13 @@
 import type {
   AccessibilityProps,
   PlatformMethods,
+  ResponderEvent,
   RNStyle,
   StyleProp,
   SxProps,
 } from '@react-universal/core';
 import type { AnyObject } from '@react-universal/utils';
-import type {
-  GestureResponderEvent,
-  ImageProps as RNImageProps,
-  ViewProps as RNViewProps,
-} from 'react-native';
+import type { ImageProps as RNImageProps, ViewProps as RNViewProps } from 'react-native';
 
 type Units = 'userSpaceOnUse' | 'objectBoundingBox';
 
@@ -87,10 +84,10 @@ export interface TransformProps {
 
 export interface TouchableProps {
   disabled?: boolean;
-  onPress?: (event: GestureResponderEvent) => void;
-  onPressIn?: (event: GestureResponderEvent) => void;
-  onPressOut?: (event: GestureResponderEvent) => void;
-  onLongPress?: (event: GestureResponderEvent) => void;
+  onPress?: (event: ResponderEvent) => void;
+  onPressIn?: (event: ResponderEvent) => void;
+  onPressOut?: (event: ResponderEvent) => void;
+  onLongPress?: (event: ResponderEvent) => void;
   delayPressIn?: number;
   delayPressOut?: number;
   delayLongPress?: number;

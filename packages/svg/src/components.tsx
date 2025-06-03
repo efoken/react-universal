@@ -3,7 +3,6 @@
 import type { ResponderEvent, StyleProp } from '@react-universal/core';
 import { createElement, styled } from '@react-universal/core';
 import { isArray, isNumber, isString } from '@react-universal/utils';
-import { forwardRef } from 'react';
 import type {
   CircleProps,
   ClipPathProps,
@@ -12,8 +11,8 @@ import type {
   ForeignObjectProps,
   GProps,
   ImageProps,
-  LineProps,
   LinearGradientProps,
+  LineProps,
   MarkerProps,
   MaskProps,
   PathProps,
@@ -26,11 +25,11 @@ import type {
   SvgMethods,
   SvgProps,
   SymbolProps,
-  TSpanProps,
   TextPathProps,
   TextProps,
   TouchableProps,
   TransformProps,
+  TSpanProps,
   UseProps,
 } from './types';
 
@@ -95,106 +94,101 @@ function createComponent<
       style?: StyleProp<any>;
     } = Record<string, never>,
 >(
-  Base: keyof React.ReactSVG | React.ComponentType<any>,
+  Base: keyof React.JSX.IntrinsicElements | React.ComponentType<any>,
   name: Capitalize<string>,
   prepareProps: (props: React.PropsWithoutRef<P>) => React.PropsWithoutRef<P> = (props) => props,
 ) {
-  const Component = forwardRef<T, P>(
-    (
-      {
-        fontFamily,
-        fontSize,
-        fontStyle,
-        fontWeight,
-        gradientTransform,
-        onPress,
-        origin,
-        originX,
-        originY,
-        patternTransform,
+  const Component: React.FC<P & React.RefAttributes<T>> = ({
+    fontFamily,
+    fontSize,
+    fontStyle,
+    fontWeight,
+    gradientTransform,
+    onPress,
+    origin,
+    originX,
+    originY,
+    patternTransform,
+    ref,
+    rotation,
+    scale,
+    scaleX,
+    scaleY,
+    skewX,
+    skewY,
+    style,
+    transform,
+    translate,
+    translateX,
+    translateY,
+    ...props
+  }) => {
+    const cleanProps: typeof props & {
+      gradientTransform?: string;
+      onClick?: (event: any) => void;
+      onResponderGrant?: ((event: ResponderEvent) => void) | ((event: ResponderEvent) => boolean);
+      onResponderMove?: (event: ResponderEvent) => void;
+      onResponderRelease?: (event: ResponderEvent) => void;
+      onResponderTerminate?: (event: ResponderEvent) => void;
+      onResponderTerminationRequest?: (event: ResponderEvent) => boolean;
+      onStartShouldSetResponder?: (event: ResponderEvent) => boolean;
+      patternTransform?: string;
+      ref?: any;
+      style?: any;
+      transform?: string;
+      'transform-origin'?: string;
+    } = {
+      ...(hasTouchableProps({ onPress, ...props }) &&
+        {
+          // onStartShouldSetResponder: self.touchableHandleStartShouldSetResponder,
+          // onResponderTerminationRequest: self.touchableHandleResponderTerminationRequest,
+          // onResponderGrant: self.touchableHandleResponderGrant,
+          // onResponderMove: self.touchableHandleResponderMove,
+          // onResponderRelease: self.touchableHandleResponderRelease,
+          // onResponderTerminate: self.touchableHandleResponderTerminate,
+        }),
+      ...(prepareProps({ translate, ...props } as React.PropsWithoutRef<P>) as typeof props),
+    };
+
+    if (origin != null) {
+      cleanProps['transform-origin'] = origin.toString().replace(',', ' ');
+    } else if (originX != null || originY != null) {
+      cleanProps['transform-origin'] = `${originX ?? 0} ${originY ?? 0}`;
+    }
+
+    if (transform != null) {
+      cleanProps.transform = parseTransformProp(transform, {
         rotation,
         scale,
         scaleX,
         scaleY,
         skewX,
         skewY,
-        style,
-        transform,
         translate,
         translateX,
         translateY,
-        ...props
-      },
-      ref,
-    ) => {
-      const cleanProps: typeof props & {
-        gradientTransform?: string;
-        onClick?: (event: any) => void;
-        // biome-ignore lint/suspicious/noConfusingVoidType:
-        onResponderGrant?: (event: ResponderEvent) => void | boolean;
-        onResponderMove?: (event: ResponderEvent) => void;
-        onResponderRelease?: (event: ResponderEvent) => void;
-        onResponderTerminate?: (event: ResponderEvent) => void;
-        onResponderTerminationRequest?: (event: ResponderEvent) => boolean;
-        onStartShouldSetResponder?: (event: ResponderEvent) => boolean;
-        patternTransform?: string;
-        ref?: any;
-        style?: any;
-        transform?: string;
-        'transform-origin'?: string;
-      } = {
-        ...(hasTouchableProps({ onPress, ...props }) &&
-          {
-            // onStartShouldSetResponder: self.touchableHandleStartShouldSetResponder,
-            // onResponderTerminationRequest: self.touchableHandleResponderTerminationRequest,
-            // onResponderGrant: self.touchableHandleResponderGrant,
-            // onResponderMove: self.touchableHandleResponderMove,
-            // onResponderRelease: self.touchableHandleResponderRelease,
-            // onResponderTerminate: self.touchableHandleResponderTerminate,
-          }),
-        ...(prepareProps({ translate, ...props } as React.PropsWithoutRef<P>) as typeof props),
-      };
+      });
+    }
+    if (gradientTransform != null) {
+      cleanProps.gradientTransform = parseTransformProp(gradientTransform);
+    }
+    if (patternTransform != null) {
+      cleanProps.patternTransform = parseTransformProp(patternTransform);
+    }
 
-      if (origin != null) {
-        cleanProps['transform-origin'] = origin.toString().replace(',', ' ');
-      } else if (originX != null || originY != null) {
-        cleanProps['transform-origin'] = `${originX ?? 0} ${originY ?? 0}`;
-      }
+    cleanProps.ref = ref;
+    cleanProps.style = [style, { fontFamily, fontSize, fontStyle, fontWeight }];
 
-      if (transform != null) {
-        cleanProps.transform = parseTransformProp(transform, {
-          rotation,
-          scale,
-          scaleX,
-          scaleY,
-          skewX,
-          skewY,
-          translate,
-          translateX,
-          translateY,
-        });
-      }
-      if (gradientTransform != null) {
-        cleanProps.gradientTransform = parseTransformProp(gradientTransform);
-      }
-      if (patternTransform != null) {
-        cleanProps.patternTransform = parseTransformProp(patternTransform);
-      }
+    if (onPress != null) {
+      cleanProps.onClick = onPress;
+    }
 
-      cleanProps.ref = ref;
-      cleanProps.style = [style, { fontFamily, fontSize, fontStyle, fontWeight }];
-
-      if (onPress != null) {
-        cleanProps.onClick = onPress;
-      }
-
-      return isString(Base) ? (
-        createElement(Base, cleanProps satisfies React.SVGProps<SVGElement>)
-      ) : (
-        <Base {...cleanProps} />
-      );
-    },
-  );
+    return isString(Base) ? (
+      createElement(Base, cleanProps satisfies React.SVGProps<SVGElement>)
+    ) : (
+      <Base {...cleanProps} />
+    );
+  };
 
   Component.displayName = name;
 
@@ -244,7 +238,7 @@ export const RadialGradient = createComponent<SVGRadialGradientElement, RadialGr
 );
 export const Rect = createComponent<SVGRectElement, RectProps>('rect', 'Rect');
 export const Stop = createComponent<SVGStopElement, StopProps>('stop', 'Stop');
-// biome-ignore lint/suspicious/noShadowRestrictedNames:
+// biome-ignore lint/suspicious/noShadowRestrictedNames: Symbol is an SVG element
 export const Symbol = createComponent<SVGSymbolElement, SymbolProps>('symbol', 'Symbol');
 export const Text = createComponent<SVGTextElement, TextProps>('text', 'Text');
 export const TextPath = createComponent<SVGTextPathElement, TextPathProps>('textPath', 'TextPath');

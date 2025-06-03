@@ -1,13 +1,15 @@
-import { isNumber, isObject } from '@react-universal/utils';
 import type { AnyObject } from '@react-universal/utils';
+import { isNumber, isObject } from '@react-universal/utils';
 import type { Theme, ThemeColor } from './defaultTheme';
 
 export type ExtractedTheme<T extends AnyObject = Theme> = {
-  [K in keyof T]: T[K] extends number | string | ThemeColor
-    ? string
-    : T[K] extends AnyObject
-      ? ExtractedTheme<T[K]>
-      : T[K];
+  [K in keyof T]: T[K] extends number
+    ? number
+    : T[K] extends ThemeColor
+      ? string
+      : T[K] extends AnyObject
+        ? ExtractedTheme<T[K]>
+        : T[K];
 };
 
 export function extractTheme(theme: Theme, mode: 'light' | 'dark') {

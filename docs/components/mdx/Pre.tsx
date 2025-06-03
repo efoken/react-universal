@@ -1,6 +1,6 @@
 import type { ViewProps } from '@react-universal/components';
-import { Pre as PreRoot } from '@react-universal/elements';
 import type { Code } from '@react-universal/elements';
+import { Pre as PreRoot } from '@react-universal/elements';
 import { cloneElement, isValidElement } from 'react';
 
 export const Pre: React.FC<ViewProps> = ({ children, sx, ...props }) => (
@@ -15,8 +15,8 @@ export const Pre: React.FC<ViewProps> = ({ children, sx, ...props }) => (
       mb: 6,
       mt: 6,
       overflowX: 'auto',
-      px: 7,
-      py: 7,
+      px: 8,
+      py: 8,
       ...sx,
     }}
   >

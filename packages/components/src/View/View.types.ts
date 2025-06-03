@@ -2,8 +2,9 @@ import type {
   AccessibilityProps,
   LayoutEvent,
   PlatformMethods,
-  RNStyle,
   ResponderConfig,
+  ResponderEvent,
+  RNStyle,
   StyleProp,
   SxProps,
 } from '@react-universal/core';
@@ -40,6 +41,11 @@ export interface ViewProps
       | 'focusable'
       | 'nativeID'
       | 'onLayout'
+      | 'onTouchCancel'
+      | 'onTouchEnd'
+      | 'onTouchEndCapture'
+      | 'onTouchMove'
+      | 'onTouchStart'
       | 'pointerEvents'
       | 'style'
     >,
@@ -63,6 +69,11 @@ export interface ViewProps
    * Callback invoked on mount and layout changes.
    */
   onLayout?: (event: LayoutEvent) => void;
+  onTouchCancel?: (event: ResponderEvent) => void;
+  onTouchEnd?: (event: ResponderEvent) => void;
+  onTouchEndCapture?: (event: ResponderEvent) => void;
+  onTouchMove?: (event: ResponderEvent) => void;
+  onTouchStart?: (event: ResponderEvent) => void;
   style?: StyleProp<ViewStyle>;
   /**
    * The system prop that allows defining system overrides as well as additional
@@ -71,7 +82,7 @@ export interface ViewProps
   sx?: SxProps;
 }
 
-export type ViewType = React.ForwardRefExoticComponent<
+export type ViewType = React.FC<
   React.PropsWithoutRef<ViewProps> & React.RefAttributes<HTMLElement & ViewMethods>
 >;
 

@@ -1,8 +1,8 @@
 import { Stack } from '@react-universal/components';
 import { styled } from '@react-universal/core';
 import { Span } from '@react-universal/elements';
-import Link from 'next/link';
 import type { LinkProps } from 'next/link';
+import Link from 'next/link';
 
 interface SideNavItem {
   title: React.ReactNode;
@@ -49,13 +49,7 @@ export const SideNav: React.FC<SideNavProps> = ({ title, items, currentUrl, stat
     )}
     <Stack spacing="px">
       {items.map((item, index) => (
-        <Link
-          // biome-ignore lint/suspicious/noArrayIndexKey:
-          key={index}
-          legacyBehavior
-          passHref
-          href={item.url!}
-        >
+        <Link key={item.url?.toString() ?? index} legacyBehavior passHref href={item.url!}>
           <SideNavLink aria-current={item.url === currentUrl ? 'page' : undefined} direction="row">
             <Span>{item.title}</Span>
             {item.status}

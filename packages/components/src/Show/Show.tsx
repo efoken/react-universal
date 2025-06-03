@@ -1,5 +1,4 @@
 import { runIfFunction } from '@react-universal/utils';
-import { isValidElement } from 'react';
 
 export interface ShowProps<T> {
   /**
@@ -16,7 +15,5 @@ export interface ShowProps<T> {
   when: T | null | undefined;
 }
 
-export const Show = <T,>({ children, fallback, when }: ShowProps<T>): React.ReactNode => {
-  const result = when ? runIfFunction(children, when) : fallback;
-  return isValidElement(result) ? result : <>{result}</>;
-};
+export const Show = <T,>({ children, fallback, when }: ShowProps<T>): React.ReactNode =>
+  when ? runIfFunction(children, when) : fallback;

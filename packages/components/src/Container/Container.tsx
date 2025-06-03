@@ -1,21 +1,18 @@
 'use client';
 
-import { clamp, max, styled, useOwnerState } from '@react-universal/core';
 import type { Breakpoint } from '@react-universal/core';
+import { clamp, max, styled, useOwnerState } from '@react-universal/core';
 import type { AnyObject } from '@react-universal/utils';
-import { forwardRef } from 'react';
 import { View } from '../View';
-import type {
-  ContainerMethods,
-  ContainerOwnerState,
-  ContainerProps,
-  ContainerType,
-} from './Container.types';
+import type { ContainerMethods, ContainerOwnerState, ContainerProps } from './Container.types';
 
 const MIN_WIDTH = '20rem';
 const MAX_WIDTH = '90rem';
 
-const ContainerRoot = styled(View)<{ ownerState: ContainerOwnerState }>(({ runtime, theme }) => ({
+const ContainerRoot = styled(View, {
+  name: 'Container',
+  slot: 'Root',
+})<{ ownerState: ContainerOwnerState }>(({ runtime, theme }) => ({
   marginInline: 'auto',
   paddingInline: {
     xs: max(theme.space[4], runtime.insets.left, runtime.insets.right),
@@ -24,7 +21,7 @@ const ContainerRoot = styled(View)<{ ownerState: ContainerOwnerState }>(({ runti
   },
   width: '100%',
   variants: [
-    ...(Object.entries(theme.breakpoints) as [Breakpoint, string][]).map(
+    ...(Object.entries(theme.breakpoints) as [Breakpoint, number][]).map(
       ([breakpoint, maxWidth]) => ({
         props: { maxWidth: breakpoint },
         style: {
@@ -50,15 +47,15 @@ const ContainerRoot = styled(View)<{ ownerState: ContainerOwnerState }>(({ runti
   ],
 }));
 
-export const Container = forwardRef<HTMLElement & ContainerMethods, ContainerProps>(
-  ({ fixed = false, maxWidth = false, ...props }: ContainerProps, ref) => {
-    const ownerState = useOwnerState({
-      fixed,
-      maxWidth,
-    });
+export const Container: React.FC<
+  ContainerProps & React.RefAttributes<HTMLElement & ContainerMethods>
+> = ({ fixed = false, maxWidth = false, ...props }) => {
+  const ownerState = useOwnerState({
+    fixed,
+    maxWidth,
+  });
 
-    return <ContainerRoot ref={ref} ownerState={ownerState} {...props} />;
-  },
-) as ContainerType;
+  return <ContainerRoot ownerState={ownerState} {...props} />;
+};
 
 Container.displayName = 'Container';

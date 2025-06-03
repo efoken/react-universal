@@ -1,13 +1,13 @@
 'use client';
 
-import createCache from '@emotion/cache';
 import type { Options } from '@emotion/cache';
+import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import type { Theme } from '@react-universal/core';
 import { UniversalProvider } from '@react-universal/core';
 import { isString } from '@react-universal/utils';
-import { ThemeProvider } from 'next-themes';
 import { useServerInsertedHTML } from 'next/navigation';
+import { ThemeProvider } from 'next-themes';
 import { useState } from 'react';
 
 export interface AppRouterProdivderProps {
@@ -95,7 +95,7 @@ export const AppRouterProdivder: React.FC<AppRouterProdivderProps> = ({
             key={name}
             data-emotion={`${registry.cache.key}-global ${name}`}
             nonce={options?.nonce}
-            // biome-ignore lint/security/noDangerouslySetInnerHtml:
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: style is trusted
             dangerouslySetInnerHTML={{ __html: style }}
           />
         ))}
@@ -103,7 +103,7 @@ export const AppRouterProdivder: React.FC<AppRouterProdivderProps> = ({
           <style
             data-emotion={dataEmotion}
             nonce={options?.nonce}
-            // biome-ignore lint/security/noDangerouslySetInnerHtml:
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: style is trusted
             dangerouslySetInnerHTML={{ __html: styles }}
           />
         )}

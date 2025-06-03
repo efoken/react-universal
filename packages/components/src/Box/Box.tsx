@@ -15,7 +15,7 @@ export interface BoxProps extends ViewProps {
   sx?: SxProps;
 }
 
-export type BoxType = React.ForwardRefExoticComponent<
+export type BoxType = React.FC<
   React.PropsWithoutRef<BoxProps> & React.RefAttributes<HTMLElement & BoxMethods>
 >;
 
@@ -23,4 +23,6 @@ export const Box = styled(View, {
   name: 'Box',
 })({
   flexDirection: 'row',
-}) as BoxType;
+});
+
+Box.displayName = 'Box';

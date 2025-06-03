@@ -41,24 +41,27 @@ interface DefaultTheme {
   };
   space: {
     0: number;
-    px: string;
-    0.5: string;
-    1: string;
-    2: string;
-    3: string;
-    4: string;
-    5: string;
-    6: string;
-    7: string;
-    8: string;
-    9: string;
-    10: string;
-    11: string;
-    12: string;
-    13: string;
-    14: string;
-    15: string;
-    16: string;
+    /** 1px */ px: string;
+    /** 2px */ 0.5: string;
+    /** 4px */ 1: string;
+    /** 8px */ 2: string;
+    /** 12px */ 3: string;
+    /** 16px */ 4: string;
+    /** 20px */ 5: string;
+    /** 24px */ 6: string;
+    /** 28px */ 7: string;
+    /** 32px */ 8: string;
+    /** 36px */ 9: string;
+    /** 40px */ 10: string;
+    /** 44px */ 11: string;
+    /** 48px */ 12: string;
+    /** 56px */ 13: string;
+    /** 64px */ 14: string;
+    /** 80px */ 15: string;
+    /** 96px */ 16: string;
+    /** 112px */ 17: string;
+    /** 128px */ 18: string;
+    /** 144px */ 19: string;
   };
   radii: number[];
   zIndices: Record<string, number>;
@@ -113,16 +116,19 @@ export const defaultTheme: DefaultTheme = {
     /** 16px */ 4: '1rem',
     /** 20px */ 5: '1.25rem',
     /** 24px */ 6: '1.5rem',
-    /** 32px */ 7: '2rem',
-    /** 40px */ 8: '2.5rem',
-    /** 48px */ 9: '3rem',
-    /** 56px */ 10: '3.5rem',
-    /** 64px */ 11: '4rem',
-    /** 80px */ 12: '5rem',
-    /** 96px */ 13: '6rem',
-    /** 112px */ 14: '7rem',
-    /** 128px */ 15: '8rem',
-    /** 144px */ 16: '9rem',
+    /** 28px */ 7: '1.75rem',
+    /** 32px */ 8: '2rem',
+    /** 36px */ 9: '2.25rem',
+    /** 40px */ 10: '2.5rem',
+    /** 44px */ 11: '2.75rem',
+    /** 48px */ 12: '3rem',
+    /** 56px */ 13: '3.5rem',
+    /** 64px */ 14: '4rem',
+    /** 80px */ 15: '5rem',
+    /** 96px */ 16: '6rem',
+    /** 112px */ 17: '7rem',
+    /** 128px */ 18: '8rem',
+    /** 144px */ 19: '9rem',
   },
   radii: [0, 4, 8, 16],
   zIndices: {},
@@ -138,11 +144,13 @@ export type ThemeValue<T extends AnyObject> = {
 export type ExtractTheme<T> = Prettify<{
   [K in keyof T]: K extends 'sxConfig'
     ? T[K]
-    : T[K] extends number | ThemeColor | ThemeFont
-      ? string
-      : T[K] extends AnyObject
-        ? ExtractTheme<T[K]>
-        : T[K];
+    : T[K] extends number
+      ? number
+      : T[K] extends ThemeColor | ThemeFont
+        ? string
+        : T[K] extends AnyObject
+          ? ExtractTheme<T[K]>
+          : T[K];
 }>;
 
 // @ts-ignore: react-native-unistyles is not always installed, as it's optional

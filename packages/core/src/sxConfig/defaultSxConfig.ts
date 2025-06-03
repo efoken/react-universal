@@ -263,6 +263,7 @@ export const defaultSxConfig: SxConfig = {
   textAlign: {},
   textTransform: {},
   textWrap: {},
+  verticalAlign: {},
   whiteSpace: {},
   typography: {
     cssProperty: false,

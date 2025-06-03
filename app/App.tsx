@@ -6,8 +6,8 @@ import {
   Text,
   View,
 } from '@react-universal/components';
-import { UniversalProvider, isWeb, styled } from '@react-universal/core';
-import { Defs, G, Path, Svg, TSpan, Text as TextSvg, Use } from '@react-universal/svg';
+import { isWeb, styled, UniversalProvider } from '@react-universal/core';
+import { Defs, G, Path, Svg, Text as TextSvg, TSpan, Use } from '@react-universal/svg';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import { StatusBar } from 'expo-status-bar';
 import { useRef, useState } from 'react';
@@ -54,12 +54,12 @@ const Card = styled(View)(({ theme }) => ({
 export default function App() {
   const [open, setOpen] = useState(false);
 
-  const anchorRef = useRef<React.ElementRef<typeof ButtonBase>>(null);
+  const anchorRef = useRef<React.ComponentRef<typeof ButtonBase>>(null);
 
   return (
-    <View>
-      <StatusBar style="auto" />
-      <UniversalProvider>
+    <UniversalProvider>
+      <View>
+        <StatusBar style="auto" />
         <ScrollView>
           <Svg
             sx={{
@@ -67,7 +67,7 @@ export default function App() {
               maxW: '100%',
               w: { xs: 100, md: 200 },
               // h: 'auto',
-              mt: 10,
+              mt: 13,
             }}
             viewBox="0 0 620 472"
             xmlns="http://www.w3.org/2000/svg"
@@ -296,7 +296,7 @@ export default function App() {
             ))}
           </Grid>
         </ScrollView>
-      </UniversalProvider>
-    </View>
+      </View>
+    </UniversalProvider>
   );
 }

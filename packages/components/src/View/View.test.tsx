@@ -1,10 +1,12 @@
 import type { AnyObject } from '@react-universal/utils';
 import { isFunction, noop } from '@react-universal/utils';
+import { composeStories } from '@storybook/react';
 import { act, fireEvent, render } from '@testing-library/react';
 import { createRef } from 'react';
 import type { MockInstance } from 'vitest';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import { View } from './View';
+import * as stories from './View.stories';
 import type { ViewType } from './View.types';
 
 function createEventTarget(node: any) {
@@ -17,10 +19,25 @@ function createEventTarget(node: any) {
   };
 }
 
+const {
+  Default,
+  PropAriaLabel,
+  PropAriaLabelledBy,
+  PropAriaLive,
+  PropRole,
+  PropDir,
+  PropHref,
+  PropHrefAttrs,
+  PropLang,
+  PropId,
+  PropStyle,
+  PropTestId,
+} = composeStories(stories);
+
 describe('View', () => {
-  test('default', () => {
-    const { container } = render(<View />);
-    expect(container.firstChild).toMatchSnapshot();
+  test('default', async () => {
+    await Default.run();
+    expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
   });
 
   test('non-text is rendered', () => {
@@ -58,135 +75,133 @@ describe('View', () => {
   });
 
   describe('prop "aria-label"', () => {
-    test('value is set', () => {
-      const { container } = render(<View aria-label="accessibility label" />);
-      expect(container.firstChild).toMatchSnapshot();
+    test('value is set', async () => {
+      await PropAriaLabel.run();
+      expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
     });
   });
 
   describe('prop "aria-labelledby"', () => {
-    test('value is set', () => {
-      const { container } = render(<View aria-labelledby="123" />);
-      expect(container.firstChild).toMatchSnapshot();
+    test('value is set', async () => {
+      await PropAriaLabelledBy.run();
+      expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
     });
   });
 
   describe('prop "aria-live"', () => {
-    test('value is set', () => {
-      const { container } = render(<View aria-live="polite" />);
-      expect(container.firstChild).toMatchSnapshot();
+    test('value is set', async () => {
+      await PropAriaLive.run();
+      expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
     });
   });
 
   describe('prop "role"', () => {
-    test('value is set', () => {
-      const { container } = render(<View role="presentation" />);
-      expect(container.firstChild).toMatchSnapshot();
+    test('value is set', async () => {
+      await PropRole.run();
+      expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
     });
 
-    test('value is "button"', () => {
-      const { container } = render(<View role="button" />);
-      expect(container.firstChild).toMatchSnapshot();
+    test('value is "button"', async () => {
+      await PropRole.run({ args: { role: 'button' } });
+      expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
     });
 
-    test('value alters HTML element', () => {
-      const { container } = render(<View role="article" />);
-      expect(container.firstChild).toMatchSnapshot();
+    test('value alters HTML element', async () => {
+      await PropRole.run({ args: { role: 'article' } });
+      expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
     });
   });
 
   describe('prop "dir"', () => {
-    test('value is "ltr"', () => {
-      const { container } = render(<View dir="ltr" />);
-      expect(container.firstChild).toMatchSnapshot();
+    test('value is "ltr"', async () => {
+      await PropDir.run();
+      expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
     });
 
-    test('value is "rtl"', () => {
-      const { container } = render(<View dir="rtl" />);
-      expect(container.firstChild).toMatchSnapshot();
+    test('value is "rtl"', async () => {
+      await PropDir.run({ args: { dir: 'rtl' } });
+      expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
     });
   });
 
   describe('prop "href"', () => {
-    test('value is set', () => {
-      const { container } = render(<View href="https://example.com" />);
-      expect(container.firstChild).toMatchSnapshot();
+    test('value is set', async () => {
+      await PropHref.run();
+      expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
     });
 
-    test('href with role', () => {
-      const { container } = render(<View role="presentation" href="https://example.com" />);
-      expect(container.firstChild).toMatchSnapshot();
+    test('href with role', async () => {
+      await PropHref.run({ args: { role: 'presentation' } });
+      expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
     });
   });
 
   describe('prop "hrefAttrs"', () => {
-    test('requires "href"', () => {
-      const { container } = render(<View hrefAttrs={{ download: 'filename.jpg' }} />);
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
-    test('value is set', () => {
+    test('requires "href"', async () => {
       const hrefAttrs = {
         download: 'filename.jpg',
-        rel: 'nofollow',
-        target: '_blank',
       };
-      const { container } = render(<View href="https://example.com" hrefAttrs={hrefAttrs} />);
-      expect(container.firstChild).toMatchSnapshot();
+      await PropHrefAttrs.run({ args: { href: undefined, hrefAttrs } });
+      expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
     });
 
-    test('target variant is set', () => {
+    test('value is set', async () => {
+      await PropHrefAttrs.run();
+      expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
+    });
+
+    test('target variant is set', async () => {
       const hrefAttrs = {
         target: 'blank',
       };
-      const { container } = render(<View href="https://example.com" hrefAttrs={hrefAttrs} />);
-      expect(container.firstChild).toMatchSnapshot();
+      await PropHrefAttrs.run({ args: { href: 'https://example.com', hrefAttrs } });
+      expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
     });
 
-    test('undefined values are excluded', () => {
+    test('undefined values are excluded', async () => {
       const hrefAttrs = {
         download: undefined,
         rel: undefined,
         target: undefined,
       };
-      const { container } = render(<View href="https://example.com" hrefAttrs={hrefAttrs} />);
-      expect(container.firstChild).toMatchSnapshot();
+      await PropHrefAttrs.run({ args: { href: 'https://example.com', hrefAttrs } });
+      expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
     });
   });
 
   describe('prop "lang"', () => {
-    test('undefined', () => {
-      const { container } = render(<View />);
-      expect(container.firstChild).toMatchSnapshot();
+    test('undefined', async () => {
+      await PropLang.run({ args: { lang: undefined } });
+      expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
     });
 
-    test('fr', () => {
-      const { container } = render(<View lang="fr" />);
-      expect(container.firstChild).toMatchSnapshot();
+    test('fr', async () => {
+      await PropLang.run();
+      expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
     });
 
-    test('ar', () => {
-      const { container } = render(<View lang="ar" />);
-      expect(container.firstChild).toMatchSnapshot();
+    test('ar', async () => {
+      await PropLang.run({ args: { lang: 'ar' } });
+      expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
     });
 
-    test('with dir', () => {
-      const { container } = render(<View dir="ltr" lang="ar" />);
-      expect(container.firstChild).toMatchSnapshot();
+    test('with dir', async () => {
+      await PropLang.run({ args: { dir: 'ltr', lang: 'ar' } });
+      expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
     });
   });
 
   describe('prop "id"', () => {
-    test('value is set', () => {
-      const { container } = render(<View id="ID" />);
-      expect(container.firstChild).toMatchSnapshot();
+    test('value is set', async () => {
+      await PropId.run();
+      expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
     });
   });
 
   describe('prop "onBlur"', () => {
     test('is called', () => {
       const onBlur = vi.fn();
-      const ref = createRef<React.ElementRef<ViewType>>();
+      const ref = createRef<React.ComponentRef<ViewType>>();
       act(() => {
         // @ts-expect-error: `onBlur` is Web only and does not exist in types
         render(<View ref={ref} onBlur={onBlur} />);
@@ -203,7 +218,7 @@ describe('View', () => {
   describe('prop "onClick"', () => {
     test('is called', () => {
       const onClick = vi.fn();
-      const ref = createRef<React.ElementRef<ViewType>>();
+      const ref = createRef<React.ComponentRef<ViewType>>();
       act(() => {
         // @ts-expect-error: `onClick` is Web only and does not exist in types
         render(<View ref={ref} onClick={onClick} />);
@@ -219,7 +234,7 @@ describe('View', () => {
   describe('prop "onFocus"', () => {
     test('is called', () => {
       const onFocus = vi.fn();
-      const ref = createRef<React.ElementRef<ViewType>>();
+      const ref = createRef<React.ComponentRef<ViewType>>();
       act(() => {
         // @ts-expect-error: `onFocus` is Web only and does not exist in types
         render(<View ref={ref} onFocus={onFocus} />);
@@ -243,7 +258,7 @@ describe('View', () => {
 
     test('is called', () => {
       const onPointerDown = vi.fn();
-      const ref = createRef<React.ElementRef<ViewType>>();
+      const ref = createRef<React.ComponentRef<ViewType>>();
       act(() => {
         render(<View ref={ref} onPointerDown={onPointerDown} />);
       });
@@ -276,7 +291,7 @@ describe('View', () => {
     });
 
     test('node has imperative methods', () => {
-      const ref = createRef<React.ElementRef<ViewType>>();
+      const ref = createRef<React.ComponentRef<ViewType>>();
       act(() => {
         render(<View ref={ref} />);
       });
@@ -288,16 +303,16 @@ describe('View', () => {
   });
 
   describe('prop "style"', () => {
-    test('value is set', () => {
-      const { container } = render(<View style={{ borderWidth: 5 }} />);
-      expect(container.firstChild).toMatchSnapshot();
+    test('value is set', async () => {
+      await PropStyle.run();
+      expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
     });
   });
 
   describe('prop "testID"', () => {
-    test('value is set', () => {
-      const { container } = render(<View testID="123" />);
-      expect(container.firstChild).toMatchSnapshot();
+    test('value is set', async () => {
+      await PropTestId.run();
+      expect(document.body.firstElementChild?.firstChild).toMatchSnapshot();
     });
   });
 });

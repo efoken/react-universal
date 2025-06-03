@@ -1,7 +1,6 @@
 import type { StyleProp } from '@react-universal/core';
-import { normalizeRole, styled } from '@react-universal/core';
+import { normalizeResponderEvent, normalizeRole, styled } from '@react-universal/core';
 import type { AnyObject } from '@react-universal/utils';
-import { forwardRef } from 'react';
 import { StyleSheet } from 'react-native';
 import {
   Circle as RNCircle,
@@ -24,9 +23,9 @@ import {
   Stop as RNStop,
   Svg as RNSvg,
   Symbol as RNSymbol,
-  TSpan as RNTSpan,
   Text as RNText,
   TextPath as RNTextPath,
+  TSpan as RNTSpan,
   Use as RNUse,
 } from 'react-native-svg';
 import type {
@@ -37,8 +36,8 @@ import type {
   ForeignObjectProps,
   GProps,
   ImageProps,
-  LineProps,
   LinearGradientProps,
+  LineProps,
   MarkerProps,
   MaskProps,
   PathProps,
@@ -50,9 +49,9 @@ import type {
   StopProps,
   SvgProps,
   SymbolProps,
-  TSpanProps,
   TextPathProps,
   TextProps,
+  TSpanProps,
   UseProps,
 } from './types';
 
@@ -69,11 +68,11 @@ function createComponent<
   name: Capitalize<string>,
   prepareProps: (props: React.PropsWithoutRef<P>) => React.PropsWithoutRef<P> = (props) => props,
 ) {
-  const Component = forwardRef<T, P>(({ style, ...props }, ref) => {
+  const Component: React.FC<P & React.RefAttributes<T>> = ({ style, ...props }) => {
     const styleProps = StyleSheet.flatten<AnyObject>(style);
 
-    return <Base ref={ref} {...prepareProps(props as React.PropsWithoutRef<P>)} {...styleProps} />;
-  });
+    return <Base {...prepareProps(props as React.PropsWithoutRef<P>)} {...styleProps} />;
+  };
 
   Component.displayName = name;
 
@@ -88,15 +87,27 @@ const SvgRoot = styled(RNSvg, {
   position: 'static',
 }));
 
-export const Svg = forwardRef<any, SvgProps>(({ hitSlop, role, style, ...props }, ref) => (
+export const Svg: React.FC<SvgProps & React.RefAttributes<any>> = ({
+  hitSlop,
+  onLongPress,
+  onPress,
+  onPressIn,
+  onPressOut,
+  role,
+  style,
+  ...props
+}) => (
   <SvgRoot
-    ref={ref}
     hitSlop={hitSlop ?? undefined}
     role={normalizeRole(role)}
     style={style as any}
+    onLongPress={normalizeResponderEvent(onLongPress)}
+    onPress={normalizeResponderEvent(onPress)}
+    onPressIn={normalizeResponderEvent(onPressIn)}
+    onPressOut={normalizeResponderEvent(onPressOut)}
     {...props}
   />
-));
+);
 
 Svg.displayName = 'Svg';
 
@@ -124,7 +135,7 @@ export const RadialGradient = createComponent<RadialGradientProps>(
 );
 export const Rect = createComponent<RectProps>(RNRect, 'Rect');
 export const Stop = createComponent<StopProps>(RNStop, 'Stop');
-// biome-ignore lint/suspicious/noShadowRestrictedNames:
+// biome-ignore lint/suspicious/noShadowRestrictedNames: Symbol is an SVG element
 export const Symbol = createComponent<SymbolProps>(RNSymbol, 'Symbol');
 export const Text = createComponent<TextProps>(RNText, 'Text');
 export const TextPath = createComponent<TextPathProps>(RNTextPath, 'TextPath');

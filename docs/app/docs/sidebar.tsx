@@ -9,7 +9,7 @@ import { useRoute } from '#/lib/useRoute';
 import { useScrollIntoView } from '#/lib/useScrollIntoView';
 
 export const SidebarStart: React.FC<ViewProps> = (props) => {
-  const containerRef = useRef<React.ElementRef<ViewType>>(null);
+  const containerRef = useRef<React.ComponentRef<ViewType>>(null);
   const route = useRoute();
 
   useScrollIntoView(containerRef, '[aria-current="page"]', 'center');
@@ -27,7 +27,7 @@ export const SidebarStart: React.FC<ViewProps> = (props) => {
         overscrollBehavior: 'contain',
         pe: 5,
         position: 'sticky' as any,
-        py: 8,
+        py: 10,
         top: 'var(--header-height)',
         width: '16rem',
       }}
@@ -57,9 +57,9 @@ export const SidebarEnd: React.FC<ViewProps> = ({ children, sx, ...props }) => (
       height: 'var(--content-height)',
       overflowY: 'auto',
       overscrollBehavior: 'contain',
-      pb: 8,
+      pb: 10,
       position: 'sticky' as any,
-      pt: 8,
+      pt: 10,
       px: 2,
       top: 'var(--header-height)',
       w: '16rem',

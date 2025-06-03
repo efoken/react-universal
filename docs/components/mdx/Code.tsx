@@ -9,10 +9,11 @@ export const Code: React.FC<TextProps> = ({ sx, ...props }) => (
       borderRadius: '0.375rem',
       borderWidth: 0.5,
       color: 'fg',
-      fontSize: '0.8em',
+      fontSize: '0.9em',
       letterSpacing: '-0.01em',
       px: '0.4em',
       py: '0.1em',
+      verticalAlign: 'middle',
       whiteSpace: 'pre',
       ...sx,
     }}

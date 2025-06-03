@@ -145,7 +145,7 @@ export function createStyleFunctionSx(): StyleFunctionSx {
       const mergeCss = (item: any) => mergeDeep(css, item, { clone: false });
 
       for (const propName of Object.keys(sxObject) as (keyof typeof sxObject)[]) {
-        const value = runIfFunction(sxObject[propName], theme);
+        const value = runIfFunction<unknown, [Theme]>(sxObject[propName], theme);
 
         if (value != null) {
           if (isObject(value)) {

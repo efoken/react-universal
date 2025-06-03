@@ -9,15 +9,16 @@ import {
   useOwnerState,
   usePlatformMethods,
 } from '@react-universal/core';
-import type { AnyObject } from '@react-universal/utils';
-import { isString, pick } from '@react-universal/utils';
+import { isString, normalizeEvent, pick } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
-import { forwardRef, useCallback, useContext, useRef } from 'react';
-import type { GestureResponderEvent } from 'react-native';
-import type { TextMethods, TextOwnerState, TextProps, TextType } from './Text.types';
+import { useCallback, useContext, useRef } from 'react';
+import type { TextMethods, TextOwnerState, TextProps } from './Text.types';
 import { TextAncestorContext } from './TextAncestorContext';
 
-function pickProps<T extends AnyObject>(props: T) {
+function pickProps<T extends { ref?: React.Ref<any> }>(
+  props: T,
+): ForwardedProps<NonNullable<T['ref']> extends React.Ref<infer T> ? T : HTMLElement> {
+  // @ts-expect-error
   return pick(props, {
     ...forwardedProps.defaultProps,
     ...forwardedProps.accessibilityProps,
@@ -33,7 +34,7 @@ function pickProps<T extends AnyObject>(props: T) {
   });
 }
 
-const TextRoot = styled('div', {
+const TextRoot = styled<any>('div', {
   name: 'Text',
   slot: 'Root',
 })<{ ownerState: TextOwnerState }>(({ theme }) => ({
@@ -79,97 +80,92 @@ const TextRoot = styled('div', {
   ],
 }));
 
-export const Text = forwardRef<HTMLElement & TextMethods, TextProps>(
-  (
-    {
-      as: _as,
-      dir,
-      hrefAttrs,
-      numberOfLines,
-      onClick,
-      onLayout,
-      onPress,
-      style,
-      ...props
-    }: TextProps,
-    ref,
-  ) => {
-    const hasTextAncestor = useContext(TextAncestorContext);
-    const hostRef = useRef<HTMLElement>(null);
+export const Text: React.FC<TextProps & React.RefAttributes<HTMLElement & TextMethods>> = ({
+  as: _as,
+  dir,
+  hrefAttrs,
+  numberOfLines,
+  onClick,
+  onLayout,
+  onPress,
+  style,
+  ...props
+}) => {
+  const hasTextAncestor = useContext(TextAncestorContext);
+  const hostRef = useRef<HTMLElement>(null);
 
-    useElementLayout(hostRef, onLayout);
+  useElementLayout(hostRef, onLayout);
 
-    const handleClick = useCallback(
-      (event: GestureResponderEvent) => {
-        if (onClick != null) {
-          onClick(event);
-        } else if (onPress != null) {
-          event.stopPropagation();
-          onPress(event);
-        }
-      },
-      [onClick, onPress],
-    );
+  const handleClick = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      if (onClick != null) {
+        onClick(event);
+      } else if (onPress != null) {
+        event.stopPropagation();
+        onPress(normalizeEvent(event));
+      }
+    },
+    [onClick, onPress],
+  );
 
-    let component: 'a' | 'div' | 'span' = hasTextAncestor ? 'span' : 'div';
+  let component: 'a' | 'div' | 'span' = hasTextAncestor ? 'span' : 'div';
 
-    const langDirection = props.lang == null ? undefined : getLocaleDirection(props.lang);
-    const componentDirection = dir ?? langDirection;
+  const langDirection = props.lang == null ? undefined : getLocaleDirection(props.lang);
+  const componentDirection = dir ?? langDirection;
 
-    const supportedProps: ForwardedProps<HTMLElement> = pickProps(props);
-    supportedProps.dir = componentDirection;
-    // 'auto' by default allows browsers to infer writing direction (root elements only)
-    if (!hasTextAncestor) {
-      supportedProps.dir = componentDirection ?? 'auto';
-    }
+  const supportedProps = pickProps(props);
+  supportedProps.dir = componentDirection;
+  // 'auto' by default allows browsers to infer writing direction (root elements only)
+  if (!hasTextAncestor) {
+    supportedProps.dir = componentDirection ?? 'auto';
+  }
 
-    if (onClick != null || onPress != null) {
-      // @ts-expect-error: `onClick` is currently missing in forwarded props
-      supportedProps.onClick = handleClick;
-    }
+  if (onClick != null || onPress != null) {
+    // @ts-expect-error: `onClick` is currently missing in forwarded props
+    supportedProps.onClick = handleClick;
+  }
 
-    if (props.href != null) {
-      component = 'a';
-      if (hrefAttrs != null) {
-        const { download, rel, target } = hrefAttrs;
-        if (download != null) {
-          supportedProps.download = download;
-        }
-        if (rel != null) {
-          supportedProps.rel = rel;
-        }
-        if (isString(target)) {
-          supportedProps.target = target.startsWith('_') ? target : `_${target}`;
-        }
+  if (props.href != null) {
+    component = 'a';
+    if (hrefAttrs != null) {
+      const { download, rel, target } = hrefAttrs;
+      if (download != null) {
+        supportedProps.download = download;
+      }
+      if (rel != null) {
+        supportedProps.rel = rel;
+      }
+      if (isString(target)) {
+        supportedProps.target = target.startsWith('_') ? target : `_${target}`;
       }
     }
+  }
 
-    const platformMethodsRef = usePlatformMethods(hostRef);
-    const handleRef = useComposedRefs<HTMLElement>(hostRef, platformMethodsRef, ref);
+  const platformMethodsRef = usePlatformMethods(hostRef);
+  const handleRef = useComposedRefs(hostRef, platformMethodsRef, props.ref);
 
-    supportedProps.ref = handleRef;
+  supportedProps.ref = handleRef;
 
-    const ownerState = useOwnerState({
-      hasTextAncestor,
-      numberOfLines,
-      pressable: onClick != null || onPress != null,
-    });
+  const ownerState = useOwnerState({
+    hasTextAncestor,
+    numberOfLines,
+    pressable: onClick != null || onPress != null,
+  });
 
-    const element = (
-      <TextRoot
-        as={_as ?? component}
-        ownerState={ownerState}
-        style={[{ '--number-of-lines': numberOfLines }, style]}
-        {...supportedProps}
-      />
-    );
+  const element = (
+    <TextRoot
+      as={_as ?? component}
+      ownerState={ownerState}
+      style={[{ '--number-of-lines': numberOfLines }, style]}
+      {...supportedProps}
+    />
+  );
 
-    return hasTextAncestor ? (
-      element
-    ) : (
-      <TextAncestorContext.Provider value>{element}</TextAncestorContext.Provider>
-    );
-  },
-) as TextType;
+  return hasTextAncestor ? (
+    element
+  ) : (
+    <TextAncestorContext.Provider value>{element}</TextAncestorContext.Provider>
+  );
+};
 
 Text.displayName = 'Text';

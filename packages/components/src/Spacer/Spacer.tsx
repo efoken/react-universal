@@ -2,7 +2,6 @@
 
 import type { SxProps } from '@react-universal/core';
 import { styled } from '@react-universal/core';
-import { forwardRef } from 'react';
 import type { ViewMethods, ViewProps } from '../View';
 import { View } from '../View';
 
@@ -16,7 +15,7 @@ export interface SpacerProps extends ViewProps {
   sx?: SxProps;
 }
 
-export type SpacerType = React.ForwardRefExoticComponent<
+export type SpacerType = React.FC<
   React.PropsWithoutRef<SpacerProps> & React.RefAttributes<HTMLDivElement & SpacerMethods>
 >;
 
@@ -29,8 +28,8 @@ const SpacerRoot = styled(View, {
   justifySelf: 'stretch',
 });
 
-export const Spacer = forwardRef<HTMLDivElement & SpacerMethods, SpacerProps>(
-  (props: SpacerProps, ref) => <SpacerRoot ref={ref} {...props} />,
-) as SpacerType;
+export const Spacer: React.FC<SpacerProps & React.RefAttributes<HTMLDivElement & SpacerMethods>> = (
+  props,
+) => <SpacerRoot {...props} />;
 
 Spacer.displayName = 'Spacer';

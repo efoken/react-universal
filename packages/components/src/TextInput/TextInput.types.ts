@@ -58,7 +58,7 @@ export interface TextInputProps
   sx?: SxProps;
 }
 
-export type TextInputType = React.ForwardRefExoticComponent<
+export type TextInputType = React.FC<
   React.PropsWithoutRef<TextInputProps> & React.RefAttributes<HTMLInputElement & TextInputMethods>
 >;
 

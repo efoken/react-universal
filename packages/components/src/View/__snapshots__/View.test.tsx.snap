@@ -53,9 +53,8 @@ exports[`View > prop "dir" > value is "rtl" 1`] = `
 `;
 
 exports[`View > prop "href" > href with role 1`] = `
-<a
+<div
   class="css-1uo959j"
-  href="https://example.com"
   role="presentation"
 />
 `;

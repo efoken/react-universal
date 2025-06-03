@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.0.0-beta.3/schema.json",
   "vcs": {
     "enabled": true,
     "clientKind": "git",
@@ -15,9 +15,6 @@
     "indentWidth": 2,
     "lineWidth": 100
   },
-  "organizeImports": {
-    "enabled": true
-  },
   "linter": {
     "enabled": true,
     "rules": {
@@ -30,6 +27,8 @@
         }
       },
       "complexity": {
+        "noForEach": "error",
+        "noStaticOnlyClass": "off",
         "noUselessStringConcat": "error",
         "noUselessUndefinedInitialization": "error",
         "noVoid": "error",
@@ -37,82 +36,20 @@
         "useDateNow": "error"
       },
       "correctness": {
-        "noNewSymbol": "error",
+        "noInvalidBuiltinInstantiation": "error",
         "noUndeclaredVariables": "error",
         "noUnusedImports": "error",
         "noUnusedPrivateClassMembers": "error",
-        "noUnusedVariables": "error",
+        "noUnusedVariables": {
+          "level": "error",
+          "options": { "ignoreRestSiblings": true }
+        },
         "useArrayLiterals": "error",
         "useHookAtTopLevel": "error"
       },
       "style": {
         "noNamespace": "error",
         "noNonNullAssertion": "off",
-        "noRestrictedGlobals": {
-          "level": "error",
-          "options": {
-            "deniedGlobals": [
-              "addEventListener",
-              "blur",
-              "close",
-              "closed",
-              "confirm",
-              "defaultStatus",
-              "defaultstatus",
-              "event",
-              "external",
-              "find",
-              "focus",
-              "frameElement",
-              "frames",
-              "history",
-              "innerHeight",
-              "innerWidth",
-              "length",
-              "location",
-              "locationbar",
-              "menubar",
-              "moveBy",
-              "moveTo",
-              "name",
-              "onblur",
-              "onerror",
-              "onfocus",
-              "onload",
-              "onresize",
-              "onunload",
-              "open",
-              "opener",
-              "opera",
-              "outerHeight",
-              "outerWidth",
-              "pageXOffset",
-              "pageYOffset",
-              "parent",
-              "print",
-              "removeEventListener",
-              "resizeBy",
-              "resizeTo",
-              "screen",
-              "screenLeft",
-              "screenTop",
-              "screenX",
-              "screenY",
-              "scroll",
-              "scrollbars",
-              "scrollBy",
-              "scrollTo",
-              "scrollX",
-              "scrollY",
-              "self",
-              "status",
-              "statusbar",
-              "stop",
-              "toolbar",
-              "top"
-            ]
-          }
-        },
         "noYodaExpression": "error",
         "useBlockStatements": "error",
         "useCollapsedElseIf": "error",
@@ -132,9 +69,6 @@
         "noExplicitAny": "off",
         "useErrorMessage": "error",
         "useNumberToFixedDigitsArgument": "error"
-      },
-      "nursery": {
-        "noCommonJs": "error"
       }
     }
   },

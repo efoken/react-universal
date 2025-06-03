@@ -2,7 +2,7 @@
 
 import { styled, useOwnerState } from '@react-universal/core';
 import { useComposedRefs } from '@tamagui/compose-refs';
-import { forwardRef, useRef } from 'react';
+import { useRef } from 'react';
 import type { ViewMethods, ViewProps } from '../View';
 import { View } from '../View';
 import type { ScrollViewProps } from './ScrollView.types';
@@ -77,83 +77,81 @@ const ScrollViewRoot = styled(View, {
   ],
 });
 
-export const ScrollViewBase = forwardRef<HTMLElement & ViewMethods, ScrollViewBaseProps>(
-  (
-    {
-      onLayout,
-      onScroll,
-      onTouchMove,
-      onWheel,
-      scrollEnabled = false,
-      scrollEventThrottle = 0,
-      showsHorizontalScrollIndicator = true,
-      showsVerticalScrollIndicator = true,
-      ...props
-    },
-    ref,
-  ) => {
-    const scrollState = useRef({ scrolling: false, scrollLastTick: 0 });
-    const scrollTimer = useRef<ReturnType<typeof setTimeout>>();
+export const ScrollViewBase: React.FC<
+  ScrollViewBaseProps & React.RefAttributes<HTMLElement & ViewMethods>
+> = ({
+  onLayout,
+  onScroll,
+  onTouchMove,
+  onWheel,
+  ref,
+  scrollEnabled = false,
+  scrollEventThrottle = 0,
+  showsHorizontalScrollIndicator = true,
+  showsVerticalScrollIndicator = true,
+  ...props
+}) => {
+  const scrollState = useRef({ scrolling: false, scrollLastTick: 0 });
+  const scrollTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
-    const hostRef = useRef<React.ElementRef<typeof View>>(null);
+  const hostRef = useRef<React.ComponentRef<typeof View>>(null);
 
-    const handleScrollTick = (event: React.UIEvent<HTMLElement>) => {
-      scrollState.current.scrollLastTick = Date.now();
-      onScroll?.(normalizeScrollEvent(event));
-    };
+  const handleScrollTick = (event: React.UIEvent<HTMLElement>) => {
+    scrollState.current.scrollLastTick = Date.now();
+    onScroll?.(normalizeScrollEvent(event));
+  };
 
-    const handleScrollStart = (event: React.UIEvent<HTMLElement>) => {
-      scrollState.current.scrolling = true;
-      handleScrollTick(event);
-    };
+  const handleScrollStart = (event: React.UIEvent<HTMLElement>) => {
+    scrollState.current.scrolling = true;
+    handleScrollTick(event);
+  };
 
-    const handleScrollEnd = (event: React.UIEvent<HTMLElement>) => {
-      scrollState.current.scrolling = false;
-      onScroll?.(normalizeScrollEvent(event));
-    };
+  const handleScrollEnd = (event: React.UIEvent<HTMLElement>) => {
+    scrollState.current.scrolling = false;
+    onScroll?.(normalizeScrollEvent(event));
+  };
 
-    const handleScroll = (event: React.UIEvent<HTMLElement>) => {
-      event.stopPropagation();
-      if (event.target === hostRef.current) {
-        event.persist();
-        // A scroll happened, so the scroll resets the scrollend timeout.
-        if (scrollTimer.current != null) {
-          clearTimeout(scrollTimer.current);
-        }
-        scrollTimer.current = setTimeout(() => {
-          handleScrollEnd(event);
-        }, 100);
-        if (scrollState.current.scrolling) {
-          // Scroll last tick may have changed, check if we need to notify
-          if (shouldEmitScrollEvent(scrollState.current.scrollLastTick, scrollEventThrottle)) {
-            handleScrollTick(event);
-          }
-        } else {
-          // Weren't scrolling, so we must have just started
-          handleScrollStart(event);
-        }
+  const handleScroll = (event: React.UIEvent<HTMLElement>) => {
+    event.stopPropagation();
+    if (event.target === hostRef.current) {
+      event.persist();
+      // A scroll happened, so the scroll resets the scrollend timeout.
+      if (scrollTimer.current != null) {
+        clearTimeout(scrollTimer.current);
       }
-    };
+      scrollTimer.current = setTimeout(() => {
+        handleScrollEnd(event);
+      }, 100);
+      if (scrollState.current.scrolling) {
+        // Scroll last tick may have changed, check if we need to notify
+        if (shouldEmitScrollEvent(scrollState.current.scrollLastTick, scrollEventThrottle)) {
+          handleScrollTick(event);
+        }
+      } else {
+        // Weren't scrolling, so we must have just started
+        handleScrollStart(event);
+      }
+    }
+  };
 
-    const handleRef = useComposedRefs(hostRef, ref);
+  const handleRef = useComposedRefs(hostRef, ref);
 
-    const ownerState = useOwnerState({
-      scrollEnabled,
-      showsHorizontalScrollIndicator,
-      showsVerticalScrollIndicator,
-    });
+  const ownerState = useOwnerState({
+    scrollEnabled,
+    showsHorizontalScrollIndicator,
+    showsVerticalScrollIndicator,
+  });
 
-    return (
-      <ScrollViewRoot
-        ref={handleRef}
-        ownerState={ownerState}
-        onScroll={handleScroll}
-        onTouchMove={scrollEnabled ? onTouchMove : undefined}
-        onWheel={scrollEnabled ? onWheel : undefined}
-        {...props}
-      />
-    );
-  },
-);
+  return (
+    <ScrollViewRoot
+      ref={handleRef}
+      ownerState={ownerState}
+      onScroll={handleScroll}
+      onTouchMove={scrollEnabled ? onTouchMove : undefined}
+      onWheel={scrollEnabled ? onWheel : undefined}
+      {...props}
+    />
+  );
+};
 
 ScrollViewBase.displayName = 'ScrollViewBase';

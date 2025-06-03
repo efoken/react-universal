@@ -2,8 +2,8 @@ import type {
   AccessibilityProps,
   LayoutEvent,
   PlatformMethods,
-  RNStyle,
   ResponderConfig,
+  RNStyle,
   StyleProp,
   SxProps,
 } from '@react-universal/core';
@@ -87,7 +87,7 @@ export interface ImageProps
   sx?: SxProps;
 }
 
-export type ImageType = React.ForwardRefExoticComponent<
+export type ImageType = React.FC<
   React.PropsWithoutRef<ImageProps> & React.RefAttributes<HTMLImageElement & ImageMethods>
 > &
   Pick<

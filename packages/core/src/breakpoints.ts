@@ -3,11 +3,10 @@ import { isArray, isObject, mergeDeep } from '@react-universal/utils';
 
 export const defaultBreakpoints = {
   xs: 0,
-  sm: 360,
-  md: 600,
-  lg: 1024,
-  xl: 1440,
-  xxl: 1920,
+  sm: 360, // 600
+  md: 600, // 840
+  lg: 1024, // 1200
+  xl: 1440, // 1600
 };
 
 export type Breakpoints = typeof defaultBreakpoints;

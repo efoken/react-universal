@@ -2,7 +2,7 @@
 
 import type { BreakpointValue, RNStyle, SxProps, Theme, ThemeValue } from '@react-universal/core';
 import { handleBreakpoints, styled, useOwnerState } from '@react-universal/core';
-import { Children, cloneElement, forwardRef } from 'react';
+import { Children, cloneElement } from 'react';
 import type { ViewMethods, ViewProps } from '../View';
 import { View } from '../View';
 
@@ -29,7 +29,7 @@ export interface StackProps extends ViewProps {
   sx?: SxProps;
 }
 
-export type StackType = React.ForwardRefExoticComponent<
+export type StackType = React.FC<
   React.PropsWithoutRef<StackProps> & React.RefAttributes<HTMLElement & ViewMethods>
 >;
 
@@ -38,6 +38,9 @@ type StackOwnerState = Required<Pick<StackProps, 'direction' | 'spacing'>>;
 /**
  * Return an array with the divider React element interspersed between each
  * React node of the input children.
+ *
+ * @example
+ * joinChildren([1, 2, 3], 0) // [1, 0, 2, 0, 3]
  */
 function joinChildren(children: React.ReactNode, divider: React.ReactElement) {
   const _children = Children.toArray(children).filter(Boolean);
@@ -46,19 +49,13 @@ function joinChildren(children: React.ReactNode, divider: React.ReactElement) {
     acc.push(child);
 
     if (index < _children.length - 1) {
-      // biome-ignore lint/suspicious/noArrayIndexKey:
+      // biome-ignore lint/suspicious/noArrayIndexKey: we don't have a better key
       acc.push(cloneElement(divider, { key: `separator-${index}` }));
     }
 
     return acc;
   }, []);
 }
-
-// function getGapFromDirection(
-//   direction: 'row' | 'row-reverse' | 'column' | 'column-reverse',
-// ) {
-//   return direction.startsWith('row') ? 'rowGap' : 'columnGap';
-// }
 
 const StackRoot = styled(View, {
   name: 'Stack',
@@ -91,19 +88,23 @@ const StackRoot = styled(View, {
   ],
 }));
 
-export const Stack = forwardRef<HTMLElement & ViewMethods, StackProps>(
-  ({ children, direction = 'column', divider, spacing = 0, ...props }: StackProps, ref) => {
-    const ownerState = useOwnerState({
-      direction,
-      spacing,
-    });
+export const Stack: React.FC<StackProps & React.RefAttributes<HTMLElement & ViewMethods>> = ({
+  children,
+  direction = 'column',
+  divider,
+  spacing = 0,
+  ...props
+}) => {
+  const ownerState = useOwnerState({
+    direction,
+    spacing,
+  });
 
-    return (
-      <StackRoot ref={ref} ownerState={ownerState} {...props}>
-        {divider ? joinChildren(children, divider) : children}
-      </StackRoot>
-    );
-  },
-) as StackType;
+  return (
+    <StackRoot ownerState={ownerState} {...props}>
+      {divider ? joinChildren(children, divider) : children}
+    </StackRoot>
+  );
+};
 
 Stack.displayName = 'Stack';

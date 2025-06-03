@@ -16,6 +16,6 @@ export interface LinkProps extends Omit<TextProps, 'as' | 'hrefAttrs'> {
   target?: React.HTMLAttributeAnchorTarget;
 }
 
-export type LinkType = React.ForwardRefExoticComponent<
+export type LinkType = React.FC<
   React.PropsWithoutRef<LinkProps> & React.RefAttributes<HTMLAnchorElement & TextMethods>
 >;

@@ -23,4 +23,5 @@ export interface TypographyProps extends TypographyPropsWeb {
   lineHeight?: TypographyProp<RNStyle['lineHeight']>;
   textAlign?: TypographyProp<RNStyle['textAlign']>;
   textTransform?: TypographyProp<RNStyle['textTransform']>;
+  verticalAlign?: TypographyProp<RNStyle['verticalAlign']>;
 }

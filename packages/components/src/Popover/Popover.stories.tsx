@@ -1,6 +1,6 @@
+import type { ResponderEvent } from '@react-universal/core';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import type { GestureResponderEvent } from 'react-native';
 import { Button } from '../Button';
 import { Text } from '../Text';
 import { Popover } from './Popover';
@@ -40,7 +40,7 @@ export const Default: Story = {
   render: ({ id: idProp, ...args }) => {
     const [anchor, setAnchor] = useState<HTMLElement>();
 
-    const handlePress = (event: GestureResponderEvent) => {
+    const handlePress = (event: ResponderEvent) => {
       setAnchor(anchor ? undefined : (event.currentTarget as unknown as HTMLElement));
     };
 

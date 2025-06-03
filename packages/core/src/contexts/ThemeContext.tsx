@@ -1,8 +1,8 @@
 'use client';
 
 import { Global } from '@emotion/react';
-import { isArray, isNumber, isObject } from '@react-universal/utils';
 import type { AnyObject } from '@react-universal/utils';
+import { isArray, isNumber, isObject } from '@react-universal/utils';
 import { createContext, useContext } from 'react';
 import type { Theme } from '../theme/defaultTheme';
 import { defaultTheme } from '../theme/defaultTheme';
@@ -42,7 +42,7 @@ function createCSSVariables(obj: AnyObject, parentKey = '') {
 
 export const UniversalProvider: React.FC<UniversalProviderProps> = ({
   children,
-  theme = defaultTheme as Theme,
+  theme = defaultTheme,
 }) => (
   <ThemeContext.Provider value={theme}>
     <Global
