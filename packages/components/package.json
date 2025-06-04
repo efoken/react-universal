@@ -40,7 +40,7 @@
     "@floating-ui/dom": "^1.7.0",
     "@floating-ui/react-native": "^0.10.7",
     "@react-universal/core": "workspace:*",
-    "@tamagui/compose-refs": "^1.126.12"
+    "@tamagui/compose-refs": "^1.126.14"
   },
   "devDependencies": {
     "@types/react": "~19.0.14",

@@ -3826,7 +3826,7 @@ __metadata:
     "@floating-ui/dom": "npm:^1.7.0"
     "@floating-ui/react-native": "npm:^0.10.7"
     "@react-universal/core": "workspace:*"
-    "@tamagui/compose-refs": "npm:^1.126.12"
+    "@tamagui/compose-refs": "npm:^1.126.14"
     "@types/react": "npm:~19.0.14"
     react: "npm:19.0.0"
     react-native: "npm:0.79.2"
@@ -3852,7 +3852,7 @@ __metadata:
     "@emotion/weak-memoize": "npm:^0.4.0"
     "@react-native/normalize-colors": "npm:0.79.2"
     "@react-universal/utils": "workspace:*"
-    "@tamagui/constants": "npm:^1.126.12"
+    "@tamagui/constants": "npm:^1.126.14"
     "@types/react": "npm:~19.0.14"
     react: "npm:19.0.0"
     react-native: "npm:0.79.2"
@@ -4625,21 +4625,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/compose-refs@npm:^1.126.12":
-  version: 1.126.12
-  resolution: "@tamagui/compose-refs@npm:1.126.12"
+"@tamagui/compose-refs@npm:^1.126.14":
+  version: 1.126.14
+  resolution: "@tamagui/compose-refs@npm:1.126.14"
   peerDependencies:
     react: "*"
-  checksum: 10c0/ee4b897989e1e150a2c1cfafb783f64b58de9b35d3b4614d3d5a1665cf0d92c42f4cba1c14f6af6841a32f8a241ba32017f71f91375cfbd1f0ece13db70b8ba3
+  checksum: 10c0/9007692bc579ba8493af901379c2aba19b18b5740ef5bf32f93e86da583f79eb262114010ec6fbb18987f9e4fabe227ed4a5376b9aa63b7d660cf57cbe14c904
   languageName: node
   linkType: hard
 
-"@tamagui/constants@npm:^1.126.12":
-  version: 1.126.12
-  resolution: "@tamagui/constants@npm:1.126.12"
+"@tamagui/constants@npm:^1.126.14":
+  version: 1.126.14
+  resolution: "@tamagui/constants@npm:1.126.14"
   peerDependencies:
     react: "*"
-  checksum: 10c0/865ccd6e3662cab490ac44978bfafa11deabca6dc1e51b83aba5f5d1ed2718e3d1b4d0037efa165036c7073fd7201770d4dd30201617ce4dcb56b5dbfce4ebb9
+  checksum: 10c0/a58de0c69750a8edf23cac59b89cdd20aafbf0726c6344f1059d76fa3b21aeca91ad349477d6f3b2ab94ad08159784e997785fffc48083d13a31473260fb4393
   languageName: node
   linkType: hard
 
