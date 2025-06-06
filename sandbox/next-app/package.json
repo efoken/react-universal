@@ -13,7 +13,7 @@
     "@react-universal/core": "workspace:*",
     "@react-universal/elements": "workspace:*",
     "@react-universal/next": "workspace:*",
-    "@types/node": "^22.15.18",
+    "@types/node": "^22.15.30",
     "@types/react": "~19.0.14",
     "@types/react-dom": "~19.0.6",
     "next": "^15.3.2",
