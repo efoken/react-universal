@@ -1,6 +1,6 @@
 'use client';
 
-import { styled, useOwnerState } from '@react-universal/core';
+import { styled, useEventCallback, useOwnerState } from '@react-universal/core';
 import { normalizeEvent, runIfFunction } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
 import { useRef, useState } from 'react';
@@ -42,7 +42,7 @@ const ButtonRoot = styled(View, {
   ],
 });
 
-export const Button: React.FC<ButtonProps & React.RefAttributes<HTMLElement & ButtonMethods>> = ({
+export const Button: React.FC<ButtonProps & { ref?: React.Ref<HTMLElement & ButtonMethods> }> = ({
   as: _as,
   children,
   disabled = false,
@@ -83,14 +83,14 @@ export const Button: React.FC<ButtonProps & React.RefAttributes<HTMLElement & Bu
     onHoverOut?.(normalizeEvent(event));
   };
 
-  const handleBlur = (event: React.FocusEvent<HTMLElement>) => {
+  const handleBlur = useEventCallback((event: React.FocusEvent<HTMLElement>) => {
     if (!event.target.matches(':focus-visible')) {
       setFocusVisible(false);
     }
     onBlur?.(normalizeEvent(event));
-  };
+  });
 
-  const handleFocus = (event: React.FocusEvent<HTMLElement>) => {
+  const handleFocus = useEventCallback((event: React.FocusEvent<HTMLElement>) => {
     // Fix for https://github.com/facebook/react/issues/7769
     if (!hostRef.current) {
       hostRef.current = event.currentTarget;
@@ -102,7 +102,7 @@ export const Button: React.FC<ButtonProps & React.RefAttributes<HTMLElement & Bu
     }
 
     onFocus?.(normalizeEvent(event));
-  };
+  });
 
   const isNativeButton = () =>
     hostRef.current?.tagName === 'BUTTON' ||
@@ -127,7 +127,7 @@ export const Button: React.FC<ButtonProps & React.RefAttributes<HTMLElement & Bu
     }
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+  const handleKeyDown = useEventCallback((event: React.KeyboardEvent<HTMLElement>) => {
     onKeyDown?.(event);
 
     if (event.defaultPrevented) {
@@ -149,12 +149,12 @@ export const Button: React.FC<ButtonProps & React.RefAttributes<HTMLElement & Bu
       event.key === 'Enter' &&
       !disabled
     ) {
-      onPress?.(normalizeEvent(event));
       event.preventDefault();
+      onPress?.(normalizeEvent(event));
     }
-  };
+  });
 
-  const handleKeyUp = (event: React.KeyboardEvent<HTMLElement>) => {
+  const handleKeyUp = useEventCallback((event: React.KeyboardEvent<HTMLElement>) => {
     // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
     // https://codesandbox.io/p/sandbox/button-keyup-preventdefault-dn7f0
 
@@ -174,7 +174,7 @@ export const Button: React.FC<ButtonProps & React.RefAttributes<HTMLElement & Bu
     ) {
       onPress?.(normalizeEvent(event));
     }
-  };
+  });
 
   const handleRef = useComposedRefs<any>(hostRef, ref);
 

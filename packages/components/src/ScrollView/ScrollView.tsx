@@ -13,7 +13,6 @@ import type {
   ScrollViewMethods,
   ScrollViewOwnerState,
   ScrollViewProps,
-  ScrollViewType,
 } from './ScrollView.types';
 import { ScrollViewBase } from './ScrollViewBase';
 
@@ -105,8 +104,8 @@ const ScrollViewChild = styled(View, {
 });
 
 export const ScrollView: React.FC<
-  ScrollViewProps & React.RefAttributes<HTMLElement & ScrollViewMethods>
-> = (({
+  ScrollViewProps & { ref?: React.Ref<HTMLElement & ScrollViewMethods> }
+> = ({
   centerContent = false,
   children,
   contentContainerStyle,
@@ -316,6 +315,6 @@ export const ScrollView: React.FC<
   }
 
   return scrollView;
-}) as ScrollViewType;
+};
 
 ScrollView.displayName = 'ScrollView';

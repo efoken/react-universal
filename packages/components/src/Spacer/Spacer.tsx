@@ -15,10 +15,6 @@ export interface SpacerProps extends ViewProps {
   sx?: SxProps;
 }
 
-export type SpacerType = React.FC<
-  React.PropsWithoutRef<SpacerProps> & React.RefAttributes<HTMLDivElement & SpacerMethods>
->;
-
 const SpacerRoot = styled(View, {
   name: 'Spacer',
   slot: 'Root',
@@ -28,7 +24,7 @@ const SpacerRoot = styled(View, {
   justifySelf: 'stretch',
 });
 
-export const Spacer: React.FC<SpacerProps & React.RefAttributes<HTMLDivElement & SpacerMethods>> = (
+export const Spacer: React.FC<SpacerProps & { ref?: React.Ref<HTMLDivElement & SpacerMethods> }> = (
   props,
 ) => <SpacerRoot {...props} />;
 

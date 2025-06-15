@@ -11,7 +11,7 @@ import {
 import { noop, pick } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
 import { useRef } from 'react';
-import type { ImageType } from './Image.types';
+import type { ImageMethods, ImageProps } from './Image.types';
 import { ImageLoader } from './ImageLoader';
 
 function pickProps<T extends { ref?: React.Ref<any> }>(
@@ -50,7 +50,15 @@ const ImageRoot = styled('img', {
   display: 'block',
 });
 
-export const Image = (({ dir, onError, onLayout, onLoad, onPartialLoad, onProgress, ...props }) => {
+export const Image = ({
+  dir,
+  onError,
+  onLayout,
+  onLoad,
+  onPartialLoad,
+  onProgress,
+  ...props
+}: ImageProps & { ref?: React.Ref<HTMLImageElement & ImageMethods> }): React.ReactNode => {
   const hostRef = useRef<HTMLImageElement>(null);
 
   useElementLayout(hostRef, onLayout);
@@ -67,7 +75,7 @@ export const Image = (({ dir, onError, onLayout, onLoad, onPartialLoad, onProgre
   supportedProps.ref = handleRef;
 
   return <ImageRoot {...supportedProps} />;
-}) as ImageType;
+};
 
 Image.displayName = 'Image';
 

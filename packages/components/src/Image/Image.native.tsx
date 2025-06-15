@@ -1,6 +1,6 @@
 import { normalizeLayoutEvent, normalizeRole, styled } from '@react-universal/core';
 import { Image as RNImage } from 'react-native';
-import type { ImageType } from './Image.types';
+import type { ImageProps } from './Image.types';
 
 const ImageRoot = styled(RNImage, {
   name: 'Image',
@@ -10,16 +10,23 @@ const ImageRoot = styled(RNImage, {
   position: 'static',
 }));
 
-export const Image = (({ lang, onLayout, ref, role, style, ...props }) => (
+export const Image = ({
+  lang,
+  onLayout,
+  ref,
+  role,
+  style,
+  ...props
+}: ImageProps & { ref?: React.Ref<any> }): React.ReactNode => (
   <ImageRoot
-    ref={ref as any}
+    ref={ref}
     accessibilityLanguage={lang}
     role={normalizeRole(role)}
     style={style as any}
     onLayout={normalizeLayoutEvent(onLayout)}
     {...props}
   />
-)) as ImageType;
+);
 
 Image.displayName = 'Image';
 

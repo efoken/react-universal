@@ -6,6 +6,8 @@ import { Children, cloneElement } from 'react';
 import type { ViewMethods, ViewProps } from '../View';
 import { View } from '../View';
 
+export interface StackMethods extends ViewMethods {}
+
 export interface StackProps extends ViewProps {
   /**
    * Defines the `flex-direction` style property. It is applied for all screen
@@ -28,10 +30,6 @@ export interface StackProps extends ViewProps {
    */
   sx?: SxProps;
 }
-
-export type StackType = React.FC<
-  React.PropsWithoutRef<StackProps> & React.RefAttributes<HTMLElement & ViewMethods>
->;
 
 type StackOwnerState = Required<Pick<StackProps, 'direction' | 'spacing'>>;
 
@@ -88,7 +86,7 @@ const StackRoot = styled(View, {
   ],
 }));
 
-export const Stack: React.FC<StackProps & React.RefAttributes<HTMLElement & ViewMethods>> = ({
+export const Stack: React.FC<StackProps & { ref?: React.Ref<HTMLElement & StackMethods> }> = ({
   children,
   direction = 'column',
   divider,

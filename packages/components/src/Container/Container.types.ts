@@ -24,8 +24,4 @@ export interface ContainerProps extends ViewProps {
   sx?: SxProps;
 }
 
-export type ContainerType = React.FC<
-  React.PropsWithoutRef<ContainerProps> & React.RefAttributes<HTMLElement & ContainerMethods>
->;
-
 export type ContainerOwnerState = Required<Pick<ContainerProps, 'fixed' | 'maxWidth'>>;

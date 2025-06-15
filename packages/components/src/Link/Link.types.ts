@@ -1,5 +1,5 @@
 import type { SxProps } from '@react-universal/core';
-import type { TextMethods, TextProps } from '../Text';
+import type { TextProps } from '../Text';
 
 export interface LinkProps extends Omit<TextProps, 'as' | 'hrefAttrs'> {
   download?: any;
@@ -15,7 +15,3 @@ export interface LinkProps extends Omit<TextProps, 'as' | 'hrefAttrs'> {
   sx?: SxProps;
   target?: React.HTMLAttributeAnchorTarget;
 }
-
-export type LinkType = React.FC<
-  React.PropsWithoutRef<LinkProps> & React.RefAttributes<HTMLAnchorElement & TextMethods>
->;

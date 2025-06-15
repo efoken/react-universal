@@ -1,2 +1,2 @@
-export { For } from './For';
 export type { ForProps } from './For';
+export { For } from './For';

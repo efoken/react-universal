@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.0.0-beta.3/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.0.0-beta.6/schema.json",
   "vcs": {
     "enabled": true,
     "clientKind": "git",
@@ -32,8 +32,8 @@
         "noUselessStringConcat": "error",
         "noUselessUndefinedInitialization": "error",
         "noVoid": "error",
-        "noWith": "error",
-        "useDateNow": "error"
+        "useDateNow": "error",
+        "useNumericLiterals": "error"
       },
       "correctness": {
         "noInvalidBuiltinInstantiation": "error",
@@ -44,13 +44,13 @@
           "level": "error",
           "options": { "ignoreRestSiblings": true }
         },
-        "useArrayLiterals": "error",
         "useHookAtTopLevel": "error"
       },
       "style": {
         "noNamespace": "error",
         "noNonNullAssertion": "off",
         "noYodaExpression": "error",
+        "useArrayLiterals": "error",
         "useBlockStatements": "error",
         "useCollapsedElseIf": "error",
         "useConsistentArrayType": "error",
@@ -59,7 +59,6 @@
         "useExplicitLengthCheck": "error",
         "useForOf": "error",
         "useFragmentSyntax": "error",
-        "useNumericLiterals": "error",
         "useShorthandAssign": "error",
         "useThrowNewError": "error"
       },
@@ -67,8 +66,12 @@
         "noEmptyBlockStatements": "error",
         "noEmptyInterface": "off",
         "noExplicitAny": "off",
+        "noWith": "error",
         "useErrorMessage": "error",
         "useNumberToFixedDigitsArgument": "error"
+      },
+      "nursery": {
+        "useUniqueElementIds": "off"
       }
     }
   },

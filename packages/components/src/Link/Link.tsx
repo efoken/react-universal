@@ -10,7 +10,7 @@ const LinkRoot = styled(Text, {
   slot: 'Root',
 })();
 
-export const Link: React.FC<LinkProps & React.RefAttributes<HTMLAnchorElement & TextMethods>> = ({
+export const Link: React.FC<LinkProps & { ref?: React.Ref<HTMLAnchorElement & TextMethods> }> = ({
   download,
   rel,
   target,

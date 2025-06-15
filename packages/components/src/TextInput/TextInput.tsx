@@ -106,7 +106,7 @@ const TextInputRoot = styled('input', {
 }));
 
 export const TextInput: React.FC<
-  TextInputProps & React.RefAttributes<HTMLInputElement & TextInputMethods>
+  TextInputProps & { ref?: React.Ref<HTMLInputElement & TextInputMethods> }
 > = ({
   autoCapitalize = 'sentences',
   autoComplete,

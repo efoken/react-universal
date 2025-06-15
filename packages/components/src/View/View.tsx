@@ -58,7 +58,7 @@ const ViewRoot = styled<any>('div', {
   ],
 });
 
-export const View: React.FC<ViewProps & React.RefAttributes<HTMLElement & ViewMethods>> = ({
+export const View: React.FC<ViewProps & { ref?: React.Ref<HTMLElement & ViewMethods> }> = ({
   as: _as,
   dir,
   hrefAttrs,

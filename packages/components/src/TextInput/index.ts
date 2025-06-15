@@ -4,5 +4,4 @@ export type {
   TextInputMethods,
   TextInputProps,
   TextInputSelectionChangeEvent,
-  TextInputType,
 } from './TextInput.types';

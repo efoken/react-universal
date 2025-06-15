@@ -37,15 +37,15 @@
     "build": "tsup src/index.ts src/*/index.ts"
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.7.0",
+    "@floating-ui/dom": "^1.7.1",
     "@floating-ui/react-native": "^0.10.7",
     "@react-universal/core": "workspace:*",
-    "@tamagui/compose-refs": "^1.126.12"
+    "@tamagui/compose-refs": "^1.126.16"
   },
   "devDependencies": {
-    "@types/react": "~19.0.14",
-    "react": "19.0.0",
-    "react-native": "0.79.2"
+    "@types/react": "~19.1.8",
+    "react": "19.1.0",
+    "react-native": "0.80.0"
   },
   "peerDependencies": {
     "@types/react": "^18.2.0 || ^19.0.0",

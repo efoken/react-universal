@@ -1,7 +1,7 @@
 import { Box, Container } from '@react-universal/components';
 import { A, Code, Main, P } from '@react-universal/elements';
+import { Image } from '@react-universal/next';
 import { Card } from '../components/Card';
-import { Image } from '../components/Image';
 
 export default function Home() {
   return (

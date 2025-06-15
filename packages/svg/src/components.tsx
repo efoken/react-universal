@@ -98,7 +98,7 @@ function createComponent<
   name: Capitalize<string>,
   prepareProps: (props: React.PropsWithoutRef<P>) => React.PropsWithoutRef<P> = (props) => props,
 ) {
-  const Component: React.FC<P & React.RefAttributes<T>> = ({
+  const Component: React.FC<P & { ref?: React.Ref<T> }> = ({
     fontFamily,
     fontSize,
     fontStyle,

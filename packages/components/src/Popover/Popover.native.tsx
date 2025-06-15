@@ -20,7 +20,7 @@ const PopoverRoot = styled(RNView, {
   zIndex: 1,
 }));
 
-export const Popover: React.FC<PopoverProps & React.RefAttributes<any>> = ({
+export const Popover: React.FC<PopoverProps & { ref?: React.Ref<any> }> = ({
   anchor: _anchor,
   children,
   lang,

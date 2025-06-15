@@ -45,9 +45,5 @@ export interface ModalProps
   sx?: SxProps;
 }
 
-export type ModalType = React.FC<
-  React.PropsWithoutRef<ModalProps> & React.RefAttributes<HTMLDialogElement & ModalMethods>
->;
-
 export type ModalOwnerState = Pick<ModalProps, 'backdropStyle'> &
   Required<Pick<ModalProps, 'hideBackdrop'>>;

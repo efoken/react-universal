@@ -8,7 +8,7 @@ const config: StorybookConfig = {
     { directory: '../packages/components/src' },
     { directory: '../packages/svg/src' },
   ],
-  addons: ['@storybook/addon-a11y', '@storybook/addon-essentials'],
+  addons: ['@storybook/addon-a11y'],
   framework: '@storybook/react-vite',
   core: {
     disableTelemetry: true,

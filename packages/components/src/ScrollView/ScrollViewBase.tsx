@@ -78,7 +78,7 @@ const ScrollViewRoot = styled(View, {
 });
 
 export const ScrollViewBase: React.FC<
-  ScrollViewBaseProps & React.RefAttributes<HTMLElement & ViewMethods>
+  ScrollViewBaseProps & { ref?: React.Ref<HTMLElement & ViewMethods> }
 > = ({
   onLayout,
   onScroll,

@@ -15,7 +15,7 @@ const ViewRoot = styled(RNView, {
   position: 'static',
 }));
 
-export const View: React.FC<ViewProps & React.RefAttributes<any>> = ({
+export const View: React.FC<ViewProps & { ref?: React.Ref<any> }> = ({
   lang,
   onLayout,
   onMoveShouldSetResponder,

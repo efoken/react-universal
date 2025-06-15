@@ -1,6 +1,6 @@
 'use client';
 
-import type { ViewProps, ViewType } from '@react-universal/components';
+import type { ViewProps } from '@react-universal/components';
 import { Stack } from '@react-universal/components';
 import { Aside } from '@react-universal/elements';
 import { useRef } from 'react';
@@ -9,7 +9,7 @@ import { useRoute } from '#/lib/useRoute';
 import { useScrollIntoView } from '#/lib/useScrollIntoView';
 
 export const SidebarStart: React.FC<ViewProps> = (props) => {
-  const containerRef = useRef<React.ComponentRef<ViewType>>(null);
+  const containerRef = useRef<React.ComponentRef<typeof Aside>>(null);
   const route = useRoute();
 
   useScrollIntoView(containerRef, '[aria-current="page"]', 'center');

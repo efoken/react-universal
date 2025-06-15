@@ -21,4 +21,4 @@ export const Image = styled(
   },
 )({
   display: 'block',
-}) as React.FC<React.PropsWithoutRef<ImageProps> & React.RefAttributes<HTMLImageElement>>;
+}) as React.FC<React.PropsWithoutRef<ImageProps> & { ref?: React.Ref<HTMLImageElement> }>;

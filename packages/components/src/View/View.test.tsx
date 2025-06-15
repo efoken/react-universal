@@ -7,7 +7,6 @@ import type { MockInstance } from 'vitest';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import { View } from './View';
 import * as stories from './View.stories';
-import type { ViewType } from './View.types';
 
 function createEventTarget(node: any) {
   return {
@@ -201,7 +200,7 @@ describe('View', () => {
   describe('prop "onBlur"', () => {
     test('is called', () => {
       const onBlur = vi.fn();
-      const ref = createRef<React.ComponentRef<ViewType>>();
+      const ref = createRef<React.ComponentRef<typeof View>>();
       act(() => {
         // @ts-expect-error: `onBlur` is Web only and does not exist in types
         render(<View ref={ref} onBlur={onBlur} />);
@@ -218,7 +217,7 @@ describe('View', () => {
   describe('prop "onClick"', () => {
     test('is called', () => {
       const onClick = vi.fn();
-      const ref = createRef<React.ComponentRef<ViewType>>();
+      const ref = createRef<React.ComponentRef<typeof View>>();
       act(() => {
         // @ts-expect-error: `onClick` is Web only and does not exist in types
         render(<View ref={ref} onClick={onClick} />);
@@ -234,7 +233,7 @@ describe('View', () => {
   describe('prop "onFocus"', () => {
     test('is called', () => {
       const onFocus = vi.fn();
-      const ref = createRef<React.ComponentRef<ViewType>>();
+      const ref = createRef<React.ComponentRef<typeof View>>();
       act(() => {
         // @ts-expect-error: `onFocus` is Web only and does not exist in types
         render(<View ref={ref} onFocus={onFocus} />);
@@ -258,7 +257,7 @@ describe('View', () => {
 
     test('is called', () => {
       const onPointerDown = vi.fn();
-      const ref = createRef<React.ComponentRef<ViewType>>();
+      const ref = createRef<React.ComponentRef<typeof View>>();
       act(() => {
         render(<View ref={ref} onPointerDown={onPointerDown} />);
       });
@@ -291,7 +290,7 @@ describe('View', () => {
     });
 
     test('node has imperative methods', () => {
-      const ref = createRef<React.ComponentRef<ViewType>>();
+      const ref = createRef<React.ComponentRef<typeof View>>();
       act(() => {
         render(<View ref={ref} />);
       });

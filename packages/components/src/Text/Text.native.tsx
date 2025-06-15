@@ -11,7 +11,7 @@ const TextRoot = styled(RNText, {
   position: 'static',
 }));
 
-export const Text: React.FC<TextProps & React.RefAttributes<any>> = ({
+export const Text: React.FC<TextProps & { ref?: React.Ref<any> }> = ({
   'aria-hidden': ariaHidden,
   lang,
   onLayout,

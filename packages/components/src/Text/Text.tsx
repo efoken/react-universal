@@ -80,7 +80,7 @@ const TextRoot = styled<any>('div', {
   ],
 }));
 
-export const Text: React.FC<TextProps & React.RefAttributes<HTMLElement & TextMethods>> = ({
+export const Text: React.FC<TextProps & { ref?: React.Ref<HTMLElement & TextMethods> }> = ({
   as: _as,
   dir,
   hrefAttrs,

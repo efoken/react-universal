@@ -15,7 +15,7 @@ const ScrollViewRoot = styled(RNScrollView, {
   position: 'static',
 }));
 
-export const ScrollView: React.FC<ScrollViewProps & React.RefAttributes<any>> = ({
+export const ScrollView: React.FC<ScrollViewProps & { ref?: React.Ref<any> }> = ({
   contentContainerStyle,
   lang,
   onLayout,

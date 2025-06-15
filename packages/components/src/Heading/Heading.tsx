@@ -15,10 +15,6 @@ export interface HeadingProps extends TextProps {
   sx?: SxProps;
 }
 
-export type HeadingType = React.FC<
-  React.PropsWithoutRef<HeadingProps> & React.RefAttributes<HTMLHeadingElement & HeadingMethods>
->;
-
 const HeadingRoot = styled(Text, {
   name: 'Heading',
   slot: 'Root',
@@ -28,7 +24,7 @@ const HeadingRoot = styled(Text, {
 }));
 
 export const Heading: React.FC<
-  HeadingProps & React.RefAttributes<HTMLHeadingElement & HeadingMethods>
+  HeadingProps & { ref?: React.Ref<HTMLHeadingElement & HeadingMethods> }
 > = (props) => <HeadingRoot aria-level={2} role="heading" {...props} />;
 
 Heading.displayName = 'Heading';

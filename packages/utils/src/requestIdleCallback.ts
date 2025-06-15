@@ -6,10 +6,10 @@ type IdleRequestOptions = {
   timeout?: number;
 };
 
-const _requestIdleCallback = (cb: IdleRequestCallback) =>
+const _requestIdleCallback = (callback: IdleRequestCallback) =>
   setTimeout(() => {
     const start = Date.now();
-    cb({
+    callback({
       didTimeout: false,
       timeRemaining: () => Math.max(0, 50 - (Date.now() - start)),
     });
@@ -22,7 +22,7 @@ const _cancelIdleCallback = (handle: ReturnType<typeof setTimeout>) => {
 const supported = typeof window !== 'undefined' && isFunction(window.requestIdleCallback);
 
 export const requestIdleCallback: (
-  cb: IdleRequestCallback,
+  callback: IdleRequestCallback,
   options?: IdleRequestOptions,
 ) => ReturnType<typeof setTimeout> = supported ? window.requestIdleCallback : _requestIdleCallback;
 

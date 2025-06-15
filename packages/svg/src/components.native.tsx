@@ -68,7 +68,7 @@ function createComponent<
   name: Capitalize<string>,
   prepareProps: (props: React.PropsWithoutRef<P>) => React.PropsWithoutRef<P> = (props) => props,
 ) {
-  const Component: React.FC<P & React.RefAttributes<T>> = ({ style, ...props }) => {
+  const Component: React.FC<P & { ref?: React.Ref<T> }> = ({ style, ...props }) => {
     const styleProps = StyleSheet.flatten<AnyObject>(style);
 
     return <Base {...prepareProps(props as React.PropsWithoutRef<P>)} {...styleProps} />;
@@ -87,7 +87,7 @@ const SvgRoot = styled(RNSvg, {
   position: 'static',
 }));
 
-export const Svg: React.FC<SvgProps & React.RefAttributes<any>> = ({
+export const Svg: React.FC<SvgProps & { ref?: React.Ref<any> }> = ({
   hitSlop,
   onLongPress,
   onPress,

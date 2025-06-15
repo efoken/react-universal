@@ -30,7 +30,7 @@ const ModalBackdrop = styled(RNPressable, {
   ],
 });
 
-export const Modal: React.FC<ModalProps & React.RefAttributes<any>> = ({
+export const Modal: React.FC<ModalProps & { ref?: React.Ref<any> }> = ({
   backdropStyle,
   children,
   hideBackdrop = false,

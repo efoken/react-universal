@@ -58,8 +58,4 @@ export interface TextInputProps
   sx?: SxProps;
 }
 
-export type TextInputType = React.FC<
-  React.PropsWithoutRef<TextInputProps> & React.RefAttributes<HTMLInputElement & TextInputMethods>
->;
-
 export type TextInputOwnerState = Pick<TextInputProps, 'caretHidden' | 'placeholderTextColor'>;

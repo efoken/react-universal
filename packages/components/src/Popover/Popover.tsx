@@ -42,7 +42,7 @@ const PopoverRoot = styled('div', {
 }));
 
 export const Popover: React.FC<
-  PopoverProps & React.RefAttributes<HTMLDivElement & PopoverMethods>
+  PopoverProps & { ref?: React.Ref<HTMLDivElement & PopoverMethods> }
 > = ({
   anchor: _anchor,
   dir,

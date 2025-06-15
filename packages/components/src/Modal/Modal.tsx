@@ -54,7 +54,7 @@ const ModalRoot = styled('dialog', {
 }));
 
 export const Modal: React.FC<
-  ModalProps & React.RefAttributes<HTMLDialogElement & ModalMethods>
+  ModalProps & { ref?: React.Ref<HTMLDialogElement & ModalMethods> }
 > = ({
   backdropStyle,
   dir,

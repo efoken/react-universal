@@ -1,6 +1,6 @@
 import type { AnyObject } from '@react-universal/utils';
 import { isFunction, normalizeEvent } from '@react-universal/utils';
-import type { ImageLoadEventData, NativeSyntheticEvent } from 'react-native';
+import type { ImageLoadEvent } from 'react-native';
 import type { ImageSize } from './Image.types';
 
 export class ImageUriCache {
@@ -79,7 +79,8 @@ export const ImageLoader = {
     }
   },
 
-  getSize(uri: string) {
+  // biome-ignore lint/correctness/noUnusedFunctionParameters: `headers` needed for types
+  getSize(uri: string, headers: AnyObject<string>) {
     return new Promise<ImageSize>((resolve, reject) => {
       let complete = false;
 
@@ -113,11 +114,7 @@ export const ImageLoader = {
     return ImageUriCache.has(uri);
   },
 
-  load(
-    uri: string,
-    onLoad: (event: NativeSyntheticEvent<ImageLoadEventData>) => void,
-    onError: () => void,
-  ) {
+  load(uri: string, onLoad: (event: ImageLoadEvent) => void, onError: () => void) {
     id++;
     const image = new Image();
 

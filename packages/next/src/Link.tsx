@@ -26,4 +26,4 @@ export const Link = styled(
     // We need to allow the `as` prop to be forwarded to the root element
     shouldForwardProp: (prop) => prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx',
   },
-)() as React.FC<React.PropsWithoutRef<LinkProps> & React.RefAttributes<HTMLAnchorElement>>;
+)() as React.FC<React.PropsWithoutRef<LinkProps> & { ref?: React.Ref<HTMLAnchorElement> }>;

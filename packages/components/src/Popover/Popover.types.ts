@@ -67,7 +67,3 @@ export interface PopoverProps
    */
   sx?: SxProps;
 }
-
-export type PopoverType = React.FC<
-  React.PropsWithoutRef<PopoverProps> & React.RefAttributes<HTMLElement & PopoverMethods>
->;

@@ -46,10 +46,6 @@ export interface TextProps
   sx?: SxProps;
 }
 
-export type TextType = React.FC<
-  React.PropsWithoutRef<TextProps> & React.RefAttributes<HTMLElement & TextMethods>
->;
-
 export type TextOwnerState = Pick<TextProps, 'numberOfLines'> & {
   hasTextAncestor: boolean;
   pressable: boolean;

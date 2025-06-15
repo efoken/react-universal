@@ -48,7 +48,7 @@ const ContainerRoot = styled(View, {
 }));
 
 export const Container: React.FC<
-  ContainerProps & React.RefAttributes<HTMLElement & ContainerMethods>
+  ContainerProps & { ref?: React.Ref<HTMLElement & ContainerMethods> }
 > = ({ fixed = false, maxWidth = false, ...props }) => {
   const ownerState = useOwnerState({
     fixed,

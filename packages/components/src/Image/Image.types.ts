@@ -10,7 +10,6 @@ import type {
 import type { AnyObject } from '@react-universal/utils';
 import type {
   AccessibilityProps as RNAccessibilityProps,
-  Image as RNImage,
   ImageProps as RNImageProps,
 } from 'react-native';
 
@@ -86,14 +85,3 @@ export interface ImageProps
    */
   sx?: SxProps;
 }
-
-export type ImageType = React.FC<
-  React.PropsWithoutRef<ImageProps> & React.RefAttributes<HTMLImageElement & ImageMethods>
-> &
-  Pick<
-    typeof RNImage,
-    'abortPrefetch' | 'prefetch' | 'prefetchWithMetadata' | 'queryCache' | 'resolveAssetSource'
-  > & {
-    getSize: (uri: string) => Promise<ImageSize>;
-    getSizeWithHeaders: (uri: string, headers: AnyObject<string>) => Promise<ImageSize>;
-  };

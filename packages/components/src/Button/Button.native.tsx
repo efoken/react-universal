@@ -20,7 +20,7 @@ const ButtonRoot = styled(RNPressable, {
   padding: 1,
 }));
 
-export const Button: React.FC<ButtonProps & React.RefAttributes<any>> = ({
+export const Button: React.FC<ButtonProps & { ref?: React.Ref<any> }> = ({
   children,
   disabled = false,
   lang,

@@ -7,9 +7,8 @@ import {
 import { normalizeEvent } from '@react-universal/utils';
 import { useState } from 'react';
 import type {
-  NativeSyntheticEvent,
-  TextInputContentSizeChangeEventData as RNTextInputContentSizeChangeEventData,
-  TextInputSelectionChangeEventData as RNTextInputSelectionChangeEventData,
+  TextInputContentSizeChangeEvent as RNTextInputContentSizeChangeEvent,
+  TextInputSelectionChangeEvent as RNTextInputSelectionChangeEvent,
 } from 'react-native';
 import { TextInput as RNTextInput } from 'react-native';
 import type { TextInputProps } from './TextInput.types';
@@ -22,7 +21,7 @@ const TextInputRoot = styled(RNTextInput, {
   position: 'static',
 }));
 
-export const TextInput: React.FC<TextInputProps & React.RefAttributes<any>> = ({
+export const TextInput: React.FC<TextInputProps & { ref?: React.Ref<any> }> = ({
   'aria-label': ariaLabel,
   lang,
   onChangeText,
@@ -57,9 +56,7 @@ export const TextInput: React.FC<TextInputProps & React.RefAttributes<any>> = ({
     onChangeText?.(nextText);
   };
 
-  const handleContentSizeChange = (
-    event: NativeSyntheticEvent<RNTextInputContentSizeChangeEventData>,
-  ) => {
+  const handleContentSizeChange = (event: RNTextInputContentSizeChangeEvent) => {
     onContentSizeChange?.({
       nativeEvent: {
         contentSize: event.nativeEvent.contentSize,
@@ -67,9 +64,7 @@ export const TextInput: React.FC<TextInputProps & React.RefAttributes<any>> = ({
     });
   };
 
-  const handleSelectionChange = (
-    event: NativeSyntheticEvent<RNTextInputSelectionChangeEventData>,
-  ) => {
+  const handleSelectionChange = (event: RNTextInputSelectionChangeEvent) => {
     onSelectionChange?.(normalizeEvent(event, { text }));
   };
 

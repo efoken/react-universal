@@ -5,5 +5,4 @@ export type {
   ImageProps,
   ImageSize,
   ImageStyle,
-  ImageType,
 } from './Image.types';
