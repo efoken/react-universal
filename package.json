@@ -21,7 +21,7 @@
     "vite": "^6.3.5"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.0.0-beta.6",
+    "@biomejs/biome": "^2.0.0",
     "@emotion/jest": "^11.13.0",
     "@manypkg/cli": "^0.24.0",
     "@react-native/normalize-colors": "0.80.0",
