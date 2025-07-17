@@ -11,28 +11,28 @@ const sharedComponents = {
   // blockquote: Blockquote,
   img: Img,
   p: (props: Pick<React.HTMLProps<HTMLParagraphElement>, 'children' | 'id'>) => (
-    <P sx={{ color: 'text.muted', mb: 4 }} {...props} />
+    <P sx={{ color: 'text.muted', mb: '4' }} {...props} />
   ),
   strong: Strong,
   h2: (props: Pick<React.HTMLProps<HTMLHeadingElement>, 'children' | 'id'>) => (
-    <H2 sx={{ fontSize: '1.375rem', mb: 4, mt: 8 }} {...props} />
+    <H2 sx={{ fontSize: '1.375rem', mb: '4', mt: '8' }} {...props} />
   ),
   h3: (props: Pick<React.HTMLProps<HTMLHeadingElement>, 'children' | 'id'>) => (
-    <H3 sx={{ fontSize: '1.25rem', mb: 2, mt: 8 }} {...props} />
+    <H3 sx={{ fontSize: '1.25rem', mb: '2', mt: '8' }} {...props} />
   ),
   h4: (props: Pick<React.HTMLProps<HTMLHeadingElement>, 'children' | 'id'>) => (
-    <H4 sx={{ fontSize: '1.125rem', mb: 1, mt: 8 }} {...props} />
+    <H4 sx={{ fontSize: '1.125rem', mb: '1', mt: '8' }} {...props} />
   ),
   kbd: Kbd,
   pre: Pre,
   code: Code,
   ol: ({ children, ...props }: Pick<React.HTMLProps<HTMLUListElement>, 'children' | 'id'>) => (
-    <Ol sx={{ color: 'text.muted', mb: 4, ps: 8 }} {...props}>
+    <Ol sx={{ color: 'text.muted', mb: '4', ps: '8' }} {...props}>
       {Children.toArray(children).filter((child) => isValidElement(child))}
     </Ol>
   ),
   ul: ({ children, ...props }: Pick<React.HTMLProps<HTMLUListElement>, 'children' | 'id'>) => (
-    <Ul sx={{ color: 'text.muted', mb: 4, ps: 8 }} {...props}>
+    <Ul sx={{ color: 'text.muted', mb: '4', ps: '8' }} {...props}>
       {Children.toArray(children).filter((child) => isValidElement(child))}
     </Ul>
   ),

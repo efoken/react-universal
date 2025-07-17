@@ -12,11 +12,11 @@ export const Pre: React.FC<ViewProps> = ({ children, sx, ...props }) => (
       boxShadow: 'none',
       fontSize: '0.875rem',
       fontWeight: 400,
-      mb: 6,
-      mt: 6,
+      mb: '6',
+      mt: '6',
       overflowX: 'auto',
-      px: 8,
-      py: 8,
+      px: '8',
+      py: '8',
       ...sx,
     }}
   >

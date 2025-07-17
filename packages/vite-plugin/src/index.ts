@@ -1,14 +1,7 @@
-import type { PluginCustomOptions } from '@pigment-css/react/utils';
-import type { PigmentOptions } from '@pigment-css/vite-plugin';
-// import { pigment } from '@pigment-css/vite-plugin';
 import type { Theme } from '@react-universal/core';
 import type { Plugin } from 'vite';
 
-export { extendTheme } from '@pigment-css/vite-plugin';
-
-export interface ReactUniversalOptions
-  extends Omit<PigmentOptions, 'theme' | keyof PluginCustomOptions>,
-    Omit<PluginCustomOptions, 'themeArgs'> {
+export interface ReactUniversalOptions {
   /**
    * The theme object that you want to be passed to the `styled` function
    */
@@ -23,7 +16,6 @@ export function reactUniversal(_options: ReactUniversalOptions = {}): Plugin {
         ...config.define,
         'process.env.TEST_NATIVE_PLATFORM': JSON.stringify(false),
       };
-      // config.plugins?.push(pigment(options));
     },
   };
 }

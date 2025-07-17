@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useMemo } from 'react';
+import { createContext, use, useMemo } from 'react';
 
 const LocaleContext = createContext<{
   direction: 'ltr' | 'rtl';
@@ -68,5 +68,5 @@ export const LocaleProvider: React.FC<LocaleProviderProps> = ({ children, direct
 };
 
 export function useLocale() {
-  return useContext(LocaleContext);
+  return use(LocaleContext);
 }

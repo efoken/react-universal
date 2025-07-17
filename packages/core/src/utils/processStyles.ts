@@ -1,34 +1,36 @@
 import type { AnyObject } from '@react-universal/utils';
-import { isArray, isFunction } from '@react-universal/utils';
-import type { StyleInterpolation, StyleValues, StyleVariant } from '../types';
+import { isFunction, runIfFunction } from '@react-universal/utils';
+import type { CompoundVariant, StyleInterpolation, StyleValues, StyleVariants } from '../types';
+
+const emptyObject = {};
 
 function processVariants(
   props: { ownerState?: AnyObject; [key: string]: any },
-  variants: StyleVariant<AnyObject>[] = [],
+  variants: StyleVariants<AnyObject> = emptyObject,
+  compoundVariants: CompoundVariant<AnyObject>[] = [],
   results: any[] = [],
 ) {
-  let mergedState: AnyObject; // We might not need it, initialized lazily
+  const mergedState: AnyObject = { ...props, ...props.ownerState, ownerState: props.ownerState };
 
-  variantLoop: for (const variant of variants) {
-    if (isFunction(variant.props)) {
-      mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
-      if (!variant.props(mergedState)) {
-        continue;
-      }
-    } else {
-      for (const key in variant.props) {
-        if (props[key] !== variant.props[key] && props.ownerState?.[key] !== variant.props[key]) {
-          continue variantLoop;
-        }
+  for (const key in variants) {
+    const value = mergedState[key];
+
+    if (variants[key] != null && value in variants[key]) {
+      const style = variants[key][value];
+      results.push(runIfFunction(style, mergedState));
+    }
+  }
+
+  compoundLoop: for (const compound of compoundVariants) {
+    const { styles, ...conditions } = compound;
+
+    for (const key in conditions) {
+      if (mergedState[key] !== conditions[key]) {
+        continue compoundLoop;
       }
     }
 
-    if (isFunction(variant.style)) {
-      mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
-      results.push(variant.style(mergedState));
-    } else {
-      results.push(variant.style);
-    }
+    results.push(runIfFunction(styles, mergedState));
   }
 
   return results;
@@ -44,14 +46,9 @@ export function processStyles<P extends AnyObject>(
       ? undefined
       : styles;
 
-  if (isArray(resolvedStyle)) {
-    return resolvedStyle.flatMap((subStyle) => processStyles(props, subStyle));
-  }
-
-  if (isArray(resolvedStyle?.variants)) {
-    const { variants, ...otherStyles } = resolvedStyle;
-    // @ts-expect-error: Something wrong with type of props inside `variants`
-    return processVariants(props, resolvedStyle.variants, [otherStyles]);
+  if (resolvedStyle?.variants != null || resolvedStyle?.compoundVariants != null) {
+    const { variants, compoundVariants, ...otherStyles } = resolvedStyle;
+    return processVariants(props, variants, compoundVariants, [otherStyles]);
   }
 
   return resolvedStyle;

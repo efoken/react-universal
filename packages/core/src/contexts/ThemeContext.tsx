@@ -3,7 +3,7 @@
 import { Global } from '@emotion/react';
 import type { AnyObject } from '@react-universal/utils';
 import { isArray, isNumber, isObject } from '@react-universal/utils';
-import { createContext, useContext } from 'react';
+import { createContext, use } from 'react';
 import type { Theme } from '../theme/defaultTheme';
 import { defaultTheme } from '../theme/defaultTheme';
 import { extractTheme } from '../theme/extractTheme';
@@ -82,5 +82,5 @@ export const UniversalProvider: React.FC<UniversalProviderProps> = ({
 );
 
 export function useTheme() {
-  return useContext(ThemeContext);
+  return use(ThemeContext);
 }

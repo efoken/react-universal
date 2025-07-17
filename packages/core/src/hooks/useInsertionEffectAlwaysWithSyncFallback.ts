@@ -1,3 +1,5 @@
+'use client';
+
 import { isClient } from '@tamagui/constants';
 import { useInsertionEffect } from 'react';
 

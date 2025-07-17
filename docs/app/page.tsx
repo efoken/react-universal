@@ -12,8 +12,8 @@ export default function Home() {
         flexDir: 'column',
         justifyContent: 'space-between',
         minH: '100vh',
-        px: { xs: '6rem', md: '4rem' },
-        py: '6rem',
+        px: { xs: '24', md: '16' },
+        py: '24',
       }}
     >
       <Container
@@ -120,9 +120,9 @@ export default function Home() {
           alignItems: 'center',
           display: 'flex',
           justifyContent: 'center',
-          pb: { xs: '6rem', md: '4rem' },
+          pb: { xs: '24', md: '16' },
           position: 'relative',
-          pt: { xs: '8rem', md: '4rem' },
+          pt: { xs: '32', md: '16' },
         }}
       >
         <Box

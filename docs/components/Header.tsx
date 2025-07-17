@@ -9,12 +9,12 @@ import { ColorModeButton } from './ColorModeButton';
 import { SocialLinks } from './SocialLinks';
 
 const HeaderRoot = styled('header')(({ theme }) => ({
+  alignItems: 'center',
   backdropFilter: 'saturate(180%) blur(5px)',
   backgroundColor: `color-mix(in srgb, ${theme.colors.background.default} 90%, transparent 10%)`,
   borderBottomColor: theme.colors.border.muted,
   borderBottomWidth: 1,
   display: 'flex',
-  justifyContent: 'center',
   minHeight: '4rem',
   position: 'sticky' as any,
   top: 0,
@@ -42,22 +42,21 @@ const HeaderPrimaryNavbarLink = styled(Link)(({ theme }) => ({
   '&:hover': {
     color: theme.colors.text.default,
   },
-  variants: [
-    {
-      props: { 'aria-current': 'page' as const },
-      style: {
+  variants: {
+    'aria-current': {
+      page: {
         color: theme.colors.text.default,
         fontWeight: 500,
       },
     },
-  ],
+  },
 }));
 
 const HeaderPrimaryNavbar: React.FC = () => {
   const route = useRoute();
 
   return (
-    <Stack direction="row" sx={{ gap: 8, minH: '3rem' }} aria-label="primary navigation">
+    <Stack direction="row" sx={{ gap: '8', minH: '3rem' }} aria-label="primary navigation">
       <HeaderLogoLink />
       {route.getPrimaryNavItems().map((item) => (
         <HeaderPrimaryNavbarLink
@@ -73,7 +72,7 @@ const HeaderPrimaryNavbar: React.FC = () => {
 };
 
 const HeaderDesktopNavbarActions: React.FC = () => (
-  <Stack direction="row" sx={{ flexShrink: 1, gap: 2, minH: '3rem', minW: 0 }}>
+  <Stack direction="row" sx={{ flexShrink: 1, gap: '2', minH: '3rem', minW: 0 }}>
     {/* <CommandMenu trigger={<SearchButton width="256px" size="sm" flexShrink="1" />} /> */}
     <HeaderSocialLinks />
     <ColorModeButton />
@@ -82,7 +81,7 @@ const HeaderDesktopNavbarActions: React.FC = () => (
 
 const HeaderDesktopNavbar: React.FC = () => (
   <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-    <Stack direction="row" sx={{ py: 2 }}>
+    <Stack direction="row" sx={{ py: '2' }}>
       <HeaderPrimaryNavbar />
       <Spacer />
       <HeaderDesktopNavbarActions />

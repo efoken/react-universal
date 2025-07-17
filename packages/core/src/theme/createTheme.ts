@@ -1,7 +1,7 @@
-import { mergeDeep } from '@react-universal/utils';
 import type { AnyObject } from '@react-universal/utils';
-import { defaultTheme } from './defaultTheme';
+import { mergeDeep } from '@react-universal/utils';
 import type { Theme } from './defaultTheme';
+import { defaultTheme } from './defaultTheme';
 
 type DeepPartial<T> = {
   [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K];

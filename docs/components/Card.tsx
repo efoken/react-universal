@@ -33,7 +33,7 @@ export const Card: React.FC<CardProps> = ({ children, href, ref, title }) => {
         borderRadius: '0.5rem',
         borderWidth: 1,
         flexDir: 'column',
-        p: 5,
+        p: '5',
         transitionDuration: '200ms',
         transitionProperty: 'background-color, border-color',
       }}

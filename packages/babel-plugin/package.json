@@ -1,0 +1,32 @@
+{
+  "name": "@react-universal/babel-plugin",
+  "version": "1.0.0",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./src/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "run -T tsup src/index.ts"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@babel/types": "^7.28.1"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/types": "^7.0.0"
+  }
+}

@@ -11,7 +11,6 @@ import {
 } from '@react-universal/core';
 import { normalizeEvent, pick } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
-import type React from 'react';
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import type { TextInputMethods, TextInputOwnerState, TextInputProps } from './TextInput.types';
 import { TextInputState } from './TextInputState';
@@ -95,14 +94,13 @@ const TextInputRoot = styled('input', {
   '&::placeholder': {
     color: 'var(--placeholder-text-color)',
   },
-  variants: [
-    {
-      props: { caretHidden: true },
-      style: {
+  variants: {
+    caretHidden: {
+      true: {
         caretColor: 'transparent',
       },
     },
-  ],
+  },
 }));
 
 export const TextInput: React.FC<

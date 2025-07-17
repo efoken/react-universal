@@ -55,6 +55,7 @@ const colorProps: Partial<Record<Extract<keyof RNStyle, 'color' | `${string}Colo
   borderTopColor: true,
   caretColor: true,
   color: true,
+  outlineColor: true,
   scrollbarColor: true,
   textDecorationColor: true,
 };
@@ -160,6 +161,24 @@ export function createReactDOMStyle(style: RNStyle) {
         } else {
           nextStyle[prop] = value;
         }
+        break;
+      }
+      case 'pointerEvents': {
+        let finalValue = value;
+        if (value === 'auto' || value === 'box-only') {
+          finalValue = 'auto !important';
+          if (value === 'box-only') {
+            // @ts-expect-error:
+            nextStyle['> *'] = { [prop]: 'none' };
+          }
+        } else if (value === 'none' || value === 'box-none') {
+          finalValue = 'none !important';
+          if (value === 'box-none') {
+            // @ts-expect-error:
+            nextStyle['> *'] = { [prop]: 'auto' };
+          }
+        }
+        nextStyle[prop] = finalValue;
         break;
       }
       case 'textAlign': {

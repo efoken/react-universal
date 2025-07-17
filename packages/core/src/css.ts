@@ -35,6 +35,13 @@ function parseStyle<T extends AnyObject>(style: T, runtime: StyleMiniRuntime) {
   return createReactDOMStyle(nextStyle);
 }
 
+type CSS = {
+  props<T extends AnyObject>(style: StyleProp<T>): { className?: string; style: T };
+  create<T extends AnyObject<StyleValues>>(
+    stylesheet: T | ((theme: Theme, runtime: StyleMiniRuntime) => T),
+  ): (theme: Theme, runtime: StyleMiniRuntime) => Record<keyof T, AnyObject>;
+};
+
 export const css = {
   props<T extends AnyObject>(style: StyleProp<T>): { className?: string; style: T } {
     const flatStyle = [style].flat<AnyObject, number>(Number.POSITIVE_INFINITY).filter(Boolean);
@@ -69,4 +76,4 @@ export const css = {
       ) as Record<keyof T, AnyObject>;
     };
   },
-};
+} as CSS;

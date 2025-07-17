@@ -25,21 +25,17 @@ const ButtonRoot = styled(View, {
   borderWidth: 1,
   flexDirection: 'row',
   padding: 1,
-  variants: [
-    {
-      props: { disabled: false },
-      style: {
+  variants: {
+    disabled: {
+      true: {
+        pointerEvents: 'box-none',
+      },
+      false: {
         cursor: 'pointer',
         touchAction: 'manipulation',
       },
     },
-    {
-      props: { disabled: true },
-      style: {
-        pointerEvents: 'box-none',
-      },
-    },
-  ],
+  },
 });
 
 export const Button: React.FC<ButtonProps & { ref?: React.Ref<HTMLElement & ButtonMethods> }> = ({

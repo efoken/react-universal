@@ -13,6 +13,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     children: <Text>Button</Text>,
+    disabled: false,
     sx: {
       bgColor: 'background.default',
       borderRadius: 2,

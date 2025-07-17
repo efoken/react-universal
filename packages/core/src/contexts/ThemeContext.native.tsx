@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { experimental_LayoutConformance as RNLayoutConformance } from 'react-native';
 import { UnistylesProvider, UnistylesRegistry, useStyles } from 'react-native-unistyles';
 import { StyleRuntime } from '../StyleRuntime';
-import { fontPlugin, polyfillPlugin, remPlugin } from '../stylePlugins';
 import { defaultTheme } from '../theme/defaultTheme';
 import { extractTheme } from '../theme/extractTheme';
 import type { UniversalProviderProps } from './ThemeContext.types';
@@ -21,8 +20,6 @@ export const UniversalProvider: React.FC<UniversalProviderProps> = ({
     .addConfig({
       experimentalCSSMediaQueries: false,
       initialTheme: 'light',
-      // @ts-expect-error: Plugin `runtime` types differ on purpose
-      plugins: [remPlugin(theme), fontPlugin(theme), polyfillPlugin(theme)],
     });
 
   useEffect(() => {

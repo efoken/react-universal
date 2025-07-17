@@ -1,3 +1,5 @@
+'use client';
+
 import { runIfFunction } from '@react-universal/utils';
 import { useRef } from 'react';
 

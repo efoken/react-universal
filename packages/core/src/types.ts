@@ -82,6 +82,10 @@ export interface RNStyleWeb {
   '&:focus'?: RNStyle;
   /** @platform web */
   '&:hover'?: RNStyle;
+  /** @platform web */
+  '&::backdrop'?: RNStyle;
+  /** @platform web */
+  '&::placeholder'?: RNStyle;
 }
 
 export interface RNStyle
@@ -276,18 +280,30 @@ export type StyleProp<T> =
   | null
   | undefined;
 
-export interface StyleVariant<P extends AnyObject> {
-  props: Partial<P & P['ownerState']> | ((props: P & Partial<P['ownerState']>) => boolean);
-  style?: StyleValues | ((props: P & Partial<P['ownerState']>) => StyleValues);
-}
+export type StyleVariants<P extends AnyObject> = {
+  [K in keyof P | keyof P['ownerState']]?: {
+    [V in (P & P['ownerState'])[K] & (string | number | boolean)]?: StyleValues;
+  };
+};
+
+export type CompoundVariant<P extends AnyObject> = {
+  styles: StyleValues;
+} & Partial<{
+  [K in keyof P | keyof P['ownerState']]: (P & P['ownerState'])[K] & (string | number | boolean);
+}>;
 
 export type StyleInterpolation<P extends AnyObject> =
   | null
   | undefined
   | boolean
-  | (StyleValues & { variants?: StyleVariant<P>[] })
-  | StyleInterpolation<P>[]
-  | ((props: P) => StyleValues & { variants?: StyleVariant<P>[] });
+  | (StyleValues & {
+      variants?: StyleVariants<P>;
+      compoundVariants?: CompoundVariant<P>[];
+    })
+  | ((props: P) => StyleValues & {
+      variants?: StyleVariants<P>;
+      compoundVariants?: CompoundVariant<P>[];
+    });
 
 export type StyleFunction<P extends AnyObject> = (
   props: P,

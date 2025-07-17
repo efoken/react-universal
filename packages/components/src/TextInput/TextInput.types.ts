@@ -1,6 +1,7 @@
 import type { StyleProp, SxProps } from '@react-universal/core';
 import type {
   NativeSyntheticEvent,
+  TextInputFocusEvent as RNTextInputFocusEvent,
   TextInputProps as RNTextInputProps,
   ViewProps as RNViewProps,
 } from 'react-native';
@@ -22,6 +23,8 @@ export interface TextInputContentSizeChangeEvent {
   };
 }
 
+export interface TextInputFocusEvent extends RNTextInputFocusEvent {}
+
 export interface TextInputSelectionChangeEvent
   extends NativeSyntheticEvent<{
     selection: {
@@ -40,14 +43,21 @@ export interface TextInputProps
       | 'editable'
       | 'keyboardType'
       | 'numberOfLines'
+      | 'onBlur'
       | 'onContentSizeChange'
+      | 'onFocus'
+      | 'onPress'
+      | 'onPressIn'
+      | 'onPressOut'
       | 'onSelectionChange'
       | 'returnKeyType'
       | 'style'
     >,
     Omit<ViewProps, 'as' | 'href' | 'hrefAttrs'> {
   dir?: 'ltr' | 'rtl' | 'auto';
+  onBlur?: (event: TextInputFocusEvent) => void;
   onContentSizeChange?: (event: TextInputContentSizeChangeEvent) => void;
+  onFocus?: (event: TextInputFocusEvent) => void;
   onSelectionChange?: (event: TextInputSelectionChangeEvent) => void;
   rows?: number;
   style?: StyleProp<TextStyle>;

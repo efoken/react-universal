@@ -1,7 +1,7 @@
-import type { ResponderEvent, StyleProp, SxProps } from '@react-universal/core';
+import type { ResponderEvent, SxProps } from '@react-universal/core';
 import type { AnyObject } from '@react-universal/utils';
 import type { ModalProps as RNModalProps, ViewProps as RNViewProps } from 'react-native';
-import type { ViewProps, ViewStyle } from '../View';
+import type { ViewProps } from '../View';
 
 export interface ModalMethods {}
 
@@ -18,7 +18,6 @@ export interface ModalProps
       | 'visible'
     >,
     Omit<ViewProps, 'as'> {
-  backdropStyle?: StyleProp<ViewStyle>;
   /**
    * A single child content element.
    */
@@ -45,5 +44,4 @@ export interface ModalProps
   sx?: SxProps;
 }
 
-export type ModalOwnerState = Pick<ModalProps, 'backdropStyle'> &
-  Required<Pick<ModalProps, 'hideBackdrop'>>;
+export type ModalOwnerState = Required<Pick<ModalProps, 'hideBackdrop'>>;

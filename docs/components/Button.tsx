@@ -1,7 +1,7 @@
 'use client';
 
-import { Button as ButtonRoot } from '@react-universal/components';
 import type { ButtonProps } from '@react-universal/components';
+import { Button as ButtonRoot } from '@react-universal/components';
 import { useCallback, useState } from 'react';
 import type { MouseEvent } from 'react-native';
 

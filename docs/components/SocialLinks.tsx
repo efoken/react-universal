@@ -1,5 +1,4 @@
 import { Stack } from '@react-universal/components';
-import Link from 'next/link';
 import { BsDiscord, BsGithub, BsTwitterX } from 'react-icons/bs';
 import { Button } from './Button';
 
@@ -19,20 +18,18 @@ const iconMap = {
 };
 
 export const SocialLinks: React.FC<SocialLinksProps> = ({ items }) => (
-  <Stack direction="row" sx={{ gap: 1 }}>
+  <Stack direction="row" sx={{ gap: '1' }}>
     {items.map((item) => (
-      <Link
+      <Button
         key={item.type}
-        legacyBehavior
-        passHref
+        role="link"
         href={item.href}
-        target="_blank"
-        rel="noopener noreferrer"
+        hrefAttrs={{ target: '_blank', rel: 'noopener noreferrer' }}
+        aria-label={`${item.type} link`}
+        sx={{ h: 36, w: 36 }}
       >
-        <Button role="link" aria-label={`${item.type} link`} sx={{ h: 36, w: 36 }}>
-          {iconMap[item.type]}
-        </Button>
-      </Link>
+        {iconMap[item.type]}
+      </Button>
     ))}
   </Stack>
 );

@@ -24,32 +24,32 @@ const ScrollViewRoot = styled(ScrollViewBase, {
   flexShrink: 1,
   WebkitOverflowScrolling: 'touch',
   transform: 'translateZ(0)',
-  variants: [
-    {
-      props: { horizontal: true },
-      style: {
+  variants: {
+    horizontal: {
+      true: {
         flexDirection: 'row',
         overflowX: 'auto',
         overflowY: 'hidden',
       },
-    },
-    {
-      props: { horizontal: false },
-      style: {
+      false: {
         flexDirection: 'column',
         overflowX: 'hidden',
         overflowY: 'auto',
       },
     },
+  },
+  compoundVariants: [
     {
-      props: { horizontal: true, pagingEnabled: true },
-      style: {
+      horizontal: true,
+      pagingEnabled: true,
+      styles: {
         scrollSnapType: 'x mandatory',
       },
     },
     {
-      props: { horizontal: false, pagingEnabled: true },
-      style: {
+      horizontal: false,
+      pagingEnabled: true,
+      styles: {
         scrollSnapType: 'y mandatory',
       },
     },
@@ -69,6 +69,7 @@ const scrollViewRefreshControlStyle: ViewStyle = {
 const ScrollViewStickyHeader = styled(View, {
   name: 'ScrollView',
   slot: 'StickyHeader',
+  skipSx: true,
 })({
   position: 'sticky',
   top: 0,
@@ -78,27 +79,27 @@ const ScrollViewStickyHeader = styled(View, {
 const ScrollViewContentContainer = styled(View, {
   name: 'ScrollView',
   slot: 'ContentContainer',
+  skipSx: true,
 })<{ ownerState: ScrollViewOwnerState }>({
-  variants: [
-    {
-      props: { horizontal: true },
-      style: {
+  variants: {
+    horizontal: {
+      true: {
         flexDirection: 'row',
       },
     },
-    {
-      props: { centerContent: true },
-      style: {
+    centerContent: {
+      true: {
         flexGrow: 1,
         justifyContent: 'center',
       },
     },
-  ],
+  },
 });
 
 const ScrollViewChild = styled(View, {
   name: 'ScrollView',
   slot: 'Child',
+  skipSx: true,
 })({
   scrollSnapAlign: 'start',
 });

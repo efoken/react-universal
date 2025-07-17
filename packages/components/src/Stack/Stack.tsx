@@ -64,26 +64,18 @@ const StackRoot = styled(View, {
     ownerState.direction,
     (propValue: 'row' | 'row-reverse' | 'column' | 'column-reverse') => ({
       flexDirection: propValue,
+      ...((propValue === 'row' || propValue === 'row-reverse') && {
+        alignItems: 'center' as const,
+      }),
+      ...((propValue === 'column' || propValue === 'column-reverse') && {
+        justifyContent: 'center' as const,
+      }),
     }),
   ),
   ...handleBreakpoints({ theme }, ownerState.spacing, (propValue: number) => ({
     // @ts-expect-error: It's fine as we check if `propValue` exists in space.
     gap: theme.space[propValue] ?? propValue,
   })),
-  variants: [
-    {
-      props: ({ direction }) => direction === 'row' || direction === 'row-reverse',
-      style: {
-        alignItems: 'center',
-      },
-    },
-    {
-      props: ({ direction }) => direction === 'column' || direction === 'column-reverse',
-      style: {
-        justifyContent: 'center',
-      },
-    },
-  ],
 }));
 
 export const Stack: React.FC<StackProps & { ref?: React.Ref<HTMLElement & StackMethods> }> = ({

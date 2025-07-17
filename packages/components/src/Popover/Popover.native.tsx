@@ -1,10 +1,5 @@
 import { flip, shift, size, useFloating } from '@floating-ui/react-native';
-import {
-  normalizeRole,
-  styled,
-  useIsomorphicLayoutEffect,
-  useKeyboard,
-} from '@react-universal/core';
+import { normalizeRole, styled, useEnhancedEffect, useKeyboard } from '@react-universal/core';
 import { useComposedRefs } from '@tamagui/compose-refs';
 import { useEffect, useMemo, useRef } from 'react';
 import { View as RNView, useWindowDimensions } from 'react-native';
@@ -70,7 +65,8 @@ export const Popover: React.FC<PopoverProps & { ref?: React.Ref<any> }> = ({
   const dimensions = useWindowDimensions();
   const { open: keyboardOpen } = useKeyboard();
 
-  useIsomorphicLayoutEffect(() => {
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Only trigger when `dimensions` change
+  useEnhancedEffect(() => {
     floating.update();
   }, [dimensions, keyboardOpen]);
 

@@ -20,5 +20,3 @@ export const Box = styled(View, {
 })({
   flexDirection: 'row',
 }) as React.FC<BoxProps & { ref?: React.Ref<HTMLElement & BoxMethods> }>;
-
-Box.displayName = 'Box';

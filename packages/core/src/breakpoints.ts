@@ -1,5 +1,5 @@
 import type { AnyObject } from '@react-universal/utils';
-import { isArray, isObject, mergeDeep } from '@react-universal/utils';
+import { isObject, mergeDeep } from '@react-universal/utils';
 
 export const defaultBreakpoints = {
   xs: 0,
@@ -13,32 +13,13 @@ export type Breakpoints = typeof defaultBreakpoints;
 
 export type Breakpoint = keyof Breakpoints;
 
-export type BreakpointValue<T> = T | (T | undefined)[] | Partial<Record<Breakpoint, T | undefined>>;
+export type BreakpointValue<T> = T | Partial<Record<Breakpoint, T | undefined>>;
 
 export function handleBreakpoints<T extends (value: any) => AnyObject>(
-  props: { theme: { breakpoints: Record<string, any> } },
+  _props: { theme: { breakpoints: Record<string, any> } },
   propValue: unknown,
   styleFromPropValue: T,
 ): ReturnType<T> {
-  const breakpointKeys = Object.keys(props.theme.breakpoints);
-
-  if (isArray(propValue)) {
-    return propValue.reduce<AnyObject>(
-      (acc, _item, index) =>
-        mergeDeep(
-          acc,
-          Object.fromEntries(
-            Object.entries(styleFromPropValue(propValue[index])).map(([key, value]) => [
-              key,
-              { [breakpointKeys[index]]: value },
-            ]),
-          ),
-          { clone: false },
-        ),
-      {},
-    ) as ReturnType<T>;
-  }
-
   if (isObject(propValue)) {
     return Object.keys(propValue).reduce<AnyObject>(
       (acc, breakpoint) =>

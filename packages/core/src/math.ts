@@ -5,7 +5,7 @@ import { parseRem } from './utils/parseRem';
 type Operand = string | number | { toString: () => string };
 
 function parsePx(value: Operand) {
-  return isNumber(value) && value !== 0 ? `${value}px` : value.toString();
+  return isNumber(value) ? `${value}px` : value.toString();
 }
 
 export function max(...operands: Operand[]) {

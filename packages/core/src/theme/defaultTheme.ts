@@ -55,13 +55,13 @@ interface DefaultTheme {
     /** 40px */ 10: string;
     /** 44px */ 11: string;
     /** 48px */ 12: string;
-    /** 56px */ 13: string;
-    /** 64px */ 14: string;
-    /** 80px */ 15: string;
-    /** 96px */ 16: string;
-    /** 112px */ 17: string;
-    /** 128px */ 18: string;
-    /** 144px */ 19: string;
+    /** 56px */ 14: string;
+    /** 64px */ 16: string;
+    /** 80px */ 20: string;
+    /** 96px */ 24: string;
+    /** 112px */ 28: string;
+    /** 128px */ 32: string;
+    /** 144px */ 36: string;
   };
   radii: number[];
   zIndices: Record<string, number>;
@@ -122,13 +122,13 @@ export const defaultTheme: DefaultTheme = {
     /** 40px */ 10: '2.5rem',
     /** 44px */ 11: '2.75rem',
     /** 48px */ 12: '3rem',
-    /** 56px */ 13: '3.5rem',
-    /** 64px */ 14: '4rem',
-    /** 80px */ 15: '5rem',
-    /** 96px */ 16: '6rem',
-    /** 112px */ 17: '7rem',
-    /** 128px */ 18: '8rem',
-    /** 144px */ 19: '9rem',
+    /** 56px */ 14: '3.5rem',
+    /** 64px */ 16: '4rem',
+    /** 80px */ 20: '5rem',
+    /** 96px */ 24: '6rem',
+    /** 112px */ 28: '7rem',
+    /** 128px */ 32: '8rem',
+    /** 144px */ 36: '9rem',
   },
   radii: [0, 4, 8, 16],
   zIndices: {},

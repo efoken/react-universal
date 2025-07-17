@@ -1,6 +1,5 @@
 'use client';
 
-import type { Breakpoint } from '@react-universal/core';
 import { clamp, max, styled, useOwnerState } from '@react-universal/core';
 import type { AnyObject } from '@react-universal/utils';
 import { View } from '../View';
@@ -20,20 +19,17 @@ const ContainerRoot = styled(View, {
     md: max(theme.space[7], runtime.insets.left, runtime.insets.right),
   },
   width: '100%',
-  variants: [
-    ...(Object.entries(theme.breakpoints) as [Breakpoint, number][]).map(
-      ([breakpoint, maxWidth]) => ({
-        props: { maxWidth: breakpoint },
-        style: {
-          maxWidth: {
-            [breakpoint]: clamp(MIN_WIDTH, maxWidth, MAX_WIDTH),
-          },
+  variants: {
+    maxWidth: Object.entries(theme.breakpoints).reduce<AnyObject>((acc, [breakpoint, maxWidth]) => {
+      acc[breakpoint] = {
+        maxWidth: {
+          [breakpoint]: clamp(MIN_WIDTH, maxWidth, MAX_WIDTH),
         },
-      }),
-    ),
-    {
-      props: { fixed: true },
-      style: {
+      };
+      return acc;
+    }, {}),
+    fixed: {
+      true: {
         maxWidth: Object.entries(theme.breakpoints).reduce<AnyObject>(
           (acc, [breakpoint, maxWidth]) => {
             acc[breakpoint] = clamp(MIN_WIDTH, maxWidth, MAX_WIDTH);
@@ -44,7 +40,7 @@ const ContainerRoot = styled(View, {
         minWidth: 0,
       },
     },
-  ],
+  },
 }));
 
 export const Container: React.FC<

@@ -34,21 +34,22 @@
   "react-native": "src/index.ts",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup src/index.ts src/*/index.ts"
+    "build": "run -T tsup src/index.ts src/*/index.ts"
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.7.1",
+    "@floating-ui/dom": "^1.7.2",
     "@floating-ui/react-native": "^0.10.7",
     "@react-universal/core": "workspace:*",
-    "@tamagui/compose-refs": "^1.126.16"
+    "@tamagui/compose-refs": "^1.132.7"
   },
   "devDependencies": {
+    "@react-universal/babel-plugin": "workspace:*",
     "@types/react": "~19.1.8",
     "react": "19.1.0",
-    "react-native": "0.80.0"
+    "react-native": "0.80.1"
   },
   "peerDependencies": {
-    "@types/react": "^18.2.0 || ^19.0.0",
+    "@types/react": "^19.0.0",
     "react": "^19.0.0",
     "react-native": ">=0.79.0"
   },

@@ -36,7 +36,7 @@ function pickProps<T extends { ref?: React.Ref<any> }>(
 const ModalRoot = styled('dialog', {
   name: 'Modal',
   slot: 'Root',
-})<{ ownerState: ModalOwnerState }>(({ ownerState }) => ({
+})<{ ownerState: ModalOwnerState }>({
   backgroundColor: 'transparent',
   flexDirection: 'column',
   height: '100%',
@@ -44,19 +44,27 @@ const ModalRoot = styled('dialog', {
   maxHeight: 'none',
   maxWidth: 'none',
   width: '100%',
-  '&::backdrop': [
-    {
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      display: ownerState.hideBackdrop ? 'none' : 'block',
+  variants: {
+    hideBackdrop: {
+      true: {
+        '&::backdrop': {
+          display: 'none',
+        },
+      },
+      false: {
+        '&::backdrop': {
+          backgroundColor: 'var(--backdrop-color, rgba(0, 0, 0, 0.5))',
+          display: 'block',
+        },
+      },
     },
-    ownerState.backdropStyle,
-  ],
-}));
+  },
+});
 
 export const Modal: React.FC<
   ModalProps & { ref?: React.Ref<HTMLDialogElement & ModalMethods> }
 > = ({
-  backdropStyle,
+  backdropColor,
   dir,
   hideBackdrop = false,
   onClose,
@@ -79,6 +87,7 @@ export const Modal: React.FC<
   onStartShouldSetResponderCapture,
   open,
   role,
+  style,
   ...props
 }) => {
   const hostRef = useRef<HTMLDialogElement>(null);
@@ -146,11 +155,16 @@ export const Modal: React.FC<
   }, [open]);
 
   const ownerState = useOwnerState({
-    backdropStyle,
     hideBackdrop,
   });
 
-  return <ModalRoot ownerState={ownerState} {...supportedProps} />;
+  return (
+    <ModalRoot
+      ownerState={ownerState}
+      style={[{ '--backdrop-color': backdropColor }, style]}
+      {...supportedProps}
+    />
+  );
 };
 
 Modal.displayName = 'Modal';

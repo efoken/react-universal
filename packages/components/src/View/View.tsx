@@ -12,7 +12,7 @@ import {
 } from '@react-universal/core';
 import { isString, pick } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
-import { Children, useContext, useRef } from 'react';
+import { Children, use, useRef } from 'react';
 import { TextAncestorContext } from '../Text/TextAncestorContext';
 import type { ViewMethods, ViewOwnerState, ViewProps } from './View.types';
 
@@ -48,14 +48,13 @@ const ViewRoot = styled<any>('div', {
   flexShrink: 0,
   minHeight: 0,
   minWidth: 0,
-  variants: [
-    {
-      props: { hasTextAncestor: true },
-      style: {
+  variants: {
+    hasTextAncestor: {
+      true: {
         display: 'inline-flex' as any,
       },
     },
-  ],
+  },
 });
 
 export const View: React.FC<ViewProps & { ref?: React.Ref<HTMLElement & ViewMethods> }> = ({
@@ -91,7 +90,7 @@ export const View: React.FC<ViewProps & { ref?: React.Ref<HTMLElement & ViewMeth
     }
   }
 
-  const hasTextAncestor = useContext(TextAncestorContext);
+  const hasTextAncestor = use(TextAncestorContext);
   const hostRef = useRef<HTMLElement>(null);
 
   useElementLayout(hostRef, onLayout);

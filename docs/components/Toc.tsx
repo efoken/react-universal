@@ -25,15 +25,14 @@ const TocLink = styled(Link)(({ theme }) => ({
   '&:hover': {
     color: theme.colors.text.default,
   },
-  variants: [
-    {
-      props: { 'aria-current': 'page' as const },
-      style: {
+  variants: {
+    'aria-current': {
+      page: {
         color: theme.colors.text.default,
         fontWeight: 500,
       },
     },
-  ],
+  },
 }));
 
 export const Toc: React.FC<TocProps> = ({ items }) => {
@@ -55,7 +54,7 @@ export const Toc: React.FC<TocProps> = ({ items }) => {
   return (
     <Nav sx={{ fontSize: '0.875rem' }}>
       <Text sx={{ fontWeight: 600 }}>On this page</Text>
-      <Stack sx={{ gap: 2, mt: 3 }}>
+      <Stack sx={{ gap: '2', mt: '3' }}>
         {items.map((item) => (
           <TocLink
             key={item.url}

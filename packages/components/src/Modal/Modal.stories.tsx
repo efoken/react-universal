@@ -10,6 +10,7 @@ const meta = {
   component: Modal,
   args: {
     children: undefined as unknown as React.ReactElement,
+    hideBackdrop: false,
     open: false,
   },
 } satisfies Meta<typeof Modal>;

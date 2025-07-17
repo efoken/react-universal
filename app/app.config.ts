@@ -5,7 +5,6 @@ const config: ExpoConfig = {
   slug: 'react-universal-app',
   version: '1.0.0',
   icon: './assets/icon.png',
-  userInterfaceStyle: 'light',
   splash: {
     image: './assets/splash.png',
     resizeMode: 'contain',
@@ -22,6 +21,7 @@ const config: ExpoConfig = {
       foregroundImage: './assets/adaptive-icon.png',
       backgroundColor: '#ffffff',
     },
+    edgeToEdgeEnabled: true,
     package: 'com.react_universal.app',
   },
   web: {

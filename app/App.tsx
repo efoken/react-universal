@@ -67,7 +67,7 @@ export default function App() {
               maxW: '100%',
               w: { xs: 100, md: 200 },
               // h: 'auto',
-              mt: 13,
+              mt: '14',
             }}
             viewBox="0 0 620 472"
             xmlns="http://www.w3.org/2000/svg"
@@ -274,7 +274,7 @@ export default function App() {
               anchor={anchorRef}
               id="default-popover"
               open={open}
-              sx={{ bgColor: 'red', p: 4 }}
+              sx={{ bgColor: 'red', p: '4' }}
             >
               <Text>The content of the Popover.</Text>
             </Popover>

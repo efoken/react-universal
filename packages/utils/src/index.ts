@@ -11,6 +11,5 @@ export * from './mergeDeep';
 export * from './noop';
 export * from './normalizeEvent';
 export * from './pick';
-export * from './requestIdleCallback';
 export * from './runIfFunction';
 export * from './types';

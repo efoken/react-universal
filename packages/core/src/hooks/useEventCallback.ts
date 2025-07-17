@@ -1,3 +1,5 @@
+'use client';
+
 import type { AnyFunction } from '@react-universal/utils';
 import { useInsertionEffect } from 'react';
 import { useLazyRef } from './useLazyRef';

@@ -1,6 +1,7 @@
 import { getBoundingClientRect, isFunction } from '@react-universal/utils';
-import { isWindowDefined, useIsomorphicLayoutEffect } from '@tamagui/constants';
+import { isWindowDefined } from '@tamagui/constants';
 import type { MeasureOnSuccessCallback } from 'react-native';
+import { useEnhancedEffect } from './useEnhancedEffect';
 
 const layoutHandlers = new WeakMap<Element, (event: LayoutEvent) => void>();
 const resizeListeners = new Set<() => void>();
@@ -121,7 +122,7 @@ export function useElementLayout(
   onLayout?: ((event: LayoutEvent) => void) | null,
 ) {
   // Two effects because expensive to re-run on every change of onLayout
-  useIsomorphicLayoutEffect(() => {
+  useEnhancedEffect(() => {
     if (!onLayout) {
       return;
     }
@@ -132,7 +133,8 @@ export function useElementLayout(
     layoutHandlers.set(node, onLayout);
   }, [ref, onLayout]);
 
-  useIsomorphicLayoutEffect(() => {
+  // biome-ignore lint/correctness/useExhaustiveDependencies: We omit `onLayout`
+  useEnhancedEffect(() => {
     if (!resizeObserver) {
       return;
     }

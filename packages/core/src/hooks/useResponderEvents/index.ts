@@ -1,3 +1,5 @@
+'use client';
+
 import { useDebugValue, useEffect, useRef } from 'react';
 import { useConst } from '../useConst';
 import type { ResponderConfig } from './ResponderSystem';

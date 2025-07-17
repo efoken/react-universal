@@ -19,19 +19,17 @@ const ModalBackdrop = styled(RNPressable, {
   name: 'Modal',
   slot: 'Backdrop',
 })<{ ownerState: ModalOwnerState }>({
-  backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  variants: [
-    {
-      props: { hideBackdrop: true },
-      style: {
+  variants: {
+    hideBackdrop: {
+      true: {
         display: 'none',
       },
     },
-  ],
+  },
 });
 
 export const Modal: React.FC<ModalProps & { ref?: React.Ref<any> }> = ({
-  backdropStyle,
+  backdropColor,
   children,
   hideBackdrop = false,
   lang,
@@ -75,7 +73,7 @@ export const Modal: React.FC<ModalProps & { ref?: React.Ref<any> }> = ({
   });
 
   const ownerState = useOwnerState({
-    backdropStyle,
+    backdropColor,
     hideBackdrop,
   });
 
@@ -85,6 +83,8 @@ export const Modal: React.FC<ModalProps & { ref?: React.Ref<any> }> = ({
 
   return (
     <ModalRoot
+      navigationBarTranslucent
+      statusBarTranslucent
       transparent
       accessibilityLanguage={lang}
       animationType="fade"
@@ -120,7 +120,7 @@ export const Modal: React.FC<ModalProps & { ref?: React.Ref<any> }> = ({
         <ModalBackdrop
           ownerState={ownerState}
           role="presentation"
-          style={backdropStyle as any}
+          style={{ backgroundColor: backdropColor }}
           onPress={normalizeResponderEvent(handleBackdropPress)}
         />
       )}

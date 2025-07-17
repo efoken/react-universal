@@ -11,8 +11,8 @@ import {
 } from '@react-universal/core';
 import { isString, normalizeEvent, pick } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
-import { useCallback, useContext, useRef } from 'react';
-import type { TextMethods, TextOwnerState, TextProps } from './Text.types';
+import { use, useCallback, useRef } from 'react';
+import type { TextMethods, TextOwnerState, TextProps, TextStyle } from './Text.types';
 import { TextAncestorContext } from './TextAncestorContext';
 
 function pickProps<T extends { ref?: React.Ref<any> }>(
@@ -42,23 +42,20 @@ const TextRoot = styled<any>('div', {
   fontFamily: theme.fonts.body,
   whiteSpace: 'pre-wrap',
   wordWrap: 'break-word',
-  variants: [
-    {
-      props: { hasTextAncestor: true },
-      style: {
+  variants: {
+    hasTextAncestor: {
+      true: {
         fontFamily: 'inherit',
         whiteSpace: 'inherit',
       },
     },
-    {
-      props: { pressable: true },
-      style: {
+    pressable: {
+      true: {
         cursor: 'pointer',
       },
     },
-    {
-      props: { numberOfLines: 1 },
-      style: {
+    numberOfLines: {
+      1: {
         maxWidth: '100%',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
@@ -66,19 +63,17 @@ const TextRoot = styled<any>('div', {
         wordWrap: 'normal',
       },
     },
-    {
-      props: ({ numberOfLines }) => numberOfLines != null && numberOfLines > 1,
-      style: {
-        display: '-webkit-box' as any,
-        maxWidth: '100%',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        WebkitBoxOrient: 'vertical',
-        WebkitLineClamp: 'var(--number-of-lines)',
-      },
-    },
-  ],
+  },
 }));
+
+const textNumberOfLinesStyle: TextStyle = {
+  display: '-webkit-box' as any,
+  maxWidth: '100%',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  WebkitBoxOrient: 'vertical',
+  WebkitLineClamp: 'var(--number-of-lines)',
+};
 
 export const Text: React.FC<TextProps & { ref?: React.Ref<HTMLElement & TextMethods> }> = ({
   as: _as,
@@ -91,7 +86,7 @@ export const Text: React.FC<TextProps & { ref?: React.Ref<HTMLElement & TextMeth
   style,
   ...props
 }) => {
-  const hasTextAncestor = useContext(TextAncestorContext);
+  const hasTextAncestor = use(TextAncestorContext);
   const hostRef = useRef<HTMLElement>(null);
 
   useElementLayout(hostRef, onLayout);
@@ -156,7 +151,11 @@ export const Text: React.FC<TextProps & { ref?: React.Ref<HTMLElement & TextMeth
     <TextRoot
       as={_as ?? component}
       ownerState={ownerState}
-      style={[{ '--number-of-lines': numberOfLines }, style]}
+      style={[
+        { '--number-of-lines': numberOfLines },
+        numberOfLines != null && numberOfLines > 1 && textNumberOfLinesStyle,
+        style,
+      ]}
       {...supportedProps}
     />
   );

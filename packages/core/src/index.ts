@@ -9,6 +9,7 @@ export * from './forwardedProps';
 export * from './hooks/useBackHandler';
 export * from './hooks/useConst';
 export * from './hooks/useElementLayout';
+export * from './hooks/useEnhancedEffect';
 export * from './hooks/useEventCallback';
 export * from './hooks/useFontScale';
 export * from './hooks/useInsertionEffectAlwaysWithSyncFallback';
