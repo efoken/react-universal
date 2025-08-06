@@ -26,7 +26,7 @@
     "react-native": "0.80.1",
     "react-native-edge-to-edge": "1.6.0",
     "react-native-nitro-modules": "0.26.3",
-    "react-native-svg": "15.12.0",
+    "react-native-svg": "15.12.1",
     "react-native-unistyles": "3.0.4",
     "react-refresh": "^0.14.2"
   },
