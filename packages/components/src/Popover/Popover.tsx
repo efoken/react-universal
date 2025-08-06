@@ -113,10 +113,8 @@ export const Popover: React.FC<
   useEffect(() => {
     const hostEl = hostRef.current;
     if (hostEl != null) {
-      // @ts-expect-error: TypeScript DOM types don't have `beforetoggle` event
       hostEl.addEventListener('beforetoggle', handleBeforeToggle);
       return () => {
-        // @ts-expect-error: TypeScript DOM types don't have `beforetoggle` event
         hostEl.removeEventListener('beforetoggle', handleBeforeToggle);
       };
     }

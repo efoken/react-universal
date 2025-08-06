@@ -48,7 +48,10 @@ const Card = styled(View)(({ theme }) => ({
   boxShadow: '0 0 16px rgba(0, 0, 0, 0.08)',
   flexGrow: 1,
   padding: theme.space[5],
-  width: '40%',
+  width: {
+    xs: '100%',
+    md: '40%',
+  },
 }));
 
 export default function App() {
@@ -58,9 +61,9 @@ export default function App() {
 
   return (
     <UniversalProvider>
-      <View>
+      <View sx={{ flex: 1 }}>
         <StatusBar style="auto" />
-        <ScrollView>
+        <ScrollView sx={{ flex: 1 }}>
           <Svg
             sx={{
               aspectRatio: 620 / 472,
