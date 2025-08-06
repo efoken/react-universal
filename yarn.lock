@@ -3336,7 +3336,7 @@ __metadata:
     "@floating-ui/react-native": "npm:^0.10.7"
     "@react-universal/babel-plugin": "workspace:*"
     "@react-universal/core": "workspace:*"
-    "@tamagui/compose-refs": "npm:^1.132.7"
+    "@tamagui/compose-refs": "npm:^1.132.16"
     "@types/react": "npm:~19.1.9"
     react: "npm:19.1.0"
     react-native: "npm:0.80.1"
@@ -3362,7 +3362,7 @@ __metadata:
     "@emotion/weak-memoize": "npm:^0.4.0"
     "@react-native/normalize-colors": "npm:0.80.1"
     "@react-universal/utils": "workspace:*"
-    "@tamagui/constants": "npm:^1.132.8"
+    "@tamagui/constants": "npm:^1.132.16"
     "@types/react": "npm:~19.1.9"
     react: "npm:19.1.0"
     react-native: "npm:0.80.1"
@@ -3870,22 +3870,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/compose-refs@npm:^1.132.7":
-  version: 1.132.7
-  resolution: "@tamagui/compose-refs@npm:1.132.7"
+"@tamagui/compose-refs@npm:^1.132.16":
+  version: 1.132.16
+  resolution: "@tamagui/compose-refs@npm:1.132.16"
   peerDependencies:
     react: "*"
-  checksum: 10c0/9f544dbdf2239b740793b7a4dd3b7b97ce5870533511f5932054312ffd3d57c2c4b9e3b12d9f5b72104a8f827a1e7417c0f0c1395a3e47cf6ec759c5f2b0e887
+  checksum: 10c0/4142e12c9cda5635813cb833c264fd047e50067f544dfc0d0109a79e58d20492b1ab6c36a522db548240965d103d1dd0100297b6bbff677be9a5ec304994a262
   languageName: node
   linkType: hard
 
-"@tamagui/constants@npm:^1.132.8":
-  version: 1.132.8
-  resolution: "@tamagui/constants@npm:1.132.8"
+"@tamagui/constants@npm:^1.132.16":
+  version: 1.132.16
+  resolution: "@tamagui/constants@npm:1.132.16"
   peerDependencies:
     react: "*"
     react-native: ^0.79.2
-  checksum: 10c0/e1c46311781171cf245241c2ccd54eca0d7a19b1318c6da34135e6ffa80fd6a6641549f0773b22cdadb6aff9784d260b7a9673f8b6adf06c0748eaed76225522
+  checksum: 10c0/1aa2cca8ac31092554f407f1df216242d8ef656b886d0f27ea926ada32164dcd572ef0c422116ac46d9548431a25991750053746d2730b51ddbd5342a92ac1d6
   languageName: node
   linkType: hard
 
