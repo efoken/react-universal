@@ -3250,7 +3250,7 @@ __metadata:
     react-native: "npm:0.80.1"
     react-native-edge-to-edge: "npm:1.6.0"
     react-native-nitro-modules: "npm:0.26.3"
-    react-native-svg: "npm:15.12.0"
+    react-native-svg: "npm:15.12.1"
     react-native-unistyles: "npm:3.0.4"
     react-refresh: "npm:^0.14.2"
     typescript: "npm:~5.9.2"
@@ -3397,7 +3397,7 @@ __metadata:
     "@types/react": "npm:~19.1.9"
     react: "npm:19.1.0"
     react-native: "npm:0.80.1"
-    react-native-svg: "npm:15.12.0"
+    react-native-svg: "npm:15.12.1"
   peerDependencies:
     "@types/react": ^19.0.0
     react: ^19.0.0
@@ -10161,9 +10161,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-svg@npm:15.12.0":
-  version: 15.12.0
-  resolution: "react-native-svg@npm:15.12.0"
+"react-native-svg@npm:15.12.1":
+  version: 15.12.1
+  resolution: "react-native-svg@npm:15.12.1"
   dependencies:
     css-select: "npm:^5.1.0"
     css-tree: "npm:^1.1.3"
@@ -10171,7 +10171,7 @@ __metadata:
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10c0/80ad7ed06fc095767a8f786416fa0f4258a644ffc80a27a9425ad753abe0feab523f3e8817758411f7bead38449ab8c2f1272a9f124d185ffcf69afaf57eba31
+  checksum: 10c0/ed94b57007125c715283fc760438ac8eac0677ced3201f6e272a7cd4459f3fecb672a8eed2c32664e5b8e6e0367585353b0f83f99b231f603d75094bb052c01f
   languageName: node
   linkType: hard
 
