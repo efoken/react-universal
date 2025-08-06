@@ -1,0 +1,36 @@
+diff --git a/lib/module/index.js b/lib/module/index.js
+index 0cb5f4451b91ec4d7b9c242f7ddc5059866fa3ac..89ff3a758edac4da36eaab961decacb972d0452c 100644
+--- a/lib/module/index.js
++++ b/lib/module/index.js
+@@ -5,7 +5,7 @@ const [majorReactVersions] = React.version.split('.').map(Number.parseInt);
+ if (majorReactVersions === undefined || majorReactVersions < 19) {
+   throw new Error('Unistyles 🦄: To enable full Fabric power you need to use React 19.0.0 or higher');
+ }
+-export { StyleSheet, UnistylesRuntime, StatusBar, NavigationBar } from './specs';
++export { StyleSheet, UnistylesRuntime, StatusBar, NavigationBar, UnistylesShadowRegistry } from './specs';
+ export { mq } from './mq';
+ export { withUnistyles, useUnistyles } from './core';
+ export { Display, Hide, ScopedTheme } from './components';
+diff --git a/lib/typescript/src/index.d.ts b/lib/typescript/src/index.d.ts
+index b97ca290f6e4141f0143fc2a99682bfdad479853..a9dbdce11ba6555ec324af42eec3ffe301e153ff 100644
+--- a/lib/typescript/src/index.d.ts
++++ b/lib/typescript/src/index.d.ts
+@@ -1,4 +1,4 @@
+-export { StyleSheet, UnistylesRuntime, StatusBar, NavigationBar } from './specs';
++export { StyleSheet, UnistylesRuntime, StatusBar, NavigationBar, UnistylesShadowRegistry } from './specs';
+ export { mq } from './mq';
+ export type { UnistylesThemes, UnistylesBreakpoints } from './global';
+ export { withUnistyles, useUnistyles } from './core';
+diff --git a/src/index.ts b/src/index.ts
+index 7ec31f3252b513778086031531d132b90752a6cd..40083143be8da156377facc85c0e72f61c502765 100644
+--- a/src/index.ts
++++ b/src/index.ts
+@@ -6,7 +6,7 @@ if (majorReactVersions === undefined || majorReactVersions < 19) {
+     throw new Error('Unistyles 🦄: To enable full Fabric power you need to use React 19.0.0 or higher')
+ }
+ 
+-export { StyleSheet, UnistylesRuntime, StatusBar, NavigationBar } from './specs'
++export { StyleSheet, UnistylesRuntime, StatusBar, NavigationBar, UnistylesShadowRegistry } from './specs'
+ export { mq } from './mq'
+ export type { UnistylesThemes, UnistylesBreakpoints } from './global'
+ export { withUnistyles, useUnistyles } from './core'

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { experimental_LayoutConformance as RNLayoutConformance } from 'react-native';
-import { UnistylesProvider, UnistylesRegistry, useStyles } from 'react-native-unistyles';
+import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { StyleRuntime } from '../StyleRuntime';
 import { defaultTheme } from '../theme/defaultTheme';
 import { extractTheme } from '../theme/extractTheme';
@@ -10,30 +10,27 @@ export const UniversalProvider: React.FC<UniversalProviderProps> = ({
   children,
   theme = defaultTheme,
 }) => {
-  UnistylesRegistry.addThemes({
-    // @ts-expect-error
-    light: extractTheme(theme, 'light'),
-    // @ts-expect-error
-    dark: extractTheme(theme, 'dark'),
-  })
-    .addBreakpoints(theme.breakpoints ?? defaultTheme.breakpoints)
-    .addConfig({
-      experimentalCSSMediaQueries: false,
+  StyleSheet.configure({
+    breakpoints: theme.breakpoints ?? defaultTheme.breakpoints,
+    settings: {
       initialTheme: 'light',
-    });
+    },
+    themes: {
+      // @ts-expect-error
+      light: extractTheme(theme, 'light'),
+      // @ts-expect-error
+      dark: extractTheme(theme, 'dark'),
+    },
+  });
 
   useEffect(() => {
     StyleRuntime.updateTheme('light', () => extractTheme(theme, 'light'));
     StyleRuntime.updateTheme('dark', () => extractTheme(theme, 'dark'));
   }, [theme]);
 
-  return (
-    <RNLayoutConformance mode="strict">
-      <UnistylesProvider>{children}</UnistylesProvider>
-    </RNLayoutConformance>
-  );
+  return <RNLayoutConformance mode="strict">{children}</RNLayoutConformance>;
 };
 
 export function useTheme() {
-  return useStyles().theme;
+  return useUnistyles().theme;
 }

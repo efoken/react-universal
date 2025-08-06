@@ -1,7 +1,7 @@
-import type { StyleProp } from '@react-universal/core';
+import type { StyleProp, SxProps } from '@react-universal/core';
 import { normalizeResponderEvent, normalizeRole, styled } from '@react-universal/core';
 import type { AnyObject } from '@react-universal/utils';
-import { StyleSheet } from 'react-native';
+import { View as RNView, StyleSheet } from 'react-native';
 import {
   Circle as RNCircle,
   ClipPath as RNClipPath,
@@ -79,10 +79,10 @@ function createComponent<
   return Component;
 }
 
-const SvgRoot = styled(RNSvg, {
+const SvgRoot = styled(RNView, {
   name: 'Svg',
   slot: 'Root',
-})(({ theme }) => ({
+})<{ sx?: SxProps }>(({ theme }) => ({
   borderColor: theme.colors.border.default,
   position: 'static',
 }));
@@ -95,18 +95,21 @@ export const Svg: React.FC<SvgProps & { ref?: React.Ref<any> }> = ({
   onPressOut,
   role,
   style,
+  sx,
   ...props
 }) => (
-  <SvgRoot
-    hitSlop={hitSlop ?? undefined}
-    role={normalizeRole(role)}
-    style={style as any}
-    onLongPress={normalizeResponderEvent(onLongPress)}
-    onPress={normalizeResponderEvent(onPress)}
-    onPressIn={normalizeResponderEvent(onPressIn)}
-    onPressOut={normalizeResponderEvent(onPressOut)}
-    {...props}
-  />
+  <SvgRoot style={style} sx={sx}>
+    <RNSvg
+      hitSlop={hitSlop ?? undefined}
+      role={normalizeRole(role)}
+      style={{ height: '100%', width: '100%' }}
+      onLongPress={normalizeResponderEvent(onLongPress)}
+      onPress={normalizeResponderEvent(onPress)}
+      onPressIn={normalizeResponderEvent(onPressIn)}
+      onPressOut={normalizeResponderEvent(onPressOut)}
+      {...props}
+    />
+  </SvgRoot>
 );
 
 Svg.displayName = 'Svg';

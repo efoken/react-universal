@@ -214,7 +214,7 @@ export default function babelPlugin(): PluginObj<ReactUniversalPluginPass> {
       },
       ImportDeclaration(path, state) {
         if (isInsideNodeModules(state)) {
-          return;
+          // return;
         }
         if (path.node.source.value.includes('@react-universal/core')) {
           state.file.hasReactUniversalImport = true;
@@ -231,7 +231,7 @@ export default function babelPlugin(): PluginObj<ReactUniversalPluginPass> {
       },
       CallExpression(path, state) {
         if (isInsideNodeModules(state)) {
-          return;
+          // return;
         }
 
         if (!isReactUniversalStyled(path, state)) {

@@ -33,19 +33,21 @@
     "@emotion/weak-memoize": "^0.4.0",
     "@react-native/normalize-colors": "0.80.1",
     "@react-universal/utils": "workspace:*",
-    "@tamagui/constants": "^1.131.3"
+    "@tamagui/constants": "^1.132.8"
   },
   "devDependencies": {
-    "@types/react": "~19.1.8",
+    "@types/react": "~19.1.9",
     "react": "19.1.0",
     "react-native": "0.80.1",
-    "react-native-unistyles": "^2.43.0"
+    "react-native-edge-to-edge": "1.6.0",
+    "react-native-nitro-modules": "0.26.3",
+    "react-native-unistyles": "patch:react-native-unistyles@npm%3A3.0.4#~/.yarn/patches/react-native-unistyles-npm-3.0.4-aafc14d3f4.patch"
   },
   "peerDependencies": {
     "@types/react": "^19.0.0",
     "react": "^19.0.0",
     "react-native": ">=0.79.0",
-    "react-native-unistyles": "^2.43.0"
+    "react-native-unistyles": "^3.0.4"
   },
   "peerDependenciesMeta": {
     "@types/react": {

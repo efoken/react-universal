@@ -5,6 +5,10 @@ import { defaultTheme } from './theme';
 export class StyleRuntime {
   static #theme: Theme = defaultTheme as Theme;
 
+  static getTheme(_name: 'light' | 'dark') {
+    return StyleRuntime.#theme;
+  }
+
   static setTheme(_name: 'light' | 'dark') {
     // noop
   }

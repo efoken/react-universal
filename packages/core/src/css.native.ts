@@ -1,8 +1,6 @@
-import type { AnyObject } from '@react-universal/utils';
+import type { AnyFunction, AnyObject } from '@react-universal/utils';
 import { isString, runIfFunction } from '@react-universal/utils';
-import { StyleSheet } from 'react-native';
-import type { UnistylesValues } from 'react-native-unistyles';
-import { createStyleSheet as createUnistylesStyleSheet } from 'react-native-unistyles';
+import { StyleSheet } from 'react-native-unistyles';
 import type { StyleMiniRuntime } from './StyleRuntime';
 import type { Theme } from './theme';
 import type { RNStyle, RNStyleWeb, StyleProp, StyleValues } from './types';
@@ -165,14 +163,17 @@ const allowedStyleProps = new Set<string>([
 ] satisfies Exclude<keyof RNStyle, keyof RNStyleWeb>[]);
 
 function isAllowedStyleProp(propName: string) {
-  return allowedStyleProps.has(propName);
+  return allowedStyleProps.has(propName) || propName === 'uni__dependencies';
 }
 
-function parseStyle<T extends AnyObject>(
-  style: T,
-  theme: Theme,
-): Omit<T, keyof UnistylesValues> & UnistylesValues {
-  const nextStyle = {} as Omit<T, keyof UnistylesValues> & UnistylesValues;
+type ParseStyle<T extends AnyObject> = Omit<
+  T,
+  keyof Exclude<Exclude<Parameters<typeof StyleSheet.create>[0], AnyFunction>['style'], AnyFunction>
+> &
+  Exclude<Exclude<Parameters<typeof StyleSheet.create>[0], AnyFunction>['style'], AnyFunction>;
+
+function parseStyle<T extends AnyObject>(style: T, theme: Theme): ParseStyle<T> {
+  const nextStyle = {} as ParseStyle<T>;
 
   for (let [styleProp, styleValue] of Object.entries(style)) {
     if (process.env.NODE_ENV !== 'production' && !isAllowedStyleProp(styleProp)) {
@@ -324,18 +325,19 @@ export const css = {
     stylesheet: T | ((theme: Theme, runtime: StyleMiniRuntime) => T),
     id: number,
   ) {
-    return createUnistylesStyleSheet((theme, runtime) => {
-      // @ts-expect-error
-      const _stylesheet = runIfFunction(stylesheet, theme, {
-        ...runtime,
-        breakpoints: theme.breakpoints,
-      });
-
-      return Object.fromEntries(
+    return (() =>
+      StyleSheet.create((theme, runtime) => {
         // @ts-expect-error
-        Object.entries(_stylesheet).map(([name, style]) => [name, parseStyle(style, theme)]),
-      ) as Record<keyof T, AnyObject>;
-      // @ts-expect-error: this argument is hidden in Unistyles type definition
-    }, id) as unknown;
+        const _stylesheet = runIfFunction(stylesheet, theme, {
+          ...runtime,
+          breakpoints: theme.breakpoints,
+        });
+
+        return Object.fromEntries(
+          // @ts-expect-error
+          Object.entries(_stylesheet).map(([name, style]) => [name, parseStyle(style, theme)]),
+        ) as Record<keyof T, AnyObject>;
+        // @ts-expect-error: this argument is hidden in Unistyles type definition
+      }, id)) as unknown;
   },
 } as CSS;

@@ -44,6 +44,7 @@ export function useStyles(
     sx,
     ...props
   }: {
+    id?: number;
     skipSx: boolean;
     sx?: SxProps;
     [key: string]: any;

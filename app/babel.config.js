@@ -3,7 +3,7 @@ const config = (api) => {
   api.cache(true);
   return {
     presets: ['babel-preset-expo'],
-    plugins: ['react-native-worklets/plugin', ['@react-universal/babel-plugin', { root: '.' }]],
+    plugins: [['@react-universal/babel-plugin', { root: 'src' }]],
   };
 };
 

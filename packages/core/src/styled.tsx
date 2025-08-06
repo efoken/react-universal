@@ -81,7 +81,7 @@ export function styled<T extends React.ComponentType<React.ComponentProps<T>>>(
 ) {
   const shouldUseAs = !shouldForwardProp('as');
 
-  return (styles?: StyleInterpolation<AnyObject>) => {
+  return (styles: StyleInterpolation<AnyObject>) => {
     const Styled = withEmotionCache<
       React.ComponentProps<T> & {
         as?: React.ElementType;

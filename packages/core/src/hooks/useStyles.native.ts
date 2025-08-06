@@ -1,6 +1,5 @@
 import type { AnyObject } from '@react-universal/utils';
 import { useMemo } from 'react';
-import { useStyles as useUnistyles } from 'react-native-unistyles';
 import { css } from '../css';
 import { interpolate } from '../interpolate';
 import { styleFunctionSx } from '../styleFunctionSx';
@@ -11,10 +10,12 @@ import { processStyles } from '../utils/processStyles';
 export function useStyles(
   styles: StyleInterpolation<AnyObject>,
   {
+    id,
     skipSx,
     sx,
     ...props
   }: {
+    id?: number;
     skipSx: boolean;
     sx?: SxProps;
     [key: string]: any;
@@ -32,12 +33,11 @@ export function useStyles(
             !skipSx && styleFunctionSx({ sx, theme }),
           ),
         };
-      }),
+        // @ts-expect-error: this argument is hidden our type definition
+      }, id),
     // biome-ignore lint/correctness/useExhaustiveDependencies: props do not change on every render
-    [props, skipSx, styles, sx],
+    [id, props, skipSx, styles, sx],
   );
 
-  const { styles: _styles } = useUnistyles(stylesheet as any);
-
-  return _styles.style;
+  return stylesheet(undefined as any, undefined as any).style;
 }
