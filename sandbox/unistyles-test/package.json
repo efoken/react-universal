@@ -6,7 +6,7 @@
     "build": "run -T tsup src/index.ts"
   },
   "dependencies": {
-    "@react-native/normalize-colors": "0.80.1",
+    "@react-native/normalize-colors": "0.81.0",
     "react": "19.1.0",
     "react-native": "0.80.1",
     "react-native-edge-to-edge": "1.6.0",

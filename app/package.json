@@ -11,7 +11,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@react-native/normalize-colors": "0.80.1",
+    "@react-native/normalize-colors": "0.81.0",
     "@react-universal/babel-plugin": "workspace:*",
     "@react-universal/components": "workspace:*",
     "@react-universal/core": "workspace:*",
