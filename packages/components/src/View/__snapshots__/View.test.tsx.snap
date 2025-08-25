@@ -2,16 +2,16 @@
 
 exports[`View > default 1`] = `
 <div
-  class="css-1uo959j"
+  class="css-v3bzsh"
 />
 `;
 
 exports[`View > non-text is rendered 1`] = `
 <div
-  class="css-1uo959j"
+  class="css-v3bzsh"
 >
   <div
-    class="css-1uo959j"
+    class="css-v3bzsh"
     data-testid="1"
   />
 </div>
@@ -20,61 +20,61 @@ exports[`View > non-text is rendered 1`] = `
 exports[`View > prop "aria-label" > value is set 1`] = `
 <div
   aria-label="accessibility label"
-  class="css-1uo959j"
+  class="css-v3bzsh"
 />
 `;
 
 exports[`View > prop "aria-labelledby" > value is set 1`] = `
 <div
   aria-labelledby="123"
-  class="css-1uo959j"
+  class="css-v3bzsh"
 />
 `;
 
 exports[`View > prop "aria-live" > value is set 1`] = `
 <div
   aria-live="polite"
-  class="css-1uo959j"
+  class="css-v3bzsh"
 />
 `;
 
 exports[`View > prop "dir" > value is "ltr" 1`] = `
 <div
-  class="css-1uo959j"
+  class="css-v3bzsh"
   dir="ltr"
 />
 `;
 
 exports[`View > prop "dir" > value is "rtl" 1`] = `
 <div
-  class="css-1uo959j"
+  class="css-v3bzsh"
   dir="rtl"
 />
 `;
 
 exports[`View > prop "href" > href with role 1`] = `
 <div
-  class="css-1uo959j"
+  class="css-v3bzsh"
   role="presentation"
 />
 `;
 
 exports[`View > prop "href" > value is set 1`] = `
 <a
-  class="css-1uo959j"
+  class="css-v3bzsh"
   href="https://example.com"
 />
 `;
 
 exports[`View > prop "hrefAttrs" > requires "href" 1`] = `
 <div
-  class="css-1uo959j"
+  class="css-v3bzsh"
 />
 `;
 
 exports[`View > prop "hrefAttrs" > target variant is set 1`] = `
 <a
-  class="css-1uo959j"
+  class="css-v3bzsh"
   href="https://example.com"
   target="_blank"
 />
@@ -82,14 +82,14 @@ exports[`View > prop "hrefAttrs" > target variant is set 1`] = `
 
 exports[`View > prop "hrefAttrs" > undefined values are excluded 1`] = `
 <a
-  class="css-1uo959j"
+  class="css-v3bzsh"
   href="https://example.com"
 />
 `;
 
 exports[`View > prop "hrefAttrs" > value is set 1`] = `
 <a
-  class="css-1uo959j"
+  class="css-v3bzsh"
   download="filename.jpg"
   href="https://example.com"
   rel="nofollow"
@@ -99,14 +99,14 @@ exports[`View > prop "hrefAttrs" > value is set 1`] = `
 
 exports[`View > prop "id" > value is set 1`] = `
 <div
-  class="css-1uo959j"
+  class="css-v3bzsh"
   id="ID"
 />
 `;
 
 exports[`View > prop "lang" > ar 1`] = `
 <div
-  class="css-1uo959j"
+  class="css-v3bzsh"
   dir="rtl"
   lang="ar"
 />
@@ -114,7 +114,7 @@ exports[`View > prop "lang" > ar 1`] = `
 
 exports[`View > prop "lang" > fr 1`] = `
 <div
-  class="css-1uo959j"
+  class="css-v3bzsh"
   dir="ltr"
   lang="fr"
 />
@@ -122,13 +122,13 @@ exports[`View > prop "lang" > fr 1`] = `
 
 exports[`View > prop "lang" > undefined 1`] = `
 <div
-  class="css-1uo959j"
+  class="css-v3bzsh"
 />
 `;
 
 exports[`View > prop "lang" > with dir 1`] = `
 <div
-  class="css-1uo959j"
+  class="css-v3bzsh"
   dir="ltr"
   lang="ar"
 />
@@ -136,34 +136,34 @@ exports[`View > prop "lang" > with dir 1`] = `
 
 exports[`View > prop "role" > value alters HTML element 1`] = `
 <article
-  class="css-1uo959j"
+  class="css-v3bzsh"
 />
 `;
 
 exports[`View > prop "role" > value is "button" 1`] = `
 <button
-  class="css-1uo959j"
+  class="css-v3bzsh"
   type="button"
 />
 `;
 
 exports[`View > prop "role" > value is set 1`] = `
 <div
-  class="css-1uo959j"
+  class="css-v3bzsh"
   role="presentation"
 />
 `;
 
 exports[`View > prop "style" > value is set 1`] = `
 <div
-  class="css-1uo959j"
+  class="css-v3bzsh"
   style="border-width: 5px;"
 />
 `;
 
 exports[`View > prop "testID" > value is set 1`] = `
 <div
-  class="css-1uo959j"
+  class="css-v3bzsh"
   data-testid="123"
 />
 `;
