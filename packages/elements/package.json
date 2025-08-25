@@ -29,14 +29,14 @@
     "@react-universal/core": "workspace:*"
   },
   "devDependencies": {
-    "@types/react": "~19.1.9",
+    "@types/react": "~19.1.11",
     "react": "19.1.0",
-    "react-native": "0.80.1"
+    "react-native": "0.81.0"
   },
   "peerDependencies": {
     "@types/react": "^19.0.0",
     "react": "^19.0.0",
-    "react-native": ">=0.79.0"
+    "react-native": ">=0.79.2"
   },
   "peerDependenciesMeta": {
     "@types/react": {

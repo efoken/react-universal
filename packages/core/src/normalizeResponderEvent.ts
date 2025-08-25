@@ -8,7 +8,8 @@ export function normalizeResponderEvent<T extends (event: ResponderEvent) => any
       cancelable: event.cancelable,
       currentTarget: event.currentTarget,
       defaultPrevented: event.defaultPrevented,
-      dispatchConfig: {},
+      // @ts-expect-error: `dispatchConfig` is missing in React Native types
+      dispatchConfig: event.dispatchConfig ?? {},
       eventPhase: event.eventPhase,
       isDefaultPrevented: event.isDefaultPrevented.bind(event),
       isPropagationStopped: event.isPropagationStopped.bind(event),

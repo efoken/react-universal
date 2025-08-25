@@ -22,8 +22,8 @@
     "build": "run -T tsup src/index.ts"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.0",
-    "@babel/types": "^7.28.1"
+    "@babel/core": "^7.28.3",
+    "@babel/types": "^7.28.2"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0",

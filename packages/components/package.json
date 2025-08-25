@@ -37,21 +37,21 @@
     "build": "run -T tsup src/index.ts src/*/index.ts"
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.7.2",
+    "@floating-ui/dom": "^1.7.4",
     "@floating-ui/react-native": "^0.10.7",
     "@react-universal/core": "workspace:*",
-    "@tamagui/compose-refs": "^1.132.7"
+    "@tamagui/compose-refs": "^1.132.21"
   },
   "devDependencies": {
     "@react-universal/babel-plugin": "workspace:*",
-    "@types/react": "~19.1.9",
+    "@types/react": "~19.1.11",
     "react": "19.1.0",
-    "react-native": "0.80.1"
+    "react-native": "0.81.0"
   },
   "peerDependencies": {
     "@types/react": "^19.0.0",
     "react": "^19.0.0",
-    "react-native": ">=0.79.0"
+    "react-native": ">=0.79.2"
   },
   "peerDependenciesMeta": {
     "@types/react": {

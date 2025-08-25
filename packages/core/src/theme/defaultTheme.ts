@@ -153,6 +153,7 @@ export type ExtractTheme<T> = Prettify<{
           : T[K];
 }>;
 
+// biome-ignore lint/suspicious/noTsIgnore: Sometimes errors, sometimes not
 // @ts-ignore: react-native-unistyles is not always installed, as it's optional
 declare module 'react-native-unistyles' {
   export interface UnistylesThemes {

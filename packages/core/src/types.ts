@@ -71,6 +71,12 @@ export interface RNStyleWeb {
   /** @platform web */
   visibility?: React.CSSProperties['visibility'];
   /** @platform web */
+  WebkitBoxOrient?: React.CSSProperties['WebkitBoxOrient'];
+  /** @platform web */
+  WebkitLineClamp?: React.CSSProperties['WebkitLineClamp'];
+  /** @platform web */
+  WebkitOverflowScrolling?: React.CSSProperties['WebkitOverflowScrolling'];
+  /** @platform web */
   whiteSpace?: React.CSSProperties['whiteSpace'];
   /** @platform web */
   wordWrap?: React.CSSProperties['wordWrap'];

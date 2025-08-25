@@ -1,7 +1,7 @@
 'use client';
 
+import { useConstant } from '@tamagui/use-constant';
 import { useDebugValue, useEffect, useRef } from 'react';
-import { useConst } from '../useConst';
 import type { ResponderConfig } from './ResponderSystem';
 import { ResponderSystem } from './ResponderSystem';
 
@@ -21,7 +21,7 @@ let idCounter = 0;
  * }
  */
 export function useResponderEvents(hostRef: any, config: ResponderConfig = {}) {
-  const id = useConst(() => idCounter++);
+  const id = useConstant(() => idCounter++);
   const attachedRef = useRef(false);
 
   // This is a separate effects so it doesn't run when the config changes.

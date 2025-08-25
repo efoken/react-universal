@@ -232,7 +232,7 @@ export const TextInput: React.FC<
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     TextInputState.setCurrentlyFocusedNode(null);
-    onBlur?.(normalizeEvent(event, { text: event.target.value }));
+    onBlur?.(normalizeEvent(event));
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -245,7 +245,7 @@ export const TextInput: React.FC<
 
   const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
     const node = event.target;
-    onFocus?.(normalizeEvent(event, { text: node.value }));
+    onFocus?.(normalizeEvent(event));
     if (node != null) {
       TextInputState.setCurrentlyFocusedNode(node);
       if (clearTextOnFocus) {

@@ -202,7 +202,6 @@ describe('View', () => {
       const onBlur = vi.fn();
       const ref = createRef<React.ComponentRef<typeof View>>();
       act(() => {
-        // @ts-expect-error: `onBlur` is Web only and does not exist in types
         render(<View ref={ref} onBlur={onBlur} />);
       });
       const target = createEventTarget(ref.current);
@@ -235,7 +234,6 @@ describe('View', () => {
       const onFocus = vi.fn();
       const ref = createRef<React.ComponentRef<typeof View>>();
       act(() => {
-        // @ts-expect-error: `onFocus` is Web only and does not exist in types
         render(<View ref={ref} onFocus={onFocus} />);
       });
       const target = createEventTarget(ref.current);

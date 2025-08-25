@@ -14,6 +14,7 @@ export function get<T extends AnyObject>(
       if (acc && acc[item] != null) {
         return acc[item];
       }
+      return undefined;
     }, obj) ?? fallback
   );
 }

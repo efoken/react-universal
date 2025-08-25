@@ -23,3 +23,12 @@ export function isObject(value: any): value is AnyObject {
 export function isString(value: any): value is string {
   return typeof value === 'string';
 }
+
+export function isEqualShallow(prev: AnyObject, next: AnyObject) {
+  for (const key in next) {
+    if (prev[key] !== next[key]) {
+      return false;
+    }
+  }
+  return true;
+}

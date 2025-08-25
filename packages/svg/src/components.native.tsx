@@ -1,7 +1,7 @@
 import type { StyleProp, SxProps } from '@react-universal/core';
-import { normalizeResponderEvent, normalizeRole, styled } from '@react-universal/core';
+import { normalizeResponderEvent, normalizeRole, styled, withStyles } from '@react-universal/core';
 import type { AnyObject } from '@react-universal/utils';
-import { View as RNView, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
   Circle as RNCircle,
   ClipPath as RNClipPath,
@@ -68,18 +68,19 @@ function createComponent<
   name: Capitalize<string>,
   prepareProps: (props: React.PropsWithoutRef<P>) => React.PropsWithoutRef<P> = (props) => props,
 ) {
-  const Component: React.FC<P & { ref?: React.Ref<T> }> = ({ style, ...props }) => {
+  // @ts-expect-error: `withStyles` needs to be improved
+  const Component = withStyles<T, P>(({ style, ...props }: P) => {
     const styleProps = StyleSheet.flatten<AnyObject>(style);
 
     return <Base {...prepareProps(props as React.PropsWithoutRef<P>)} {...styleProps} />;
-  };
+  });
 
   Component.displayName = name;
 
   return Component;
 }
 
-const SvgRoot = styled(RNView, {
+const SvgRoot = styled(withStyles(RNSvg), {
   name: 'Svg',
   slot: 'Root',
 })<{ sx?: SxProps }>(({ theme }) => ({
@@ -94,22 +95,17 @@ export const Svg: React.FC<SvgProps & { ref?: React.Ref<any> }> = ({
   onPressIn,
   onPressOut,
   role,
-  style,
-  sx,
   ...props
 }) => (
-  <SvgRoot style={style} sx={sx}>
-    <RNSvg
-      hitSlop={hitSlop ?? undefined}
-      role={normalizeRole(role)}
-      style={{ height: '100%', width: '100%' }}
-      onLongPress={normalizeResponderEvent(onLongPress)}
-      onPress={normalizeResponderEvent(onPress)}
-      onPressIn={normalizeResponderEvent(onPressIn)}
-      onPressOut={normalizeResponderEvent(onPressOut)}
-      {...props}
-    />
-  </SvgRoot>
+  <SvgRoot
+    hitSlop={hitSlop ?? undefined}
+    role={normalizeRole(role)}
+    onLongPress={normalizeResponderEvent(onLongPress)}
+    onPress={normalizeResponderEvent(onPress)}
+    onPressIn={normalizeResponderEvent(onPressIn)}
+    onPressOut={normalizeResponderEvent(onPressOut)}
+    {...props}
+  />
 );
 
 Svg.displayName = 'Svg';

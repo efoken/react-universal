@@ -1,7 +1,8 @@
 import type { StyleProp, SxProps } from '@react-universal/core';
 import type {
+  BlurEvent,
+  FocusEvent,
   NativeSyntheticEvent,
-  TextInputFocusEvent as RNTextInputFocusEvent,
   TextInputProps as RNTextInputProps,
   ViewProps as RNViewProps,
 } from 'react-native';
@@ -22,8 +23,6 @@ export interface TextInputContentSizeChangeEvent {
     };
   };
 }
-
-export interface TextInputFocusEvent extends RNTextInputFocusEvent {}
 
 export interface TextInputSelectionChangeEvent
   extends NativeSyntheticEvent<{
@@ -53,11 +52,11 @@ export interface TextInputProps
       | 'returnKeyType'
       | 'style'
     >,
-    Omit<ViewProps, 'as' | 'href' | 'hrefAttrs'> {
+    Omit<ViewProps, 'as' | 'href' | 'hrefAttrs' | 'onBlur' | 'onFocus'> {
   dir?: 'ltr' | 'rtl' | 'auto';
-  onBlur?: (event: TextInputFocusEvent) => void;
+  onBlur?: (event: BlurEvent) => void;
   onContentSizeChange?: (event: TextInputContentSizeChangeEvent) => void;
-  onFocus?: (event: TextInputFocusEvent) => void;
+  onFocus?: (event: FocusEvent) => void;
   onSelectionChange?: (event: TextInputSelectionChangeEvent) => void;
   rows?: number;
   style?: StyleProp<TextStyle>;

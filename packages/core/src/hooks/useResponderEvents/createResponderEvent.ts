@@ -7,7 +7,7 @@ import type { ResponderTouchHistoryStore, TouchHistory } from './ResponderTouchH
 
 export interface ResponderEvent extends RNGestureResponderEvent {
   dispatchConfig: {
-    registrationName?: string;
+    registrationName: string;
   };
   touchHistory: TouchHistory;
 }
@@ -90,7 +90,7 @@ export function createResponderEvent(
     // @ts-expect-error: `currentTarget` is set before dispatch
     currentTarget: null,
     defaultPrevented: domEvent.defaultPrevented,
-    dispatchConfig: {},
+    dispatchConfig: {} as any,
     eventPhase: domEvent.eventPhase,
     isDefaultPrevented() {
       return domEvent.defaultPrevented;

@@ -4,6 +4,7 @@ import { styled, useEventCallback, useOwnerState } from '@react-universal/core';
 import { normalizeEvent, runIfFunction } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
 import { useRef, useState } from 'react';
+import type { BlurEvent, FocusEvent } from 'react-native';
 import { View } from '../View';
 import type { ButtonMethods, ButtonOwnerState, ButtonProps } from './Button.types';
 
@@ -13,9 +14,7 @@ const ButtonRoot = styled(View, {
   shouldForwardProp: (prop) => prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx',
 })<{
   disabled?: boolean;
-  onBlur?: React.FocusEventHandler<HTMLElement>;
   onClick?: React.MouseEventHandler<HTMLElement>;
-  onFocus?: React.FocusEventHandler<HTMLElement>;
   onMouseDown?: React.MouseEventHandler<HTMLElement>;
   onMouseEnter?: React.MouseEventHandler<HTMLElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLElement>;
@@ -79,20 +78,21 @@ export const Button: React.FC<ButtonProps & { ref?: React.Ref<HTMLElement & Butt
     onHoverOut?.(normalizeEvent(event));
   };
 
-  const handleBlur = useEventCallback((event: React.FocusEvent<HTMLElement>) => {
-    if (!event.target.matches(':focus-visible')) {
+  const handleBlur = useEventCallback((event: BlurEvent) => {
+    if (event.target instanceof HTMLElement && !event.target.matches(':focus-visible')) {
       setFocusVisible(false);
     }
     onBlur?.(normalizeEvent(event));
   });
 
-  const handleFocus = useEventCallback((event: React.FocusEvent<HTMLElement>) => {
+  const handleFocus = useEventCallback((event: FocusEvent) => {
     // Fix for https://github.com/facebook/react/issues/7769
     if (!hostRef.current) {
+      // @ts-expect-error: `currentTarget` is always of type `HTMLElement`
       hostRef.current = event.currentTarget;
     }
 
-    if (event.target.matches(':focus-visible')) {
+    if (event.target instanceof HTMLElement && event.target.matches(':focus-visible')) {
       setFocusVisible(true);
       onFocusVisible?.(normalizeEvent(event));
     }

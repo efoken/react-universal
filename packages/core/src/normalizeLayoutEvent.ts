@@ -7,8 +7,8 @@ export function normalizeLayoutEvent(onLayout?: (event: LayoutEvent) => void) {
       nativeEvent: {
         layout: {
           height: event.nativeEvent.layout.height,
-          left: event.nativeEvent.layout.x,
-          top: event.nativeEvent.layout.y,
+          pageX: event.nativeEvent.layout.x,
+          pageY: event.nativeEvent.layout.y,
           width: event.nativeEvent.layout.width,
           x: event.nativeEvent.layout.x,
           y: event.nativeEvent.layout.y,
