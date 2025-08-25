@@ -37,7 +37,7 @@ const docs = defineCollection({
           ? `${docsConfig.storybookUrl}/?path=/story/${data.links.storybook}`
           : undefined,
       },
-      category: meta.path
+      category: (meta.path as string)
         .replace(/.*\/content\//, '')
         .replace(/\/[^/]*$/, '')
         .replace(process.cwd(), ''),

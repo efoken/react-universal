@@ -1,7 +1,8 @@
+import type { NextConfig } from 'next';
 import { build } from 'velite';
+import type { Compiler, WebpackPluginInstance } from 'webpack';
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -17,18 +18,18 @@ const nextConfig = {
     ...config,
     plugins: [
       ...config.plugins,
-      new (class {
+      new (class WebpackPlugin implements WebpackPluginInstance {
         static started = false;
-        apply(compiler) {
+        apply(compiler: Compiler) {
           compiler.hooks.afterEnvironment.tap('@react-universal/webpack-plugin', () => {
             compiler.options.resolve.conditionNames = [
-              ...compiler.options.resolve.conditionNames,
+              ...(compiler.options.resolve.conditionNames ?? []),
               'source',
             ];
           });
           compiler.hooks.beforeCompile.tapPromise('@react-universal/webpack-plugin', async () => {
-            if (!this.started) {
-              this.started = true;
+            if (!WebpackPlugin.started) {
+              WebpackPlugin.started = true;
               const dev = compiler.options.mode === 'development';
               await build({ watch: dev, clean: !dev });
             }
