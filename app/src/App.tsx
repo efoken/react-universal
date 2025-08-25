@@ -1,16 +1,10 @@
-import {
-  Button as ButtonBase,
-  Container,
-  Popover,
-  ScrollView,
-  Text,
-  View,
-} from '@react-universal/components';
+import { Button as ButtonBase, Container, Popover, Text, View } from '@react-universal/components';
 import { isWeb, styled, UniversalProvider } from '@react-universal/core';
 import { Defs, G, Path, Svg, Text as TextSvg, TSpan, Use } from '@react-universal/svg';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import { StatusBar } from 'expo-status-bar';
 import { useRef, useState } from 'react';
+import { SafeScrollView } from './SafeScrollView';
 
 if (!isWeb) {
   ScreenOrientation.unlockAsync().catch(console.log);
@@ -63,7 +57,7 @@ export default function App() {
     <UniversalProvider>
       <View sx={{ flex: 1 }}>
         <StatusBar style="auto" />
-        <ScrollView sx={{ flex: 1 }}>
+        <SafeScrollView>
           <Svg
             sx={{
               aspectRatio: 620 / 472,
@@ -298,7 +292,7 @@ export default function App() {
               </Card>
             ))}
           </Grid>
-        </ScrollView>
+        </SafeScrollView>
       </View>
     </UniversalProvider>
   );

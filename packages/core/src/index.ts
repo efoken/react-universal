@@ -17,6 +17,7 @@ export * from './hooks/useLazyRef';
 export * from './hooks/useOwnerState';
 export * from './hooks/usePlatformMethods';
 export * from './hooks/useResponderEvents';
+export * from './hooks/useSafeAreaInsets';
 export * from './math';
 export * from './normalizeColor';
 export * from './normalizeLayoutEvent';
