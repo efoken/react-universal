@@ -53,7 +53,7 @@ const ModalRoot = styled('dialog', {
       },
       false: {
         '&::backdrop': {
-          backgroundColor: 'var(--backdrop-color, rgba(0, 0, 0, 0.5))',
+          backgroundColor: 'var(--backdrop-color, rgba(0 0 0 / 0.5))',
           display: 'block',
         },
       },

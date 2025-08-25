@@ -29,8 +29,8 @@ export const Card: React.FC<CardProps> = ({ description, href, ref, title }) => 
       }}
       role="link"
       sx={{
-        bgColor: `rgba(var(--card-rgb), ${hovered ? 0.1 : 0})`,
-        borderColor: `rgba(var(--card-border-rgb), ${hovered ? 0.15 : 0})`,
+        bgColor: `rgba(var(--card-rgb) / ${hovered ? 0.1 : 0})`,
+        borderColor: `rgba(var(--card-border-rgb) / ${hovered ? 0.15 : 0})`,
         borderRadius: 'var(--border-radius)',
         borderWidth: 1,
         flexDir: 'column',

@@ -29,7 +29,7 @@ export const Card: React.FC<CardProps> = ({ children, href, ref, title }) => {
       }}
       role="link"
       sx={{
-        bgColor: `rgba(var(--card-rgb), ${hovered ? 0.1 : 0})`,
+        bgColor: `rgba(var(--card-rgb) / ${hovered ? 0.1 : 0})`,
         borderRadius: '0.5rem',
         borderWidth: 1,
         flexDir: 'column',

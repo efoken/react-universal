@@ -35,14 +35,14 @@ export default function Home() {
             backdropFilter: { xs: 'blur(24px)', md: 'none' },
             backgroundClip: { xs: 'padding-box', md: 'unset' },
             backgroundImage: {
-              xs: 'linear-gradient(to bottom, rgba(var(--background-start-rgb), 1), rgba(var(--callout-rgb), 0.5))',
+              xs: 'linear-gradient(to bottom, rgba(var(--background-start-rgb) / 1), rgba(var(--callout-rgb) / 0.5))',
               md: 'none',
             },
-            bgColor: { xs: 'transparent', md: 'rgba(var(--callout-rgb), 0.5)' },
+            bgColor: { xs: 'transparent', md: 'rgba(var(--callout-rgb) / 0.5)' },
             borderBottomWidth: 1,
             borderColor: {
-              xs: 'rgba(var(--callout-border-rgb), 0.25)',
-              md: 'rgba(var(--callout-border-rgb), 0.3)',
+              xs: 'rgba(var(--callout-border-rgb) / 0.25)',
+              md: 'rgba(var(--callout-border-rgb) / 0.3)',
             },
             borderLeftWidth: { xs: 0, md: 1 },
             borderRadius: { xs: 0, md: 'var(--border-radius)' },

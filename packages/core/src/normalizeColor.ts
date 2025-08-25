@@ -1,7 +1,10 @@
 import normalizeCssColor from '@react-native/normalize-colors';
 import { isString } from '@react-universal/utils';
 
-type VarColor = `var(${string})` | `rgba(var(${string}),${string})`;
+type VarColor =
+  | `var(${string})`
+  | `rgba(var(${string}),${string})`
+  | `rgba(var(${string}) / ${string})`;
 
 function isWebColor(color: string): color is 'currentcolor' | 'inherit' | VarColor {
   return (
@@ -39,6 +42,6 @@ export function normalizeColor(color?: number | string, opacity = 1) {
     const b = colorInt & 255;
     const a = ((colorInt >> 24) & 255) / 255;
     const alpha = (a * opacity).toFixed(2);
-    return `rgba(${r},${g},${b},${alpha})`;
+    return `rgba(${r} ${g} ${b} / ${alpha})`;
   }
 }
