@@ -3359,7 +3359,7 @@ __metadata:
     expo-status-bar: "npm:~3.0.3"
     react: "npm:19.1.0"
     react-native: "npm:0.81.0"
-    react-native-edge-to-edge: "npm:1.6.0"
+    react-native-edge-to-edge: "npm:1.6.2"
     react-native-nitro-modules: "npm:0.28.0"
     react-native-svg: "npm:15.12.1"
     react-native-unistyles: "npm:3.0.10"
@@ -3418,7 +3418,7 @@ __metadata:
     "@types/react": "npm:~19.1.11"
     react: "npm:19.1.0"
     react-native: "npm:0.81.0"
-    react-native-edge-to-edge: "npm:1.6.0"
+    react-native-edge-to-edge: "npm:1.6.2"
     react-native-nitro-modules: "npm:0.28.0"
     react-native-unistyles: "npm:3.0.10"
   peerDependencies:
@@ -10261,13 +10261,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-edge-to-edge@npm:1.6.0":
-  version: 1.6.0
-  resolution: "react-native-edge-to-edge@npm:1.6.0"
+"react-native-edge-to-edge@npm:1.6.2":
+  version: 1.6.2
+  resolution: "react-native-edge-to-edge@npm:1.6.2"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10c0/6373cc1b447eae31689a9b62e38b15621e9273626e2324700c4c3eb58c02ce489236a4b9e3e0dc1187e062defd8316195c5b1213facd718706b79b92127a05a3
+  checksum: 10c0/4c9defc3075aedff2bcef2a39ed97d037f220342baa95d374f3c68dee9e4493429f2f8f3b3dbb7ba355cdfb89a00d6400218c90944cc80e84283d3eb8646c584
   languageName: node
   linkType: hard
 
@@ -10414,7 +10414,7 @@ __metadata:
     react: "npm:19.1.0"
     react-dom: "npm:19.1.0"
     react-native: "npm:0.81.0"
-    react-native-edge-to-edge: "npm:1.6.0"
+    react-native-edge-to-edge: "npm:1.6.2"
     react-native-nitro-modules: "npm:0.28.0"
     react-native-unistyles: "npm:3.0.10"
     react-test-renderer: "npm:19.1.0"
@@ -12335,7 +12335,7 @@ __metadata:
     "@react-native/normalize-colors": "npm:0.81.0"
     react: "npm:19.1.0"
     react-native: "npm:0.81.0"
-    react-native-edge-to-edge: "npm:1.6.0"
+    react-native-edge-to-edge: "npm:1.6.2"
     react-native-nitro-modules: "npm:0.28.0"
     react-native-unistyles: "npm:3.0.10"
   languageName: unknown

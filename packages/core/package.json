@@ -40,7 +40,7 @@
     "@types/react": "~19.1.11",
     "react": "19.1.0",
     "react-native": "0.81.0",
-    "react-native-edge-to-edge": "1.6.0",
+    "react-native-edge-to-edge": "1.6.2",
     "react-native-nitro-modules": "0.28.0",
     "react-native-unistyles": "3.0.10"
   },
