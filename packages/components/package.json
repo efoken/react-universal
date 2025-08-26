@@ -40,7 +40,7 @@
     "@floating-ui/dom": "^1.7.4",
     "@floating-ui/react-native": "^0.10.7",
     "@react-universal/core": "workspace:*",
-    "@tamagui/compose-refs": "^1.132.21"
+    "@tamagui/compose-refs": "^1.132.23"
   },
   "devDependencies": {
     "@react-universal/babel-plugin": "workspace:*",

@@ -33,7 +33,7 @@
     "@emotion/weak-memoize": "^0.4.0",
     "@react-native/normalize-colors": "0.81.0",
     "@react-universal/utils": "workspace:*",
-    "@tamagui/constants": "^1.132.21",
+    "@tamagui/constants": "^1.132.23",
     "@tamagui/use-constant": "^1.132.21"
   },
   "devDependencies": {
