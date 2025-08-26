@@ -3,6 +3,7 @@
   "compilerOptions": {
     "customConditions": ["source"],
     "jsx": "react-jsx",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "moduleResolution": "Bundler",
     "strict": true
   },

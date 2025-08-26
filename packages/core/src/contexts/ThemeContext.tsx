@@ -44,7 +44,7 @@ export const UniversalProvider: React.FC<UniversalProviderProps> = ({
   children,
   theme = defaultTheme,
 }) => (
-  <ThemeContext.Provider value={theme}>
+  <ThemeContext.Provider value={theme as Theme}>
     <Global
       styles={{
         '*': {
@@ -73,8 +73,8 @@ export const UniversalProvider: React.FC<UniversalProviderProps> = ({
           color: 'inherit',
           textDecoration: 'inherit',
         },
-        ':root, [data-theme="light"]': createCSSVariables(extractTheme(theme, 'light')),
-        '[data-theme="dark"]': createCSSVariables(extractTheme(theme, 'dark')),
+        ':root, [data-theme="light"]': createCSSVariables(extractTheme(theme as Theme, 'light')),
+        '[data-theme="dark"]': createCSSVariables(extractTheme(theme as Theme, 'dark')),
       }}
     />
     {children}
