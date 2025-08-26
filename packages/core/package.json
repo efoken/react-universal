@@ -34,7 +34,7 @@
     "@react-native/normalize-colors": "0.81.0",
     "@react-universal/utils": "workspace:*",
     "@tamagui/constants": "^1.132.21",
-    "@tamagui/use-constant": "^1.132.21"
+    "@tamagui/use-constant": "^1.132.23"
   },
   "devDependencies": {
     "@types/react": "~19.1.11",
