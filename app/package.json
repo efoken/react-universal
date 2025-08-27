@@ -17,11 +17,11 @@
     "@react-universal/core": "workspace:*",
     "@react-universal/svg": "workspace:*",
     "@types/react": "~19.1.11",
-    "expo": "54.0.0-preview.6",
-    "expo-dev-client": "~6.0.4",
-    "expo-screen-orientation": "~9.0.2",
-    "expo-splash-screen": "~31.0.4",
-    "expo-status-bar": "~3.0.3",
+    "expo": "54.0.0-preview.10",
+    "expo-dev-client": "~6.0.6",
+    "expo-screen-orientation": "~9.0.4",
+    "expo-splash-screen": "~31.0.5",
+    "expo-status-bar": "~3.0.5",
     "react": "19.1.0",
     "react-native": "0.81.0",
     "react-native-edge-to-edge": "1.6.0",
@@ -32,7 +32,7 @@
   "devDependencies": {
     "@babel/core": "^7.28.3",
     "@babel/preset-env": "^7.28.3",
-    "@expo/metro-runtime": "~6.1.0",
+    "@expo/metro-runtime": "~6.1.1",
     "@types/babel__core": "^7.20.5",
     "typescript": "~5.9.2"
   }
