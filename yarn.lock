@@ -2967,17 +2967,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jridgewell/trace-mapping@npm:^0.3.18, @jridgewell/trace-mapping@npm:^0.3.24, @jridgewell/trace-mapping@npm:^0.3.28, @jridgewell/trace-mapping@npm:^0.3.9":
-  version: 0.3.29
-  resolution: "@jridgewell/trace-mapping@npm:0.3.29"
-  dependencies:
-    "@jridgewell/resolve-uri": "npm:^3.1.0"
-    "@jridgewell/sourcemap-codec": "npm:^1.4.14"
-  checksum: 10c0/fb547ba31658c4d74eb17e7389f4908bf7c44cef47acb4c5baa57289daf68e6fe53c639f41f751b3923aca67010501264f70e7b49978ad1f040294b22c37b333
-  languageName: node
-  linkType: hard
-
-"@jridgewell/trace-mapping@npm:^0.3.25":
+"@jridgewell/trace-mapping@npm:^0.3.18, @jridgewell/trace-mapping@npm:^0.3.24, @jridgewell/trace-mapping@npm:^0.3.25, @jridgewell/trace-mapping@npm:^0.3.28, @jridgewell/trace-mapping@npm:^0.3.9":
   version: 0.3.30
   resolution: "@jridgewell/trace-mapping@npm:0.3.30"
   dependencies:
@@ -3560,13 +3550,13 @@ __metadata:
     "@react-universal/core": "workspace:*"
     "@react-universal/svg": "workspace:*"
     "@types/babel__core": "npm:^7.20.5"
-    "@types/react": "npm:~19.1.11"
+    "@types/react": "npm:~19.1.12"
     expo: "npm:54.0.0-preview.6"
     expo-dev-client: "npm:~6.0.4"
     expo-screen-orientation: "npm:~9.0.2"
     expo-splash-screen: "npm:~31.0.4"
     expo-status-bar: "npm:~3.0.3"
-    react: "npm:19.1.0"
+    react: "npm:19.1.1"
     react-native: "npm:0.81.0"
     react-native-edge-to-edge: "npm:1.6.0"
     react-native-nitro-modules: "npm:0.28.0"
@@ -3597,8 +3587,8 @@ __metadata:
     "@react-universal/babel-plugin": "workspace:*"
     "@react-universal/core": "workspace:*"
     "@tamagui/compose-refs": "npm:^1.132.21"
-    "@types/react": "npm:~19.1.11"
-    react: "npm:19.1.0"
+    "@types/react": "npm:~19.1.12"
+    react: "npm:19.1.1"
     react-native: "npm:0.81.0"
   peerDependencies:
     "@types/react": ^19.0.0
@@ -3624,8 +3614,8 @@ __metadata:
     "@react-universal/utils": "workspace:*"
     "@tamagui/constants": "npm:^1.132.21"
     "@tamagui/use-constant": "npm:^1.132.21"
-    "@types/react": "npm:~19.1.11"
-    react: "npm:19.1.0"
+    "@types/react": "npm:~19.1.12"
+    react: "npm:19.1.1"
     react-native: "npm:0.81.0"
     react-native-edge-to-edge: "npm:1.6.0"
     react-native-nitro-modules: "npm:0.28.0"
@@ -3653,12 +3643,12 @@ __metadata:
     "@react-universal/next": "workspace:*"
     "@shikijs/rehype": "npm:^3.11.0"
     "@types/node": "npm:^24.3.0"
-    "@types/react": "npm:~19.1.11"
-    "@types/react-dom": "npm:~19.1.7"
+    "@types/react": "npm:~19.1.12"
+    "@types/react-dom": "npm:~19.1.9"
     "@types/webpack": "npm:^5.28.5"
     next: "npm:^15.5.0"
-    react: "npm:19.1.0"
-    react-dom: "npm:19.1.0"
+    react: "npm:19.1.1"
+    react-dom: "npm:19.1.1"
     react-icons: "npm:^5.5.0"
     react-native: "npm:0.81.0"
     rehype-slug: "npm:^6.0.0"
@@ -3677,8 +3667,8 @@ __metadata:
   dependencies:
     "@react-universal/components": "workspace:*"
     "@react-universal/core": "workspace:*"
-    "@types/react": "npm:~19.1.11"
-    react: "npm:19.1.0"
+    "@types/react": "npm:~19.1.12"
+    react: "npm:19.1.1"
     react-native: "npm:0.81.0"
   peerDependencies:
     "@types/react": ^19.0.0
@@ -3700,8 +3690,8 @@ __metadata:
     "@react-universal/utils": "workspace:*"
     next: "npm:^15.5.0"
     next-themes: "npm:^0.4.6"
-    react: "npm:19.1.0"
-    react-dom: "npm:19.1.0"
+    react: "npm:19.1.1"
+    react-dom: "npm:19.1.1"
   peerDependencies:
     next: ^14.0.0 || ^15.0.0
     react: ^19.0.0
@@ -3715,8 +3705,8 @@ __metadata:
   dependencies:
     "@react-universal/core": "workspace:*"
     "@react-universal/utils": "workspace:*"
-    "@types/react": "npm:~19.1.11"
-    react: "npm:19.1.0"
+    "@types/react": "npm:~19.1.12"
+    react: "npm:19.1.1"
     react-native: "npm:0.81.0"
     react-native-svg: "npm:15.12.1"
   peerDependencies:
@@ -3744,7 +3734,7 @@ __metadata:
   dependencies:
     "@react-universal/core": "workspace:*"
     esbuild: "npm:^0.25.9"
-    react: "npm:19.1.0"
+    react: "npm:19.1.1"
     vite: "npm:^7.1.3"
   peerDependencies:
     react: ^19.0.0
@@ -4426,21 +4416,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:~19.1.7":
-  version: 19.1.7
-  resolution: "@types/react-dom@npm:19.1.7"
+"@types/react-dom@npm:~19.1.9":
+  version: 19.1.9
+  resolution: "@types/react-dom@npm:19.1.9"
   peerDependencies:
     "@types/react": ^19.0.0
-  checksum: 10c0/8db5751c1567552fe4e1ece9f5823b682f2994ec8d30ed34ba0ef984e3c8ace1435f8be93d02f55c350147e78ac8c4dbcd8ed2c3b6a60f575bc5374f588c51c9
+  checksum: 10c0/34c8dda86c1590b3ef0e7ecd38f9663a66ba2dd69113ba74fb0adc36b83bbfb8c94c1487a2505282a5f7e5e000d2ebf36f4c0fd41b3b672f5178fd1d4f1f8f58
   languageName: node
   linkType: hard
 
-"@types/react@npm:~19.1.11":
-  version: 19.1.11
-  resolution: "@types/react@npm:19.1.11"
+"@types/react@npm:~19.1.12":
+  version: 19.1.12
+  resolution: "@types/react@npm:19.1.12"
   dependencies:
     csstype: "npm:^3.0.2"
-  checksum: 10c0/639b225c2bbcd4b8a30e1ea7a73aec81ae5b952a4c432460b48c9881c9d12e76645c9032d24f15eefae9985a12d5cb26557fe10e9850b2da0fabfb0a1e2d16bd
+  checksum: 10c0/e35912b43da0caaab5252444bab87a31ca22950cde2822b3b3dc32e39c2d42dad1a4cf7b5dde9783aa2d007f0b2cba6ab9563fc6d2dbcaaa833b35178118767c
   languageName: node
   linkType: hard
 
@@ -4854,16 +4844,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"acorn@npm:^8.0.0, acorn@npm:^8.11.3, acorn@npm:^8.14.0":
-  version: 8.14.1
-  resolution: "acorn@npm:8.14.1"
-  bin:
-    acorn: bin/acorn
-  checksum: 10c0/dbd36c1ed1d2fa3550140000371fcf721578095b18777b85a79df231ca093b08edc6858d75d6e48c73e431c174dcf9214edbd7e6fa5911b93bd8abfa54e47123
-  languageName: node
-  linkType: hard
-
-"acorn@npm:^8.15.0":
+"acorn@npm:^8.0.0, acorn@npm:^8.11.3, acorn@npm:^8.14.0, acorn@npm:^8.15.0":
   version: 8.15.0
   resolution: "acorn@npm:8.15.0"
   bin:
@@ -9920,11 +9901,11 @@ __metadata:
     "@react-universal/elements": "workspace:*"
     "@react-universal/next": "workspace:*"
     "@types/node": "npm:^24.3.0"
-    "@types/react": "npm:~19.1.11"
-    "@types/react-dom": "npm:~19.1.7"
+    "@types/react": "npm:~19.1.12"
+    "@types/react-dom": "npm:~19.1.9"
     next: "npm:^15.5.0"
-    react: "npm:19.1.0"
-    react-dom: "npm:19.1.0"
+    react: "npm:19.1.1"
+    react-dom: "npm:19.1.1"
     react-native: "npm:0.81.0"
     typescript: "npm:~5.9.2"
   languageName: unknown
@@ -10840,14 +10821,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:19.1.0":
-  version: 19.1.0
-  resolution: "react-dom@npm:19.1.0"
+"react-dom@npm:19.1.1":
+  version: 19.1.1
+  resolution: "react-dom@npm:19.1.1"
   dependencies:
     scheduler: "npm:^0.26.0"
   peerDependencies:
-    react: ^19.1.0
-  checksum: 10c0/3e26e89bb6c67c9a6aa86cb888c7a7f8258f2e347a6d2a15299c17eb16e04c19194e3452bc3255bd34000a61e45e2cb51e46292392340432f133e5a5d2dfb5fc
+    react: ^19.1.1
+  checksum: 10c0/8c91198510521299c56e4e8d5e3a4508b2734fb5e52f29eeac33811de64e76fe586ad32c32182e2e84e070d98df67125da346c3360013357228172dbcd20bcdd
   languageName: node
   linkType: hard
 
@@ -10881,7 +10862,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-is@npm:^19.1.0":
+"react-is@npm:^19.1.1":
   version: 19.1.1
   resolution: "react-is@npm:19.1.1"
   checksum: 10c0/3dba763fcd69835ae263dcd6727d7ffcc44c1d616f04b7329e67aefdc66a567af4f8dcecdd29454c7a707c968aa1eb85083a83fb616f01675ef25e71cf082f97
@@ -11006,15 +10987,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-test-renderer@npm:19.1.0":
-  version: 19.1.0
-  resolution: "react-test-renderer@npm:19.1.0"
+"react-test-renderer@npm:19.1.1":
+  version: 19.1.1
+  resolution: "react-test-renderer@npm:19.1.1"
   dependencies:
-    react-is: "npm:^19.1.0"
+    react-is: "npm:^19.1.1"
     scheduler: "npm:^0.26.0"
   peerDependencies:
-    react: ^19.1.0
-  checksum: 10c0/34ed4a37ba8b0beb96c048de6ff28574f018a18dd1042c24f8f46142d48eb5b27f82ff7c2823d082932fd3983c5a3529ab8cc8f15191d4306df0082f9f84678f
+    react: ^19.1.1
+  checksum: 10c0/430636d63cff6b79a15fe876d16601891fcdf1c58236471063f4cfe50de2c9fae935c6894eebe6ca5be0bf7245cb572c14ff69e1aada7761b41c73c842e2879c
   languageName: node
   linkType: hard
 
@@ -11031,20 +11012,20 @@ __metadata:
     "@testing-library/dom": "npm:^10.4.1"
     "@testing-library/jest-dom": "npm:^6.8.0"
     "@testing-library/react": "npm:^16.3.0"
-    "@types/react": "npm:~19.1.11"
+    "@types/react": "npm:~19.1.12"
     "@vitest/browser": "npm:^3.2.4"
     del-cli: "npm:^6.0.0"
     jsdom: "npm:^26.1.0"
     lefthook: "npm:^1.12.3"
     playwright: "npm:^1.55.0"
     prettier: "npm:^3.6.2"
-    react: "npm:19.1.0"
-    react-dom: "npm:19.1.0"
+    react: "npm:19.1.1"
+    react-dom: "npm:19.1.1"
     react-native: "npm:0.81.0"
     react-native-edge-to-edge: "npm:1.6.0"
     react-native-nitro-modules: "npm:0.28.0"
     react-native-unistyles: "npm:3.0.10"
-    react-test-renderer: "npm:19.1.0"
+    react-test-renderer: "npm:19.1.1"
     sort-package-json: "npm:^3.4.0"
     storybook: "npm:^9.1.3"
     syncpack: "npm:^14.0.0-alpha.19"
@@ -11055,10 +11036,10 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"react@npm:19.1.0":
-  version: 19.1.0
-  resolution: "react@npm:19.1.0"
-  checksum: 10c0/530fb9a62237d54137a13d2cfb67a7db6a2156faed43eecc423f4713d9b20c6f2728b026b45e28fcd72e8eadb9e9ed4b089e99f5e295d2f0ad3134251bdd3698
+"react@npm:19.1.1":
+  version: 19.1.1
+  resolution: "react@npm:19.1.1"
+  checksum: 10c0/8c9769a2dfd02e603af6445058325e6c8a24b47b185d0e461f66a6454765ddcaecb3f0a90184836c68bb509f3c38248359edbc42f0d07c23eb500a5c30c87b4e
   languageName: node
   linkType: hard
 
@@ -12507,21 +12488,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"terser@npm:^5.15.0":
-  version: 5.42.0
-  resolution: "terser@npm:5.42.0"
-  dependencies:
-    "@jridgewell/source-map": "npm:^0.3.3"
-    acorn: "npm:^8.14.0"
-    commander: "npm:^2.20.0"
-    source-map-support: "npm:~0.5.20"
-  bin:
-    terser: bin/terser
-  checksum: 10c0/f89d5f8c9ccfcd4f6e9a0ecd9569677e2784a876b5cd916e4bc3d19e057ddae3416391df8e40746b29285bdafd48bb3a4230df1453ad8ec8caa7dd67f48f6dc0
-  languageName: node
-  linkType: hard
-
-"terser@npm:^5.31.1, terser@npm:^5.43.1":
+"terser@npm:^5.15.0, terser@npm:^5.31.1, terser@npm:^5.43.1":
   version: 5.43.1
   resolution: "terser@npm:5.43.1"
   dependencies:
@@ -13024,7 +12991,7 @@ __metadata:
   resolution: "unistyles-test@workspace:sandbox/unistyles-test"
   dependencies:
     "@react-native/normalize-colors": "npm:0.81.0"
-    react: "npm:19.1.0"
+    react: "npm:19.1.1"
     react-native: "npm:0.81.0"
     react-native-edge-to-edge: "npm:1.6.0"
     react-native-nitro-modules: "npm:0.28.0"
@@ -13327,14 +13294,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack-sources@npm:^3.2.3":
-  version: 3.2.3
-  resolution: "webpack-sources@npm:3.2.3"
-  checksum: 10c0/2ef63d77c4fad39de4a6db17323d75eb92897b32674e97d76f0a1e87c003882fc038571266ad0ef581ac734cbe20952912aaa26155f1905e96ce251adbb1eb4e
-  languageName: node
-  linkType: hard
-
-"webpack-sources@npm:^3.3.3":
+"webpack-sources@npm:^3.2.3, webpack-sources@npm:^3.3.3":
   version: 3.3.3
   resolution: "webpack-sources@npm:3.3.3"
   checksum: 10c0/ab732f6933b513ba4d505130418995ddef6df988421fccf3289e53583c6a39e205c4a0739cee98950964552d3006604912679c736031337fb4a9d78d8576ed40

@@ -42,8 +42,8 @@
   },
   "devDependencies": {
     "next": "^15.5.0",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
   },
   "peerDependencies": {
     "next": "^14.0.0 || ^15.0.0",
