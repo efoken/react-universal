@@ -37,8 +37,8 @@
     "@tamagui/use-constant": "^1.132.21"
   },
   "devDependencies": {
-    "@types/react": "~19.1.11",
-    "react": "19.1.0",
+    "@types/react": "~19.1.12",
+    "react": "19.1.1",
     "react-native": "0.81.0",
     "react-native-edge-to-edge": "1.6.0",
     "react-native-nitro-modules": "0.28.0",
