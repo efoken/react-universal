@@ -30,8 +30,8 @@
     "react-native-unistyles": "3.0.10"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.3",
-    "@babel/preset-env": "^7.28.3",
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
     "@expo/metro-runtime": "~6.1.0",
     "@types/babel__core": "^7.20.5",
     "typescript": "~5.9.2"
