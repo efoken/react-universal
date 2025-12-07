@@ -22,9 +22,11 @@ const TextInputRoot = styled(RNTextInput, {
 }));
 
 export const TextInput: React.FC<TextInputProps & { ref?: React.Ref<any> }> = ({
+  'aria-hidden': ariaHidden,
   'aria-label': ariaLabel,
   lang,
   onChangeText,
+  onClick,
   onContentSizeChange,
   onLayout,
   onMoveShouldSetResponder,
@@ -37,7 +39,11 @@ export const TextInput: React.FC<TextInputProps & { ref?: React.Ref<any> }> = ({
   onResponderStart,
   onResponderTerminate,
   onResponderTerminationRequest,
+  onScrollShouldSetResponder,
+  onScrollShouldSetResponderCapture,
   onSelectionChange,
+  onSelectionChangeShouldSetResponder,
+  onSelectionChangeShouldSetResponderCapture,
   onStartShouldSetResponder,
   onStartShouldSetResponderCapture,
   onTouchCancel,
@@ -65,16 +71,21 @@ export const TextInput: React.FC<TextInputProps & { ref?: React.Ref<any> }> = ({
   };
 
   const handleSelectionChange = (event: RNTextInputSelectionChangeEvent) => {
+    // @ts-expect-error: `NativeSyntheticEvent` and `BaseSyntheticEvent` should be the same
     onSelectionChange?.(normalizeEvent(event, { text }));
   };
 
   return (
     <TextInputRoot
+      accessibilityElementsHidden={ariaHidden}
       accessibilityLabel={ariaLabel}
       accessibilityLanguage={lang}
+      aria-hidden={ariaHidden}
+      importantForAccessibility={ariaHidden ? 'no-hide-descendants' : undefined}
       role={normalizeRole(role)}
       style={style as any}
       onChangeText={handleChangeText}
+      onClick={normalizeResponderEvent(onClick)}
       onContentSizeChange={handleContentSizeChange}
       onLayout={normalizeLayoutEvent(onLayout)}
       onMoveShouldSetResponder={normalizeResponderEvent(onMoveShouldSetResponder)}

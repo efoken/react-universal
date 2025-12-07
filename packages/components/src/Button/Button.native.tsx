@@ -25,6 +25,7 @@ export const Button: React.FC<ButtonProps & { ref?: React.Ref<any> }> = ({
   disabled = false,
   lang,
   onBlur,
+  onClick,
   onFocus,
   onFocusVisible,
   onLayout,
@@ -79,6 +80,7 @@ export const Button: React.FC<ButtonProps & { ref?: React.Ref<any> }> = ({
       role={normalizeRole(role) ?? 'button'}
       style={_style}
       onBlur={handleBlur}
+      onClick={normalizeResponderEvent(onClick)}
       onFocus={handleFocus}
       onLayout={normalizeLayoutEvent(onLayout)}
       onLongPress={normalizeResponderEvent(onLongPress)}

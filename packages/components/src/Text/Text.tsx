@@ -9,7 +9,7 @@ import {
   useOwnerState,
   usePlatformMethods,
 } from '@react-universal/core';
-import { isString, normalizeEvent, pick } from '@react-universal/utils';
+import { isString, pick } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
 import { use, useCallback, useRef } from 'react';
 import type { TextMethods, TextOwnerState, TextProps, TextStyle } from './Text.types';
@@ -97,7 +97,7 @@ export const Text: React.FC<TextProps & { ref?: React.Ref<HTMLElement & TextMeth
         onClick(event);
       } else if (onPress != null) {
         event.stopPropagation();
-        onPress(normalizeEvent(event));
+        onPress(event as any);
       }
     },
     [onClick, onPress],

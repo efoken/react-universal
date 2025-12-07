@@ -1,6 +1,6 @@
 import { usePathname } from 'next/navigation';
-import docsConfig from '#/docs.config';
 import type { NavItem } from '#/docs.config';
+import docsConfig from '#/docs.config';
 
 function join(...args: (string | undefined)[]) {
   return `/${args.filter(Boolean).join('/')}`;
@@ -42,7 +42,7 @@ export function useRoute() {
       };
     });
 
-  const getSecondaryNav = () => getPrimaryNav().items?.find((item) => item.url === secondaryHref)!;
+  const getSecondaryNav = () => getPrimaryNav().items?.find((item) => item.url === secondaryHref);
 
   const getSecondaryNavItems = () => {
     const nav = getPrimaryNav();
@@ -64,7 +64,7 @@ export function useRoute() {
     const primaryNav = getPrimaryNav();
     const secondaryNav = getSecondaryNav();
     return (
-      secondaryNav.items?.map((group) => ({
+      secondaryNav?.items?.map((group) => ({
         ...group,
         items:
           group.items?.map((item) => ({

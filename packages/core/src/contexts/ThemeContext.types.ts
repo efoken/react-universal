@@ -1,4 +1,4 @@
-import type { Theme } from '../theme/defaultTheme';
+import type { Theme } from '../defineConfig';
 
 export interface UniversalProviderProps {
   children?: React.ReactNode;

@@ -1,8 +1,8 @@
 import type { AnyFunction, AnyObject } from '@react-universal/utils';
 import { isString, runIfFunction } from '@react-universal/utils';
 import { StyleSheet } from 'react-native-unistyles';
+import type { Theme } from './defineConfig';
 import type { StyleMiniRuntime } from './StyleRuntime';
-import type { Theme } from './theme';
 import type { RNStyle, RNStyleWeb, StyleProp, StyleValues } from './types';
 import { parseRem } from './utils/parseRem';
 
@@ -318,7 +318,7 @@ type CSS = {
 
 export const css = {
   props<T extends AnyObject>(style: StyleProp<T>): { className?: string; style: T } {
-    return { style: StyleSheet.flatten(style) };
+    return { style: StyleSheet.flatten(style) as T };
   },
 
   create<T extends AnyObject<StyleValues>>(

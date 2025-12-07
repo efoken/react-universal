@@ -2,6 +2,7 @@ import { Stack } from '@react-universal/components';
 import { styled } from '@react-universal/core';
 import { Span } from '@react-universal/elements';
 import { Link } from '@react-universal/next';
+import { isString } from '@react-universal/utils';
 import type { LinkProps } from 'next/link';
 
 interface SideNavItem {
@@ -51,7 +52,7 @@ export const SideNav: React.FC<SideNavProps> = ({ title, items, currentUrl, stat
     <Stack spacing="px">
       {items.map((item, index) => (
         <SideNavLink
-          key={item.url?.toString() ?? index}
+          key={isString(item.url) ? item.url : index}
           aria-current={item.url === currentUrl ? 'page' : undefined}
           href={item.url!}
         >

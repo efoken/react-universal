@@ -1,7 +1,5 @@
 import type { StyleProp, SxProps } from '@react-universal/core';
 import type {
-  BlurEvent,
-  FocusEvent,
   NativeSyntheticEvent,
   TextInputProps as RNTextInputProps,
   ViewProps as RNViewProps,
@@ -42,9 +40,7 @@ export interface TextInputProps
       | 'editable'
       | 'keyboardType'
       | 'numberOfLines'
-      | 'onBlur'
       | 'onContentSizeChange'
-      | 'onFocus'
       | 'onPress'
       | 'onPressIn'
       | 'onPressOut'
@@ -52,11 +48,9 @@ export interface TextInputProps
       | 'returnKeyType'
       | 'style'
     >,
-    Omit<ViewProps, 'as' | 'href' | 'hrefAttrs' | 'onBlur' | 'onFocus'> {
+    Omit<ViewProps, 'as' | 'href' | 'hrefAttrs'> {
   dir?: 'ltr' | 'rtl' | 'auto';
-  onBlur?: (event: BlurEvent) => void;
   onContentSizeChange?: (event: TextInputContentSizeChangeEvent) => void;
-  onFocus?: (event: FocusEvent) => void;
   onSelectionChange?: (event: TextInputSelectionChangeEvent) => void;
   rows?: number;
   style?: StyleProp<TextStyle>;

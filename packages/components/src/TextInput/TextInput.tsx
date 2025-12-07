@@ -292,17 +292,22 @@ export const TextInput: React.FC<
   const handleSelectionChange = (event: React.KeyboardEvent<HTMLInputElement>) => {
     try {
       const node = event.target as EventTarget & HTMLInputElement;
-      const nextSelection = {
-        start: node.selectionStart ?? 0,
-        end: node.selectionEnd ?? 0,
-      };
-      onSelectionChange?.(
-        normalizeEvent(event, {
-          selection: nextSelection,
-          target: node,
-          text: node.value,
-        }),
-      );
+      const nextSelection = { start: 0, end: 0 };
+      if (node.selectionStart != null) {
+        nextSelection.start = node.selectionStart;
+      }
+      if (node.selectionEnd != null) {
+        nextSelection.end = node.selectionEnd;
+      }
+      if (onSelectionChange != null) {
+        onSelectionChange(
+          normalizeEvent(event, {
+            selection: nextSelection,
+            target: node,
+            text: node.value,
+          }),
+        );
+      }
       if (prevSecureTextEntry.current === secureTextEntry) {
         prevSelection.current = nextSelection;
       }

@@ -2,11 +2,11 @@
   "compilerOptions": {
     "allowJs": true,
     "baseUrl": ".",
-    "customConditions": ["source"],
+    "customConditions": ["react-native-strict-api", "source"],
     "esModuleInterop": true,
     "incremental": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
     "moduleResolution": "Bundler",
@@ -32,7 +32,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".velite/**/*",
-    "../@types/*.d.ts"
+    "../@types/*.d.ts",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }

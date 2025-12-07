@@ -1,6 +1,6 @@
 import { A, H2, H3, H4, Hr, Img, Kbd, Li, Ol, P, Strong, Ul } from '@react-universal/elements';
 import type { AnyObject } from '@react-universal/utils';
-import { Children, isValidElement } from 'react';
+import { Children, createElement, isValidElement } from 'react';
 import * as runtime from 'react/jsx-runtime';
 import { Card } from './Card';
 import { Code } from './mdx/Code';
@@ -49,6 +49,7 @@ const sharedComponents = {
 };
 
 function useMDXComponent(code: string) {
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
   const fn = new Function(code);
   return fn({ ...runtime }).default;
 }
@@ -63,7 +64,7 @@ export const MDXContent: React.FC<MDXProps> = ({ code, components = {} }) => {
 
   return (
     <div style={{ display: 'block' }}>
-      <Component components={{ ...sharedComponents, ...components }} />
+      {createElement(Component, { components: { ...sharedComponents, ...components } })}
     </div>
   );
 };

@@ -4,10 +4,10 @@ import {
   normalizeRole,
   styled,
 } from '@react-universal/core';
-import { View as RNView } from 'react-native';
+import { View as UnistylesView } from 'react-native-unistyles/components/native/View';
 import type { ViewProps } from './View.types';
 
-const ViewRoot = styled(RNView, {
+const ViewRoot = styled(UnistylesView, {
   name: 'View',
   slot: 'Root',
 })(({ theme }) => ({
@@ -17,6 +17,7 @@ const ViewRoot = styled(RNView, {
 
 export const View: React.FC<ViewProps & { ref?: React.Ref<any> }> = ({
   lang,
+  onClick,
   onLayout,
   onMoveShouldSetResponder,
   onMoveShouldSetResponderCapture,
@@ -28,6 +29,10 @@ export const View: React.FC<ViewProps & { ref?: React.Ref<any> }> = ({
   onResponderStart,
   onResponderTerminate,
   onResponderTerminationRequest,
+  onScrollShouldSetResponder,
+  onScrollShouldSetResponderCapture,
+  onSelectionChangeShouldSetResponder,
+  onSelectionChangeShouldSetResponderCapture,
   onStartShouldSetResponder,
   onStartShouldSetResponderCapture,
   onTouchCancel,
@@ -43,6 +48,7 @@ export const View: React.FC<ViewProps & { ref?: React.Ref<any> }> = ({
     accessibilityLanguage={lang}
     role={normalizeRole(role)}
     style={style as any}
+    onClick={normalizeResponderEvent(onClick)}
     onLayout={normalizeLayoutEvent(onLayout)}
     onMoveShouldSetResponder={normalizeResponderEvent(onMoveShouldSetResponder)}
     onMoveShouldSetResponderCapture={normalizeResponderEvent(onMoveShouldSetResponderCapture)}

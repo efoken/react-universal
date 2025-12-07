@@ -19,11 +19,18 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "run -T tsup src/index.ts"
+    "build": "run -T tsdown src/index.ts"
+  },
+  "dependencies": {
+    "@emotion/serialize": "^1.3.3",
+    "@react-universal/core": "workspace:*",
+    "lilconfig": "^3.1.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.3",
-    "@babel/types": "^7.28.2"
+    "@babel/core": "^7.28.5",
+    "@babel/preset-react": "^7.28.5",
+    "@babel/types": "^7.28.5",
+    "babel-plugin-tester": "^12.0.0"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0",

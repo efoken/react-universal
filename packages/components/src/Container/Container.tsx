@@ -18,6 +18,7 @@ const ContainerRoot = styled(View, {
     sm: max(theme.space[6], runtime.insets.left, runtime.insets.right),
     md: max(theme.space[7], runtime.insets.left, runtime.insets.right),
   },
+  maxWidth: 1000,
   width: '100%',
   variants: {
     maxWidth: Object.entries(theme.breakpoints).reduce<AnyObject>((acc, [breakpoint, maxWidth]) => {

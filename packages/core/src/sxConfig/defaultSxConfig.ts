@@ -1,5 +1,5 @@
 import type { BreakpointValue } from '../breakpoints';
-import type { Theme } from '../theme/defaultTheme';
+import type { Theme } from '../defineConfig';
 import type { RNStyle, SimpleStyleFunction } from '../types';
 import type { BackgroundProps } from './background';
 import type { BorderProps } from './borders';

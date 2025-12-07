@@ -11,29 +11,28 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@react-native/normalize-colors": "0.81.0",
+    "@react-native/normalize-colors": "0.82.1",
     "@react-universal/babel-plugin": "workspace:*",
     "@react-universal/components": "workspace:*",
     "@react-universal/core": "workspace:*",
     "@react-universal/svg": "workspace:*",
-    "@types/react": "~19.1.11",
-    "expo": "54.0.0-preview.6",
-    "expo-dev-client": "~6.0.4",
-    "expo-screen-orientation": "~9.0.2",
-    "expo-splash-screen": "~31.0.4",
-    "expo-status-bar": "~3.0.3",
-    "react": "19.1.0",
-    "react-native": "0.81.0",
-    "react-native-edge-to-edge": "1.6.0",
-    "react-native-nitro-modules": "0.28.0",
+    "@types/react": "~19.2.7",
+    "expo": "^55.0.0-canary-20251127-587bc53",
+    "expo-dev-client": "6.0.19-canary-20251127-587bc53",
+    "expo-screen-orientation": "9.0.8-canary-20251127-587bc53",
+    "expo-splash-screen": "31.0.12-canary-20251127-587bc53",
+    "expo-status-bar": "3.0.9-canary-20251127-587bc53",
+    "react": "19.2.0",
+    "react-native": "0.82.1",
+    "react-native-edge-to-edge": "^1.7.0",
+    "react-native-nitro-modules": "0.31.10",
     "react-native-svg": "15.12.1",
-    "react-native-unistyles": "3.0.10"
+    "react-native-unistyles": "^3.0.19"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.3",
-    "@babel/preset-env": "^7.28.3",
-    "@expo/metro-runtime": "~6.1.0",
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
     "@types/babel__core": "^7.20.5",
-    "typescript": "~5.9.2"
+    "typescript": "~5.9.3"
   }
 }

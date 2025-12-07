@@ -1,7 +1,7 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "customConditions": ["source"],
+    "customConditions": ["react-native-strict-api", "source"],
     "jsx": "react-jsx",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "moduleResolution": "Bundler",

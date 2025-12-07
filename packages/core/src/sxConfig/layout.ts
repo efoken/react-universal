@@ -1,7 +1,8 @@
 import { isNumber } from '@react-universal/utils';
 import type { BreakpointValue } from '../breakpoints';
 import { handleBreakpoints } from '../breakpoints';
-import type { Theme, ThemeValue } from '../theme/defaultTheme';
+import type { Theme } from '../defineConfig';
+import type { ThemeValue } from '../theme/defaultTheme';
 import type { RNStyle, SimpleStyleFunction } from '../types';
 
 type LayoutProp<T, K extends keyof Theme | undefined = undefined> = BreakpointValue<

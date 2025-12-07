@@ -4,6 +4,9 @@ import { INITIAL_VIEWPORTS } from 'storybook/viewport';
 
 const preview: Preview = {
   parameters: {
+    docs: {
+      codePanel: true,
+    },
     viewport: {
       viewports: INITIAL_VIEWPORTS,
     },

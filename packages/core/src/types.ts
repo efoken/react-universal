@@ -8,8 +8,8 @@ import type {
   ViewStyle as RNViewStyle,
 } from 'react-native';
 import type { Breakpoint } from './breakpoints';
+import type { Theme } from './defineConfig';
 import type { StyleRuntime } from './StyleRuntime';
-import type { Theme } from './theme/defaultTheme';
 
 export type { DistributiveOmit } from '@emotion/react';
 
@@ -181,7 +181,7 @@ export interface RNStyle
       | 'top'
       | 'width'
       | 'writingDirection'
-      | `experimental_${string}`
+      // | `experimental_${string}`
     >,
     RNStyleWeb {
   blockSize?: NonNullable<RNViewStyle['height']> | (string & {});

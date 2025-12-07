@@ -1,7 +1,8 @@
 import type { AnyObject } from '@react-universal/utils';
 import { isArray, isFunction, isObject } from '@react-universal/utils';
-import { defaultSxConfig, type SxProps } from './sxConfig';
-import type { Theme } from './theme';
+import type { Theme } from './defineConfig';
+import type { SxProps } from './sxConfig';
+import { defaultSxConfig } from './sxConfig';
 
 function splitProps(props: { theme?: Theme; [key: string]: any }) {
   const result: {

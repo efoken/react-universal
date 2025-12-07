@@ -10,9 +10,9 @@ import {
   runIfFunction,
 } from '@react-universal/utils';
 import { handleBreakpoints } from './breakpoints';
+import type { Theme } from './defineConfig';
 import type { SxConfig, SxProps, SxStyleObject } from './sxConfig/defaultSxConfig';
 import { defaultSxConfig } from './sxConfig/defaultSxConfig';
-import type { Theme } from './theme/defaultTheme';
 import type { StyleValues } from './types';
 
 function objectsHaveSameKeys(...objs: AnyObject[]) {

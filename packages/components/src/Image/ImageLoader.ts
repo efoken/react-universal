@@ -126,6 +126,7 @@ export const ImageLoader = {
             source: { height: image.naturalHeight, uri, width: image.naturalWidth },
           }),
         );
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       if (isFunction(image.decode)) {
         // Safari currently throws exceptions when decoding SVGs. We want to
         // catch that error and allow the load handler to be forwarded to the

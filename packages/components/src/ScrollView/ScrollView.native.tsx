@@ -18,6 +18,7 @@ const ScrollViewRoot = styled(RNScrollView, {
 export const ScrollView: React.FC<ScrollViewProps & { ref?: React.Ref<any> }> = ({
   contentContainerStyle,
   lang,
+  onClick,
   onLayout,
   onMoveShouldSetResponder,
   onMoveShouldSetResponderCapture,
@@ -48,6 +49,7 @@ export const ScrollView: React.FC<ScrollViewProps & { ref?: React.Ref<any> }> = 
     refreshControl={refreshControl as any}
     role={normalizeRole(role)}
     style={style as any}
+    onClick={normalizeResponderEvent(onClick)}
     onLayout={normalizeLayoutEvent(onLayout)}
     onMoveShouldSetResponder={normalizeResponderEvent(onMoveShouldSetResponder)}
     onMoveShouldSetResponderCapture={normalizeResponderEvent(onMoveShouldSetResponderCapture)}

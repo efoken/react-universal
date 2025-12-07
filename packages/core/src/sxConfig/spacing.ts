@@ -12,7 +12,8 @@ import {
 import { isWeb } from '@tamagui/constants';
 import type { BreakpointValue } from '../breakpoints';
 import { handleBreakpoints } from '../breakpoints';
-import type { Theme, ThemeValue } from '../theme/defaultTheme';
+import type { Theme } from '../defineConfig';
+import type { ThemeValue } from '../theme/defaultTheme';
 import type { RNStyle, SimpleStyleFunction } from '../types';
 
 const PROPERTIES: AnyObject<string> = {

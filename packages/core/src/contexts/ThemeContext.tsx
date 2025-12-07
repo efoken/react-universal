@@ -4,7 +4,7 @@ import { Global } from '@emotion/react';
 import type { AnyObject } from '@react-universal/utils';
 import { isArray, isNumber, isObject } from '@react-universal/utils';
 import { createContext, use } from 'react';
-import type { Theme } from '../theme/defaultTheme';
+import type { Theme } from '../defineConfig';
 import { defaultTheme } from '../theme/defaultTheme';
 import { extractTheme } from '../theme/extractTheme';
 import { isFont } from '../utils/isFont';
@@ -44,6 +44,7 @@ export const UniversalProvider: React.FC<UniversalProviderProps> = ({
   children,
   theme = defaultTheme,
 }) => (
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
   <ThemeContext.Provider value={theme as Theme}>
     <Global
       styles={{
@@ -73,7 +74,9 @@ export const UniversalProvider: React.FC<UniversalProviderProps> = ({
           color: 'inherit',
           textDecoration: 'inherit',
         },
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
         ':root, [data-theme="light"]': createCSSVariables(extractTheme(theme as Theme, 'light')),
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
         '[data-theme="dark"]': createCSSVariables(extractTheme(theme as Theme, 'dark')),
       }}
     />

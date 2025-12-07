@@ -226,6 +226,7 @@ export function useElementLayout(
   onLayout?: ((event: LayoutEvent) => void) | null,
 ) {
   // Ensure always up to date so we can avoid re-running effect
+  // eslint-disable-next-line react-hooks/refs
   const node = ensureWebElement(ref.current);
   if (node && onLayout) {
     layoutHandlers.set(node, onLayout);
@@ -277,7 +278,7 @@ export function useElementLayout(
   }, [ref, !!onLayout]);
 }
 
-function ensureWebElement<X>(x: X): HTMLElement | undefined {
+function ensureWebElement<T>(x: T): HTMLElement | undefined {
   if (typeof HTMLElement === 'undefined') {
     return undefined;
   }

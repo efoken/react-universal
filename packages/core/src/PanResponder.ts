@@ -38,7 +38,7 @@ export class PanResponder {
     gestureState.vy = 0;
     gestureState.numberActiveTouches = 0;
     // All `gestureState` accounts for timeStamps up until:
-    gestureState._accountsForMovesUpTo = 0;
+    (gestureState as any)._accountsForMovesUpTo = 0;
   }
 
   /**
@@ -69,7 +69,7 @@ export class PanResponder {
     gestureState: PanResponderGestureState,
     touchHistory: TouchHistory,
   ) {
-    const movedAfter = gestureState._accountsForMovesUpTo;
+    const movedAfter = (gestureState as any)._accountsForMovesUpTo;
     gestureState.numberActiveTouches = touchHistory.numberActiveTouches;
     gestureState.moveX = TouchHistoryMath.currentCentroidXOfTouchesChangedAfter(
       touchHistory,
@@ -92,7 +92,7 @@ export class PanResponder {
 
     gestureState.dx = nextDX;
     gestureState.dy = nextDY;
-    gestureState._accountsForMovesUpTo = touchHistory.mostRecentTimeStamp;
+    (gestureState as any)._accountsForMovesUpTo = touchHistory.mostRecentTimeStamp;
   }
 
   /**
@@ -145,6 +145,7 @@ export class PanResponder {
       vx: 0,
       vy: 0,
       numberActiveTouches: 0,
+      // @ts-expect-error
       _accountsForMovesUpTo: 0,
     };
 
@@ -172,7 +173,9 @@ export class PanResponder {
         // ResponderSystem incorrectly dispatches should* to current responder.
         // Filter out any touch moves past the first one - we would have already
         // processed multi-touch geometry during the first event.
-        if (gestureState._accountsForMovesUpTo === event.touchHistory.mostRecentTimeStamp) {
+        if (
+          (gestureState as any)._accountsForMovesUpTo === event.touchHistory.mostRecentTimeStamp
+        ) {
           return false;
         }
         PanResponder.#updateGestureStateOnMove(gestureState, event.touchHistory);
@@ -207,7 +210,9 @@ export class PanResponder {
       onResponderMove: (event) => {
         // Guard against the dispatch of two touch moves when there are two
         // simultaneously changed touches.
-        if (gestureState._accountsForMovesUpTo === event.touchHistory.mostRecentTimeStamp) {
+        if (
+          (gestureState as any)._accountsForMovesUpTo === event.touchHistory.mostRecentTimeStamp
+        ) {
           return;
         }
         // Filter out any touch moves past the first one - we would have already

@@ -2,7 +2,7 @@ import { isNumber, isString } from '@react-universal/utils';
 import { isWeb } from '@tamagui/constants';
 import { parseRem } from './utils/parseRem';
 
-type Operand = string | number | { toString: () => string };
+type Operand = (string & {}) | number | { toString: () => string };
 
 const operators = {
   '+': (a: number, b: number): number => a + b,
@@ -15,6 +15,14 @@ type Operator = keyof typeof operators;
 
 function parsePx(value: Operand) {
   return isNumber(value) ? `${value}px` : value.toString();
+}
+
+export function abs(value: Operand) {
+  return isWeb ? `abs(${value})` : Math.abs(parseRem(value));
+}
+
+export function log(value: Operand, base: number) {
+  return isWeb ? `log(${value},${base})` : Math.log(parseRem(value)) / Math.log(base);
 }
 
 export function max(...operands: Operand[]) {

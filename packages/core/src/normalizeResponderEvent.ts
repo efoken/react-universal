@@ -4,29 +4,25 @@ import type { ResponderEvent } from './hooks/useResponderEvents';
 export function normalizeResponderEvent<T extends (event: ResponderEvent) => any>(fn?: T) {
   return (event: RNGestureResponderEvent) =>
     fn?.({
-      bubbles: event.bubbles,
-      cancelable: event.cancelable,
+      bubbles: event.bubbles ?? false,
+      cancelable: event.cancelable ?? false,
       currentTarget: event.currentTarget,
-      defaultPrevented: event.defaultPrevented,
-      // @ts-expect-error: `dispatchConfig` is missing in React Native types
-      dispatchConfig: event.dispatchConfig ?? {},
-      eventPhase: event.eventPhase,
+      defaultPrevented: event.defaultPrevented ?? false,
+      dispatchConfig: event.dispatchConfig,
+      eventPhase: event.eventPhase ?? 2,
       isDefaultPrevented: event.isDefaultPrevented.bind(event),
       isPropagationStopped: event.isPropagationStopped.bind(event),
-      isTrusted: event.isTrusted,
+      isTrusted: event.isTrusted ?? true,
       nativeEvent: event.nativeEvent,
       persist: event.persist.bind(event),
       preventDefault: event.preventDefault.bind(event),
       stopPropagation: event.stopPropagation.bind(event),
       target: event.target,
       timeStamp: event.timeStamp,
-      // @ts-expect-error: `touchHistory` is missing in React Native types
-      touchHistory: event.touchHistory ?? {
-        indexOfSingleActiveTouch: 0,
-        mostRecentTimeStamp: event.timeStamp,
-        numberActiveTouches: 1,
-        touchBank: [],
+      touchHistory: {
+        ...event.touchHistory,
+        touchBank: [...event.touchHistory.touchBank],
       },
-      type: event.type,
+      type: event.type!,
     });
 }

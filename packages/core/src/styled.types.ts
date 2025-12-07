@@ -1,6 +1,6 @@
 import type { AnyObject } from '@react-universal/utils';
+import type { ExtractTheme, Theme } from './defineConfig';
 import type { StyleRuntime } from './StyleRuntime';
-import type { ExtractTheme, Theme } from './theme/defaultTheme';
 import type { StyleInterpolation } from './types';
 
 export interface StyledOptions {

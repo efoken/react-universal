@@ -1,11 +1,8 @@
-import { getBoundingClientRect, isFunction, noop } from '@react-universal/utils';
-import type {
-  NativeTouchEvent,
-  GestureResponderEvent as RNGestureResponderEvent,
-} from 'react-native';
+import { type DeepMutable, getBoundingClientRect, isFunction, noop } from '@react-universal/utils';
+import type { NativeTouchEvent } from 'react-native';
 import type { ResponderTouchHistoryStore, TouchHistory } from './ResponderTouchHistoryStore';
 
-export interface ResponderEvent extends RNGestureResponderEvent {
+export interface ResponderEvent extends React.BaseSyntheticEvent<NativeTouchEvent> {
   dispatchConfig: {
     registrationName: string;
   };
@@ -24,7 +21,7 @@ function normalizeIdentifier(identifier: any) {
 export function createResponderEvent(
   domEvent: any,
   responderTouchHistoryStore: ResponderTouchHistoryStore,
-): ResponderEvent {
+): DeepMutable<ResponderEvent> {
   let rect: DOMRect | undefined;
   let propagationWasStopped = false;
   let changedTouches: NativeTouchEvent[];
@@ -75,7 +72,7 @@ export function createResponderEvent(
         },
         pageX,
         pageY,
-        target: domEvent.target as any,
+        target: domEvent.target,
         timestamp,
         touches: [],
       },
@@ -84,7 +81,7 @@ export function createResponderEvent(
     touches = domEvent.type === 'mouseup' || domEvent.type === 'dragstart' ? [] : emulatedTouches;
   }
 
-  const responderEvent: ResponderEvent = {
+  const responderEvent: DeepMutable<ResponderEvent> = {
     bubbles: true,
     cancelable: true,
     // @ts-expect-error: `currentTarget` is set before dispatch
@@ -102,7 +99,7 @@ export function createResponderEvent(
     nativeEvent: {
       // @ts-expect-error: we explicitly save some extras from the domEvent here
       altKey: false,
-      changedTouches,
+      changedTouches: changedTouches as DeepMutable<NativeTouchEvent>[],
       ctrlKey: false,
       force,
       identifier,
@@ -116,9 +113,9 @@ export function createResponderEvent(
       pageX,
       pageY,
       shiftKey,
-      target: domEvent.target as any,
+      target: domEvent.target,
       timestamp,
-      touches,
+      touches: touches as DeepMutable<NativeTouchEvent>[],
     },
     persist: noop,
     preventDefault: isFunction(domEvent.preventDefault)
@@ -127,7 +124,7 @@ export function createResponderEvent(
     stopPropagation() {
       propagationWasStopped = true;
     },
-    target: domEvent.target as any,
+    target: domEvent.target,
     timeStamp: timestamp,
     touchHistory: responderTouchHistoryStore.touchHistory,
     type: domEvent.type,

@@ -21,7 +21,10 @@ let idCounter = 0;
  * }
  */
 export function useResponderEvents(hostRef: any, config: ResponderConfig = {}) {
-  const id = useConstant(() => idCounter++);
+  const id = useConstant(() => {
+    idCounter += 1;
+    return idCounter;
+  });
   const attachedRef = useRef(false);
 
   // This is a separate effects so it doesn't run when the config changes.
@@ -39,10 +42,6 @@ export function useResponderEvents(hostRef: any, config: ResponderConfig = {}) {
     const {
       onMoveShouldSetResponder,
       onMoveShouldSetResponderCapture,
-      onScrollShouldSetResponder,
-      onScrollShouldSetResponderCapture,
-      onSelectionChangeShouldSetResponder,
-      onSelectionChangeShouldSetResponderCapture,
       onStartShouldSetResponder,
       onStartShouldSetResponderCapture,
     } = config;
@@ -50,10 +49,6 @@ export function useResponderEvents(hostRef: any, config: ResponderConfig = {}) {
     const requiresResponderSystem =
       onMoveShouldSetResponder != null ||
       onMoveShouldSetResponderCapture != null ||
-      onScrollShouldSetResponder != null ||
-      onScrollShouldSetResponderCapture != null ||
-      onSelectionChangeShouldSetResponder != null ||
-      onSelectionChangeShouldSetResponderCapture != null ||
       onStartShouldSetResponder != null ||
       onStartShouldSetResponderCapture != null;
 
@@ -69,6 +64,7 @@ export function useResponderEvents(hostRef: any, config: ResponderConfig = {}) {
   }, [config, hostRef, id]);
 
   useDebugValue({
+    // eslint-disable-next-line react-hooks/refs
     responder: hostRef.current === ResponderSystem.getResponderNode(),
   });
   useDebugValue(config);

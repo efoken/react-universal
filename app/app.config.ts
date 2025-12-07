@@ -35,6 +35,7 @@ const config: ExpoConfig = {
         initialOrientation: 'DEFAULT',
       },
     ],
+    'react-native-edge-to-edge',
   ],
 };
 

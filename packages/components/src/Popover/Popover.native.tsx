@@ -7,11 +7,12 @@ import {
 } from '@react-universal/core';
 import { useComposedRefs } from '@tamagui/compose-refs';
 import { useEffect, useMemo, useRef } from 'react';
-import { View as RNView, useWindowDimensions } from 'react-native';
+import { useWindowDimensions } from 'react-native';
+import { View as UnistylesView } from 'react-native-unistyles/components/native/View';
 import type { PopoverProps } from './Popover.types';
 import { parseModifiers, resolveAnchor } from './Popover.utils';
 
-const PopoverRoot = styled(RNView, {
+const PopoverRoot = styled(UnistylesView, {
   name: 'Popover',
   slot: 'Root',
 })(({ theme }) => ({
@@ -24,7 +25,7 @@ export const Popover: React.FC<PopoverProps & { ref?: React.Ref<any> }> = ({
   anchor: _anchor,
   children,
   lang,
-  modifiers: _modifiers = [],
+  modifiers: _modifiers,
   open,
   placement = 'bottom',
   ref,
@@ -33,7 +34,7 @@ export const Popover: React.FC<PopoverProps & { ref?: React.Ref<any> }> = ({
   style,
   ...props
 }) => {
-  const hostRef = useRef<RNView>(null);
+  const hostRef = useRef<React.ComponentRef<typeof UnistylesView>>(null);
 
   const anchor = resolveAnchor(_anchor);
 
@@ -48,7 +49,7 @@ export const Popover: React.FC<PopoverProps & { ref?: React.Ref<any> }> = ({
           name: 'shift',
           enabled: true,
         },
-        ..._modifiers,
+        ...(_modifiers ?? []),
       ]),
     [_modifiers],
   );

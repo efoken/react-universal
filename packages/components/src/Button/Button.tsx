@@ -1,10 +1,15 @@
 'use client';
 
-import { styled, useEventCallback, useOwnerState } from '@react-universal/core';
-import { normalizeEvent, runIfFunction } from '@react-universal/utils';
+import type { ResponderEvent } from '@react-universal/core';
+import { styled, useOwnerState } from '@react-universal/core';
+import { runIfFunction } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
 import { useRef, useState } from 'react';
-import type { BlurEvent, FocusEvent } from 'react-native';
+import type {
+  BlurEvent as RNBlurEvent,
+  FocusEvent as RNFocusEvent,
+  MouseEvent as RNMouseEvent,
+} from 'react-native';
 import { View } from '../View';
 import type { ButtonMethods, ButtonOwnerState, ButtonProps } from './Button.types';
 
@@ -14,10 +19,7 @@ const ButtonRoot = styled(View, {
   shouldForwardProp: (prop) => prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx',
 })<{
   disabled?: boolean;
-  onClick?: React.MouseEventHandler<HTMLElement>;
   onMouseDown?: React.MouseEventHandler<HTMLElement>;
-  onMouseEnter?: React.MouseEventHandler<HTMLElement>;
-  onMouseLeave?: React.MouseEventHandler<HTMLElement>;
   ownerState: ButtonOwnerState;
   type?: 'button' | 'submit' | 'reset';
 }>({
@@ -66,26 +68,26 @@ export const Button: React.FC<ButtonProps & { ref?: React.Ref<HTMLElement & Butt
     setFocusVisible(false);
   }
 
-  const handleMouseEnter = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMouseEnter = (event: RNMouseEvent) => {
     setHovered(true);
-    onHoverIn?.(normalizeEvent(event));
+    onHoverIn?.(event);
   };
 
-  const handleMouseLeave = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMouseLeave = (event: RNMouseEvent) => {
     if (focusVisible) {
       event.preventDefault();
     }
-    onHoverOut?.(normalizeEvent(event));
+    onHoverOut?.(event);
   };
 
-  const handleBlur = useEventCallback((event: BlurEvent) => {
+  const handleBlur = (event: RNBlurEvent) => {
     if (event.target instanceof HTMLElement && !event.target.matches(':focus-visible')) {
       setFocusVisible(false);
     }
-    onBlur?.(normalizeEvent(event));
-  });
+    onBlur?.(event);
+  };
 
-  const handleFocus = useEventCallback((event: FocusEvent) => {
+  const handleFocus = (event: RNFocusEvent) => {
     // Fix for https://github.com/facebook/react/issues/7769
     if (!hostRef.current) {
       // @ts-expect-error: `currentTarget` is always of type `HTMLElement`
@@ -94,19 +96,19 @@ export const Button: React.FC<ButtonProps & { ref?: React.Ref<HTMLElement & Butt
 
     if (event.target instanceof HTMLElement && event.target.matches(':focus-visible')) {
       setFocusVisible(true);
-      onFocusVisible?.(normalizeEvent(event));
+      onFocusVisible?.(event);
     }
 
-    onFocus?.(normalizeEvent(event));
-  });
+    onFocus?.(event);
+  };
 
   const isNativeButton = () =>
     hostRef.current?.tagName === 'BUTTON' ||
     (hostRef.current?.tagName === 'A' && (hostRef.current as HTMLAnchorElement).href);
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClick = (event: ResponderEvent) => {
     if (!disabled) {
-      onPress?.(normalizeEvent(event));
+      onPress?.(event);
     }
   };
 
@@ -123,7 +125,7 @@ export const Button: React.FC<ButtonProps & { ref?: React.Ref<HTMLElement & Butt
     }
   };
 
-  const handleKeyDown = useEventCallback((event: React.KeyboardEvent<HTMLElement>) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     onKeyDown?.(event);
 
     if (event.defaultPrevented) {
@@ -146,11 +148,11 @@ export const Button: React.FC<ButtonProps & { ref?: React.Ref<HTMLElement & Butt
       !disabled
     ) {
       event.preventDefault();
-      onPress?.(normalizeEvent(event));
+      onPress?.(event as any);
     }
-  });
+  };
 
-  const handleKeyUp = useEventCallback((event: React.KeyboardEvent<HTMLElement>) => {
+  const handleKeyUp = (event: React.KeyboardEvent<HTMLElement>) => {
     // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
     // https://codesandbox.io/p/sandbox/button-keyup-preventdefault-dn7f0
 
@@ -168,9 +170,9 @@ export const Button: React.FC<ButtonProps & { ref?: React.Ref<HTMLElement & Butt
       event.key === ' ' &&
       !event.defaultPrevented
     ) {
-      onPress?.(normalizeEvent(event));
+      onPress?.(event as any);
     }
-  });
+  };
 
   const handleRef = useComposedRefs<any>(hostRef, ref);
 

@@ -2,6 +2,7 @@
 
 import { withEmotionCache } from '@emotion/react';
 import { serializeStyles } from '@emotion/serialize';
+import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks';
 import type { EmotionCache, SerializedStyles } from '@emotion/utils';
 import { getRegisteredStyles, insertStyles, registerStyles } from '@emotion/utils';
 import type { AnyObject } from '@react-universal/utils';
@@ -10,7 +11,6 @@ import { isServer } from '@tamagui/constants';
 import { useMemo } from 'react';
 import { createElement } from './createElement';
 import { css } from './css';
-import { useInsertionEffectAlwaysWithSyncFallback } from './hooks/useInsertionEffectAlwaysWithSyncFallback';
 import { useStyles } from './hooks/useStyles';
 import type { CreateStyledComponent, StyledOptions } from './styled.types';
 import type { RNStyle, StyleInterpolation, StyleProp } from './types';

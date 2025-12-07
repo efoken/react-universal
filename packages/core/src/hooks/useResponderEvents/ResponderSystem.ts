@@ -1,3 +1,4 @@
+import type { DeepMutable } from '@react-universal/utils';
 import { isClient } from '@tamagui/constants';
 import type { ResponderEvent } from './createResponderEvent';
 import { createResponderEvent } from './createResponderEvent';
@@ -327,7 +328,7 @@ export class ResponderSystem {
   static #findWantsResponder(
     eventPaths: { idPath: number[]; nodePath: any[] },
     domEvent: Event,
-    responderEvent: ResponderEvent,
+    responderEvent: DeepMutable<ResponderEvent>,
   ) {
     const shouldSetCallbacks = shouldSetResponderEvents[domEvent.type];
 
@@ -391,7 +392,10 @@ export class ResponderSystem {
   /**
    * Attempt to transfer the responder.
    */
-  static #attemptTransfer(responderEvent: ResponderEvent, wantsResponder: ActiveResponderInstance) {
+  static #attemptTransfer(
+    responderEvent: DeepMutable<ResponderEvent>,
+    wantsResponder: ActiveResponderInstance,
+  ) {
     const { id: currentId, node: currentNode } = ResponderSystem.#responder;
     const { id, node } = wantsResponder;
 

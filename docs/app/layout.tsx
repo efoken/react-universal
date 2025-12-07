@@ -1,6 +1,6 @@
 import { AppRouterProdivder } from '@react-universal/next';
 import type { Metadata } from 'next';
-import { font, theme } from './theme';
+import { config, font } from '../universal.config';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <body className={font.className}>
-        <AppRouterProdivder theme={theme}>{children}</AppRouterProdivder>
+        <AppRouterProdivder theme={config.theme}>{children}</AppRouterProdivder>
       </body>
     </html>
   );

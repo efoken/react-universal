@@ -46,7 +46,7 @@ export const Popover: React.FC<
 > = ({
   anchor: _anchor,
   dir,
-  modifiers: _modifiers = [],
+  modifiers: _modifiers,
   open,
   placement = 'bottom',
   role = 'tooltip',
@@ -68,7 +68,7 @@ export const Popover: React.FC<
           name: 'shift',
           enabled: true,
         },
-        ..._modifiers,
+        ...(_modifiers ?? []),
       ]),
     [_modifiers],
   );

@@ -1,24 +1,33 @@
 import type { Breakpoints } from './breakpoints';
-import type { Theme } from './theme';
+import type { Theme } from './defineConfig';
 import { defaultTheme } from './theme';
+import type { ExtractedTheme } from './theme/extractTheme';
+import { extractTheme } from './theme/extractTheme';
 
 export class StyleRuntime {
-  static #theme: Theme = defaultTheme as Theme;
+  static #themes: Record<'light' | 'dark', ExtractedTheme> = {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+    light: extractTheme(defaultTheme as Theme, 'light'),
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+    dark: extractTheme(defaultTheme as Theme, 'dark'),
+  };
 
-  static getTheme(_name: 'light' | 'dark') {
-    return StyleRuntime.#theme;
+  static #currentTheme: ExtractedTheme = StyleRuntime.#themes.light;
+
+  static getTheme(name: 'light' | 'dark') {
+    return StyleRuntime.#themes[name];
   }
 
-  static setTheme(_name: 'light' | 'dark') {
-    // noop
+  static setTheme(name: 'light' | 'dark') {
+    StyleRuntime.#currentTheme = StyleRuntime.#themes[name];
   }
 
-  static updateTheme(_name: 'light' | 'dark', updater: (theme: Theme) => Theme) {
-    StyleRuntime.#theme = updater(StyleRuntime.#theme);
+  static updateTheme(name: 'light' | 'dark', updater: (theme: ExtractedTheme) => ExtractedTheme) {
+    StyleRuntime.#themes[name] = updater(StyleRuntime.#themes[name]);
   }
 
   static get breakpoints() {
-    return StyleRuntime.#theme.breakpoints;
+    return StyleRuntime.#currentTheme.breakpoints;
   }
 
   static fontScale = 1;

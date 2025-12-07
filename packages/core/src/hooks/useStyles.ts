@@ -1,13 +1,14 @@
 import memo from '@emotion/weak-memoize';
-import { type AnyObject, isObject, mergeDeep } from '@react-universal/utils';
+import type { AnyObject } from '@react-universal/utils';
+import { isObject, mergeDeep } from '@react-universal/utils';
 import { useMemo } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 import { css } from '../css';
+import type { ExtractTheme, Theme } from '../defineConfig';
 import { interpolate } from '../interpolate';
 import { StyleRuntime } from '../StyleRuntime';
 import { styleFunctionSx } from '../styleFunctionSx';
 import type { SxProps } from '../sxConfig';
-import type { ExtractTheme, Theme } from '../theme';
 import type { StyleInterpolation } from '../types';
 import { isFont } from '../utils/isFont';
 import { processStyles } from '../utils/processStyles';

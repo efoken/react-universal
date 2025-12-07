@@ -33,7 +33,7 @@ export function useStyles(
             !skipSx && styleFunctionSx({ sx, theme }),
           ),
         };
-        // @ts-expect-error: this argument is hidden our type definition
+        // @ts-expect-error: this argument is hidden from our type definition
       }, id),
     // biome-ignore lint/correctness/useExhaustiveDependencies: props do not change on every render
     [id, props, skipSx, styles, sx],

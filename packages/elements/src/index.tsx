@@ -245,7 +245,7 @@ export const Label = createComponent<
  */
 export const Li = createComponent<
   HTMLLIElement & ViewMethods,
-  Omit<ViewProps, 'href' | 'hrefAttrs'>
+  Omit<TextProps, 'href' | 'hrefAttrs'>
 >(Text, 'Li', { role: 'listitem' }, { display: 'list-item' as any });
 
 /**

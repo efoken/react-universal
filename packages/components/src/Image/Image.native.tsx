@@ -30,7 +30,6 @@ export const Image = ({
 
 Image.displayName = 'Image';
 
-Image.abortPrefetch = RNImage.abortPrefetch?.bind(Image);
 Image.getSize = RNImage.getSize.bind(Image);
 Image.getSizeWithHeaders = RNImage.getSizeWithHeaders.bind(Image);
 Image.prefetch = RNImage.prefetch.bind(Image);

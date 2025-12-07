@@ -3,9 +3,6 @@ import { build } from 'velite';
 import type { Compiler, WebpackPluginInstance } from 'webpack';
 
 const nextConfig: NextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   transpilePackages: [
     '@react-universal/components',
     '@react-universal/core',
@@ -14,6 +11,7 @@ const nextConfig: NextConfig = {
     '@react-universal/svg',
     '@react-universal/utils',
   ],
+  turbopack: {},
   webpack: (config) => ({
     ...config,
     plugins: [

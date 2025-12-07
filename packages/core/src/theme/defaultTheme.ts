@@ -8,10 +8,6 @@ type Join<K, P> = K extends string | number
     : never
   : never;
 
-type Prettify<T> = {
-  [K in keyof T]: T[K];
-} & {};
-
 export type ThemeColor = string | { _light: string; _dark: string };
 
 export type ThemeFont = {
@@ -19,7 +15,7 @@ export type ThemeFont = {
   weights: Partial<Record<100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900, { normal: string }>>;
 };
 
-interface DefaultTheme {
+type DefaultTheme = {
   breakpoints: Breakpoints;
   colors: {
     black: ThemeColor;
@@ -66,7 +62,7 @@ interface DefaultTheme {
   radii: number[];
   zIndices: Record<string, number>;
   sxConfig: any;
-}
+};
 
 export const defaultTheme: DefaultTheme = {
   breakpoints: defaultBreakpoints,
@@ -135,30 +131,6 @@ export const defaultTheme: DefaultTheme = {
   sxConfig: undefined,
 };
 
-export interface Theme extends DefaultTheme {}
-
 export type ThemeValue<T extends AnyObject> = {
   [K in keyof T]-?: Join<K, T[K] extends AnyObject ? ThemeValue<T[K]> : ''>;
 }[keyof T];
-
-export type ExtractTheme<T> = Prettify<{
-  [K in keyof T]: K extends 'sxConfig'
-    ? T[K]
-    : T[K] extends number
-      ? number
-      : T[K] extends ThemeColor | ThemeFont
-        ? string
-        : T[K] extends AnyObject
-          ? ExtractTheme<T[K]>
-          : T[K];
-}>;
-
-// biome-ignore lint/suspicious/noTsIgnore: Sometimes errors, sometimes not
-// @ts-ignore: react-native-unistyles is not always installed, as it's optional
-declare module 'react-native-unistyles' {
-  export interface UnistylesThemes {
-    light: ExtractTheme<Theme>;
-    dark: ExtractTheme<Theme>;
-  }
-  export interface UnistylesBreakpoints extends Breakpoints {}
-}

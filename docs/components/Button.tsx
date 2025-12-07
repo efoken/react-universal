@@ -3,13 +3,13 @@
 import type { ButtonProps } from '@react-universal/components';
 import { Button as ButtonRoot } from '@react-universal/components';
 import { useCallback, useState } from 'react';
-import type { MouseEvent } from 'react-native';
+import type { MouseEvent as RNMouseEvent } from 'react-native';
 
 export const Button: React.FC<ButtonProps> = ({ onHoverIn, onHoverOut, sx, ...props }) => {
   const [hovered, setHovered] = useState(false);
 
   const handleHoverIn = useCallback(
-    (event: MouseEvent) => {
+    (event: RNMouseEvent) => {
       onHoverIn?.(event);
       setHovered(true);
     },
@@ -17,7 +17,7 @@ export const Button: React.FC<ButtonProps> = ({ onHoverIn, onHoverOut, sx, ...pr
   );
 
   const handleHoverOut = useCallback(
-    (event: MouseEvent) => {
+    (event: RNMouseEvent) => {
       onHoverOut?.(event);
       setHovered(false);
     },

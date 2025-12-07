@@ -41,7 +41,6 @@ export interface PopoverProps
    */
   anchor?: PopoverAnchor;
   children?: React.ReactNode;
-  /** @default [] */
   modifiers?: (
     | PopoverModifier<'flip', FlipOptions>
     | PopoverModifier<'shift', ShiftOptions>

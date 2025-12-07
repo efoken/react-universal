@@ -18,7 +18,7 @@ export interface PlatformMethods {
   measure(callback: MeasureOnSuccessCallback): void;
   measureInWindow(callback: MeasureInWindowOnSuccessCallback): void;
   measureLayout(
-    relativeToNativeComponentRef: Omit<PlatformMethods, 'refs'> | number,
+    relativeToNativeComponentRef: HTMLElement & PlatformMethods,
     callback: MeasureLayoutOnSuccessCallback,
     error?: () => void,
   ): void;
@@ -29,9 +29,9 @@ export function usePlatformMethods<T extends HTMLElement>(hostRef: React.RefObje
   useIsomorphicLayoutEffect(() => {
     const node = hostRef.current as (T & PlatformMethods) | null;
     if (node != null) {
-      node.measure ||= createMeasure(node);
-      node.measureInWindow ||= createMeasureInWindow(node);
-      node.measureLayout ||= createMeasureLayout(node) as any;
+      node.measure = createMeasure(node);
+      node.measureInWindow = createMeasureInWindow(node);
+      node.measureLayout = createMeasureLayout(node);
     }
   }, [hostRef]);
 

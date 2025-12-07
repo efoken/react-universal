@@ -7,7 +7,7 @@ export default defineConfig({
   esbuildPlugins: [
     babelPlugin({
       presets: ['@babel/preset-typescript'],
-      plugins: [['@react-universal/babel-plugin', { root: 'src', debug: true }]],
+      plugins: [['@react-universal/babel-plugin', { root: 'src', debug: true, platform: 'web' }]],
     }),
   ],
   format: ['cjs', 'esm'],

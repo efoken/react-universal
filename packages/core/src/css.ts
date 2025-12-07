@@ -1,8 +1,8 @@
 import type { AnyObject } from '@react-universal/utils';
 import { isObject, isString, mergeDeep, runIfFunction } from '@react-universal/utils';
 import { createReactDOMStyle } from './createReactDOMStyle';
+import type { Theme } from './defineConfig';
 import type { StyleMiniRuntime } from './StyleRuntime';
-import type { Theme } from './theme';
 import type { StyleProp, StyleValues } from './types';
 
 function getBreakpointsStyles<T extends AnyObject>(
@@ -14,7 +14,7 @@ function getBreakpointsStyles<T extends AnyObject>(
     const breakpoint = runtime.breakpoints[key as keyof typeof runtime.breakpoints];
 
     if (breakpoint != null) {
-      acc[`@media screen and (min-width: ${breakpoint}px)`] = createReactDOMStyle({
+      acc[`@media screen and (min-width: ${breakpoint})`] = createReactDOMStyle({
         [prop]: value,
       });
     }

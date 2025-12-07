@@ -40,6 +40,7 @@ export interface ViewProps
       | keyof ResponderConfig
       | 'focusable'
       | 'nativeID'
+      | 'onClick'
       | 'onLayout'
       | 'onTouchCancel'
       | 'onTouchEnd'
@@ -61,6 +62,7 @@ export interface ViewProps
     target?: React.HTMLAttributeAnchorTarget;
   };
   lang?: Intl.UnicodeBCP47LocaleIdentifier;
+  onClick?: (event: ResponderEvent) => void;
   onKeyDown?: (event: React.KeyboardEvent<HTMLElement>) => void;
   onKeyDownCapture?: (event: React.KeyboardEvent<HTMLElement>) => void;
   onKeyUp?: (event: React.KeyboardEvent<HTMLElement>) => void;

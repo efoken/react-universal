@@ -1,4 +1,8 @@
-import type { NativeTouchEvent } from 'react-native';
+import type { DeepMutable } from '@react-universal/utils';
+import type {
+  NativeTouchEvent,
+  GestureResponderEvent as RNGestureResponderEvent,
+} from 'react-native';
 import { isEndish, isMoveish, isStartish } from './utils';
 
 type TouchRecord = {
@@ -14,12 +18,7 @@ type TouchRecord = {
   touchActive: boolean;
 };
 
-export type TouchHistory = {
-  indexOfSingleActiveTouch: number;
-  mostRecentTimeStamp: number;
-  numberActiveTouches: number;
-  touchBank: TouchRecord[];
-};
+export type TouchHistory = DeepMutable<RNGestureResponderEvent['touchHistory']>;
 
 const MAX_TOUCH_BANK = 20;
 
@@ -69,7 +68,7 @@ function getTouchIdentifier({ identifier }: any): number {
   return identifier;
 }
 
-function recordTouchStart(touch: NativeTouchEvent, touchHistory: TouchHistory) {
+function recordTouchStart(touch: NativeTouchEvent, touchHistory: DeepMutable<TouchHistory>) {
   const identifier = getTouchIdentifier(touch);
   const touchRecord = touchHistory.touchBank[identifier];
   if (touchRecord) {
@@ -80,7 +79,7 @@ function recordTouchStart(touch: NativeTouchEvent, touchHistory: TouchHistory) {
   touchHistory.mostRecentTimeStamp = touch.timestamp;
 }
 
-function recordTouchMove(touch: NativeTouchEvent, touchHistory: TouchHistory) {
+function recordTouchMove(touch: NativeTouchEvent, touchHistory: DeepMutable<TouchHistory>) {
   const touchRecord = touchHistory.touchBank[getTouchIdentifier(touch)];
   if (touchRecord) {
     touchRecord.touchActive = true;
@@ -102,7 +101,7 @@ function recordTouchMove(touch: NativeTouchEvent, touchHistory: TouchHistory) {
   }
 }
 
-function recordTouchEnd(touch: NativeTouchEvent, touchHistory: TouchHistory) {
+function recordTouchEnd(touch: NativeTouchEvent, touchHistory: DeepMutable<TouchHistory>) {
   const touchRecord = touchHistory.touchBank[getTouchIdentifier(touch)];
   if (touchRecord) {
     touchRecord.touchActive = false;
@@ -147,7 +146,7 @@ function printTouchBank(touchHistory: TouchHistory): string {
  * when touches end and start again.
  */
 export class ResponderTouchHistoryStore {
-  #touchHistory: TouchHistory = {
+  #touchHistory: DeepMutable<TouchHistory> = {
     // If there is only one active touch, we remember its location. This
     // prevents us having to loop through all of the touches all the time in the
     // most common case.
@@ -168,7 +167,6 @@ export class ResponderTouchHistoryStore {
       }
       this.#touchHistory.numberActiveTouches = nativeEvent.touches.length;
       if (this.#touchHistory.numberActiveTouches === 1) {
-        // @ts-expect-error
         this.#touchHistory.indexOfSingleActiveTouch = nativeEvent.touches[0].identifier;
       }
     } else if (isEndish(domEvent)) {

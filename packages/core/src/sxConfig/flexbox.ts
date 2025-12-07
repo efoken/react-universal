@@ -1,5 +1,7 @@
-import { type BreakpointValue, handleBreakpoints } from '../breakpoints';
-import type { Theme, ThemeValue } from '../theme/defaultTheme';
+import type { BreakpointValue } from '../breakpoints';
+import { handleBreakpoints } from '../breakpoints';
+import type { Theme } from '../defineConfig';
+import type { ThemeValue } from '../theme/defaultTheme';
 import type { RNStyle, SimpleStyleFunction } from '../types';
 import type { SpacingValue } from './spacing';
 import { createUnaryUnit, getValue } from './spacing';

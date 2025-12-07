@@ -1,3 +1,4 @@
+import { transformAsync } from '@babel/core';
 import type { Theme } from '@react-universal/core';
 import type { Plugin } from 'vite';
 
@@ -16,6 +17,14 @@ export function reactUniversal(_options: ReactUniversalOptions = {}): Plugin {
         ...config.define,
         'process.env.TEST_NATIVE_PLATFORM': JSON.stringify(false),
       };
+    },
+    transform: async (code, id) => {
+      const result = await transformAsync(code, {
+        filename: id,
+        sourceMaps: true,
+        plugins: [['@react-universal/babel-plugin', { root: 'src', debug: true, platform: 'web' }]],
+      });
+      return result?.code ? { code: result.code, map: result.map } : null;
     },
   };
 }

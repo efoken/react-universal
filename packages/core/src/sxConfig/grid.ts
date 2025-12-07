@@ -1,5 +1,6 @@
 import type { BreakpointValue } from '../breakpoints';
-import type { Theme, ThemeValue } from '../theme/defaultTheme';
+import type { Theme } from '../defineConfig';
+import type { ThemeValue } from '../theme/defaultTheme';
 
 type GridProp<T, K extends keyof Theme | undefined = undefined> = BreakpointValue<
   K extends string ? NonNullable<T> | ThemeValue<Theme[K]> : NonNullable<T>

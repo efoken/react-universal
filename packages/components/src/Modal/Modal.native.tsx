@@ -33,6 +33,7 @@ export const Modal: React.FC<ModalProps & { ref?: React.Ref<any> }> = ({
   children,
   hideBackdrop = false,
   lang,
+  onClick,
   onClose,
   onLayout,
   onMoveShouldSetResponder,
@@ -95,6 +96,7 @@ export const Modal: React.FC<ModalProps & { ref?: React.Ref<any> }> = ({
       supportedOrientations={['portrait', 'landscape']}
       visible={open}
       onAccessibilityEscape={handleAccessibilityEscape}
+      onClick={normalizeResponderEvent(onClick)}
       onLayout={normalizeLayoutEvent(onLayout)}
       onMoveShouldSetResponder={normalizeResponderEvent(onMoveShouldSetResponder)}
       onMoveShouldSetResponderCapture={normalizeResponderEvent(onMoveShouldSetResponderCapture)}

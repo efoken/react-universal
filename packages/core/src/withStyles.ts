@@ -1,6 +1,6 @@
 import type { AnyObject } from '@react-universal/utils';
+import type { Theme } from './defineConfig';
 import type { StyleRuntime } from './StyleRuntime';
-import type { Theme } from './theme';
 
 type Mappings<P = AnyObject> = (
   theme: Theme,

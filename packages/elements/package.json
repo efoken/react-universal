@@ -22,16 +22,16 @@
   "react-native": "src/index.tsx",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup src/index.tsx"
+    "build": "run -T tsdown src/index.tsx"
   },
   "dependencies": {
     "@react-universal/components": "workspace:*",
     "@react-universal/core": "workspace:*"
   },
   "devDependencies": {
-    "@types/react": "~19.1.11",
-    "react": "19.1.0",
-    "react-native": "0.81.0"
+    "@types/react": "~19.2.7",
+    "react": "19.2.0",
+    "react-native": "0.82.1"
   },
   "peerDependencies": {
     "@types/react": "^19.0.0",

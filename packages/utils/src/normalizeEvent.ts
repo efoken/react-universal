@@ -5,5 +5,6 @@ export function normalizeEvent<T extends React.BaseSyntheticEvent<any>>(
   for (const [key, value] of Object.entries(data)) {
     event.nativeEvent[key] = value;
   }
-  return event as T;
+  (event as any).dispatchConfig = {};
+  return event as T & { dispatchConfig: any };
 }

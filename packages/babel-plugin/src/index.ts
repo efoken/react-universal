@@ -1,10 +1,15 @@
 import path from 'node:path';
 import type { BabelFile, NodePath, PluginObj } from '@babel/core';
 import * as t from '@babel/types';
+import { serializeStyles } from '@emotion/serialize';
+import type { Config } from '@react-universal/core';
+import { defaultTheme } from '@react-universal/core';
+import { lilconfigSync } from 'lilconfig';
 
 export interface ReactUniversalPluginOptions {
   debug?: boolean;
-  isLocal?: boolean;
+  local?: boolean;
+  platform?: 'native' | 'web';
   root: string;
 }
 
@@ -174,6 +179,40 @@ function addDependencies(
   );
 }
 
+function memberExprToCSSVar(node: t.MemberExpression): string {
+  if (node.object && node.property) {
+    const left = memberExprToCSSVar(node.object as t.MemberExpression);
+    // @ts-expect-error: one of `name` or `value` will be present
+    const right = node.property.name || node.property.value;
+    return left ? `${left}-${right}` : right;
+  }
+  return (node as any).name;
+}
+
+function objectExpressionToPlain(node: t.Node | null): any {
+  if (t.isStringLiteral(node) || t.isNumericLiteral(node)) {
+    return node.value;
+  }
+  if (t.isObjectExpression(node)) {
+    const out: Record<string, any> = {};
+    for (const prop of node.properties) {
+      if (t.isObjectProperty(prop)) {
+        const key = t.isIdentifier(prop.key) ? prop.key.name : (prop.key as any).value;
+        out[key] = objectExpressionToPlain(prop.value);
+      }
+    }
+    return out;
+  }
+  if (t.isArrayExpression(node)) {
+    return node.elements.map((el) => objectExpressionToPlain(el));
+  }
+  if (t.isMemberExpression(node)) {
+    // convert "theme.colors.background.default" into a CSS variable
+    return `var(--${memberExprToCSSVar(node)})`;
+  }
+  return null;
+}
+
 function toPlatformPath(pathString: string) {
   return process.platform === 'win32'
     ? path.normalize(pathString).replace(/\//g, '\\')
@@ -188,8 +227,19 @@ export default function babelPlugin(): PluginObj<ReactUniversalPluginPass> {
     };
   }
 
+  // biome-ignore lint/correctness/noUnusedVariables: Not used yet
+  let config: Config;
+
   return {
     name: 'react-universal',
+    pre() {
+      const { config: c } = lilconfigSync('universal').search() ?? {};
+      config = {
+        debug: process.env.NODE_ENV === 'development',
+        theme: defaultTheme,
+        ...c,
+      };
+    },
     visitor: {
       Program: {
         enter(_path, state) {
@@ -238,32 +288,42 @@ export default function babelPlugin(): PluginObj<ReactUniversalPluginPass> {
           return;
         }
 
-        addStyledId(path, state);
+        if (state.opts.platform !== 'web') {
+          addStyledId(path, state);
 
-        const arg = t.isAssignmentExpression(path.node.arguments[0])
-          ? path.node.arguments[0].right
-          : path.node.arguments[0];
+          const arg = t.isAssignmentExpression(path.node.arguments[0])
+            ? path.node.arguments[0].right
+            : path.node.arguments[0];
 
-        if (t.isObjectExpression(arg)) {
-          if (isRootStyleObject(arg)) {
-            const dependencies = new Set<string>();
-            addDependencies(state, arg, dependencies);
+          if (t.isObjectExpression(arg)) {
+            if (isRootStyleObject(arg)) {
+              const dependencies = new Set<string>();
+              addDependencies(state, arg, dependencies);
+            }
           }
-        }
 
-        if (t.isArrowFunctionExpression(arg) || t.isFunctionExpression(arg)) {
-          const funcPath = t.isAssignmentExpression(path.node.arguments[0])
-            ? path.get('arguments.0.right')
-            : path.get('arguments.0');
+          if (t.isArrowFunctionExpression(arg) || t.isFunctionExpression(arg)) {
+            const funcPath = t.isAssignmentExpression(path.node.arguments[0])
+              ? path.get('arguments.0.right')
+              : path.get('arguments.0');
 
-          const dependencies = getFlatDependenciesFromFunction(funcPath);
+            const dependencies = getFlatDependenciesFromFunction(funcPath);
 
-          const body = t.isBlockStatement(arg.body)
-            ? arg.body.body.find((s) => t.isReturnStatement(s))?.argument
-            : arg.body;
+            const body = t.isBlockStatement(arg.body)
+              ? arg.body.body.find((s) => t.isReturnStatement(s))?.argument
+              : arg.body;
 
-          if (body && t.isObjectExpression(body) && isRootStyleObject(body)) {
-            addDependencies(state, body, dependencies);
+            if (body && t.isObjectExpression(body) && isRootStyleObject(body)) {
+              addDependencies(state, body, dependencies);
+            }
+          }
+        } else {
+          const arg = t.isAssignmentExpression(path.node.arguments[0])
+            ? path.node.arguments[0].right
+            : path.node.arguments[0];
+
+          if (t.isObjectExpression(arg)) {
+            console.log(serializeStyles([objectExpressionToPlain(arg)]));
           }
         }
       },

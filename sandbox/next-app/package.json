@@ -13,13 +13,13 @@
     "@react-universal/core": "workspace:*",
     "@react-universal/elements": "workspace:*",
     "@react-universal/next": "workspace:*",
-    "@types/node": "^24.3.0",
-    "@types/react": "~19.1.11",
-    "@types/react-dom": "~19.1.7",
-    "next": "^15.5.0",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "react-native": "0.81.0",
-    "typescript": "~5.9.2"
+    "@types/node": "^24.10.1",
+    "@types/react": "~19.2.7",
+    "@types/react-dom": "~19.2.3",
+    "next": "^16.0.7",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-native": "0.82.1",
+    "typescript": "~5.9.3"
   }
 }

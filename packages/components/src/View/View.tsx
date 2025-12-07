@@ -36,7 +36,7 @@ function pickProps<T extends { ref?: React.Ref<any> }>(
   });
 }
 
-const ViewRoot = styled<any>('div', {
+const ViewRoot = styled<keyof React.JSX.IntrinsicElements>('div', {
   name: 'View',
   slot: 'Root',
 })<{ ownerState: ViewOwnerState }>({

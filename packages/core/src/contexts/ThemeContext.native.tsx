@@ -16,9 +16,7 @@ export const UniversalProvider: React.FC<UniversalProviderProps> = ({
       initialTheme: 'light',
     },
     themes: {
-      // @ts-expect-error
       light: extractTheme(theme, 'light'),
-      // @ts-expect-error
       dark: extractTheme(theme, 'dark'),
     },
   });
