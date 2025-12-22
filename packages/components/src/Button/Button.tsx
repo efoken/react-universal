@@ -1,17 +1,12 @@
 'use client';
 
-import type { ResponderEvent } from '@react-universal/core';
-import { styled, useOwnerState } from '@react-universal/core';
-import { runIfFunction } from '@react-universal/utils';
+import { styled, useOwnerState, usePressEvents } from '@react-universal/core';
+import { composeEventHandlers, runIfFunction } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
 import { useRef, useState } from 'react';
-import type {
-  BlurEvent as RNBlurEvent,
-  FocusEvent as RNFocusEvent,
-  MouseEvent as RNMouseEvent,
-} from 'react-native';
+import type { BlurEvent as RNBlurEvent, FocusEvent as RNFocusEvent } from 'react-native';
 import { View } from '../View';
-import type { ButtonMethods, ButtonOwnerState, ButtonProps } from './Button.types';
+import type { ButtonOwnerState, ButtonProps } from './Button.types';
 
 const ButtonRoot = styled(View, {
   name: 'Button',
@@ -19,7 +14,6 @@ const ButtonRoot = styled(View, {
   shouldForwardProp: (prop) => prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx',
 })<{
   disabled?: boolean;
-  onMouseDown?: React.MouseEventHandler<HTMLElement>;
   ownerState: ButtonOwnerState;
   type?: 'button' | 'submit' | 'reset';
 }>({
@@ -39,19 +33,33 @@ const ButtonRoot = styled(View, {
   },
 });
 
-export const Button: React.FC<ButtonProps & { ref?: React.Ref<HTMLElement & ButtonMethods> }> = ({
+export const Button: React.FC<ButtonProps & { ref?: React.Ref<HTMLElement> }> = ({
   as: _as,
   children,
+  delayLongPress,
   disabled = false,
   href,
   onBlur,
+  onClick,
+  onResponderTerminationRequest,
+  onContextMenu,
   onFocus,
   onFocusVisible,
+  onResponderTerminate,
+  onResponderMove,
+  onStartShouldSetResponder,
+  onMouseEnter,
+  onMouseLeave,
   onHoverIn,
   onHoverOut,
   onKeyDown,
-  onKeyUp,
+  onLongPress,
   onPress,
+  onPressIn,
+  onPressMove,
+  onResponderRelease,
+  onPressOut,
+  onResponderGrant,
   ref,
   style,
   tabIndex,
@@ -68,16 +76,18 @@ export const Button: React.FC<ButtonProps & { ref?: React.Ref<HTMLElement & Butt
     setFocusVisible(false);
   }
 
-  const handleMouseEnter = (event: RNMouseEvent) => {
+  const handleMouseEnter = (event: React.MouseEvent<HTMLElement>) => {
     setHovered(true);
     onHoverIn?.(event);
+    onMouseEnter?.(event);
   };
 
-  const handleMouseLeave = (event: RNMouseEvent) => {
+  const handleMouseLeave = (event: React.MouseEvent<HTMLElement>) => {
     if (focusVisible) {
       event.preventDefault();
     }
     onHoverOut?.(event);
+    onMouseLeave?.(event);
   };
 
   const handleBlur = (event: RNBlurEvent) => {
@@ -102,77 +112,16 @@ export const Button: React.FC<ButtonProps & { ref?: React.Ref<HTMLElement & Butt
     onFocus?.(event);
   };
 
-  const isNativeButton = () =>
-    hostRef.current?.tagName === 'BUTTON' ||
-    (hostRef.current?.tagName === 'A' && (hostRef.current as HTMLAnchorElement).href);
-
-  const handleClick = (event: ResponderEvent) => {
-    if (!disabled) {
-      onPress?.(event);
-    }
-  };
-
-  const handleMouseDown = () => {
-    if (!disabled) {
-      setPressed(true);
-      document.addEventListener(
-        'mouseup',
-        () => {
-          setPressed(false);
-        },
-        { once: true },
-      );
-    }
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
-    onKeyDown?.(event);
-
-    if (event.defaultPrevented) {
-      return;
-    }
-
-    if (event.target === event.currentTarget && !isNativeButton() && event.key === ' ') {
-      event.preventDefault();
-    }
-
-    if (event.target === event.currentTarget && event.key === ' ' && !disabled) {
-      setPressed(true);
-    }
-
-    // Keyboard accessibility for non interactive elements
-    if (
-      event.target === event.currentTarget &&
-      !isNativeButton() &&
-      event.key === 'Enter' &&
-      !disabled
-    ) {
-      event.preventDefault();
-      onPress?.(event as any);
-    }
-  };
-
-  const handleKeyUp = (event: React.KeyboardEvent<HTMLElement>) => {
-    // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
-    // https://codesandbox.io/p/sandbox/button-keyup-preventdefault-dn7f0
-
-    if (event.target === event.currentTarget) {
-      setPressed(false);
-    }
-
-    onKeyUp?.(event);
-
-    // Keyboard accessibility for non interactive elements
-    if (
-      event.target === event.currentTarget &&
-      !isNativeButton() &&
-      !disabled &&
-      event.key === ' ' &&
-      !event.defaultPrevented
-    ) {
-      onPress?.(event as any);
-    }
-  };
+  const pressEventHandlers = usePressEvents(hostRef, {
+    delayLongPress,
+    disabled,
+    onLongPress,
+    onPress,
+    onPressChange: setPressed,
+    onPressIn,
+    onPressMove,
+    onPressOut,
+  });
 
   const handleRef = useComposedRefs<any>(hostRef, ref);
 
@@ -193,13 +142,30 @@ export const Button: React.FC<ButtonProps & { ref?: React.Ref<HTMLElement & Butt
       style={runIfFunction(style, { focusVisible, hovered, pressed })}
       type={href == null ? (type ?? 'button') : undefined}
       onBlur={handleBlur}
-      onClick={handleClick}
+      onClick={composeEventHandlers(pressEventHandlers.onClick, onClick)}
+      onContextMenu={composeEventHandlers(pressEventHandlers.onContextMenu, onContextMenu)}
       onFocus={handleFocus}
-      onKeyDown={handleKeyDown}
-      onKeyUp={handleKeyUp}
-      onMouseDown={handleMouseDown}
+      onKeyDown={composeEventHandlers(pressEventHandlers.onKeyDown, onKeyDown)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onResponderGrant={composeEventHandlers(pressEventHandlers.onResponderGrant, onResponderGrant)}
+      onResponderMove={composeEventHandlers(pressEventHandlers.onResponderMove, onResponderMove)}
+      onResponderRelease={composeEventHandlers(
+        pressEventHandlers.onResponderRelease,
+        onResponderRelease,
+      )}
+      onResponderTerminate={composeEventHandlers(
+        pressEventHandlers.onResponderTerminate,
+        onResponderTerminate,
+      )}
+      onResponderTerminationRequest={composeEventHandlers(
+        pressEventHandlers.onResponderTerminationRequest,
+        onResponderTerminationRequest,
+      )}
+      onStartShouldSetResponder={composeEventHandlers(
+        pressEventHandlers.onStartShouldSetResponder,
+        onStartShouldSetResponder,
+      )}
       {...props}
     >
       {runIfFunction(children, { focusVisible, hovered, pressed })}

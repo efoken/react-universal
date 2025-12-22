@@ -1,17 +1,16 @@
 'use client';
 
+import type { ForwardedProps } from '@react-universal/core';
 import {
-  type ForwardedProps,
   forwardedProps,
   getLocaleDirection,
   styled,
   useElementLayout,
-  usePlatformMethods,
 } from '@react-universal/core';
 import { noop, pick } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
 import { useRef } from 'react';
-import type { ImageMethods, ImageProps } from './Image.types';
+import type { ImageProps } from './Image.types';
 import { ImageLoader } from './ImageLoader';
 
 function pickProps<T extends { ref?: React.Ref<any> }>(
@@ -58,7 +57,7 @@ export const Image = ({
   onPartialLoad,
   onProgress,
   ...props
-}: ImageProps & { ref?: React.Ref<HTMLImageElement & ImageMethods> }): React.ReactNode => {
+}: ImageProps & { ref?: React.Ref<HTMLImageElement> }): React.ReactNode => {
   const hostRef = useRef<HTMLImageElement>(null);
 
   useElementLayout(hostRef, onLayout);
@@ -69,8 +68,7 @@ export const Image = ({
   const supportedProps = pickProps(props);
   supportedProps.dir = componentDirection;
 
-  const platformMethodsRef = usePlatformMethods(hostRef);
-  const handleRef = useComposedRefs(hostRef, platformMethodsRef, props.ref);
+  const handleRef = useComposedRefs(hostRef, props.ref);
 
   supportedProps.ref = handleRef;
 

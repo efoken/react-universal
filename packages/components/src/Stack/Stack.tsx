@@ -3,10 +3,8 @@
 import type { BreakpointValue, RNStyle, SxProps, Theme, ThemeValue } from '@react-universal/core';
 import { handleBreakpoints, styled, useOwnerState } from '@react-universal/core';
 import { Children, cloneElement } from 'react';
-import type { ViewMethods, ViewProps } from '../View';
+import type { ViewProps } from '../View';
 import { View } from '../View';
-
-export interface StackMethods extends ViewMethods {}
 
 export interface StackProps extends ViewProps {
   /**
@@ -78,7 +76,7 @@ const StackRoot = styled(View, {
   })),
 }));
 
-export const Stack: React.FC<StackProps & { ref?: React.Ref<HTMLElement & StackMethods> }> = ({
+export const Stack: React.FC<StackProps & { ref?: React.Ref<HTMLElement> }> = ({
   children,
   direction = 'column',
   divider,

@@ -2,7 +2,7 @@
 
 import type { ResponderEvent, StyleProp } from '@react-universal/core';
 import { createElement, styled } from '@react-universal/core';
-import { isArray, isNumber, isString } from '@react-universal/utils';
+import { type AnyObject, isArray, isNumber, isString } from '@react-universal/utils';
 import type {
   CircleProps,
   ClipPathProps,
@@ -22,7 +22,6 @@ import type {
   RadialGradientProps,
   RectProps,
   StopProps,
-  SvgMethods,
   SvgProps,
   SymbolProps,
   TextPathProps,
@@ -92,7 +91,7 @@ function createComponent<
       children?: React.ReactNode;
       parent?: React.ComponentType;
       style?: StyleProp<any>;
-    } = Record<string, never>,
+    } = AnyObject<never>,
 >(
   Base: keyof React.JSX.IntrinsicElements | React.ComponentType<any>,
   name: Capitalize<string>,
@@ -202,7 +201,7 @@ const SvgRoot = styled('svg', {
   display: 'block',
 });
 
-export const Svg = createComponent<SVGSVGElement & SvgMethods, SvgProps>(SvgRoot, 'Svg');
+export const Svg = createComponent<SVGSVGElement, SvgProps>(SvgRoot, 'Svg');
 
 export const Circle = createComponent<SVGCircleElement, CircleProps>('circle', 'Circle');
 export const ClipPath = createComponent<SVGClipPathElement, ClipPathProps>('clipPath', 'ClipPath');

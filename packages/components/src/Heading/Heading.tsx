@@ -2,10 +2,8 @@
 
 import type { SxProps } from '@react-universal/core';
 import { styled } from '@react-universal/core';
-import type { TextMethods, TextProps } from '../Text';
+import type { TextProps } from '../Text';
 import { Text } from '../Text';
-
-export interface HeadingMethods extends TextMethods {}
 
 export interface HeadingProps extends TextProps {
   /**
@@ -23,8 +21,8 @@ const HeadingRoot = styled(Text, {
   fontWeight: 700,
 }));
 
-export const Heading: React.FC<
-  HeadingProps & { ref?: React.Ref<HTMLHeadingElement & HeadingMethods> }
-> = (props) => <HeadingRoot aria-level={2} role="heading" {...props} />;
+export const Heading: React.FC<HeadingProps & { ref?: React.Ref<HTMLHeadingElement> }> = (
+  props,
+) => <HeadingRoot aria-level={2} role="heading" {...props} />;
 
 Heading.displayName = 'Heading';

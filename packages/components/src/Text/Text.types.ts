@@ -1,7 +1,7 @@
 import type {
   AccessibilityProps,
   LayoutEvent,
-  PlatformMethods,
+  ResponderConfig,
   RNStyle,
   StyleProp,
   SxProps,
@@ -12,16 +12,26 @@ import type {
   TextProps as RNTextProps,
 } from 'react-native';
 
-export interface TextMethods extends PlatformMethods {}
-
 export type TextStyle = Omit<RNStyle, 'objectFit'>;
 
 export interface TextProps
   extends Omit<
       RNTextProps,
-      keyof RNAccessibilityProps | 'nativeID' | 'onLayout' | 'selectable' | 'style'
+      | keyof RNAccessibilityProps
+      | 'nativeID'
+      | 'onLayout'
+      | 'onResponderGrant'
+      | 'onResponderMove'
+      | 'onResponderRelease'
+      | 'onResponderTerminate'
+      | 'selectable'
+      | 'style'
     >,
-    AccessibilityProps {
+    AccessibilityProps,
+    Pick<
+      ResponderConfig,
+      'onResponderGrant' | 'onResponderMove' | 'onResponderRelease' | 'onResponderTerminate'
+    > {
   as?: React.ElementType;
   dataSet?: AnyObject;
   dir?: 'ltr' | 'rtl' | 'auto';
@@ -34,10 +44,27 @@ export interface TextProps
   lang?: Intl.UnicodeBCP47LocaleIdentifier;
   /** @platform web */
   onClick?: React.MouseEventHandler<HTMLElement>;
+  /** @platform web */
+  onClickCapture?: (event: React.MouseEvent<HTMLElement>) => void;
+  /** @platform web */
+  onContextMenu?: (event: React.MouseEvent<HTMLElement>) => void;
+  /** @platform web */
+  onContextMenuCapture?: (event: React.MouseEvent<HTMLElement>) => void;
+  /** @platform web */
+  onKeyDown?: (event: React.KeyboardEvent<HTMLElement>) => void;
+  /** @platform web */
+  onKeyDownCapture?: (event: React.KeyboardEvent<HTMLElement>) => void;
+  /** @platform web */
+  onKeyUp?: (event: React.KeyboardEvent<HTMLElement>) => void;
+  /** @platform web */
+  onKeyUpCapture?: (event: React.KeyboardEvent<HTMLElement>) => void;
   /**
    * Callback invoked on mount and layout changes.
    */
   onLayout?: (event: LayoutEvent) => void;
+  onMoveShouldSetResponder?: () => boolean;
+  onResponderTerminationRequest?: () => boolean;
+  onStartShouldSetResponder?: () => boolean;
   style?: StyleProp<TextStyle>;
   /**
    * The system prop that allows defining system overrides as well as additional

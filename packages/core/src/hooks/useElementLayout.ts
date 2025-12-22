@@ -1,7 +1,6 @@
 import type { AnyFunction } from '@react-universal/utils';
 import { isEqualShallow, isFunction } from '@react-universal/utils';
 import { isClient, isWindowDefined, useIsomorphicLayoutEffect } from '@tamagui/constants';
-import type { MeasureInWindowOnSuccessCallback, MeasureOnSuccessCallback } from 'react-native';
 
 const layoutHandlers = new WeakMap<HTMLElement, AnyFunction>();
 const nodes = new Set<HTMLElement>();
@@ -202,7 +201,7 @@ if (isClient) {
   }
 }
 
-export function getElementLayoutEvent(
+function getElementLayoutEvent(
   nodeRect: DOMRectReadOnly,
   parentRect: DOMRectReadOnly,
 ): LayoutEvent {
@@ -285,9 +284,7 @@ function ensureWebElement<T>(x: T): HTMLElement | undefined {
   return x instanceof HTMLElement ? x : undefined;
 }
 
-export function getBoundingClientRectAsync(
-  node: HTMLElement | null,
-): Promise<DOMRectReadOnly | false> {
+function getBoundingClientRectAsync(node: HTMLElement | null): Promise<DOMRectReadOnly | false> {
   return new Promise<DOMRectReadOnly | false>((res) => {
     if (node == null || node.nodeType !== 1) {
       return res(false);
@@ -302,83 +299,4 @@ export function getBoundingClientRectAsync(
     );
     io.observe(node);
   });
-}
-
-async function measureNode(
-  node: HTMLElement,
-  relativeTo?: HTMLElement | null,
-): Promise<null | LayoutValue> {
-  const relativeNode = relativeTo || node?.parentElement;
-  if (relativeNode instanceof HTMLElement) {
-    const [nodeDim, relativeNodeDim] = await Promise.all([
-      getBoundingClientRectAsync(node),
-      getBoundingClientRectAsync(relativeNode),
-    ]);
-    if (relativeNodeDim && nodeDim) {
-      return getRelativeDimensions(nodeDim, relativeNodeDim);
-    }
-  }
-  return null;
-}
-
-export async function measure(
-  node: HTMLElement,
-  callback: MeasureOnSuccessCallback,
-): Promise<LayoutValue | null> {
-  const out = await measureNode(
-    node,
-    node.parentNode instanceof HTMLElement ? node.parentNode : null,
-  );
-  if (out) {
-    callback?.(out.x, out.y, out.width, out.height, out.pageX, out.pageY);
-  }
-  return out;
-}
-
-export function createMeasure(
-  node: HTMLElement,
-): (callback: MeasureOnSuccessCallback) => Promise<LayoutValue | null> {
-  return (callback) => measure(node, callback);
-}
-
-export interface WindowLayout {
-  height: number;
-  pageX: number;
-  pageY: number;
-  width: number;
-}
-
-export async function measureInWindow(
-  node: HTMLElement,
-  callback: MeasureInWindowOnSuccessCallback,
-): Promise<WindowLayout | null> {
-  const out = await measureNode(node, null);
-  if (out) {
-    callback?.(out.pageX, out.pageY, out.width, out.height);
-  }
-  return out;
-}
-
-export function createMeasureInWindow(
-  node: HTMLElement,
-): (callback: MeasureInWindowOnSuccessCallback) => Promise<WindowLayout | null> {
-  return (callback) => measureInWindow(node, callback);
-}
-
-export async function measureLayout(
-  node: HTMLElement,
-  relativeNode: HTMLElement,
-  callback: MeasureOnSuccessCallback,
-): Promise<LayoutValue | null> {
-  const out = await measureNode(node, relativeNode);
-  if (out) {
-    callback?.(out.x, out.y, out.width, out.height, out.pageX, out.pageY);
-  }
-  return out;
-}
-
-export function createMeasureLayout(
-  node: HTMLElement,
-): (relativeTo: HTMLElement, callback: MeasureOnSuccessCallback) => Promise<LayoutValue | null> {
-  return (relativeTo, callback) => measureLayout(node, relativeTo, callback);
 }

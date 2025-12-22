@@ -2,10 +2,8 @@
 
 import type { SxProps } from '@react-universal/core';
 import { styled } from '@react-universal/core';
-import type { ViewMethods, ViewProps } from '../View';
+import type { ViewProps } from '../View';
 import { View } from '../View';
-
-export interface SpacerMethods extends ViewMethods {}
 
 export interface SpacerProps extends ViewProps {
   /**
@@ -24,8 +22,8 @@ const SpacerRoot = styled(View, {
   justifySelf: 'stretch',
 });
 
-export const Spacer: React.FC<SpacerProps & { ref?: React.Ref<HTMLDivElement & SpacerMethods> }> = (
-  props,
-) => <SpacerRoot {...props} />;
+export const Spacer: React.FC<SpacerProps & { ref?: React.Ref<HTMLElement> }> = (props) => (
+  <SpacerRoot {...props} />
+);
 
 Spacer.displayName = 'Spacer';

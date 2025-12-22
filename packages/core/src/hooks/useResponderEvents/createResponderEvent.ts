@@ -1,4 +1,5 @@
-import { type DeepMutable, getBoundingClientRect, isFunction, noop } from '@react-universal/utils';
+import type { DeepMutable } from '@react-universal/utils';
+import { getBoundingClientRect, isFunction, noop } from '@react-universal/utils';
 import type { NativeTouchEvent } from 'react-native';
 import type { ResponderTouchHistoryStore, TouchHistory } from './ResponderTouchHistoryStore';
 

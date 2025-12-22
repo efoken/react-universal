@@ -1,5 +1,6 @@
 import {
   normalizeLayoutEvent,
+  normalizeMouseEvent,
   normalizeResponderEvent,
   normalizeRole,
   styled,
@@ -27,8 +28,11 @@ export const TextInput: React.FC<TextInputProps & { ref?: React.Ref<any> }> = ({
   lang,
   onChangeText,
   onClick,
+  onClickCapture,
   onContentSizeChange,
   onLayout,
+  onMouseEnter,
+  onMouseLeave,
   onMoveShouldSetResponder,
   onMoveShouldSetResponderCapture,
   onResponderEnd,
@@ -85,9 +89,12 @@ export const TextInput: React.FC<TextInputProps & { ref?: React.Ref<any> }> = ({
       role={normalizeRole(role)}
       style={style as any}
       onChangeText={handleChangeText}
-      onClick={normalizeResponderEvent(onClick)}
+      onClick={normalizeMouseEvent(onClick)}
+      onClickCapture={normalizeMouseEvent(onClickCapture)}
       onContentSizeChange={handleContentSizeChange}
       onLayout={normalizeLayoutEvent(onLayout)}
+      onMouseEnter={onMouseEnter as any}
+      onMouseLeave={onMouseLeave as any}
       onMoveShouldSetResponder={normalizeResponderEvent(onMoveShouldSetResponder)}
       onMoveShouldSetResponderCapture={normalizeResponderEvent(onMoveShouldSetResponderCapture)}
       onResponderEnd={normalizeResponderEvent(onResponderEnd)}

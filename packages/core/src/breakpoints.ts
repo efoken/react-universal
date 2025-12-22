@@ -16,7 +16,7 @@ export type Breakpoint = keyof Breakpoints;
 export type BreakpointValue<T> = T | Partial<Record<Breakpoint, T | undefined>>;
 
 export function handleBreakpoints<T extends (value: any) => AnyObject>(
-  _props: { theme: { breakpoints: Record<string, any> } },
+  _props: { theme: { breakpoints: AnyObject } },
   propValue: unknown,
   styleFromPropValue: T,
 ): ReturnType<T> {

@@ -181,7 +181,6 @@ export interface RNStyle
       | 'top'
       | 'width'
       | 'writingDirection'
-      // | `experimental_${string}`
     >,
     RNStyleWeb {
   blockSize?: NonNullable<RNViewStyle['height']> | (string & {});

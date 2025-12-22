@@ -4,21 +4,21 @@ export type ForwardedProps<T> = Omit<
     : T extends HTMLInputElement
       ? React.JSX.IntrinsicElements['input']
       : React.HTMLProps<T>,
-  'as' | 'ref' | 'style' | keyof typeof clickProps | keyof typeof touchProps
+  'as' | 'ref' | 'style'
 > &
   React.RefAttributes<T>;
 
 // https://github.com/necolas/react-native-web/blob/master/packages/react-native-web/src/exports/View/index.js
 const defaultProps = {
-  children: true,
-  dataSet: true,
-  dir: true,
-  id: true,
-  ref: true,
-  suppressHydrationWarning: true,
-  tabIndex: true,
-  testID: true,
-} as const;
+  children: true as const,
+  dataSet: true as const,
+  dir: true as const,
+  id: true as const,
+  ref: true as const,
+  suppressHydrationWarning: true as const,
+  tabIndex: true as const,
+  testID: true as const,
+};
 
 const accessibilityProps: Record<keyof React.AriaAttributes | 'role', true> = {
   'aria-activedescendant': true,
@@ -78,58 +78,80 @@ const accessibilityProps: Record<keyof React.AriaAttributes | 'role', true> = {
 };
 
 const clickProps = {
-  onAuxClick: true,
-  onClick: true,
-  onContextMenu: true,
-  onGotPointerCapture: true,
-  onLostPointerCapture: true,
-  onPointerCancel: true,
-  onPointerDown: true,
-  onPointerEnter: true,
-  onPointerLeave: true,
-  onPointerMove: true,
-  onPointerOut: true,
-  onPointerOver: true,
-  onPointerUp: true,
-} as const;
+  onAuxClick: true as const,
+  onAuxClickCapture: true as const,
+  onClick: true as const,
+  onClickCapture: true as const,
+  onContextMenu: true as const,
+  onContextMenuCapture: true as const,
+  onGotPointerCapture: true as const,
+  onGotPointerCaptureCapture: true as const,
+  onLostPointerCapture: true as const,
+  onLostPointerCaptureCapture: true as const,
+  onPointerCancel: true as const,
+  onPointerCancelCapture: true as const,
+  onPointerDown: true as const,
+  onPointerDownCapture: true as const,
+  onPointerEnter: true as const,
+  onPointerEnterCapture: true as const,
+  onPointerLeave: true as const,
+  onPointerLeaveCapture: true as const,
+  onPointerMove: true as const,
+  onPointerMoveCapture: true as const,
+  onPointerOut: true as const,
+  onPointerOutCapture: true as const,
+  onPointerOver: true as const,
+  onPointerOverCapture: true as const,
+  onPointerUp: true as const,
+  onPointerUpCapture: true as const,
+};
 
 const focusProps = {
-  onBlur: true,
-  onFocus: true,
-} as const;
+  onBlur: true as const,
+  onBlurCapture: true as const,
+  onFocus: true as const,
+  onFocusCapture: true as const,
+};
 
 const keyboardProps = {
-  onKeyDown: true,
-  onKeyDownCapture: true,
-  onKeyUp: true,
-  onKeyUpCapture: true,
-} as const;
+  onKeyDown: true as const,
+  onKeyDownCapture: true as const,
+  onKeyUp: true as const,
+  onKeyUpCapture: true as const,
+};
 
 const mouseProps = {
-  onMouseDown: true,
-  onMouseEnter: true,
-  onMouseLeave: true,
-  onMouseMove: true,
-  onMouseOut: true,
-  onMouseOver: true,
-  onMouseUp: true,
-} as const;
+  onMouseDown: true as const,
+  onMouseDownCapture: true as const,
+  onMouseEnter: true as const,
+  onMouseEnterCapture: true as const,
+  onMouseLeave: true as const,
+  onMouseLeaveCapture: true as const,
+  onMouseMove: true as const,
+  onMouseMoveCapture: true as const,
+  onMouseOut: true as const,
+  onMouseOutCapture: true as const,
+  onMouseOver: true as const,
+  onMouseOverCapture: true as const,
+  onMouseUp: true as const,
+  onMouseUpCapture: true as const,
+};
 
 const touchProps = {
-  onTouchCancel: true,
-  onTouchCancelCapture: true,
-  onTouchEnd: true,
-  onTouchEndCapture: true,
-  onTouchMove: true,
-  onTouchMoveCapture: true,
-  onTouchStart: true,
-  onTouchStartCapture: true,
-} as const;
+  onTouchCancel: true as const,
+  onTouchCancelCapture: true as const,
+  onTouchEnd: true as const,
+  onTouchEndCapture: true as const,
+  onTouchMove: true as const,
+  onTouchMoveCapture: true as const,
+  onTouchStart: true as const,
+  onTouchStartCapture: true as const,
+};
 
 const styleProps = {
-  style: true,
-  sx: true,
-} as const;
+  style: true as const,
+  sx: true as const,
+};
 
 export const forwardedProps = {
   defaultProps,

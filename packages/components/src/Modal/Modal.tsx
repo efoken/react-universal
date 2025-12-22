@@ -67,7 +67,9 @@ export const Modal: React.FC<
   backdropColor,
   dir,
   hideBackdrop = false,
+  onClick,
   onClose,
+  onKeyDown,
   onLayout,
   onMoveShouldSetResponder,
   onMoveShouldSetResponderCapture,
@@ -120,12 +122,15 @@ export const Modal: React.FC<
     if (event.target === hostRef.current && hostRef.current.open && !hideBackdrop) {
       onClose?.(event, 'backdropPress');
     }
+    onClick?.(event);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDialogElement>) => {
     if (event.key === 'Escape' && hostRef.current?.open) {
       onClose?.(event, 'escapeKeyDown');
       event.stopPropagation();
+    } else {
+      onKeyDown?.(event);
     }
   };
 
@@ -137,7 +142,6 @@ export const Modal: React.FC<
   supportedProps['aria-modal'] = role === 'dialog' || role === 'alertdialog' ? true : undefined;
   supportedProps.dir = componentDirection;
   supportedProps.onCancel = handleCancel;
-  // @ts-expect-error: `onClick` is currently missing in forwarded props
   supportedProps.onClick = handleClick;
   supportedProps.onKeyDown = handleKeyDown;
   supportedProps.role = role;

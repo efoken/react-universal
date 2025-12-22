@@ -1,6 +1,6 @@
 export * from './capitalize';
 export * from './cloneDeep';
-export * from './EventEmitter';
+export * from './composeEventHandlers';
 export * from './findLast';
 export * from './get';
 export * from './getBoundingClientRect';

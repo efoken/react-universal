@@ -1,5 +1,5 @@
 import type { AnyObject } from '@react-universal/utils';
-import { isFunction, noop } from '@react-universal/utils';
+import { noop } from '@react-universal/utils';
 import { composeStories } from '@storybook/react';
 import { act, fireEvent, render } from '@testing-library/react';
 import { createRef } from 'react';
@@ -311,20 +311,6 @@ describe('Text', () => {
         rerender(<Text ref={ref} id="1234" style={{ borderWidth: 6 }} />);
       });
       expect(ref).toHaveBeenCalledTimes(1);
-    });
-
-    test('node has imperative methods', () => {
-      const ref = createRef<React.ComponentRef<typeof Text>>();
-      act(() => {
-        render(<Text ref={ref} />);
-      });
-      const node = ref.current!;
-      // eslint-disable-next-line @typescript-eslint/unbound-method
-      expect(isFunction(node.measure));
-      // eslint-disable-next-line @typescript-eslint/unbound-method
-      expect(isFunction(node.measureLayout));
-      // eslint-disable-next-line @typescript-eslint/unbound-method
-      expect(isFunction(node.measureInWindow));
     });
   });
 

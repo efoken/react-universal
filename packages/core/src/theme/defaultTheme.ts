@@ -60,7 +60,7 @@ type DefaultTheme = {
     /** 144px */ 36: string;
   };
   radii: number[];
-  zIndices: Record<string, number>;
+  zIndices: AnyObject<number>;
   sxConfig: any;
 };
 

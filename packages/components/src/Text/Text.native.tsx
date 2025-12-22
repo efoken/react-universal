@@ -1,4 +1,9 @@
-import { normalizeLayoutEvent, normalizeRole, styled } from '@react-universal/core';
+import {
+  normalizeLayoutEvent,
+  normalizeResponderEvent,
+  normalizeRole,
+  styled,
+} from '@react-universal/core';
 import { Text as RNText } from 'react-native';
 import type { TextProps } from './Text.types';
 
@@ -15,6 +20,10 @@ export const Text: React.FC<TextProps & { ref?: React.Ref<any> }> = ({
   'aria-hidden': ariaHidden,
   lang,
   onLayout,
+  onResponderGrant,
+  onResponderMove,
+  onResponderRelease,
+  onResponderTerminate,
   role,
   style,
   ...props
@@ -27,6 +36,10 @@ export const Text: React.FC<TextProps & { ref?: React.Ref<any> }> = ({
     role={normalizeRole(role)}
     style={style as any}
     onLayout={normalizeLayoutEvent(onLayout)}
+    onResponderGrant={normalizeResponderEvent(onResponderGrant)}
+    onResponderMove={normalizeResponderEvent(onResponderMove)}
+    onResponderRelease={normalizeResponderEvent(onResponderRelease)}
+    onResponderTerminate={normalizeResponderEvent(onResponderTerminate)}
     {...props}
   />
 );

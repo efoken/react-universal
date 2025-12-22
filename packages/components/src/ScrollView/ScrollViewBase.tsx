@@ -3,7 +3,7 @@
 import { styled, useOwnerState } from '@react-universal/core';
 import { useComposedRefs } from '@tamagui/compose-refs';
 import { useRef } from 'react';
-import type { ViewMethods, ViewProps } from '../View';
+import type { ViewProps } from '../View';
 import { View } from '../View';
 import type { ScrollViewProps } from './ScrollView.types';
 
@@ -79,9 +79,7 @@ const ScrollViewRoot = styled(View, {
   },
 });
 
-export const ScrollViewBase: React.FC<
-  ScrollViewBaseProps & { ref?: React.Ref<HTMLElement & ViewMethods> }
-> = ({
+export const ScrollViewBase: React.FC<ScrollViewBaseProps & { ref?: React.Ref<HTMLElement> }> = ({
   onLayout,
   onScroll,
   onTouchMove,

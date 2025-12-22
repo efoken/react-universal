@@ -122,7 +122,6 @@ export const ScrollView: React.FC<
   onScrollBeginDrag,
   onScrollEndDrag,
   onTouchEnd,
-  onTouchMove,
   onTouchStart,
   pagingEnabled = false,
   ref,
@@ -184,10 +183,6 @@ export const ScrollView: React.FC<
   const handleTouchStart = (event: ResponderEvent) => {
     touching.current = true;
     onTouchStart?.(event);
-  };
-
-  const handleTouchMove = (event: ResponderEvent) => {
-    onTouchMove?.(event);
   };
 
   const scrollTo = ({
@@ -295,7 +290,6 @@ export const ScrollView: React.FC<
       onStartShouldSetResponder={handleStartShouldSetResponder}
       onStartShouldSetResponderCapture={handleStartShouldSetResponderCapture}
       onTouchEnd={handleTouchEnd}
-      onTouchMove={handleTouchMove}
       onTouchStart={handleTouchStart}
       {...props}
     >

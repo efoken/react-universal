@@ -1,16 +1,12 @@
 'use client';
 
 import { computePosition, flip, shift, size } from '@floating-ui/dom';
-import {
-  type ForwardedProps,
-  forwardedProps,
-  getLocaleDirection,
-  styled,
-} from '@react-universal/core';
+import type { ForwardedProps } from '@react-universal/core';
+import { forwardedProps, getLocaleDirection, styled } from '@react-universal/core';
 import { pick } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
-import type { PopoverMethods, PopoverProps } from './Popover.types';
+import type { PopoverProps } from './Popover.types';
 import { parseModifiers, resolveAnchor } from './Popover.utils';
 
 function pickProps<T extends { ref?: React.Ref<any> }>(
@@ -41,9 +37,7 @@ const PopoverRoot = styled('div', {
   },
 }));
 
-export const Popover: React.FC<
-  PopoverProps & { ref?: React.Ref<HTMLDivElement & PopoverMethods> }
-> = ({
+export const Popover: React.FC<PopoverProps & { ref?: React.Ref<HTMLDivElement> }> = ({
   anchor: _anchor,
   dir,
   modifiers: _modifiers,
@@ -77,7 +71,6 @@ export const Popover: React.FC<
     (event: ToggleEvent) => {
       const hostEl = hostRef.current;
       if (event.newState === 'open' && anchor != null && hostEl != null) {
-        // @ts-expect-error: `anchor` can be of type `RNView` only for Native
         computePosition(anchor, hostEl, {
           middleware: [
             modifiers.flip?.enabled ? flip(modifiers.flip.options) : false,

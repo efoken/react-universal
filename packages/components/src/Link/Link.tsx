@@ -1,7 +1,6 @@
 'use client';
 
 import { styled } from '@react-universal/core';
-import type { TextMethods } from '../Text';
 import { Text } from '../Text';
 import type { LinkProps } from './Link.types';
 
@@ -10,7 +9,7 @@ const LinkRoot = styled(Text, {
   slot: 'Root',
 })();
 
-export const Link: React.FC<LinkProps & { ref?: React.Ref<HTMLAnchorElement & TextMethods> }> = ({
+export const Link: React.FC<LinkProps & { ref?: React.Ref<HTMLAnchorElement> }> = ({
   download,
   rel,
   target,

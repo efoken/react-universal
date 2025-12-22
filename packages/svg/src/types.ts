@@ -1,6 +1,5 @@
 import type {
   AccessibilityProps,
-  PlatformMethods,
   ResponderEvent,
   RNStyle,
   StyleProp,
@@ -166,8 +165,6 @@ export interface GProps extends BasePathProps, FontProps {
   style?: StyleProp<GStyle>;
 }
 
-export interface SvgMethods extends Omit<PlatformMethods, 'blur' | 'focus'> {}
-
 export interface SvgProps
   extends Omit<GProps, 'style'>,
     Pick<RNViewProps, 'hitSlop' | 'style'>,
@@ -204,13 +201,13 @@ export interface CircleProps extends BasePathProps {
 export interface ClipPathProps {
   children?: React.ReactNode;
   id?: string;
-  style?: StyleProp<Record<string, never>>;
+  style?: StyleProp<AnyObject<never>>;
 }
 
 export interface DefsProps {
   children?: React.ReactNode;
   id?: string;
-  style?: StyleProp<Record<string, never>>;
+  style?: StyleProp<AnyObject<never>>;
 }
 
 export interface EllipseStyle extends BasePathStyle {

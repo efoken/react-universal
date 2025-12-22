@@ -3,7 +3,7 @@
 import { clamp, max, styled, useOwnerState } from '@react-universal/core';
 import type { AnyObject } from '@react-universal/utils';
 import { View } from '../View';
-import type { ContainerMethods, ContainerOwnerState, ContainerProps } from './Container.types';
+import type { ContainerOwnerState, ContainerProps } from './Container.types';
 
 const MIN_WIDTH = '20rem';
 const MAX_WIDTH = '90rem';
@@ -44,9 +44,11 @@ const ContainerRoot = styled(View, {
   },
 }));
 
-export const Container: React.FC<
-  ContainerProps & { ref?: React.Ref<HTMLElement & ContainerMethods> }
-> = ({ fixed = false, maxWidth = false, ...props }) => {
+export const Container: React.FC<ContainerProps & { ref?: React.Ref<HTMLElement> }> = ({
+  fixed = false,
+  maxWidth = false,
+  ...props
+}) => {
   const ownerState = useOwnerState({
     fixed,
     maxWidth,

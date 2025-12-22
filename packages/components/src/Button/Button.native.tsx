@@ -1,5 +1,6 @@
 import {
   normalizeLayoutEvent,
+  normalizeMouseEvent,
   normalizeResponderEvent,
   normalizeRole,
   styled,
@@ -26,14 +27,18 @@ export const Button: React.FC<ButtonProps & { ref?: React.Ref<any> }> = ({
   lang,
   onBlur,
   onClick,
+  onClickCapture,
   onFocus,
   onFocusVisible,
+  onHoverIn,
+  onHoverOut,
   onLayout,
   onLongPress,
   onMoveShouldSetResponder,
   onMoveShouldSetResponderCapture,
   onPress,
   onPressIn,
+  onPressMove,
   onPressOut,
   onResponderEnd,
   onResponderGrant,
@@ -80,14 +85,18 @@ export const Button: React.FC<ButtonProps & { ref?: React.Ref<any> }> = ({
       role={normalizeRole(role) ?? 'button'}
       style={_style}
       onBlur={handleBlur}
-      onClick={normalizeResponderEvent(onClick)}
+      onClick={normalizeMouseEvent(onClick)}
+      onClickCapture={normalizeMouseEvent(onClickCapture)}
       onFocus={handleFocus}
+      onHoverIn={onHoverIn as any}
+      onHoverOut={onHoverOut as any}
       onLayout={normalizeLayoutEvent(onLayout)}
       onLongPress={normalizeResponderEvent(onLongPress)}
       onMoveShouldSetResponder={normalizeResponderEvent(onMoveShouldSetResponder)}
       onMoveShouldSetResponderCapture={normalizeResponderEvent(onMoveShouldSetResponderCapture)}
       onPress={normalizeResponderEvent(onPress)}
       onPressIn={normalizeResponderEvent(onPressIn)}
+      onPressMove={normalizeResponderEvent(onPressMove)}
       onPressOut={normalizeResponderEvent(onPressOut)}
       onResponderEnd={normalizeResponderEvent(onResponderEnd)}
       onResponderGrant={normalizeResponderEvent(onResponderGrant)}

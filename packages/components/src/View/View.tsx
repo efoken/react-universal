@@ -7,14 +7,13 @@ import {
   styled,
   useElementLayout,
   useOwnerState,
-  usePlatformMethods,
   useResponderEvents,
 } from '@react-universal/core';
 import { isString, pick } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
 import { Children, use, useRef } from 'react';
 import { TextAncestorContext } from '../Text/TextAncestorContext';
-import type { ViewMethods, ViewOwnerState, ViewProps } from './View.types';
+import type { ViewOwnerState, ViewProps } from './View.types';
 
 function pickProps<T extends { ref?: React.Ref<any> }>(
   props: T,
@@ -57,7 +56,7 @@ const ViewRoot = styled<keyof React.JSX.IntrinsicElements>('div', {
   },
 });
 
-export const View: React.FC<ViewProps & { ref?: React.Ref<HTMLElement & ViewMethods> }> = ({
+export const View: React.FC<ViewProps & { ref?: React.Ref<HTMLElement> }> = ({
   as: _as,
   dir,
   hrefAttrs,
@@ -137,8 +136,7 @@ export const View: React.FC<ViewProps & { ref?: React.Ref<HTMLElement & ViewMeth
     }
   }
 
-  const platformMethodsRef = usePlatformMethods(hostRef);
-  const handleRef = useComposedRefs(hostRef, platformMethodsRef, props.ref);
+  const handleRef = useComposedRefs(hostRef, props.ref);
 
   supportedProps.ref = handleRef;
 

@@ -1,7 +1,6 @@
 import type {
   AccessibilityProps,
   LayoutEvent,
-  PlatformMethods,
   ResponderConfig,
   RNStyle,
   StyleProp,
@@ -23,8 +22,6 @@ export interface ImageSize {
   height: number;
   width: number;
 }
-
-export interface ImageMethods extends PlatformMethods {}
 
 export type ImageStyle = Omit<
   RNStyle,

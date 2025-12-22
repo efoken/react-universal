@@ -7,12 +7,13 @@ import {
   styled,
   useElementLayout,
   useOwnerState,
-  usePlatformMethods,
+  usePressEvents,
+  useResponderEvents,
 } from '@react-universal/core';
-import { isString, pick } from '@react-universal/utils';
+import { composeEventHandlers, isString, pick } from '@react-universal/utils';
 import { useComposedRefs } from '@tamagui/compose-refs';
-import { use, useCallback, useRef } from 'react';
-import type { TextMethods, TextOwnerState, TextProps, TextStyle } from './Text.types';
+import { use, useRef } from 'react';
+import type { TextOwnerState, TextProps, TextStyle } from './Text.types';
 import { TextAncestorContext } from './TextAncestorContext';
 
 function pickProps<T extends { ref?: React.Ref<any> }>(
@@ -75,33 +76,63 @@ const textNumberOfLinesStyle: TextStyle = {
   WebkitLineClamp: 'var(--number-of-lines)',
 };
 
-export const Text: React.FC<TextProps & { ref?: React.Ref<HTMLElement & TextMethods> }> = ({
+export const Text: React.FC<TextProps & { ref?: React.Ref<HTMLElement> }> = ({
   as: _as,
   dir,
+  disabled = false,
   hrefAttrs,
   numberOfLines,
   onClick,
+  onContextMenu,
+  onKeyDown,
   onLayout,
+  onLongPress,
+  onMoveShouldSetResponder,
   onPress,
+  onPressIn,
+  onPressOut,
+  onResponderGrant,
+  onResponderMove,
+  onResponderRelease,
+  onResponderTerminate,
+  onResponderTerminationRequest,
+  onStartShouldSetResponder,
   style,
   ...props
 }) => {
   const hasTextAncestor = use(TextAncestorContext);
   const hostRef = useRef<HTMLElement>(null);
 
-  useElementLayout(hostRef, onLayout);
+  const pressEventHandlers = usePressEvents(hostRef, {
+    disabled,
+    onLongPress,
+    onPress,
+    onPressIn,
+    onPressOut,
+  });
 
-  const handleClick = useCallback(
-    (event: React.MouseEvent<HTMLElement>) => {
-      if (onClick != null) {
-        onClick(event);
-      } else if (onPress != null) {
-        event.stopPropagation();
-        onPress(event as any);
-      }
-    },
-    [onClick, onPress],
-  );
+  useElementLayout(hostRef, onLayout);
+  useResponderEvents(hostRef, {
+    onMoveShouldSetResponder,
+    onResponderGrant: composeEventHandlers(pressEventHandlers.onResponderGrant, onResponderGrant),
+    onResponderMove: composeEventHandlers(pressEventHandlers.onResponderMove, onResponderMove),
+    onResponderRelease: composeEventHandlers(
+      pressEventHandlers.onResponderRelease,
+      onResponderRelease,
+    ),
+    onResponderTerminate: composeEventHandlers(
+      pressEventHandlers.onResponderTerminate,
+      onResponderTerminate,
+    ),
+    onResponderTerminationRequest: composeEventHandlers(
+      pressEventHandlers.onResponderTerminationRequest,
+      onResponderTerminationRequest,
+    ),
+    onStartShouldSetResponder: composeEventHandlers(
+      pressEventHandlers.onStartShouldSetResponder,
+      onStartShouldSetResponder,
+    ),
+  });
 
   let component: 'a' | 'div' | 'span' = hasTextAncestor ? 'span' : 'div';
 
@@ -115,10 +146,12 @@ export const Text: React.FC<TextProps & { ref?: React.Ref<HTMLElement & TextMeth
     supportedProps.dir = componentDirection ?? 'auto';
   }
 
-  if (onClick != null || onPress != null) {
-    // @ts-expect-error: `onClick` is currently missing in forwarded props
-    supportedProps.onClick = handleClick;
-  }
+  supportedProps.onClick = composeEventHandlers(pressEventHandlers.onClick, onClick);
+  supportedProps.onContextMenu = composeEventHandlers(
+    pressEventHandlers.onContextMenu,
+    onContextMenu,
+  );
+  supportedProps.onKeyDown = composeEventHandlers(pressEventHandlers.onKeyDown, onKeyDown);
 
   if (props.href != null) {
     component = 'a';
@@ -136,15 +169,14 @@ export const Text: React.FC<TextProps & { ref?: React.Ref<HTMLElement & TextMeth
     }
   }
 
-  const platformMethodsRef = usePlatformMethods(hostRef);
-  const handleRef = useComposedRefs(hostRef, platformMethodsRef, props.ref);
+  const handleRef = useComposedRefs(hostRef, props.ref);
 
   supportedProps.ref = handleRef;
 
   const ownerState = useOwnerState({
     hasTextAncestor,
     numberOfLines,
-    pressable: onClick != null || onPress != null,
+    pressable: onClick != null || onPress != null || onLongPress != null,
   });
 
   const element = (

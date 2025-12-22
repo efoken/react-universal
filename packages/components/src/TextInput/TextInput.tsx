@@ -6,7 +6,6 @@ import {
   styled,
   useElementLayout,
   useOwnerState,
-  usePlatformMethods,
   useResponderEvents,
 } from '@react-universal/core';
 import { normalizeEvent, pick } from '@react-universal/utils';
@@ -216,9 +215,6 @@ export const TextInput: React.FC<
 
   const imperativeRef = useMemo(
     () => (node: (HTMLInputElement & TextInputMethods) | null) => {
-      // TextInput needs to add more methods to the node in addition to those
-      // added by `usePlatformMethods`. This is temporarily until an API like
-      // `TextInput.clear(hostRef)` is added to React Native.
       if (node != null) {
         node.clear = () => {
           node.value = '';
@@ -368,13 +364,7 @@ export const TextInput: React.FC<
   // @ts-expect-error: `virtualkeyboardpolicy` is missing from React types
   supportedProps.virtualkeyboardpolicy = showSoftInputOnFocus ? 'auto' : 'manual';
 
-  const platformMethodsRef = usePlatformMethods(hostRef);
-  const handleRef = useComposedRefs<HTMLInputElement | null>(
-    hostRef,
-    platformMethodsRef,
-    imperativeRef,
-    props.ref,
-  );
+  const handleRef = useComposedRefs<HTMLInputElement | null>(hostRef, imperativeRef, props.ref);
 
   supportedProps.ref = handleRef;
 

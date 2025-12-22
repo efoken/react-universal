@@ -5,9 +5,9 @@ import type {
   ViewProps as RNViewProps,
 } from 'react-native';
 import type { TextStyle } from '../Text';
-import type { ViewMethods, ViewProps } from '../View';
+import type { ViewProps } from '../View';
 
-export interface TextInputMethods extends ViewMethods {
+export interface TextInputMethods {
   clear(): void;
   isFocused(): boolean;
   setSelection(start: number, end: number): void;

@@ -1,6 +1,7 @@
 import type { ResponderEvent } from '@react-universal/core';
 import {
   normalizeLayoutEvent,
+  normalizeMouseEvent,
   normalizeResponderEvent,
   normalizeRole,
   styled,
@@ -34,8 +35,11 @@ export const Modal: React.FC<ModalProps & { ref?: React.Ref<any> }> = ({
   hideBackdrop = false,
   lang,
   onClick,
+  onClickCapture,
   onClose,
   onLayout,
+  onMouseEnter,
+  onMouseLeave,
   onMoveShouldSetResponder,
   onMoveShouldSetResponderCapture,
   onResponderEnd,
@@ -96,8 +100,11 @@ export const Modal: React.FC<ModalProps & { ref?: React.Ref<any> }> = ({
       supportedOrientations={['portrait', 'landscape']}
       visible={open}
       onAccessibilityEscape={handleAccessibilityEscape}
-      onClick={normalizeResponderEvent(onClick)}
+      onClick={normalizeMouseEvent(onClick)}
+      onClickCapture={normalizeMouseEvent(onClickCapture)}
       onLayout={normalizeLayoutEvent(onLayout)}
+      onMouseEnter={onMouseEnter as any}
+      onMouseLeave={onMouseLeave as any}
       onMoveShouldSetResponder={normalizeResponderEvent(onMoveShouldSetResponder)}
       onMoveShouldSetResponderCapture={normalizeResponderEvent(onMoveShouldSetResponderCapture)}
       onRequestClose={onClose}

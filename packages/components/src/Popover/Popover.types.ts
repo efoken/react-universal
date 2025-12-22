@@ -6,7 +6,7 @@ import type {
   Strategy,
   VirtualElement,
 } from '@floating-ui/react-native';
-import type { PlatformMethods, SxProps } from '@react-universal/core';
+import type { SxProps } from '@react-universal/core';
 import type { ViewProps } from '../View';
 
 export type PopoverAnchor =
@@ -16,9 +16,6 @@ export type PopoverAnchor =
   | HTMLElement
   | (() => HTMLElement)
   | React.RefObject<HTMLElement | null>
-  | PlatformMethods
-  | (() => PlatformMethods)
-  | React.RefObject<PlatformMethods | null>
   | undefined
   | null;
 
@@ -27,8 +24,6 @@ export interface PopoverModifier<TName extends string, TOptions extends object> 
   name: TName;
   options?: TOptions;
 }
-
-export interface PopoverMethods {}
 
 export interface PopoverProps
   extends Pick<

@@ -1,2 +1,2 @@
-export type { SpacerMethods, SpacerProps } from './Spacer';
+export type { SpacerProps } from './Spacer';
 export { Spacer } from './Spacer';

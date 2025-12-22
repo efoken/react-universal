@@ -1,6 +1,5 @@
 'use client';
 
-import type { ButtonMethods } from '@react-universal/components';
 import { Button } from '@react-universal/components';
 import { H2, P, Span } from '@react-universal/elements';
 import { useCallback, useState } from 'react';
@@ -8,7 +7,7 @@ import { useCallback, useState } from 'react';
 export interface CardProps {
   description?: string;
   href?: string;
-  ref?: React.Ref<HTMLAnchorElement & ButtonMethods>;
+  ref?: React.Ref<HTMLAnchorElement>;
   title?: string;
 }
 

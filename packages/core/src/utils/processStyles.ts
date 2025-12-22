@@ -1,12 +1,10 @@
 import type { AnyObject } from '@react-universal/utils';
-import { isFunction, runIfFunction } from '@react-universal/utils';
+import { EMPTY_OBJECT, isFunction, runIfFunction } from '@react-universal/utils';
 import type { CompoundVariant, StyleInterpolation, StyleValues, StyleVariants } from '../types';
-
-const emptyObject = {};
 
 function processVariants(
   props: { ownerState?: AnyObject; [key: string]: any },
-  variants: StyleVariants<AnyObject> = emptyObject,
+  variants: StyleVariants<AnyObject> = EMPTY_OBJECT,
   compoundVariants: CompoundVariant<AnyObject>[] = [],
   results: any[] = [],
 ) {

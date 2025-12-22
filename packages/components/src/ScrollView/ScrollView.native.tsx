@@ -1,5 +1,6 @@
 import {
   normalizeLayoutEvent,
+  normalizeMouseEvent,
   normalizeResponderEvent,
   normalizeRole,
   styled,
@@ -19,7 +20,10 @@ export const ScrollView: React.FC<ScrollViewProps & { ref?: React.Ref<any> }> = 
   contentContainerStyle,
   lang,
   onClick,
+  onClickCapture,
   onLayout,
+  onMouseEnter,
+  onMouseLeave,
   onMoveShouldSetResponder,
   onMoveShouldSetResponderCapture,
   onResponderEnd,
@@ -49,8 +53,11 @@ export const ScrollView: React.FC<ScrollViewProps & { ref?: React.Ref<any> }> = 
     refreshControl={refreshControl as any}
     role={normalizeRole(role)}
     style={style as any}
-    onClick={normalizeResponderEvent(onClick)}
+    onClick={normalizeMouseEvent(onClick)}
+    onClickCapture={normalizeMouseEvent(onClickCapture)}
     onLayout={normalizeLayoutEvent(onLayout)}
+    onMouseEnter={onMouseEnter as any}
+    onMouseLeave={onMouseLeave as any}
     onMoveShouldSetResponder={normalizeResponderEvent(onMoveShouldSetResponder)}
     onMoveShouldSetResponderCapture={normalizeResponderEvent(onMoveShouldSetResponderCapture)}
     onResponderEnd={normalizeResponderEvent(onResponderEnd)}

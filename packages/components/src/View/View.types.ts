@@ -1,7 +1,6 @@
 import type {
   AccessibilityProps,
   LayoutEvent,
-  PlatformMethods,
   ResponderConfig,
   ResponderEvent,
   RNStyle,
@@ -13,8 +12,6 @@ import type {
   AccessibilityProps as RNAccessibilityProps,
   ViewProps as RNViewProps,
 } from 'react-native';
-
-export interface ViewMethods extends PlatformMethods {}
 
 export type ViewStyle = Omit<
   RNStyle,
@@ -41,7 +38,10 @@ export interface ViewProps
       | 'focusable'
       | 'nativeID'
       | 'onClick'
+      | 'onClickCapture'
       | 'onLayout'
+      | 'onMouseEnter'
+      | 'onMouseLeave'
       | 'onTouchCancel'
       | 'onTouchEnd'
       | 'onTouchEndCapture'
@@ -62,7 +62,10 @@ export interface ViewProps
     target?: React.HTMLAttributeAnchorTarget;
   };
   lang?: Intl.UnicodeBCP47LocaleIdentifier;
-  onClick?: (event: ResponderEvent) => void;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  onClickCapture?: (event: React.MouseEvent<HTMLElement>) => void;
+  onContextMenu?: (event: React.MouseEvent<HTMLElement>) => void;
+  onContextMenuCapture?: (event: React.MouseEvent<HTMLElement>) => void;
   onKeyDown?: (event: React.KeyboardEvent<HTMLElement>) => void;
   onKeyDownCapture?: (event: React.KeyboardEvent<HTMLElement>) => void;
   onKeyUp?: (event: React.KeyboardEvent<HTMLElement>) => void;
@@ -71,6 +74,8 @@ export interface ViewProps
    * Callback invoked on mount and layout changes.
    */
   onLayout?: (event: LayoutEvent) => void;
+  onMouseEnter?: (event: React.MouseEvent<HTMLElement>) => void;
+  onMouseLeave?: (event: React.MouseEvent<HTMLElement>) => void;
   onTouchCancel?: (event: ResponderEvent) => void;
   onTouchEnd?: (event: ResponderEvent) => void;
   onTouchEndCapture?: (event: ResponderEvent) => void;
