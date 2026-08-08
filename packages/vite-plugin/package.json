@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",
-    "esbuild": "^0.27.0",
+    "esbuild": "^0.28.2",
     "react": "19.2.0",
     "vite": "^7.2.6"
   },
