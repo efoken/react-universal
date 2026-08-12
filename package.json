@@ -18,7 +18,7 @@
     "typecheck": "yarn tsc && yarn workspaces foreach -Apt run typecheck"
   },
   "resolutions": {
-    "vite": "^7.2.6"
+    "vite": "^7.3.6"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.8",
@@ -57,7 +57,7 @@
     "tsup": "^8.5.1",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.48.1",
-    "vite": "^7.2.6",
+    "vite": "^7.3.6",
     "vitest": "^4.0.15"
   },
   "packageManager": "yarn@4.12.0"
