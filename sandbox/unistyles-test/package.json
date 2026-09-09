@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@react-native/normalize-colors": "0.82.1",
-    "react": "19.2.0",
+    "react": "19.3.0",
     "react-native": "0.82.1",
     "react-native-edge-to-edge": "^1.7.0",
     "react-native-nitro-modules": "0.31.10",

@@ -44,8 +44,8 @@
   },
   "devDependencies": {
     "@react-universal/babel-plugin": "workspace:*",
-    "@types/react": "~19.2.7",
-    "react": "19.2.0",
+    "@types/react": "~19.3.0",
+    "react": "19.3.0",
     "react-native": "0.82.1"
   },
   "peerDependencies": {
